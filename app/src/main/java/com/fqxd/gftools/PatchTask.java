@@ -133,12 +133,9 @@ public class PatchTask extends AsyncTask {
 		this.updateLog(str);
 	}
 	private void updateLog(final String str) {
-		this.log.post(new Runnable() {
-			@Override
-			public void run() {
-				log.append(str + "\r\n");
-				Log.d("patch", str);
-			}
+		this.log.post(() -> {
+			log.append(str + "\r\n");
+			Log.d("patch", str);
 		});
 	}
 	private void updateProgress(final int percent) {

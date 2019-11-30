@@ -96,6 +96,6 @@ public class ICCActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-
+        super.onBackPressed();
     }
 }
