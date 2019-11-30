@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         ICC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ICCActivity.class);
+                Intent intent = new Intent(MainActivity.this, ImgSelActivity.class);
                 startActivity(intent);
             }
         });
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "This feature will be add as soon as possable", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "This feature will be add as soon as possible", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

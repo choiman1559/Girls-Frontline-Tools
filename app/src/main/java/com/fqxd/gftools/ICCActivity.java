@@ -11,6 +11,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.content.Context.*;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -289,6 +290,7 @@ final class OnTargetSelectedListener implements AdapterView.OnItemSelectedListen
         runPatch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 runPatch.setEnabled(false);
                 parent.setEnabled(false);
                 PatchTask patchTask = new PatchTask(main, status, log, progress, ((TextView)view).getText().toString());
