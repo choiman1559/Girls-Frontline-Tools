@@ -7,7 +7,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.Settings;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,7 +26,7 @@ import com.xd.xdsdk.XDCallback;
 import com.xd.xdsdk.XDSDK;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static int REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES = 0x01;
     public static final String TAG = MainActivity.class.getSimpleName();
 
     public boolean isOnline() {
@@ -38,6 +44,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (Build.VERSION.SDK_INT >= 23 && this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+            if (Build.VERSION.SDK_INT >= 23 && this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getApplicationContext(), "Storage Permission was rejected", Toast.LENGTH_SHORT).show();
+                this.finish();
+            }
+            return;
+        }
+
+        if (Build.VERSION.SDK_INT >= 26 && !this.getPackageManager().canRequestPackageInstalls()) {
+            this.startActivityForResult(
+                    new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).setData(Uri.parse("package:" + this.getPackageName())),
+                    MainActivity.REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES
+            );
+            if (Build.VERSION.SDK_INT >= 26 && !this.getPackageManager().canRequestPackageInstalls()) {
+                Toast.makeText(getApplicationContext(), "Package Install Permission was rejected", Toast.LENGTH_SHORT).show();
+                this.finish();
+            }
+        }
 
         final Button OSS = findViewById(R.id.ORSCButton);
         OSS.setOnClickListener(new View.OnClickListener() {
@@ -77,17 +103,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                         @Override
                         public void onLoginFailed(String msg) {
-                            finishAffinity();
-                            System.runFinalization();
-                            System.exit(0);
                             Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + msg);
                             Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
                         }
                         @Override
                         public void onLoginCanceled() {
-                            finishAffinity();
-                            System.runFinalization();
-                            System.exit(0);
                             Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName());
                             Toast.makeText(getApplicationContext(), "Login Canceled", Toast.LENGTH_SHORT).show();
                         }
@@ -98,9 +118,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                         @Override
                         public void onLogoutSucceed() {
-                            finishAffinity();
-                            System.runFinalization();
-                            System.exit(0);
                             Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName());
                             Toast.makeText(getApplicationContext(), "Logout Succeed", Toast.LENGTH_SHORT).show();
                         }
