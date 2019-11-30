@@ -3,6 +3,11 @@ apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 
 android {
 
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
@@ -33,8 +38,10 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.google.android.material:material:1.0.0'
-    compile 'gun0912.ted:tedpermission:2.0.0'
+    implementation 'gun0912.ted:tedpermission:2.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'net.lingala.zip4j:zip4j:2.2.+'
+    implementation 'commons-io:commons-io:2.5'
 }

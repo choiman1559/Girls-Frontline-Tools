@@ -26,7 +26,7 @@ import com.xd.xdsdk.XDCallback;
 import com.xd.xdsdk.XDSDK;
 
 public class MainActivity extends AppCompatActivity {
-    private static int REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES = 0x01;
+    public static int REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES = 0x01;
     public static final String TAG = MainActivity.class.getSimpleName();
 
     public boolean isOnline() {
@@ -70,6 +70,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), OSSActivity.class));
+            }
+        });
+
+        final Button ICC = findViewById(R.id.ICCButton);
+        ICC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ICCActivity.class));
             }
         });
 
