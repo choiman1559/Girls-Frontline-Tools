@@ -111,6 +111,8 @@
     <orderEntry type="library" name="Gradle: androidx.constraintlayout:constraintlayout-solver:1.1.3@jar" level="project" />
     <orderEntry type="library" name="Gradle: net.lingala.zip4j:zip4j:2.2.6@jar" level="project" />
     <orderEntry type="library" name="Gradle: commons-io:commons-io:2.5@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.bumptech.glide:disklrucache:4.10.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.bumptech.glide:annotations:4.10.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/libs/SDKLib.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/libs/SensorsAnalyticsSDK.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/libs/alipaySdk-20170725.jar:unspecified@jar" level="project" />
@@ -119,10 +121,12 @@
     <orderEntry type="library" name="Gradle: __local_aars__:/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/libs/wechat-sdk-android-with-mta-1.3.5.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/libs/taptap.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/libs/libTyrantdbGameTracker.jar:unspecified@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-oss-licenses:17.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.theartofdev.edmodo:android-image-cropper:2.8.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.material:material:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: gun0912.ted:tedpermission:2.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.exifinterface:exifinterface:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-oss-licenses:17.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.bumptech.glide:glide:4.10.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-base:17.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-tasks:17.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-basement:17.0.0@aar" level="project" />
@@ -147,6 +151,7 @@
     <orderEntry type="library" name="Gradle: androidx.cursoradapter:cursoradapter:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.versionedparcelable:versionedparcelable:1.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.cardview:cardview:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.bumptech.glide:gifdecoder:4.10.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-viewmodel:2.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.interpolator:interpolator:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.documentfile:documentfile:1.0.0@aar" level="project" />
@@ -158,6 +163,7 @@
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-runtime:2.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.savedstate:savedstate:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.constraintlayout:constraintlayout:1.1.3@aar" level="project" />
+    <orderEntry type="module" module-name="xDSDKAndroid" />
     <orderEntry type="module" module-name="xDSDKAndroid" />
   </component>
 </module>
