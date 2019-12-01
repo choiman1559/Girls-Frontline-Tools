@@ -11,7 +11,6 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.content.Context.*;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -23,6 +22,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -38,12 +38,22 @@ import java.io.FilenameFilter;
 import java.util.ArrayList;
 
 public final class ICCActivity extends Activity {
-
     @Override
     protected void onCreate(Bundle saveInstanceState)
     {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_icc);
+
+        Intent getImg = getIntent();
+        ImageView ImgPreview = findViewById(R.id.ImgView);
+        Uri IconImgUrl = getImg.getParcelableExtra("imageUri");
+        ImgPreview.setImageURI(IconImgUrl);
+
+        TextView ImgText = findViewById(R.id.ImgText);
+        String imsi = ("Image Preview\n" + "Uri : " + IconImgUrl.toString());
+        ImgText.setText(imsi);
+
+
         if (Build.VERSION.SDK_INT >= 23 && this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
             return;

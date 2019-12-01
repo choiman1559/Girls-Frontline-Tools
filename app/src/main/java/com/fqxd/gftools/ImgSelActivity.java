@@ -3,9 +3,6 @@ package com.fqxd.gftools;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import com.theartofdev.edmodo.cropper.*;
 
 import androidx.fragment.app.FragmentActivity;
@@ -18,30 +15,16 @@ public class ImgSelActivity extends FragmentActivity {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_imgsel);
 
-        Button IOK = findViewById(R.id.ImgOk);
-        ImageView IPV = findViewById(R.id.ImgPreview);
-        Button ICB = findViewById(R.id.ImgSelButton);
-
-        IOK.setEnabled(false);
-        ICB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TedBottomPicker.with(ImgSelActivity.this)
-                        .show(new TedBottomSheetDialogFragment.OnImageSelectedListener() {
-                            public void onImageSelected(Uri uri) {
-                                CropImage.activity(uri).start(ImgSelActivity.this);
-                            }
-                        });
-            }
-        });
-
-        IOK.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ICCActivity.class));
-                finish();
-            }
-        });
+        TedBottomPicker.with(ImgSelActivity.this)
+                .show(new TedBottomSheetDialogFragment.OnImageSelectedListener() {
+                    public void onImageSelected(Uri uri) {
+                        CropImage.activity(uri)
+                                .setCropShape(CropImageView.CropShape.RECTANGLE)
+                                .setFixAspectRatio(true)
+                                .setAspectRatio(1,1)
+                                .start(ImgSelActivity.this);
+                    }
+                });
     }
 
     @Override
@@ -49,21 +32,23 @@ public class ImgSelActivity extends FragmentActivity {
         super.onActivityResult(requestCode,resultCode,data);
         setContentView(R.layout.activity_imgsel);
 
-        Button IOK = findViewById(R.id.ImgOk);
-        ImageView IPV = findViewById(R.id.ImgPreview);
-        Button ICB = findViewById(R.id.ImgSelButton);
-
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 Uri resultUri = result.getUri();
-                IPV.setImageURI(resultUri);
-                IOK.setEnabled(true);
+                SendIntent(resultUri);
             }
 
             else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();
             }
         }
+    }
+
+    public void SendIntent(Uri uri) {
+        Intent intent = new Intent(this,ICCActivity.class);
+        intent.putExtra("imageUri",uri);
+        startActivityForResult(intent,0x01);
+        finish();
     }
 }
