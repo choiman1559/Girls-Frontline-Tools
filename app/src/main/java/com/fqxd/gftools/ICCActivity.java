@@ -9,6 +9,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -18,6 +19,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
 import android.util.Log;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -38,17 +40,17 @@ import java.io.FilenameFilter;
 import java.util.ArrayList;
 
 public final class ICCActivity extends Activity {
+
     @Override
     protected void onCreate(Bundle saveInstanceState)
     {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_icc);
-
         Intent getImg = getIntent();
         ImageView ImgPreview = findViewById(R.id.ImgView);
         Uri IconImgUrl = getImg.getParcelableExtra("imageUri");
-        ImgPreview.setImageURI(IconImgUrl);
 
+        ImgPreview.setImageURI(IconImgUrl);
         TextView ImgText = findViewById(R.id.ImgText);
         String imsi = ("Image Preview\n" + "Uri : " + IconImgUrl.toString());
         ImgText.setText(imsi);
@@ -196,6 +198,9 @@ final class PatchTask extends AsyncTask {
             zipFile.extractAll(apk.getAbsolutePath());
             this.updateLog("apk extracted");
             this.updateProgress(75);
+            this.updateStatus("changing apk icon");
+            //icon change task here : now working
+
             this.updateStatus("repackaging apk");
             FileUtils.deleteDirectory(new File(apk.getAbsolutePath() + "/assets/bin/Data/Managed"));
             for (File f : apk.listFiles()) {
@@ -210,6 +215,7 @@ final class PatchTask extends AsyncTask {
             this.updateStatus("finished");
             FileUtils.deleteDirectory(apk);
             this.updateLog("installing apk");
+
             Intent intent = new Intent(Intent.ACTION_VIEW);
             Uri uri = Build.VERSION.SDK_INT <= 23 ? Uri.fromFile(originalApk) : FileProvider.getUriForFile(main, BuildConfig.APPLICATION_ID + ".fileprovider", originalApk);
             if (Build.VERSION.SDK_INT <= 23) {
@@ -219,6 +225,9 @@ final class PatchTask extends AsyncTask {
             }
             intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             main.startActivityForResult(intent, REQUEST_INSTALL);
+
+
+
             FileUtils.deleteDirectory(apk);
             p.post(new Runnable() {
                 @Override
@@ -319,6 +328,33 @@ final class OnTargetSelectedListener implements AdapterView.OnItemSelectedListen
                 }});
             }
         });
+    }
+
+    public static String getDeviceDensity(Context context){
+        String deviceDensity = "";
+        switch (context.getResources().getDisplayMetrics().densityDpi) {
+            case DisplayMetrics.DENSITY_LOW:
+                deviceDensity =  0.75 + " ldpi";
+                break;
+            case DisplayMetrics.DENSITY_MEDIUM:
+                deviceDensity =  1.0 + " mdpi";
+                break;
+            case DisplayMetrics.DENSITY_HIGH:
+                deviceDensity =  1.5 + " hdpi";
+                break;
+            case DisplayMetrics.DENSITY_XHIGH:
+                deviceDensity =  2.0 + " xhdpi";
+                break;
+            case DisplayMetrics.DENSITY_XXHIGH:
+                deviceDensity =  3.0 + " xxhdpi";
+                break;
+            case DisplayMetrics.DENSITY_XXXHIGH:
+                deviceDensity =  4.0 + " xxxhdpi";
+                break;
+            default:
+                deviceDensity = "Not found";
+        }
+        return deviceDensity;
     }
 
     @Override

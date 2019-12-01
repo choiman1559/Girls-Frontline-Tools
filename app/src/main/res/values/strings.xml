@@ -17,6 +17,9 @@
     <string name="ORSCButton">Open Source License</string>
     <string name="ICCButton">Icon Changer</string>
     <string name="OSS">
+
+        \nUsed Open Sources In package \"com.fqxd.gftools\"\n\n\n
+
         Copyright © 2005-2013, Google LLC - The Android Open Source Project\n
    Licensed under the Apache License\nLicensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -89,7 +92,16 @@ Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
-limitations under the License.</string>
+limitations under the License.\n\n
+
+        Copyright (c) 2019, Freepik - Handymade Tools free icon\n
+        Flaticon Basic License\n
+    designed by Freepik from Flaticon\n\n
+
+    Special Thanks to - Fucking Xd Global\n
+
+    소전에 오픈소스 고지 안해줘서 참도 고맙다 우중아\n\n
+    +님들 그거 앎? fq는 "Fuck you" 의 약자임 ㅇㅇ</string>
     <string name="ImgSel">Select Image</string>
     <string name="imgpreview">image preview</string>
 </resources>
