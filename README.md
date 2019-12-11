@@ -1,4 +1,6 @@
 # Girls-Frontline-Tools
+[![version](https://img.shields.io/badge/version-0.2.5-yellow.svg)](https://semver.org)
+
 Useful Tools for Girls Frontline
 
 --------------------------
