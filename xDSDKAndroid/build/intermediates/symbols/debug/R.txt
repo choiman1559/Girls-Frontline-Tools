@@ -28,10 +28,11 @@ int color tableborder 0x7f060017
 int color tableheader 0x7f060018
 int color textField_bg 0x7f060019
 int color title 0x7f06001a
-int color uc_label 0x7f06001b
-int color uc_label_pressed 0x7f06001c
-int color xd_white 0x7f06001d
-int color xdsdk__action_text 0x7f06001e
+int color transparent 0x7f06001b
+int color uc_label 0x7f06001c
+int color uc_label_pressed 0x7f06001d
+int color xd_white 0x7f06001e
+int color xdsdk__action_text 0x7f06001f
 int dimen button_height 0x7f070001
 int dimen form_element_width 0x7f070002
 int dimen image_size 0x7f070003

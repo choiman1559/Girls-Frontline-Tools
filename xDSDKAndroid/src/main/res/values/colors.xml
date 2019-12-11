@@ -2,6 +2,7 @@
 <resources>
     <color name="background">#332321</color>
     <color name="tableborder">#22130e</color>
+    <color name="transparent">#00000000</color>
     <color name="tableheader">#271511</color>
     <color name="tablebody">#bca38f</color>
     <color name="black">#424242</color>

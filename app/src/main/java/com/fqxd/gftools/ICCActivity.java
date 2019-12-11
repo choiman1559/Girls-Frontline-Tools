@@ -202,7 +202,7 @@ final class PatchTask extends AsyncTask {
             //icon change task here : now working
 
             this.updateStatus("repackaging apk");
-            FileUtils.deleteDirectory(new File(apk.getAbsolutePath() + "/assets/bin/Data/Managed"));
+           //FileUtils.deleteDirectory(new File(apk.getAbsolutePath() + "/assets/bin/Data/Managed"));
             for (File f : apk.listFiles()) {
                 if (f.getName().equals("res")) continue;
                 if (f.isFile()) {
@@ -213,7 +213,7 @@ final class PatchTask extends AsyncTask {
             }
             this.updateLog("apk repackaged");
             this.updateStatus("finished");
-            FileUtils.deleteDirectory(apk);
+            //FileUtils.deleteDirectory(apk);
             this.updateLog("installing apk");
 
             Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -228,7 +228,7 @@ final class PatchTask extends AsyncTask {
 
 
 
-            FileUtils.deleteDirectory(apk);
+            //FileUtils.deleteDirectory(apk);
             p.post(new Runnable() {
                 @Override
                 public void run() {

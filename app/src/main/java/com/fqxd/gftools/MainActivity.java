@@ -82,6 +82,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        final Button XAPK = findViewById(R.id.XAPKInstaller);
+        XAPK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,XapkActivity.class);
+                startActivity(intent);
+            }
+        });
+
         Button UCB = findViewById(R.id.UCButton);
         UCB.setOnClickListener(new View.OnClickListener() {
             @Override

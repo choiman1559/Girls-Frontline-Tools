@@ -29,6 +29,7 @@ color tableborder
 color tableheader
 color textField_bg
 color title
+color transparent
 color uc_label
 color uc_label_pressed
 color xd_white
