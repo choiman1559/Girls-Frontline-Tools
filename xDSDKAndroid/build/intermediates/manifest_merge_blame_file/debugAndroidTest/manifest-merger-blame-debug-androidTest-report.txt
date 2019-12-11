@@ -3,24 +3,24 @@
 3    package="com.xd.sdklib.test" >
 4
 5    <uses-sdk
-5-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5721452341682503993.xml:5:5-74
+5-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2646969583835373725.xml:5:5-74
 6        android:minSdkVersion="11"
-6-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5721452341682503993.xml:5:15-41
+6-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2646969583835373725.xml:5:15-41
 7        android:targetSdkVersion="21" />
-7-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5721452341682503993.xml:5:42-71
+7-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2646969583835373725.xml:5:42-71
 8
 9    <instrumentation
-9-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5721452341682503993.xml:11:5-15:68
+9-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2646969583835373725.xml:11:5-15:68
 10        android:name="android.test.InstrumentationTestRunner"
-10-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5721452341682503993.xml:11:22-75
+10-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2646969583835373725.xml:11:22-75
 11        android:functionalTest="false"
-11-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5721452341682503993.xml:14:22-52
+11-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2646969583835373725.xml:14:22-52
 12        android:handleProfiling="false"
-12-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5721452341682503993.xml:13:22-53
+12-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2646969583835373725.xml:13:22-53
 13        android:label="Tests for com.xd.sdklib.test"
-13-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5721452341682503993.xml:15:22-66
+13-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2646969583835373725.xml:15:22-66
 14        android:targetPackage="com.xd.sdklib.test" />
-14-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5721452341682503993.xml:12:22-64
+14-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2646969583835373725.xml:12:22-64
 15
 16    <uses-permission android:name="android.permission.INTERNET" />
 16-->[__tested_artifact__::xDSDKAndroid] /home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-67
@@ -36,11 +36,11 @@
 19-->[__tested_artifact__::xDSDKAndroid] /home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:22-78
 20
 21    <application android:debuggable="true" >
-21-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5721452341682503993.xml:7:5-9:19
-21-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5721452341682503993.xml:7:18-43
+21-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2646969583835373725.xml:7:5-9:19
+21-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2646969583835373725.xml:7:18-43
 22        <uses-library android:name="android.test.runner" />
-22-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5721452341682503993.xml:8:9-60
-22-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5721452341682503993.xml:8:23-57
+22-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2646969583835373725.xml:8:9-60
+22-->/home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger2646969583835373725.xml:8:23-57
 23
 24        <activity
 24-->[__tested_artifact__::xDSDKAndroid] /home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:9-20:86
@@ -153,14 +153,6 @@
 78-->[__tested_artifact__::xDSDKAndroid] /home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/library_manifest/debug/AndroidManifest.xml:76:13-49
 79            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 79-->[__tested_artifact__::xDSDKAndroid] /home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/library_manifest/debug/AndroidManifest.xml:77:13-72
-80        <activity
-80-->[__tested_artifact__::xDSDKAndroid] /home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/library_manifest/debug/AndroidManifest.xml:46:9-49:75
-81            android:name="com.tencent.connect.common.AssistActivity"
-81-->[__tested_artifact__::xDSDKAndroid] /home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/library_manifest/debug/AndroidManifest.xml:47:13-69
-82            android:configChanges="orientation|keyboardHidden|screenSize"
-82-->[__tested_artifact__::xDSDKAndroid] /home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/library_manifest/debug/AndroidManifest.xml:48:13-74
-83            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-83-->[__tested_artifact__::xDSDKAndroid] /home/cuj1559/바탕화면/Girls-Frontline-Tools/xDSDKAndroid/build/intermediates/library_manifest/debug/AndroidManifest.xml:49:13-72
-84    </application>
-85
-86</manifest>
+80    </application>
+81
+82</manifest>

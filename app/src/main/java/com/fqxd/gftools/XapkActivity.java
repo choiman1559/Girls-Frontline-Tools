@@ -9,21 +9,17 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Environment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-import androidx.core.os.EnvironmentCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.nononsenseapps.filepicker.FilePickerActivity;
 import com.nononsenseapps.filepicker.Utils;
 
 import java.io.BufferedReader;
@@ -49,6 +45,8 @@ public class XapkActivity extends AppCompatActivity {
 
         if (checkPermissions()){
             Intent i = new Intent(this, FilePicker.class);
+            i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,false);
+            i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR,false);
             startActivityForResult(i, 5217);
         }else{
             Toast.makeText(this, "You need to Allow WRITE STORAGE Permission!", Toast.LENGTH_SHORT).show();
@@ -86,11 +84,12 @@ public class XapkActivity extends AppCompatActivity {
             List<Uri> files = Utils.getSelectedFilesFromResult(intent);
             File file = null;
             for (Uri uri: files) {
-                file = new File(uri.getPath());//Utils.getFileForUri(uri);
+                file = Utils.getFileForUri(uri);
             }
 
+
             AlertDialog.Builder b = new AlertDialog.Builder(XapkActivity.this);
-            b.setTitle("Attention!");
+            b.setTitle("Notice");
             b.setMessage("Do you want to Install ?");
             final File finalFile = file;
             b.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -181,6 +180,7 @@ public class XapkActivity extends AppCompatActivity {
                         my.deleteDirectory("/sdcard/XAPK_Installer/Android");
                         my.deleteFile("/sdcard/XAPK_Installer/manifest.json");
                         my.deleteFile("/sdcard/XAPK_Installer/icon.png");
+                        finish();
                     }
                     else finish();
                 }
