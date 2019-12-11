@@ -1,6 +1,17 @@
 # Girls-Frontline-Tools
 Useful Tools for Girls Frontline
 
+## Features
+ - XD User Center
+ - GIRLS frontline Icon Changer
+ - Xapk Installer
+
+## List-To-Add
+ - Censorship Tool
+ - Recommand me
+
+---------------------------
+
     #include <std_disclaimer.h> 
     // Your warranty is now void.
     // I are not responsible for bricked devices, dead SD cards, thermonuclear war, or you getting fired because the alarm app failed. 
