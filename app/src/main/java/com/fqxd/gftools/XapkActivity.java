@@ -38,93 +38,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class XapkActivity extends AppCompatActivity {
-    ListView listView;
-    ArrayList<String> arrayList = new ArrayList<>();
-    ArrayList<String> fileSize = new ArrayList<>();
 
-    private File root;
     String apk;
-    private ArrayList<File> fileList = new ArrayList<File>();
     ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
 
         if (checkPermissions()){
             Intent i = new Intent(this, FilePicker.class);
             startActivityForResult(i, 5217);
-            //startWork();
         }else{
             Toast.makeText(this, "You need to Allow WRITE STORAGE Permission!", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void startWork(){
-        try {
-            Intent receivedIntent = getIntent();
-            String receivedAction = receivedIntent.getAction();
-            if (receivedAction.equals(Intent.ACTION_SEND)) {
-                Uri gUri = (Uri)getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
-                if (gUri !=null){
-                    final String ss = new PathUtils().getPath(this,gUri);
-                    if (ss.endsWith(".xapk") || ss.endsWith(".XAPK")){
-                        AlertDialog.Builder b = new AlertDialog.Builder(XapkActivity.this);
-                        b.setTitle("Attention!");
-                        b.setMessage("Do you want to Install ?");
-                        b.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                new work(new File(ss)).execute();
-                            }
-                        });
-                        b.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                finish();
-                            }
-                        });
-                        AlertDialog d = b.create();
-                        d.show();
-                    }
-                }
-            }
-        }catch (Exception e){
-            Toast.makeText(this, "something was wrong!", Toast.LENGTH_SHORT).show();
-        }
-
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Please Wait!");
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("Working...");
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-
-        /*listOn();
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                AlertDialog.Builder b = new AlertDialog.Builder(XapkActivity.this);
-                b.setTitle("Attention!");
-                b.setMessage("Do you want to Install ?");
-                final int o = i;
-                b.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        new work(fileList.get(o)).execute();
-                    }
-                });
-                b.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        finish();
-                    }
-                });
-                AlertDialog d = b.create();
-                d.show();
-            }
-        });*/
-    }
 
     private boolean checkPermissions() {
         int REQUEST_ID_MULTIPLE_PERMISSIONS = 5217;
@@ -143,153 +73,48 @@ public class XapkActivity extends AppCompatActivity {
         return true;
     }
 
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Please Wait!");
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Working...");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
+        super.onActivityResult(requestCode,resultCode,intent);
+        if (requestCode == 5217 && resultCode == Activity.RESULT_OK) {
+            List<Uri> files = Utils.getSelectedFilesFromResult(intent);
+            File file = null;
+            for (Uri uri: files) {
+                file = new File(uri.getPath());//Utils.getFileForUri(uri);
+            }
+
+            AlertDialog.Builder b = new AlertDialog.Builder(XapkActivity.this);
+            b.setTitle("Attention!");
+            b.setMessage("Do you want to Install ?");
+            final File finalFile = file;
+            b.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    new work(finalFile).execute();
+                }
+            });
+            b.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    finish();
+                }
+            });
+            AlertDialog d = b.create();
+            d.show();
+        }
+    }
+
+
+
     @Override
-    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case 5217: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    startWork();
-                } else {
-                    checkPermissions();
-                    Toast.makeText(this, "You need to Allow WRITE STORAGE Permission!", Toast.LENGTH_SHORT).show();
-                }
-                return;
-            }
-        }
-    }
-
-    public String getSize(File file){
-        float sizeInBytes = file.length();
-        float sizeInMb = sizeInBytes / (1024 * 1024);
-
-        String size = String.valueOf(sizeInMb);
-        size = size.substring(0,3)+" MB";
-        Log.d("FileSize",size);
-        return size;
-    }
-
-    public void listOn(){
-        ArrayList<String> path = new ArrayList<>();
-
-        try {
-            if (getExternalStorageDirectories().length>0){
-                String lol = getExternalStorageDirectories()[0];
-                if (lol.isEmpty()&&!lol.equals(null)){
-                }else{
-                    path.add(lol);
-                }}
-        }catch (Exception e){
-
-        }
-
-        path.add(Environment.getExternalStorageDirectory().getAbsolutePath());
-
-        //getting SDcard root path
-        for (int i =0;i<path.size();i++){
-            root = new File(path.get(i));
-            fileList = getfile(root);
-        }
-
-        for (int i = 0; i < fileList.size(); i++) {
-            fileSize.add(getSize(fileList.get(i)));
-            arrayList.add(fileList.get(i).getName());
-        }
-    }
-
-    public ArrayList<File> getfile(File dir) {
-        File listFile[] = dir.listFiles();
-        if (listFile != null && listFile.length > 0) {
-            for (int i = 0; i < listFile.length; i++) {
-
-                if (listFile[i].isDirectory()) {
-                    getfile(listFile[i]);
-
-                } else {
-                    if (listFile[i].getName().endsWith(".xapk")
-                            || listFile[i].getName().endsWith(".XAPK"))
-                    {
-                        fileList.add(listFile[i]);
-                    }
-                }
-
-            }
-        }
-        return fileList;
-    }
-
-    /* returns external storage paths (directory of external memory card) as array of Strings */
-    public String[] getExternalStorageDirectories() {
-        String LOG_TAG = "SDCARD";
-
-        List<String> results = new ArrayList<>();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { //Method 1 for KitKat & above
-            File[] externalDirs = getExternalFilesDirs(null);
-
-            for (File file : externalDirs) {
-                String path = file.getPath().split("/Android")[0];
-
-                boolean addPath = false;
-
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    addPath = Environment.isExternalStorageRemovable(file);
-                }
-                else{
-                    addPath = Environment.MEDIA_MOUNTED.equals(EnvironmentCompat.getStorageState(file));
-                }
-
-                if(addPath){
-                    results.add(path);
-                }
-            }
-        }
-
-        if(results.isEmpty()) { //Method 2 for all versions
-            // better variation of: http://stackoverflow.com/a/40123073/5002496
-            String output = "";
-            try {
-                final Process process = new ProcessBuilder().command("mount | grep /dev/block/vold")
-                        .redirectErrorStream(true).start();
-                process.waitFor();
-                final InputStream is = process.getInputStream();
-                final byte[] buffer = new byte[1024];
-                while (is.read(buffer) != -1) {
-                    output = output + new String(buffer);
-                }
-                is.close();
-            } catch (final Exception e) {
-                e.printStackTrace();
-            }
-            if(!output.trim().isEmpty()) {
-                String devicePoints[] = output.split("\n");
-                for(String voldPoint: devicePoints) {
-                    results.add(voldPoint.split(" ")[2]);
-                }
-            }
-        }
-
-        //Below few lines is to remove paths which may not be external memory card, like OTG (feel free to comment them out)
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            for (int i = 0; i < results.size(); i++) {
-                if (!results.get(i).toLowerCase().matches(".*[0-9a-f]{4}[-][0-9a-f]{4}")) {
-                    Log.d(LOG_TAG, results.get(i) + " might not be extSDcard");
-                    results.remove(i--);
-                }
-            }
-        } else {
-            for (int i = 0; i < results.size(); i++) {
-                if (!results.get(i).toLowerCase().contains("ext") && !results.get(i).toLowerCase().contains("sdcard")) {
-                    Log.d(LOG_TAG, results.get(i)+" might not be extSDcard");
-                    results.remove(i--);
-                }
-            }
-        }
-
-        String[] storageDirectories = new String[results.size()];
-        for(int i=0; i<results.size(); ++i) storageDirectories[i] = results.get(i);
-
-        return storageDirectories;
+    public void onBackPressed() {
+      finish();
     }
 
     public class work extends AsyncTask<String,String,String>{
@@ -305,7 +130,7 @@ public class XapkActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(String s) {
+        public void onPostExecute(String s) {
             super.onPostExecute(s);
             progressDialog.dismiss();
             String btn = null;
@@ -357,6 +182,7 @@ public class XapkActivity extends AppCompatActivity {
                         my.deleteFile("/sdcard/XAPK_Installer/manifest.json");
                         my.deleteFile("/sdcard/XAPK_Installer/icon.png");
                     }
+                    else finish();
                 }
             });
 
@@ -444,69 +270,4 @@ public class XapkActivity extends AppCompatActivity {
         return true;
     }
 
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.browse) {
-            Intent i = new Intent(this, FilePicker.class);
-            startActivityForResult(i, 5217);
-        }
-
-        if (id==R.id.refresh){
-            adapter.notifyDataSetChanged();
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode,resultCode,intent);
-        if (requestCode == 5217 && resultCode == Activity.RESULT_OK) {
-            List<Uri> files = Utils.getSelectedFilesFromResult(intent);
-            File file = null;
-            for (Uri uri: files) {
-                file = Utils.getFileForUri(uri);
-            }
-
-            AlertDialog.Builder b = new AlertDialog.Builder(XapkActivity.this);
-            b.setTitle("Attention!");
-            b.setMessage("Do you want to Install ?");
-            final File finalFile = file;
-            b.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    new work(finalFile).execute();
-                }
-            });
-            b.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    finish();
-                }
-            });
-            AlertDialog d = b.create();
-            d.show();
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Attention!");
-        builder.setMessage("Do you want to Exit ?");
-        //builder.setIcon(R.drawable.icon);
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                finish();
-            }
-        });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                finish();
-            }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
 }
