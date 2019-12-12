@@ -1,5 +1,6 @@
 package com.fqxd.gftools;
 
+import android.content.Intent;
 import android.os.Environment;
 
 import androidx.annotation.NonNull;
@@ -66,5 +67,12 @@ public class FilePicker extends FilePickerActivity {
             return ret;
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        finish();
     }
 }

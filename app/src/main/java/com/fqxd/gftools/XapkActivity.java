@@ -113,7 +113,9 @@ public class XapkActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-      finish();
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        finish();
     }
 
     public class work extends AsyncTask<String,String,String>{
