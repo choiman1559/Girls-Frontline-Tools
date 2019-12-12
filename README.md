@@ -9,6 +9,7 @@ Useful Tools for Girls Frontline
  - XD User Center
  - GIRLS frontline Icon Changer
  - Xapk Installer
+ - Girls Frontline Runner
 
 ## List-To-Add
  - Girls Frontline Censorship Tool
