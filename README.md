@@ -1,5 +1,24 @@
 # Girls-Frontline-Tools
+[![version](https://img.shields.io/badge/version-0.2.5-yellow.svg)](https://semver.org)
+
 Useful Tools for Girls Frontline
+
+--------------------------
+
+## Features
+ - XD User Center
+ - GIRLS frontline Icon Changer
+ - Xapk Installer
+
+## List-To-Add
+ - Girls Frontline Censorship Tool
+(For Root Users) 
+ - Recommand me
+
+---------------------------
+
+### Disclamer
+This Disclamer Made By XDA Members
 
     #include <std_disclaimer.h> 
     // Your warranty is now void.
