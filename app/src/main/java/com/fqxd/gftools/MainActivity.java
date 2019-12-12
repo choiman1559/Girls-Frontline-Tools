@@ -176,12 +176,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = getPackageManager().getLaunchIntentForPackage("kr.txwy.and.snqx");
-                if(null != intent) {
-                    startActivity(intent);
-                } else {
-                Snackbar.make(view, "kr.txwy.and.snqx isn't installed!.", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show(); }
+                Intent intent = new Intent(MainActivity.this,AppActivity.class);
+                startActivity(intent);
             }
         });
     }

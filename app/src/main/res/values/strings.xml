@@ -105,4 +105,9 @@ limitations under the License.\n\n
     <string name="ImgSel">Select Image</string>
     <string name="imgpreview">image preview</string>
     <string name="XAPKInstall">XAPK   Installer</string>
+    <string name="version">version : UNKNOWN</string>
+    <string name="runApp">run app</string>
+    <string name="deleteapp">Delete App</string>
+    <string name="appname">app name : UNKNOWN</string>
+    <string name="server">server : UNKNOWN</string>
 </resources>
