@@ -10,10 +10,12 @@ Useful Tools for Girls Frontline
  - GIRLS frontline Icon Changer
  - Xapk Installer
  - Girls Frontline Runner
+ - Girls Frontline Dic Potable
 
 ## List-To-Add
  - Girls Frontline Censorship Tool
-(For Root Users) 
+(For Root Users)
+ - Girls Frontline TEXTKR Pacher
  - Recommand me
 
 ---------------------------
