@@ -82,6 +82,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        final Button GFD = findViewById(R.id.GFDButton);
+        GFD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, GFDActivity.class);
+                startActivity(intent);
+            }
+        });
+
         final Button XAPK = findViewById(R.id.XAPKInstaller);
         XAPK.setOnClickListener(new View.OnClickListener() {
             @Override

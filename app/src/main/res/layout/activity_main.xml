@@ -41,6 +41,12 @@
             android:text="@string/XAPKInstall" />
 
         <Button
+            android:id="@+id/GFDButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/GFDButton" />
+
+        <Button
             android:id="@+id/ORSCButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
