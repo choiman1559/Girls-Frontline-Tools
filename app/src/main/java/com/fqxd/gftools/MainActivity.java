@@ -91,6 +91,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        final Button TXT = findViewById(R.id.TextKRButton);
+        TXT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TXTActivity.class);
+                startActivity(intent);
+            }
+        });
+
         final Button XAPK = findViewById(R.id.XAPKInstaller);
         XAPK.setOnClickListener(new View.OnClickListener() {
             @Override

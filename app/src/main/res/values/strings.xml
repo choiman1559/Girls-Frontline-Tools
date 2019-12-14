@@ -17,6 +17,7 @@
     <string name="ORSCButton">Open Source License</string>
     <string name="ICCButton">Icon Changer</string>
     <string name="GFDButton">GF Dic Portable</string>
+    <string name="TextKRButton">TextKR Patcher</string>
     <string name="OSS">
 
         \nUsed Open Sources In package \"com.fqxd.gftools\"\n\n\n
