@@ -1,5 +1,5 @@
 # Girls-Frontline-Tools
-[![version](https://img.shields.io/badge/version-0.2.5-yellow.svg)](https://semver.org)
+[![version](https://img.shields.io/badge/version-0.3.5-yellow.svg)](https://semver.org)
 
 Useful Tools for Girls Frontline
 
@@ -7,15 +7,15 @@ Useful Tools for Girls Frontline
 
 ## Features
  - XD User Center
- - GIRLS frontline Icon Changer
+ - GIRLS frontline Icon Changer (Working) 
  - Xapk Installer
  - Girls Frontline Runner
  - Girls Frontline Dic Portable
+ - Girls Frontline TextKR Patcher
 
 ## List-To-Add
  - Girls Frontline Censorship Tool
 (For Root Users)
- - Girls Frontline TEXTKR Pacher
  - Recommand me
 
 ---------------------------
