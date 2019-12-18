@@ -27,7 +27,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".TXTActivity"></activity>
+        <activity android:name=".Cen"></activity>
+        <activity android:name=".AddAlarmActivity" />
+        <activity android:name=".TXTActivity" />
         <activity android:name=".GFDViewer" />
 
         <uses-library
@@ -67,7 +69,6 @@
         <activity
             android:name=".AppActivity"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".FilePicker"
             android:theme="@style/FilePickerTheme">
@@ -77,16 +78,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".TextPicker"
             android:theme="@style/FilePickerTheme">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ImgSelActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />

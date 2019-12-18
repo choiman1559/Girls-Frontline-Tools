@@ -109,6 +109,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        final Button Alarm = findViewById(R.id.AlarmButton);
+        Alarm.setEnabled(false);
+        Alarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,AddAlarmActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        final Button CEN = findViewById(R.id.CenButton);
+        CEN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Cen.class);
+                startActivity(intent);
+            }
+        });
+
+
         Button UCB = findViewById(R.id.UCButton);
         UCB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -227,5 +247,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         XDSDK.onStop(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finishAffinity();
+        System.exit(0);
     }
 }

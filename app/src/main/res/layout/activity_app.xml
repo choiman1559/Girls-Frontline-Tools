@@ -61,4 +61,10 @@
         android:layout_height="wrap_content"
         android:text="@string/deleteapp" />
 
+    <Button
+        android:id="@+id/DeleteData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Deletedata" />
+
 </LinearLayout>

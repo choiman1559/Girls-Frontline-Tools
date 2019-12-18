@@ -18,6 +18,8 @@
     <string name="ICCButton">Icon Changer</string>
     <string name="GFDButton">GF Dic Portable</string>
     <string name="TextKRButton">TextKR Patcher</string>
+    <string name="AlarmButton">GF LSD Alarm</string>
+    <string name="CenButton">GF Censorship [ROOT]</string>
     <string name="OSS">
 
         \nUsed Open Sources In package \"com.fqxd.gftools\"\n\n\n
@@ -110,9 +112,13 @@ limitations under the License.\n\n
     <string name="version">version : UNKNOWN</string>
     <string name="runApp">run app</string>
     <string name="deleteapp">Delete App</string>
+    <string name="Deletedata">Delete Data</string>
     <string name="appname">app name : UNKNOWN</string>
     <string name="server">server : UNKNOWN</string>
     <string name="Title_GFD">소전사전 Portable</string>
+    <string name="Textview1">지역</string>
+    <string name="Textview2">세부</string>
+    <string name="time">prediction time : UNKNOWN</string>
 
     <string name="b1">인형 제조 시간표</string>
     <string name="b2">장비 제조 시간표</string>

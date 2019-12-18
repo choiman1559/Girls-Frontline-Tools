@@ -3,7 +3,6 @@ package com.fqxd.gftools;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,7 +14,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class AppActivity extends Activity {
@@ -28,6 +29,7 @@ public class AppActivity extends Activity {
 
         final Button run = findViewById(R.id.Runapp);
         final Button del = findViewById(R.id.DeleteApp);
+        final Button deld = findViewById(R.id.DeleteData);
         final ImageView icon = findViewById(R.id.IconView);
 
         icon.setImageResource(R.drawable.ic_icon_background);
@@ -81,6 +83,31 @@ public class AppActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        deld.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String path = "/sdcard/Android/data/" + packagename;
+                setDirEmpty(path);
+                Toast.makeText(getApplicationContext(), "Data Deleted!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void setDirEmpty(String dirname) {
+        String path = dirname;
+
+        File dir = new File(path);
+        File[] child = dir.listFiles();
+
+        if(dir.exists()) {
+            for(File childfile : child) {
+                if(childfile.isDirectory()) {
+                    setDirEmpty(childfile.getAbsolutePath());
+                } else childfile.delete();
+            }
+        }
+        dir.delete();
     }
 
     final class OnTargetSelectedListener implements AdapterView.OnItemSelectedListener {
@@ -99,6 +126,7 @@ public class AppActivity extends Activity {
             final TextView server = findViewById(R.id.server);
             final Button run = findViewById(R.id.Runapp);
             final Button del = findViewById(R.id.DeleteApp);
+            final Button deld = findViewById(R.id.DeleteData);
             final ImageView icon = findViewById(R.id.IconView);
 
             if (((TextView)view).getText().equals("...")) {
@@ -108,12 +136,14 @@ public class AppActivity extends Activity {
                 server.setText("server : UNKNOWN");
                 run.setEnabled(false);
                 del.setEnabled(false);
+                deld.setEnabled(false);
                 return;
             } else {
                 packagename = spinner.getSelectedItem().toString();
 
                 run.setEnabled(true);
                 del.setEnabled(true);
+                deld.setEnabled(true);
 
                 try {
                     PackageManager pm = getApplicationContext().getPackageManager();

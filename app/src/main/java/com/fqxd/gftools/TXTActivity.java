@@ -133,6 +133,8 @@ public class TXTActivity extends AppCompatActivity {
             }
 
             fos.close();
+            Toast.makeText(getApplicationContext(), "task completed", Toast.LENGTH_SHORT).show();
+
         } catch(Exception e){
             e.printStackTrace();
         }
