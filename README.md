@@ -12,10 +12,11 @@ Useful Tools for Girls Frontline
  - Girls Frontline Runner
  - Girls Frontline Dic Portable
  - Girls Frontline TextKR Patcher
-
-## List-To-Add
  - Girls Frontline Censorship Tool
 (For Root Users)
+
+## List-To-Add
+ - Girls Frontline LSD Alarm
  - Recommand me
 
 ---------------------------
