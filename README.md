@@ -12,6 +12,8 @@ Useful Tools for Girls Frontline
  - Girls Frontline Runner
  - Girls Frontline Dic Portable
  - Girls Frontline TextKR Patcher
+ - ZasRun Calculator
+(Thanks to tempkaridc)
  - Girls Frontline Censorship Tool
 (For Root Users)
 
