@@ -82,7 +82,7 @@ public class TXTActivity extends AppCompatActivity {
 
     public void onScreen() {
 
-        Button runpatch = findViewById(R.id.runPatch);
+        Button runpatch = findViewById(R.id.centrue);
         runpatch.setEnabled(false);
 
         ArrayList<String> packageNames = new ArrayList<>();
@@ -108,7 +108,7 @@ public class TXTActivity extends AppCompatActivity {
         targetPackages.setAdapter(packages);
         targetPackages.setOnItemSelectedListener(new OnTargetSelectedListener(this));
 
-        final Button run = findViewById(R.id.runPatch);
+        final Button run = findViewById(R.id.centrue);
         run.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,7 +155,7 @@ public class TXTActivity extends AppCompatActivity {
                 return;
             } else {
                 packagename = spinner.getSelectedItem().toString();
-                Button runpatch = findViewById(R.id.runPatch);
+                Button runpatch = findViewById(R.id.centrue);
                 runpatch.setEnabled(true);
             }
         }

@@ -11,7 +11,16 @@
         android:scrollbarSize="35sp" />
 
     <Button
-        android:id="@+id/runPatch"
+        android:id="@+id/centrue"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/run_patch"
+        android:textAllCaps="false"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/cenfalse"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

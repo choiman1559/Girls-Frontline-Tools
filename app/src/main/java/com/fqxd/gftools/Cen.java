@@ -12,19 +12,22 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Cen extends AppCompatActivity {
-    String pacname = null;
+    String pacname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cen);
-        Button runpatch = findViewById(R.id.runPatch);
+        Button runpatch = findViewById(R.id.centrue);
         runpatch.setEnabled(false);
 
         ArrayList<String> packageNames = new ArrayList<>();
@@ -51,55 +54,59 @@ public class Cen extends AppCompatActivity {
         targetPackages.setAdapter(packages);
         targetPackages.setOnItemSelectedListener(new Cen.OnTargetSelectedListener(this));
 
-        final Button CEN = findViewById(R.id.runPatch);
+        final Button CEN = findViewById(R.id.centrue);
+        CEN.setText("Censorship off");
         CEN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                makeXML();
-                RunCommand();
+                updateLog("=== New Task ===");
+                updateLog("Task : Censorship off");
+                editTask(true);
             }
         });
 
-    }
-
-    void makeXML() {
-        File file = new File("/sdcard/XAPK_Installer/");
-        if (!file.exists()) {
-            file.mkdir();
-        }
-
-        File XML = new File("/sdcard/XAPK_Installer/" + pacname + ".v2.playerprefs.xml");
-        if (!XML.exists()) {
-            try {
+        final Button reCEN = findViewById(R.id.cenfalse);
+        reCEN.setText("Censorship on");
+        reCEN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 updateLog("=== New Task ===");
-                updateLog("making XML file...");
-                FileWriter writer = new FileWriter(XML);
-                writer.append("<?xml version='1.0' encoding='utf-8' standalone='yes' ?>\n");
-                writer.append("<map>\n");
-                writer.append("    <int name=\"Normal\" value=\"0\" />\n");
-                writer.append("</map>");
-                writer.flush();
-                writer.close();
-
-            } catch (Exception e) {
+                updateLog("Task : Censorship on");
+                editTask(false);
             }
+        });
 
-        } else if (file.exists()) {
-            XML.delete();
-            makeXML();
-        }
 
     }
 
-    void RunCommand() {
+   void editTask(boolean istrue) {
         try {
+            if(!new File("/sdcard/XAPK_Installer/").exists()) new File("/sdcard/XAPK_Installer/").mkdir();
+            else if(new File("/sdcard/XAPK_Installer/newXML.xml").exists()) new File("/sdcard/XAPK_Installer/newXML.xml").delete();
 
             updateLog("getting su permission...");
             Process p = Runtime.getRuntime().exec("su");
             DataOutputStream dos = new DataOutputStream(p.getOutputStream());
             updateLog("mounting /data...");
             dos.writeBytes("mount -o remount,rw /data\n");
-            updateLog("copying XML file...");
+            updateLog("copying XML file from /data/data...");
+            dos.writeBytes("cp -f /data/data/" + pacname + "/shared_prefs/" + pacname + ".v2.playerprefs.xml /sdcard/XAPK_Installer/\n");
+            dos.writeBytes("exit\n");
+            dos.flush();
+            dos.close();
+
+            Xmledit(istrue);
+        } catch (Exception e) {}
+   }
+
+   void copyXml(){
+        try{
+            updateLog("getting su permission...");
+            Process p = Runtime.getRuntime().exec("su");
+            DataOutputStream dos = new DataOutputStream(p.getOutputStream());
+            updateLog("mounting /data...");
+            dos.writeBytes("mount -o remount,rw /data\n");
+            updateLog("copying XML file from storage...");
             dos.writeBytes("cp -fp /sdcard/XAPK_Installer/" + pacname + ".v2.playerprefs.xml /data/data/" + pacname + "/shared_prefs/\n");
             dos.writeBytes("exit\n");
             dos.flush();
@@ -107,18 +114,53 @@ public class Cen extends AppCompatActivity {
             p.waitFor();
 
             updateLog("cleaning up...");
-            File file = new File("/sdcard/XAPK_Installer/" + pacname + ".v2.playerprefs.xml");
-            file.delete();
+            new File("/sdcard/XAPK_Installer/" + pacname + ".v2.playerprefs.xml").delete();
+            updateLog("Task Done!\n");
 
+        } catch (Exception e) {}
+   }
 
-            updateLog("done!\n");
-        } catch (Exception e) {
-        }
+    void Xmledit(boolean istrue){
+        int cen = istrue ? 1 : 0;
+
+        updateLog("editing XML...");
+        File newXml = new File("/sdcard/XAPK_Installer/newXML.xml");
+        File Xml = new File("/sdcard/XAPK_Installer/" + pacname + ".v2.playerprefs.xml");
+
+        String line = null;
+        try {
+            while(!Xml.exists()) { continue; }
+
+            FileWriter Xmlwrite = new FileWriter(newXml);
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(Xml));
+
+            while ((line = bufferedReader.readLine()) != null) {
+                if(line.contains("Normal")) {
+                    Xmlwrite.append("    <int name=\"Normal\" value=\"" + Integer.toString(cen) + "\" />\n");
+                    Xmlwrite.flush();
+                    continue;
+                }
+                    else Xmlwrite.append(line + "\n");
+                    Xmlwrite.flush();
+            }
+
+            bufferedReader.close();
+            Xmlwrite.close();
+
+            updateLog("deleting old XML file...");
+            Xml.delete();
+            updateLog("renameing to new Xml file...");
+            newXml.renameTo(Xml);
+
+            copyXml();
+
+        } catch (IOException e) { e.printStackTrace(); }
     }
 
     final class OnTargetSelectedListener implements AdapterView.OnItemSelectedListener {
         private Cen main;
-        Button runpatch = findViewById(R.id.runPatch);
+        Button CEN = findViewById(R.id.centrue);
+        Button reCEN= findViewById(R.id.cenfalse);
 
 
         OnTargetSelectedListener(Cen main) {
@@ -128,8 +170,13 @@ public class Cen extends AppCompatActivity {
 
         @Override
         public void onItemSelected(final AdapterView<?> parent, final View view, int position, long id) {
-            if (((TextView)view).getText().equals("...")) { runpatch.setEnabled(false); } else {
-                runpatch.setEnabled(true);
+            if (((TextView)view).getText().equals("...")) {
+                CEN.setEnabled(false);
+                reCEN.setEnabled(false);
+
+            } else {
+                CEN.setEnabled(true);
+                reCEN.setEnabled(true);
                 pacname = spinner.getSelectedItem().toString();
             }
         }

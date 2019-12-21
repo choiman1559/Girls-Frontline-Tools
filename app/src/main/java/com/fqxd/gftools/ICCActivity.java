@@ -278,7 +278,7 @@ final class OnTargetSelectedListener implements AdapterView.OnItemSelectedListen
     @Override
     public void onItemSelected(final AdapterView<?> parent, final View view, int position, long id) {
         if (view == null) return;
-        final Button runPatch = this.main.findViewById(R.id.runPatch);
+        final Button runPatch = this.main.findViewById(R.id.centrue);
         final TextView status = this.main.findViewById(R.id.status);
         final TextView log = this.main.findViewById(R.id.log);
         final ProgressBar progress = this.main.findViewById(R.id.progress);
