@@ -27,7 +27,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Cen"></activity>
+        <activity android:name=".JasActivity"></activity>
+        <activity android:name=".Cen" />
         <activity android:name=".AddAlarmActivity" />
         <activity android:name=".TXTActivity" />
         <activity android:name=".GFDViewer" />

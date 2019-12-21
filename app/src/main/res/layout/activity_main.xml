@@ -53,6 +53,12 @@
             android:text="@string/GFDButton" />
 
         <Button
+            android:id="@+id/ZasButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ZasRun" />
+
+        <Button
             android:id="@+id/AlarmButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

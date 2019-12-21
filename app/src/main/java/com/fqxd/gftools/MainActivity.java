@@ -128,6 +128,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        final Button ZAS = findViewById(R.id.ZasButton);
+        ZAS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,JasActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         Button UCB = findViewById(R.id.UCButton);
         UCB.setOnClickListener(new View.OnClickListener() {
