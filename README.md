@@ -1,5 +1,9 @@
 # Girls-Frontline-Tools
-[![version](https://img.shields.io/badge/version-0.3.10-yellow.svg)](https://semver.org)
+[![version](https://img.shields.io/github/v/release/choiman1559/Girls-Frontline-Tools?include_prereleases)](https://semver.org)
+[![license](https://img.shields.io/badge/License-LGPL--3.0-green.svg?logo=gnu)](https://www.gnu.org/licenses/lgpl-3.0.html)
+![language](https://img.shields.io/badge/Language-Java-green?logo=java) 
+![Last](https://img.shields.io/github/last-commit/choiman1559/Girls-Frontline-Tools)
+![download](https://img.shields.io/github/downloads/choiman1559/Girls-Frontline-Tools/total) 
 
 Useful Tools for Girls Frontline
 
