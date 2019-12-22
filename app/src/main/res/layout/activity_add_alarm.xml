@@ -12,7 +12,7 @@
         android:text="@string/Textview1" />
 
     <Spinner
-        android:id="@+id/Spinner1"
+        android:id="@+id/HSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -23,7 +23,7 @@
         android:text="@string/Textview2" />
 
     <Spinner
-        android:id="@+id/Spinner2"
+        android:id="@+id/MSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -32,4 +32,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/time" />
+
+    <TextView
+        android:id="@+id/etime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/etime" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/onoff" />
 </LinearLayout>

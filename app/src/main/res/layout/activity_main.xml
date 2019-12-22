@@ -70,6 +70,12 @@
             android:layout_height="wrap_content"
             android:text="@string/CenButton" />
 
+        <Button
+            android:id="@+id/ChkButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ChkUpdate" />
+
 
         <Button
             android:id="@+id/ORSCButton"

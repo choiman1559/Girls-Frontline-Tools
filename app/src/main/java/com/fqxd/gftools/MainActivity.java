@@ -3,6 +3,9 @@ package com.fqxd.gftools;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.enums.Display;
+import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -110,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         final Button Alarm = findViewById(R.id.AlarmButton);
-        Alarm.setEnabled(false);
+        //Alarm.setEnabled(false);
         Alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,6 +137,27 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,JasActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        final Button Chk = findViewById(R.id.ChkButton);
+        Chk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!isOnline()) {
+                    Snackbar.make(v, "Check Internet and Try Again", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+                else {
+                    AppUpdater appUpdater = new AppUpdater(MainActivity.this)
+                            .showAppUpdated(true)
+                            .setDisplay(Display.DIALOG)
+                            .setUpdateFrom(UpdateFrom.GITHUB)
+                            .setGitHubUserAndRepo("choiman1559", "Girls-Frontline-Tools")
+                            .setButtonDoNotShowAgain(null);
+                    appUpdater.start();
+                }
             }
         });
 
@@ -227,6 +251,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        AppUpdater appUpdater = new AppUpdater(this)
+                .setDisplay(Display.SNACKBAR)
+                .setUpdateFrom(UpdateFrom.GITHUB)
+                .setGitHubUserAndRepo("choiman1559","Girls-Frontline-Tools")
+                .showAppUpdated(true);
+        appUpdater.start();
     }
 
     @Override

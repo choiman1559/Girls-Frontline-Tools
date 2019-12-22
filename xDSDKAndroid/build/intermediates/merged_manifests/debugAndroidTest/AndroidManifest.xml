@@ -3,8 +3,8 @@
     package="com.xd.sdklib.test" >
 
     <uses-sdk
-        android:minSdkVersion="11"
-        android:targetSdkVersion="21" />
+        android:minSdkVersion="19"
+        android:targetSdkVersion="29" />
 
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
