@@ -78,7 +78,7 @@ public class AddAlarmActivity extends AppCompatActivity {
 
         ArrayList<String> Mlist = new ArrayList<>();
         Mlist.add("...");
-        for(int i = 0;i <= 4;i++) {Mlist.add(Integer.toString(i));}
+        for(int i = 1;i <= 4;i++) {Mlist.add(Integer.toString(i));}
         ArrayAdapter<String> Madpt = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,Mlist);
         M.setAdapter(Madpt);
 
