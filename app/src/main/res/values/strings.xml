@@ -15,10 +15,10 @@
     <string name="Title">GF Tools</string>
     <string name="UCButton">XD User Center</string>
     <string name="ORSCButton">Open Source License</string>
-    <string name="ICCButton">Icon Changer</string>
+    <string name="ICCButton">Icon Changer [DEV]</string>
     <string name="GFDButton">GF Dic Portable</string>
     <string name="TextKRButton">TextKR Patcher</string>
-    <string name="AlarmButton">GF LSD Alarm</string>
+    <string name="AlarmButton">GF LSD Alarm [DEV]</string>
     <string name="ZasRun">Zas Run Calculator</string>
     <string name="CenButton">GF Censorship [ROOT]</string>
     <string name="ChkUpdate">Check Updates</string>
@@ -135,9 +135,11 @@ limitations under the License.\n\n
     <string name="Title_GFD">소전사전 Portable</string>
     <string name="Textview1">지역</string>
     <string name="Textview2">세부</string>
+    <string name="target">타겟</string>
     <string name="time">prediction time : UNKNOWN</string>
     <string name="etime">end time : UNKNOWN</string>
     <string name="onoff">Alarm On/Off</string>
+    <string name="cancelA">Cancel Alarm</string>
 
     <string name="b1">인형 제조 시간표</string>
     <string name="b2">장비 제조 시간표</string>
@@ -151,5 +153,9 @@ limitations under the License.\n\n
     <string name="b10">초반 인형 육성 추진</string>
     <string name="b11">소전사전 v2 설치/실행</string>
     <string name="thx">special thanks to. URK96</string>
+
+    <string name="notify_channel_id">LSD_Alarm</string>
+    <string name="notify_channel_name">군수알리미</string>
+    <string name="notify_channel_description">군수알리미용 알림 채널</string>
 
 </resources>

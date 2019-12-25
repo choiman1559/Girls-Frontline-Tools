@@ -69,6 +69,10 @@ public class LSDTableClass {
         String imsi = null;
         switch (M)
         {
+            case 0:
+                imsi = "0001";
+                break;
+
             case 1:
                 imsi = "0050";
                 break;

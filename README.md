@@ -11,7 +11,7 @@ Useful Tools for Girls Frontline
 
 ## Features
  - XD User Center
- - GIRLS frontline Icon Changer (Working) 
+ - GIRLS frontline Icon Changer (Alpha)
  - Xapk Installer
  - Girls Frontline Runner
  - Girls Frontline Dic Portable
@@ -20,9 +20,9 @@ Useful Tools for Girls Frontline
 (Thanks to tempkaridc)
  - Girls Frontline Censorship Tool
 (For Root Users)
+ - Girls Frontline LSD Alarm (Alpha)
 
 ## List-To-Add
- - Girls Frontline LSD Alarm
  - Recommand me
 
 ---------------------------

@@ -18,8 +18,8 @@ android {
         applicationId "com.fqxd.gftools"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 1000310
-        versionName "0.3.11"
+        versionCode 1000312
+        versionName "0.3.12"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk.abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
     }
@@ -46,4 +46,5 @@ dependencies {
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
     implementation 'gun0912.ted:tedbottompicker:2.0.1'
     implementation 'com.github.javiersantos:AppUpdater:2.7'
+    implementation 'com.github.isradeleon:Notify-Android:1.0.3'
 }
