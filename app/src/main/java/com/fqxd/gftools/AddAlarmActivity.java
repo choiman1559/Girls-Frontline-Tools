@@ -72,7 +72,7 @@ public class AddAlarmActivity extends AppCompatActivity {
 
         ArrayList<String> Hlist = new ArrayList<>();
         Hlist.add("...");
-        for(int i = 0;i <= 11;i++) {Hlist.add(Integer.toString(i));}
+        for(int i = 0;i <= 12;i++) {Hlist.add(Integer.toString(i));}
         ArrayAdapter<String> Hadpt = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,Hlist);
         H.setAdapter(Hadpt);
 
@@ -121,7 +121,7 @@ public class AddAlarmActivity extends AppCompatActivity {
                     sH.setEnabled(false);
                     sM.setEnabled(false);
                     sT.setEnabled(false);
-                    repeat();
+                    repeat(H,M);
                  } else {
                     editor.putBoolean("isChecked",false);
                     editor.apply();
@@ -134,6 +134,7 @@ public class AddAlarmActivity extends AppCompatActivity {
                     Intent intent = new Intent(AddAlarmActivity.this,AlarmReceiver.class);
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(AddAlarmActivity.this,0,intent,0);
                     AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
                     if(PendingIntent.getBroadcast(AddAlarmActivity.this,0,intent,0) != null && alarmManager != null) {
                         alarmManager.cancel(pendingIntent);
                         pm.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED,PackageManager.DONT_KILL_APP);
@@ -149,7 +150,7 @@ public class AddAlarmActivity extends AppCompatActivity {
         }
     }
 
-    void repeat(){
+    void repeat(int H,int M){
         SharedPreferences sharedPreferences = getSharedPreferences("LSD_Alarm",Context.MODE_PRIVATE);
         PackageManager pm = AddAlarmActivity.this.getPackageManager();
         ComponentName componentName = new ComponentName(AddAlarmActivity.this,DeviceBootReceiver.class);
@@ -157,7 +158,7 @@ public class AddAlarmActivity extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(AddAlarmActivity.this,0,intent,0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-        alarmManager.setRepeating(AlarmManager.RTC,sharedPreferences.getLong("nextAlarm",0),AlarmManager.INTERVAL_DAY,pendingIntent);
+        alarmManager.set(AlarmManager.RTC,sharedPreferences.getLong("nextAlarm",0),pendingIntent);
         if(Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC,sharedPreferences.getLong("nextAlarm",0),pendingIntent);
         pm.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_ENABLED,PackageManager.DONT_KILL_APP);
     }

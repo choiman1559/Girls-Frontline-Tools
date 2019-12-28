@@ -3,7 +3,6 @@ package com.fqxd.gftools;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -14,7 +13,6 @@ public class GFDViewer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gfdviewer);
-
         ImageView imageView = findViewById(R.id.imageView);
 
         Intent getnum = getIntent();

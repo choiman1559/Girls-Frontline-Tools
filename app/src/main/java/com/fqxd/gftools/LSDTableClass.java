@@ -1,7 +1,7 @@
 package com.fqxd.gftools;
 
-public class LSDTableClass {
-    public String GetLSDTable(int H,int M){
+class LSDTableClass {
+    String GetLSDTable(int H,int M){
         String HHMM = null;
         switch (H){
 
@@ -53,6 +53,10 @@ public class LSDTableClass {
                 HHMM = case11(M);
                 break;
 
+            case 12:
+                HHMM = case12(M);
+                break;
+
             default:
                 throwExcept(H,M);
                 break;
@@ -60,11 +64,11 @@ public class LSDTableClass {
         return HHMM;
     }
     
-    public void throwExcept(int H,int M){
+    private void throwExcept(int H,int M){
         throw new IllegalArgumentException("Local " + H + "-" + M + " is not correct local!");
     }
     
-    public String case0(int M)
+    private String case0(int M)
     {
         String imsi = null;
         switch (M)
@@ -96,7 +100,7 @@ public class LSDTableClass {
         return imsi;
     }
 
-    public String case1(int M)
+    private String case1(int M)
     {
         String imsi = null;
         switch (M)
@@ -124,7 +128,7 @@ public class LSDTableClass {
         return imsi;
     }
 
-    public String case2(int M)
+    private String case2(int M)
     {
         String imsi = null;
         switch (M)
@@ -152,7 +156,7 @@ public class LSDTableClass {
         return imsi;
     }
 
-    public String case3(int M)
+    private String case3(int M)
     {
         String imsi = null;
         switch (M)
@@ -180,7 +184,7 @@ public class LSDTableClass {
         return imsi;
     }
 
-    public String case4(int M)
+    private String case4(int M)
     {
         String imsi = null;
         switch (M)
@@ -208,7 +212,7 @@ public class LSDTableClass {
         return imsi;
     }
 
-    public String case5(int M)
+    private String case5(int M)
     {
         String imsi = null;
         switch (M)
@@ -236,7 +240,7 @@ public class LSDTableClass {
         return imsi;
     }
 
-    public String case6(int M)
+    private String case6(int M)
     {
         String imsi = null;
         switch (M)
@@ -264,7 +268,7 @@ public class LSDTableClass {
         return imsi;
     }
 
-    public String case7(int M)
+    private String case7(int M)
     {
         String imsi = null;
         switch (M)
@@ -292,7 +296,7 @@ public class LSDTableClass {
         return imsi;
     }
 
-    public String case8(int M)
+    private String case8(int M)
     {
         String imsi = null;
         switch (M)
@@ -320,7 +324,7 @@ public class LSDTableClass {
         return imsi;
     }
 
-    public String case9(int M)
+    private String case9(int M)
     {
         String imsi = null;
         switch (M)
@@ -348,7 +352,7 @@ public class LSDTableClass {
         return imsi;
     }
 
-    public String case10(int M)
+    private String case10(int M)
     {
         String imsi = null;
         switch (M)
@@ -376,7 +380,7 @@ public class LSDTableClass {
         return imsi;
     }
 
-    public String case11(int M)
+    private String case11(int M)
     {
         String imsi = null;
         switch (M)
@@ -399,6 +403,34 @@ public class LSDTableClass {
 
             default:
                 throwExcept(11,M);
+                break;
+        }
+        return imsi;
+    }
+
+    private String case12(int M)
+    {
+        String imsi = null;
+        switch (M)
+        {
+            case 1:
+                imsi = "0100";
+                break;
+
+            case 2:
+                imsi = "0130";
+                break;
+
+            case 3:
+                imsi = "0900";
+                break;
+
+            case 4:
+                imsi = "1200";
+                break;
+
+            default:
+                throwExcept(12,M);
                 break;
         }
         return imsi;

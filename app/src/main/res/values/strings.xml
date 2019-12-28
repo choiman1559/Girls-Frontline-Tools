@@ -114,6 +114,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.\n\n
 
+        The MIT License (MIT)
+
+Copyright (c) 2019 Isra de Leon - Notify\n
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n
+
+
 
         Copyright (c) 2019, Freepik - Handymade Tools free icon\n
         Flaticon Basic License\n
@@ -150,7 +159,7 @@ limitations under the License.\n\n
     <string name="b7">장비 추천 제조식</string>
     <string name="b8">군수지원 효율표</string>
     <string name="b9">추천 레벨링 루트</string>
-    <string name="b10">초반 인형 육성 추진</string>
+    <string name="b10">초반 인형 육성 추천</string>
     <string name="b11">소전사전 v2 설치/실행</string>
     <string name="thx">special thanks to. URK96</string>
 
