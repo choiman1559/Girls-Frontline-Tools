@@ -6,6 +6,18 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nametext" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/nametext"/>
+
+    <TextView
         android:id="@+id/Target"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,10 +63,17 @@
         android:layout_height="wrap_content"
         android:text="@string/etime" />
 
-    <Switch
-        android:id="@+id/switch1"
+    <Button
+        android:id="@+id/Save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/onoff" />
+        android:text="@string/save" />
+
+    <Button
+        android:id="@+id/Cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel" />
+
 
 </LinearLayout>

@@ -1,14 +1,10 @@
 package com.fqxd.gftools;
 
 import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.os.Build;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -21,39 +17,34 @@ public class DeviceBootReceiver extends BroadcastReceiver {
     {
         if(Objects.equals(intent.getAction(),"android.intent.action.BOOT_COMPLETED")) {
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            SharedPreferences sharedPreferences = context.getSharedPreferences("LSD_Alarm",Context.MODE_PRIVATE);
-            long mills = sharedPreferences.getLong("nextAlarm", Calendar.getInstance().getTimeInMillis());
 
-            Calendar curcal = Calendar.getInstance();
-            Calendar next = new GregorianCalendar();
+            SharedPreferences defaults = context.getSharedPreferences("ListAlarm",Context.MODE_PRIVATE);
 
-            next.setTimeInMillis(sharedPreferences.getLong("nextAlarm",mills));
+            for(int i = 1;i <= defaults.getInt("setReceiver",1);i++) {
+                SharedPreferences sharedPreferences = context.getSharedPreferences(Integer.toString(i), Context.MODE_PRIVATE);
+                long mills = sharedPreferences.getLong("nextAlarm", Calendar.getInstance().getTimeInMillis());
 
-            if(curcal.after(next)) {
-                int H = sharedPreferences.getInt("H",-1);
-                int M = sharedPreferences.getInt("M",-1);
+                Calendar curcal = Calendar.getInstance();
+                Calendar next = new GregorianCalendar();
 
-                if(!(H == -1 || M == -1)) {
-                    AddAlarmActivity addAlarmActivity = new AddAlarmActivity();
-                    next = addAlarmActivity.calculate(context,H,M);
+                next.setTimeInMillis(sharedPreferences.getLong("nextAlarm", mills));
 
-                    if(alarmManager != null) {
-                        next = addAlarmActivity.calculate(context, H, M);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                if (curcal.after(next)) {
+                    int H = sharedPreferences.getInt("H", -1);
+                    int M = sharedPreferences.getInt("M", -1);
 
-                        editor.putLong("nextAlarm", next.getTimeInMillis());
-                        editor.apply();
+                    if (!(H == -1 || M == -1)) {
+                        AlarmUtills alarmUtills = new AlarmUtills();
 
-                        PackageManager pm = context.getPackageManager();
-                        ComponentName componentName = new ComponentName(context, DeviceBootReceiver.class);
-                        Intent Receiver = new Intent(context, AlarmReceiver.class);
-                        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, Receiver, 0);
+                        if (alarmManager != null) {
+                            next = alarmUtills.calculate(H, M, context);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                        alarmManager.set(AlarmManager.RTC, sharedPreferences.getLong("nextAlarm", 0), pendingIntent);
-                        if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M)
-                            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC, sharedPreferences.getLong("nextAlarm", 0), pendingIntent);
-                        pm.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+                            editor.putLong("nextAlarm", next.getTimeInMillis());
+                            editor.apply();
 
+                            alarmUtills.repeat(sharedPreferences, context, defaults.getInt(Integer.toString(i), 1));
+                        }
                     }
                 }
             }

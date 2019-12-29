@@ -29,7 +29,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
+        <activity android:name=".AlarmListActivity"></activity>
         <activity android:name=".JasActivity" />
         <activity android:name=".Cen" />
         <activity android:name=".AddAlarmActivity" />
@@ -151,15 +151,14 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <receiver android:name=".DeviceBootReceiver"
+        <receiver
+            android:name=".DeviceBootReceiver"
             android:enabled="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
-        <receiver android:name=".AlarmReceiver"/>
-
+        <receiver android:name=".AlarmReceiver" />
     </application>
 
 </manifest>

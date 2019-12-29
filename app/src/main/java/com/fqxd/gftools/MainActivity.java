@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         Alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,AddAlarmActivity.class);
+                Intent intent = new Intent(MainActivity.this,AlarmListActivity.class);
                 startActivity(intent);
             }
         });

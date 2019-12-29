@@ -1,14 +1,10 @@
 package com.fqxd.gftools;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.os.Build;
+import android.os.Bundle;
 
 import com.application.isradeleon.notify.Notify;
 
@@ -18,7 +14,10 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("LSD_Alarm", Context.MODE_PRIVATE);
+        Bundle bundle = intent.getExtras();
+        int count = bundle.getInt("count",0x01);
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Integer.toString(count), Context.MODE_PRIVATE);
         int H = sharedPreferences.getInt("H", -1);
         int M = sharedPreferences.getInt("M", -1);
         String packagename = sharedPreferences.getString("package", "");
@@ -39,24 +38,13 @@ public class AlarmReceiver extends BroadcastReceiver {
         Calendar next = Calendar.getInstance();
 
         if (!(H == -1 || M == -1)) {
-            AddAlarmActivity addAlarmActivity = new AddAlarmActivity();
-            next = addAlarmActivity.calculate(context, H, M);
+            AlarmUtills alarmUtills = new AlarmUtills();
+            next = alarmUtills.calculate(H, M,context);
             SharedPreferences.Editor editor = sharedPreferences.edit();
 
             editor.putLong("nextAlarm", next.getTimeInMillis());
             editor.apply();
-
-            PackageManager pm = context.getPackageManager();
-            ComponentName componentName = new ComponentName(context, DeviceBootReceiver.class);
-            Intent Receiver = new Intent(context, AlarmReceiver.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, Receiver, 0);
-            AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-
-            alarmManager.set(AlarmManager.RTC, sharedPreferences.getLong("nextAlarm", 0), pendingIntent);
-            if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M)
-                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC, sharedPreferences.getLong("nextAlarm", 0), pendingIntent);
-            pm.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
-
+            alarmUtills.repeat(sharedPreferences,context,count);
         }
     }
 }

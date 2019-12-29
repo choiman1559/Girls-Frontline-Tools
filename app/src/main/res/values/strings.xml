@@ -145,10 +145,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <string name="Textview1">지역</string>
     <string name="Textview2">세부</string>
     <string name="target">타겟</string>
-    <string name="time">prediction time : UNKNOWN</string>
-    <string name="etime">end time : UNKNOWN</string>
+    <string name="HM">Selected Local : UNKNOWN</string>
+    <string name="time">Estimated elapsed time : UNKNOWN</string>
+    <string name="etime">Estimated end time : UNKNOWN</string>
     <string name="onoff">Alarm On/Off</string>
     <string name="cancelA">Cancel Alarm</string>
+    <string name="delete">Delete Alarm</string>
+    <string name="edit">Edit Alarm</string>
+    <string name="add">Add Alarm</string>
+    <string name="List">Alarm List</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="nametext">이름</string>
 
     <string name="b1">인형 제조 시간표</string>
     <string name="b2">장비 제조 시간표</string>
