@@ -28,7 +28,7 @@ Useful Tools for Girls Frontline
 ---------------------------
 
 ### Disclamer
-This Disclamer Made By XDA Members
+This Disclamer was Made By XDA Members
 
     #include <std_disclaimer.h> 
     // Your warranty is now void.
