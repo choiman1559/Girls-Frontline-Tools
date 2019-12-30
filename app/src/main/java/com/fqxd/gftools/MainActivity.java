@@ -32,15 +32,6 @@ public class MainActivity extends AppCompatActivity {
     public static int REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES = 0x01;
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    public boolean isOnline() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (cm.getActiveNetworkInfo() != null) {
-            NetworkInfo ni = cm.getActiveNetworkInfo();
-            return ni != null && ni.isConnected();
-        }
-        return false;
-    }
-
     private Context context;
 
     @Override
@@ -137,6 +128,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,JasActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        final Button BQM = findViewById(R.id.BQMButton);
+    BQM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isOnline()) {
+                    Snackbar.make(v, "Check Internet and Try Again", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+                else {
+                    Intent intent = new Intent(MainActivity.this, BQMActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -294,5 +300,14 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
         this.finishAffinity();
         System.exit(0);
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (cm.getActiveNetworkInfo() != null) {
+            NetworkInfo ni = cm.getActiveNetworkInfo();
+            return ni != null && ni.isConnected();
+        }
+        return false;
     }
 }

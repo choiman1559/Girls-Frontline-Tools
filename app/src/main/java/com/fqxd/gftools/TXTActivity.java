@@ -21,6 +21,7 @@ import android.widget.Toast;
 import android.widget.Button;
 
 import java.io.*;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,24 +121,23 @@ public class TXTActivity extends AppCompatActivity {
     }
 
     public void filecopy(String from,String to){
-        File frm = new File(from);
+        File file = new File(from);
+        try {
+            FileInputStream inputStream = new FileInputStream(file);
+            FileOutputStream outputStream = new FileOutputStream(to + "asset_textes.ab");
 
-        try{
-            FileInputStream fis = new FileInputStream(frm);
-            FileOutputStream fos = new FileOutputStream(to);
-            int readcount = 0;
+            FileChannel fcin = inputStream.getChannel();
+            FileChannel fcout = outputStream.getChannel();
 
-            byte[] buffer = new byte[1024];
-            while((readcount = fis.read(buffer,0,1024)) != 1) {
-                fos.write(buffer,0,readcount);
-            }
+            long size = fcin.size();
+            fcin.transferTo(0, size, fcout);
 
-            fos.close();
-            Toast.makeText(getApplicationContext(), "task completed", Toast.LENGTH_SHORT).show();
+            fcout.close();
+            fcin.close();
 
-        } catch(Exception e){
-            e.printStackTrace();
-        }
+            outputStream.close();
+            inputStream.close();
+        }catch (IOException e) { }
     }
 
     final class OnTargetSelectedListener implements AdapterView.OnItemSelectedListener {

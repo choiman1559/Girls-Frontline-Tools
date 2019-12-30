@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.halilozercan:Android-Download-Manager-Pro:0.0.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3afd8872d7fa7830d5f902aac9b6eff2/Android-Download-Manager-Pro-0.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3afd8872d7fa7830d5f902aac9b6eff2/Android-Download-Manager-Pro-0.0.1/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.halilozercan/Android-Download-Manager-Pro/0.0.1/80f553eeddd17a2ed025721be4c7c8a9d2b50e1/Android-Download-Manager-Pro-0.0.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.halilozercan/Android-Download-Manager-Pro/0.0.1/ca4aaf1eac0569087a43c0c9a734a6c8784f0cec/Android-Download-Manager-Pro-0.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

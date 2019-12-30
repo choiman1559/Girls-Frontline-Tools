@@ -75,6 +75,12 @@
                 android:text="@string/CenButton" />
 
             <Button
+                android:id="@+id/BQMButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/BQMButton" />
+
+            <Button
                 android:id="@+id/ChkButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
