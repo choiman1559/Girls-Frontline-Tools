@@ -29,7 +29,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".AlarmListActivity"></activity>
+        <activity android:name=".BQMActivity"></activity>
+        <activity android:name=".AlarmListActivity" />
         <activity android:name=".JasActivity" />
         <activity android:name=".Cen" />
         <activity android:name=".AddAlarmActivity" />

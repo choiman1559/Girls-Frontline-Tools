@@ -84,6 +84,12 @@ public class AlarmListActivity extends AppCompatActivity {
                         }
                     }
                 }
+
+                SharedPreferences a = getSharedPreferences("ListAlarm",MODE_PRIVATE);
+                SharedPreferences.Editor b = a.edit();
+
+                b.putInt("count",a.getInt("count",1) - 1);
+                b.apply();
             }
         });
 
