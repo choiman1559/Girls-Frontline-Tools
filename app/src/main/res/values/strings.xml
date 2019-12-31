@@ -150,6 +150,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <string name="time">Estimated elapsed time : UNKNOWN</string>
     <string name="etime">Estimated end time : UNKNOWN</string>
     <string name="onoff">Alarm On/Off</string>
+    <string name="cali">Alarm Auto-Calibration On/off\n(Waring - Battery Usage May Increase)</string>
     <string name="cancelA">Cancel Alarm</string>
     <string name="delete">Delete Alarm</string>
     <string name="edit">Edit Alarm</string>

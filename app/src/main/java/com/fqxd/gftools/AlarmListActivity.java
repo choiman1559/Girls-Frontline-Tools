@@ -30,9 +30,11 @@ public class AlarmListActivity extends AppCompatActivity {
         Button Edit = findViewById(R.id.Edit);
         Button Add = findViewById(R.id.Add);
         Switch Set = findViewById(R.id.switch2);
+        Switch Cal = findViewById(R.id.CaliSwitch);
 
         Delete.setEnabled(false);
         Edit.setEnabled(false);
+        Set.setEnabled(false);
         Set.setEnabled(false);
 
         SharedPreferences sharedPreferences = getSharedPreferences("ListAlarm",MODE_PRIVATE);
@@ -65,31 +67,49 @@ public class AlarmListActivity extends AppCompatActivity {
         Delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for(int i = 1;i <= count;i++){
+                if(count > 1) {
+                    for(int i = 1;i <= count;i++){
                     if(getSharedPreferences(Integer.toString(i),MODE_PRIVATE).getString("name","") == list.getSelectedItem().toString()) {
-                        for(int j = i + 1;j <= count;j++) {
-                            SharedPreferences.Editor o = getSharedPreferences(Integer.toString(j - 1),MODE_PRIVATE).edit();
-                            SharedPreferences c = getSharedPreferences(Integer.toString(j),MODE_PRIVATE);
+                        if(count == i) {
+                            SharedPreferences c = getSharedPreferences(Integer.toString(count),MODE_PRIVATE);
+                            SharedPreferences.Editor o = c.edit();
 
-                            o.putString("name",c.getString("name",""));
-                            o.putString("package",c.getString("package",""));
-                            o.putInt("H",c.getInt("H",-1));
-                            o.putInt("M",c.getInt("M",-1));
-                            o.putLong("nextAlarm",c.getLong("nextAlarm",-1));
-                            o.putBoolean("isChecked",c.getBoolean("isChecked",false));
-
+                            o.clear();
                             o.apply();
-                            SharedPreferences.Editor s = c.edit();
-                            s.clear().apply();
+                        } else {
+                                for(int j = i + 1;j <= count;j++) {
+                                    SharedPreferences.Editor o = getSharedPreferences(Integer.toString(j - 1), MODE_PRIVATE).edit();
+                                    SharedPreferences c = getSharedPreferences(Integer.toString(j), MODE_PRIVATE);
+
+                                    o.putString("name", c.getString("name", ""));
+                                    o.putString("package", c.getString("package", ""));
+                                    o.putInt("H", c.getInt("H", -1));
+                                    o.putInt("M", c.getInt("M", -1));
+                                    o.putLong("nextAlarm", c.getLong("nextAlarm", -1));
+                                    o.putBoolean("isChecked", c.getBoolean("isChecked", false));
+
+                                    o.apply();
+                                   SharedPreferences.Editor s = c.edit();
+                                    s.clear().apply();
+                                }
+                            }
                         }
                     }
+                } else if(count == 1) {
+                    SharedPreferences c = getSharedPreferences("1",MODE_PRIVATE);
+                    SharedPreferences.Editor o = c.edit();
+
+                    o.clear();
+                    o.apply();
                 }
 
                 SharedPreferences a = getSharedPreferences("ListAlarm",MODE_PRIVATE);
                 SharedPreferences.Editor b = a.edit();
 
-                b.putInt("count",a.getInt("count",1) - 1);
+                int an = a.getInt("AlarmCount",1);
+                b.putInt("AlarmCount",an - 1);
                 b.apply();
+                AlarmListActivity.this.recreate();
             }
         });
 
@@ -115,11 +135,13 @@ public class AlarmListActivity extends AppCompatActivity {
                     Delete.setEnabled(true);
                     Edit.setEnabled(true);
                     Set.setEnabled(true);
+                    //Cal.setEnabled(true);
                     setText();
                 } else {
                     Delete.setEnabled(false);
                     Edit.setEnabled(false);
                     Set.setEnabled(false);
+                    Cal.setEnabled(false);
 
                     TextView t1 = findViewById(R.id.HMText);
                     TextView t2 = findViewById(R.id.textView7);
@@ -157,7 +179,29 @@ public class AlarmListActivity extends AppCompatActivity {
                     alarmUtills.cancel(getSharedPreferences(Integer.toString(count),MODE_PRIVATE),AlarmListActivity.this,count);
                     e.putBoolean("isChecked",false);
                     e.apply();
-                } else throw new IllegalArgumentException("Unknown error : AlarmListActivity.java - at line 148");
+                } else throw new IllegalArgumentException("Unknown error : AlarmListActivity.java - at line 141");
+            }
+        });
+
+        Cal.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                int count = 0;
+
+                for(int i = 1;i <= getSharedPreferences("ListAlarm",MODE_PRIVATE).getInt("AlarmCount",0);i++) {
+                    if (getSharedPreferences(Integer.toString(i), MODE_PRIVATE).getString("name", "") == list.getSelectedItem().toString()) {
+                        count = i;
+                        break;
+                    }
+                }
+                SharedPreferences.Editor e = getSharedPreferences(Integer.toString(count),MODE_PRIVATE).edit();
+                if(Cal.isChecked() && count != 0) {
+                    e.putBoolean("isCal",true);
+                    e.apply();
+                } else if(count != 0) {
+                    e.putBoolean("isCal",false);
+                    e.apply();
+                } else throw new IllegalArgumentException("Unknown error : AlarmListActivity.java - at line 167");
             }
         });
     }
@@ -168,6 +212,7 @@ public class AlarmListActivity extends AppCompatActivity {
         TextView t2 = findViewById(R.id.textView7);
         TextView t3 = findViewById(R.id.etime);
         Switch e1 = findViewById(R.id.switch2);
+        Switch e2 = findViewById(R.id.CaliSwitch);
 
         for(int i = 1;i <= getSharedPreferences("ListAlarm",MODE_PRIVATE).getInt("AlarmCount",0);i++){
             if(getSharedPreferences(Integer.toString(i),MODE_PRIVATE).getString("name","") == list.getSelectedItem().toString()) {
@@ -190,6 +235,9 @@ public class AlarmListActivity extends AppCompatActivity {
 
                 if(a.getBoolean("isChecked",false)) e1.setChecked(true);
                 else e1.setChecked(false);
+
+                if(a.getBoolean("isCal",false)) e2.setChecked(true);
+                else e2.setChecked(false);
 
                 break;
             } else {

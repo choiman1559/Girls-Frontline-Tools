@@ -20,6 +20,7 @@ Useful Tools for Girls Frontline
 (Thanks to tempkaridc)
  - Girls Frontline Censorship Tool
 (For Root Users)
+ - Girls Frontline BQM! Patcher (KOZ39)
  - Girls Frontline LSD Alarm (Alpha)
 
 ## List-To-Add

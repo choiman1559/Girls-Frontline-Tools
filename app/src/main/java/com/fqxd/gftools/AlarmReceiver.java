@@ -1,10 +1,12 @@
 package com.fqxd.gftools;
 
+import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.application.isradeleon.notify.Notify;
 
@@ -15,7 +17,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Bundle bundle = intent.getExtras();
-        int count = bundle.getInt("count",0x01);
+        int count = bundle.getInt("count", 0x01);
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(Integer.toString(count), Context.MODE_PRIVATE);
         int H = sharedPreferences.getInt("H", -1);
@@ -37,14 +39,22 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         Calendar next = Calendar.getInstance();
 
+        Log.d("AlarmReceiver.java","chk point1");
         if (!(H == -1 || M == -1)) {
+            if(sharedPreferences.getBoolean("isCal",false)) {
+                while(!isRunning(context,packagename)) {continue;}
+            }
             AlarmUtills alarmUtills = new AlarmUtills();
-            next = alarmUtills.calculate(H, M,context);
+            next = alarmUtills.calculate(H, M, context);
             SharedPreferences.Editor editor = sharedPreferences.edit();
 
             editor.putLong("nextAlarm", next.getTimeInMillis());
             editor.apply();
-            alarmUtills.repeat(sharedPreferences,context,count);
-        }
+            alarmUtills.repeat(sharedPreferences, context, count);
+        } Log.d("AlarmReceiver.java","chk point2");
     }
+
+    boolean isRunning(Context context,String PackageName) {
+        return false;
+       }
 }

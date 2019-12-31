@@ -41,6 +41,12 @@
         android:layout_height="wrap_content"
         android:text="@string/onoff" />
 
+    <Switch
+        android:id="@+id/CaliSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cali" />
+
     <Button
         android:id="@+id/Delete"
         android:layout_width="match_parent"
