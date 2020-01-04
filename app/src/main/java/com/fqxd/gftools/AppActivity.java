@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class AppActivity extends Activity {
@@ -32,9 +36,16 @@ public class AppActivity extends Activity {
         final Button deld = findViewById(R.id.DeleteData);
         final ImageView icon = findViewById(R.id.IconView);
 
+        final Button DBak = findViewById(R.id.DBak);
+        final Button RBak = findViewById(R.id.RBak);
+        final Button ABak = findViewById(R.id.ABak);
+
         icon.setImageResource(R.drawable.ic_icon_background);
         run.setEnabled(false);
         del.setEnabled(false);
+        DBak.setEnabled(false);
+        RBak.setEnabled(false);
+        ABak.setEnabled(false);
 
         if (Build.VERSION.SDK_INT >= 26 && !this.getPackageManager().canRequestPackageInstalls()) {
             this.startActivityForResult(
@@ -88,26 +99,120 @@ public class AppActivity extends Activity {
             @Override
             public void onClick(View v) {
                 String path = "/sdcard/Android/data/" + packagename;
-                setDirEmpty(path);
+                FileUtil.setDirEmpty(path);
                 Toast.makeText(getApplicationContext(), "Data Deleted!", Toast.LENGTH_SHORT).show();
             }
         });
+
+        ABak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backup();
+            }
+        });
+
+        RBak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               restore();
+            }
+        });
+
+        DBak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delete();
+             }
+        });
     }
 
-    public void setDirEmpty(String dirname) {
-        String path = dirname;
+    void backup(){
+        if(!new File("/sdcard/GF_Tool/backup/").exists()) new File("/sdcard/GF_Tool/backup/").mkdir();
+        File dir = new File("/sdcard/GF_Tool/backup/" + packagename + "/");
+        if(!dir.exists()) dir.mkdir();
+        File data = new File("/sdcard/Android/data/" + packagename + "/");
+        if(!data.exists()) throw new NullPointerException("\"/sdcard/Android/data" + packagename + "/\" not found!");
+        FileUtil.copy(data,dir);
+        Log.i("Backup","complete");
 
-        File dir = new File(path);
-        File[] child = dir.listFiles();
+        Toast.makeText(getApplicationContext(), "Task Done!", Toast.LENGTH_SHORT).show();
+        AppActivity.this.recreate();
+    }
 
-        if(dir.exists()) {
-            for(File childfile : child) {
-                if(childfile.isDirectory()) {
-                    setDirEmpty(childfile.getAbsolutePath());
-                } else childfile.delete();
+    void restore(){
+        File dir = new File("/sdcard/GF_Tool/backup/" + packagename + "/");
+        File data = new File("/sdcard/Android/data/" + packagename + "/");
+
+        if(!dir.exists()) throw new NullPointerException("\"/sdcard/GF_Tool/backup/" + packagename + "/\" not found!");
+        if(!data.exists()) data.mkdir();
+        FileUtil.copy(dir,data);
+        Log.i("Restore","complete");
+
+        Toast.makeText(getApplicationContext(), "Task Done!", Toast.LENGTH_SHORT).show();
+        AppActivity.this.recreate();
+    }
+
+    void delete() {
+        FileUtil.setDirEmpty("/sdcard/GF_Tool/backup/" + packagename + "/");
+        new File("/sdcard/GF_Tool/backup/" + packagename + "/").delete();
+        AppActivity.this.recreate();
+        Log.i("Delete","complete");
+
+        Toast.makeText(getApplicationContext(), "Task Done!", Toast.LENGTH_SHORT).show();
+        AppActivity.this.recreate();
+    }
+
+    public static class FileUtil {
+        static void setDirEmpty(String dirname) {
+            String path = dirname;
+
+            File dir = new File(path);
+            File[] child = dir.listFiles();
+
+            if(dir.exists()) {
+                for(File childfile : child) {
+                    if(childfile.isDirectory()) {
+                        setDirEmpty(childfile.getAbsolutePath());
+                    } else childfile.delete();
+                }
             }
+            dir.delete();
         }
-        dir.delete();
+
+        static void copy(File sourceF, File targetF) {
+
+            File[] ff = sourceF.listFiles();
+            for (File file : ff) {
+                File temp = new File(targetF.getAbsolutePath() + File.separator + file.getName());
+                if (file.isDirectory()) {
+                    temp.mkdir();
+                    copy(file, temp);
+                } else {
+                    FileInputStream fis = null;
+                    FileOutputStream fos = null;
+                    try {
+                        fis = new FileInputStream(file);
+                        fos = new FileOutputStream(temp);
+                        byte[] b = new byte[4096];
+                        int cnt = 0;
+                        while ((cnt = fis.read(b)) != -1) {
+                            fos.write(b, 0, cnt);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        try {
+                            fis.close();
+                            fos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }
+            }
+
+        }
     }
 
     final class OnTargetSelectedListener implements AdapterView.OnItemSelectedListener {
@@ -127,9 +232,12 @@ public class AppActivity extends Activity {
             final Button run = findViewById(R.id.Runapp);
             final Button del = findViewById(R.id.DeleteApp);
             final Button deld = findViewById(R.id.DeleteData);
+            final Button DBak = findViewById(R.id.DBak);
+            final Button RBak = findViewById(R.id.RBak);
+            final Button ABak = findViewById(R.id.ABak);
             final ImageView icon = findViewById(R.id.IconView);
 
-            if (((TextView)view).getText().equals("...")) {
+            if (spinner.getSelectedItem().toString() == "...") {
                 icon.setImageResource(R.drawable.ic_icon_background);
                 appname.setText("app name : UNKNOWN");
                 version.setText("version : UNKNOWN");
@@ -137,13 +245,25 @@ public class AppActivity extends Activity {
                 run.setEnabled(false);
                 del.setEnabled(false);
                 deld.setEnabled(false);
-                return;
+                DBak.setEnabled(false);
+                RBak.setEnabled(false);
+                ABak.setEnabled(false);
             } else {
                 packagename = spinner.getSelectedItem().toString();
 
                 run.setEnabled(true);
                 del.setEnabled(true);
                 deld.setEnabled(true);
+
+                if(new File("/sdcard/GF_Tool/backup/" + packagename + "/").exists()) {
+                    RBak.setEnabled(true);
+                    DBak.setEnabled(true);
+                    ABak.setEnabled(false);
+                } else{
+                    RBak.setEnabled(false);
+                    DBak.setEnabled(false);
+                    ABak.setEnabled(true);
+                }
 
                 try {
                     PackageManager pm = getApplicationContext().getPackageManager();
@@ -167,10 +287,7 @@ public class AppActivity extends Activity {
         }
 
         @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-
-        }
-
+        public void onNothingSelected(AdapterView<?> parent) { }
     }
 
     @Override

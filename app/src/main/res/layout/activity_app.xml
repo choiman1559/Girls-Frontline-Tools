@@ -67,4 +67,27 @@
         android:layout_height="wrap_content"
         android:text="@string/Deletedata" />
 
+    <com.google.android.material.chip.ChipGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <Button
+            android:id="@+id/ABak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ABak" />
+
+        <Button
+            android:id="@+id/RBak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/RBak" />
+
+        <Button
+            android:id="@+id/DBak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/DBak" />
+    </com.google.android.material.chip.ChipGroup>
+
 </LinearLayout>

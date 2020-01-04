@@ -6,26 +6,26 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions"/>
-    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature
         android:name="android.hardware.camera.autofocus"
         android:required="false" />
 
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -34,8 +34,9 @@
         android:roundIcon="@mipmap/ic_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".BQMActivity"></activity>
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:label,android:theme">
+        <activity android:name=".BQMActivity" />
         <activity android:name=".AlarmListActivity" />
         <activity android:name=".JasActivity" />
         <activity android:name=".Cen" />
@@ -49,13 +50,12 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.provider"
+            android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/nnf_provider_paths"
-                tools:replace="android:resource" />
+                android:resource="@xml/provider_paths" tools:replace="android:resource"/>
         </provider>
 
         <activity
@@ -79,7 +79,7 @@
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
             android:name=".AppActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
             android:name=".FilePicker"
             android:theme="@style/FilePickerTheme">
@@ -99,14 +99,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ImgSelActivity"
-            android:theme="@style/Theme.AppCompat.Light.Dialog" />
-        <activity
             android:name=".GFDActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
-        <activity
-            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name="com.xd.sdklib.helper.XDStartView"
             android:configChanges="orientation|keyboardHidden|screenSize"

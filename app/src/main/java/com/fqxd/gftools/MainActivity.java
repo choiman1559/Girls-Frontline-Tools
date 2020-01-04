@@ -31,9 +31,6 @@ import com.xd.xdsdk.XDSDK;
 public class MainActivity extends AppCompatActivity {
     public static int REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES = 0x01;
     public static final String TAG = MainActivity.class.getSimpleName();
-
-    private Context context;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
             if (Build.VERSION.SDK_INT >= 23 && this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(getApplicationContext(), "Storage Permission was rejected", Toast.LENGTH_SHORT).show();
-                this.finish();
+                this.recreate();
             }
             return;
         }
@@ -55,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             );
             if (Build.VERSION.SDK_INT >= 26 && !this.getPackageManager().canRequestPackageInstalls()) {
                 Toast.makeText(getApplicationContext(), "Package Install Permission was rejected", Toast.LENGTH_SHORT).show();
-                this.finish();
+                this.recreate();
             }
         }
 
@@ -71,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         ICC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ImgSelActivity.class);
+                Intent intent = new Intent(MainActivity.this, com.fqxd.gftools.ICCActivity.class);
                 startActivity(intent);
             }
         });
@@ -80,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         GFD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, GFDActivity.class);
+                Intent intent = new Intent(MainActivity.this, com.fqxd.gftools.GFDActivity.class);
                 startActivity(intent);
             }
         });
@@ -89,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         TXT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, TXTActivity.class);
+                Intent intent = new Intent(MainActivity.this, com.fqxd.gftools.TXTActivity.class);
                 startActivity(intent);
             }
         });
@@ -98,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         XAPK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,XapkActivity.class);
+                Intent intent = new Intent(MainActivity.this, com.fqxd.gftools.XapkActivity.class);
                 startActivity(intent);
             }
         });
@@ -108,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         Alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,AlarmListActivity.class);
+                Intent intent = new Intent(MainActivity.this, com.fqxd.gftools.AlarmListActivity.class);
                 startActivity(intent);
             }
         });
@@ -117,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         CEN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,Cen.class);
+                Intent intent = new Intent(MainActivity.this, com.fqxd.gftools.Cen.class);
                 startActivity(intent);
             }
         });
@@ -126,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         ZAS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,JasActivity.class);
+                Intent intent = new Intent(MainActivity.this, com.fqxd.gftools.JasActivity.class);
                 startActivity(intent);
             }
         });
@@ -140,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                             .setAction("Action", null).show();
                 }
                 else {
-                    Intent intent = new Intent(MainActivity.this, BQMActivity.class);
+                    Intent intent = new Intent(MainActivity.this, com.fqxd.gftools.BQMActivity.class);
                     startActivity(intent);
                 }
             }
