@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             );
             if (Build.VERSION.SDK_INT >= 26 && !this.getPackageManager().canRequestPackageInstalls()) {
                 Toast.makeText(getApplicationContext(), "Package Install Permission was rejected", Toast.LENGTH_SHORT).show();
-                this.recreate();
+                this.finish();
             }
         }
 

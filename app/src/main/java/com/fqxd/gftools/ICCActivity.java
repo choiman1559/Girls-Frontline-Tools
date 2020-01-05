@@ -16,8 +16,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
-import android.os.Looper;
+
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
@@ -224,7 +223,7 @@ final class PatchTask extends AsyncTask {
                 }
             });
             ((Runnable)objects[0]).run();
-
+            main.recreate();
             this.updateProgress(100);
 
         } catch (Exception e) {

@@ -1,9 +1,11 @@
 package com.fqxd.gftools;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 public class AppActivity extends Activity {
 
     String packagename = null;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,8 +102,11 @@ public class AppActivity extends Activity {
             @Override
             public void onClick(View v) {
                 String path = "/sdcard/Android/data/" + packagename;
-                FileUtil.setDirEmpty(path);
-                Toast.makeText(getApplicationContext(), "Data Deleted!", Toast.LENGTH_SHORT).show();
+                if(!new File(path).exists()) Toast.makeText(getApplicationContext(), "Can't Find Data!", Toast.LENGTH_SHORT).show();
+                else {
+                    FileUtil.deleteDir dd = new FileUtil.deleteDir(AppActivity.this, path);
+                    dd.execute();
+                }
             }
         });
 
@@ -114,7 +120,7 @@ public class AppActivity extends Activity {
         RBak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               restore();
+                restore();
             }
         });
 
@@ -122,96 +128,169 @@ public class AppActivity extends Activity {
             @Override
             public void onClick(View v) {
                 delete();
-             }
+            }
         });
     }
 
-    void backup(){
-        if(!new File("/sdcard/GF_Tool/backup/").exists()) new File("/sdcard/GF_Tool/backup/").mkdir();
+    void backup() {
+        if (!new File("/sdcard/GF_Tool/backup/").exists())
+            new File("/sdcard/GF_Tool/backup/").mkdir();
         File dir = new File("/sdcard/GF_Tool/backup/" + packagename + "/");
-        if(!dir.exists()) dir.mkdir();
+        if (!dir.exists()) dir.mkdir();
         File data = new File("/sdcard/Android/data/" + packagename + "/");
-        if(!data.exists()) throw new NullPointerException("\"/sdcard/Android/data" + packagename + "/\" not found!");
-        FileUtil.copy(data,dir);
-        Log.i("Backup","complete");
+        if (!data.exists())
+            throw new NullPointerException("\"/sdcard/Android/data" + packagename + "/\" not found!");
 
-        Toast.makeText(getApplicationContext(), "Task Done!", Toast.LENGTH_SHORT).show();
-        AppActivity.this.recreate();
+        FileUtil.copyDir cpd = new FileUtil.copyDir(AppActivity.this,data,dir);
+        cpd.execute();
+        Log.i("Backup", "complete");
     }
 
-    void restore(){
+    void restore() {
         File dir = new File("/sdcard/GF_Tool/backup/" + packagename + "/");
         File data = new File("/sdcard/Android/data/" + packagename + "/");
 
-        if(!dir.exists()) throw new NullPointerException("\"/sdcard/GF_Tool/backup/" + packagename + "/\" not found!");
-        if(!data.exists()) data.mkdir();
-        FileUtil.copy(dir,data);
-        Log.i("Restore","complete");
-
-        Toast.makeText(getApplicationContext(), "Task Done!", Toast.LENGTH_SHORT).show();
-        AppActivity.this.recreate();
+        if (!dir.exists())
+            throw new NullPointerException("\"/sdcard/GF_Tool/backup/" + packagename + "/\" not found!");
+        if (!data.exists()) data.mkdir();
+        FileUtil.copyDir cd = new FileUtil.copyDir(AppActivity.this,dir, data);
+        cd.execute();
+        Log.i("Restore", "complete");
     }
 
     void delete() {
-        FileUtil.setDirEmpty("/sdcard/GF_Tool/backup/" + packagename + "/");
-        new File("/sdcard/GF_Tool/backup/" + packagename + "/").delete();
-        AppActivity.this.recreate();
-        Log.i("Delete","complete");
-
-        Toast.makeText(getApplicationContext(), "Task Done!", Toast.LENGTH_SHORT).show();
-        AppActivity.this.recreate();
+        FileUtil.deleteDir dd = new FileUtil.deleteDir(AppActivity.this,"/sdcard/GF_Tool/backup/" + packagename + "/");
+        dd.execute();
+        Log.i("Delete", "complete");
     }
 
+
     public static class FileUtil {
-        static void setDirEmpty(String dirname) {
-            String path = dirname;
 
-            File dir = new File(path);
-            File[] child = dir.listFiles();
+        public static class deleteDir extends AsyncTask {
 
-            if(dir.exists()) {
-                for(File childfile : child) {
-                    if(childfile.isDirectory()) {
-                        setDirEmpty(childfile.getAbsolutePath());
-                    } else childfile.delete();
-                }
+            AppActivity main;
+            String dirname;
+            ProgressDialog progressDialog;
+
+            deleteDir(AppActivity main, String dirname) {
+                this.main = main;
+                this.dirname = dirname;
+                progressDialog = new ProgressDialog(this.main);
             }
-            dir.delete();
-        }
 
-        static void copy(File sourceF, File targetF) {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                progressDialog.setProgressStyle(R.style.Widget_AppCompat_ProgressBar_Horizontal);
+                progressDialog.setCancelable(false);
+                progressDialog.setMessage("working...");
+                progressDialog.show();
+            }
 
-            File[] ff = sourceF.listFiles();
-            for (File file : ff) {
-                File temp = new File(targetF.getAbsolutePath() + File.separator + file.getName());
-                if (file.isDirectory()) {
-                    temp.mkdir();
-                    copy(file, temp);
-                } else {
-                    FileInputStream fis = null;
-                    FileOutputStream fos = null;
-                    try {
-                        fis = new FileInputStream(file);
-                        fos = new FileOutputStream(temp);
-                        byte[] b = new byte[4096];
-                        int cnt = 0;
-                        while ((cnt = fis.read(b)) != -1) {
-                            fos.write(b, 0, cnt);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    } finally {
-                        try {
-                            fis.close();
-                            fos.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+            @Override
+            protected Object doInBackground(Object[] objects) {
+                setDirEmpty(dirname);
+                return null;
+            }
 
+            @Override
+            protected void onPostExecute(Object o) {
+                super.onPostExecute(o);
+                new File(dirname).delete();
+                progressDialog.dismiss();
+                Toast.makeText(main, "done", Toast.LENGTH_SHORT).show();
+                main.recreate();
+            }
+
+            static void setDirEmpty(String dirname) {
+                String path = dirname;
+
+                File dir = new File(path);
+                File[] child = dir.listFiles();
+
+                if (dir.exists()) {
+                    for (File childfile : child) {
+                        if (childfile.isDirectory()) {
+                            setDirEmpty(childfile.getAbsolutePath());
+                        } else childfile.delete();
                     }
                 }
+                dir.delete();
+            }
+        }
+
+        public static class copyDir extends AsyncTask {
+
+            AppActivity main;
+            File sourceF;
+            File targetF;
+            ProgressDialog progressDialog;
+
+            copyDir(AppActivity main, File sourceF, File targetF) {
+                this.main = main;
+                this.sourceF = sourceF;
+                this.targetF = targetF;
+                this.progressDialog = new ProgressDialog(this.main);
             }
 
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                progressDialog.setProgressStyle(R.style.Widget_AppCompat_ProgressBar_Horizontal);
+                progressDialog.setCancelable(false);
+                progressDialog.setMessage("working...");
+                progressDialog.show();
+            }
+
+            @Override
+            protected Object doInBackground(Object[] objects) {
+                copy(sourceF, targetF);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Object o) {
+                super.onPostExecute(o);
+                progressDialog.dismiss();
+                Toast.makeText(main, "done", Toast.LENGTH_SHORT).show();
+                main.recreate();
+            }
+
+            static void copy(File sourceF, File targetF) {
+
+                File[] ff = sourceF.listFiles();
+                for (File file : ff) {
+                    File temp = new File(targetF.getAbsolutePath() + File.separator + file.getName());
+                    if (file.isDirectory()) {
+                        temp.mkdir();
+                        copy(file, temp);
+                    } else {
+                        FileInputStream fis = null;
+                        FileOutputStream fos = null;
+                        try {
+                            fis = new FileInputStream(file);
+                            fos = new FileOutputStream(temp);
+                            byte[] b = new byte[4096];
+                            int cnt = 0;
+                            while ((cnt = fis.read(b)) != -1) {
+                                fos.write(b, 0, cnt);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        } finally {
+                            try {
+                                fis.close();
+                                fos.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }
+                }
+
+            }
         }
     }
 
@@ -255,11 +334,11 @@ public class AppActivity extends Activity {
                 del.setEnabled(true);
                 deld.setEnabled(true);
 
-                if(new File("/sdcard/GF_Tool/backup/" + packagename + "/").exists()) {
+                if (new File("/sdcard/GF_Tool/backup/" + packagename + "/").exists()) {
                     RBak.setEnabled(true);
                     DBak.setEnabled(true);
                     ABak.setEnabled(false);
-                } else{
+                } else {
                     RBak.setEnabled(false);
                     DBak.setEnabled(false);
                     ABak.setEnabled(true);
@@ -268,26 +347,29 @@ public class AppActivity extends Activity {
                 try {
                     PackageManager pm = getApplicationContext().getPackageManager();
                     icon.setImageDrawable(getPackageManager().getApplicationIcon(packagename));
-                    appname.setText("app name : " + pm.getApplicationLabel(pm.getApplicationInfo(packagename,PackageManager.GET_META_DATA)));
+                    appname.setText("app name : " + pm.getApplicationLabel(pm.getApplicationInfo(packagename, PackageManager.GET_META_DATA)));
                     version.setText("version : " + pm.getPackageInfo(packagename, 0).versionName);
-                } catch (PackageManager.NameNotFoundException e) { }
+                } catch (PackageManager.NameNotFoundException e) {
+                }
 
-                if(packagename == getString(R.string.target_cn_uc) ||
+                if (packagename == getString(R.string.target_cn_uc) ||
                         packagename == getString(R.string.target_cn_bili) ||
                         packagename == getString(R.string.target_tw)) {
                     server.setText("server : china");
-                }
-
-                else if(packagename == getString(R.string.target_en)) server.setText("server : global");
-                else if(packagename == getString(R.string.target_kr)) server.setText("server : korea");
-                else if(packagename == getString(R.string.target_jp)) server.setText("server : japan");
+                } else if (packagename == getString(R.string.target_en))
+                    server.setText("server : global");
+                else if (packagename == getString(R.string.target_kr))
+                    server.setText("server : korea");
+                else if (packagename == getString(R.string.target_jp))
+                    server.setText("server : japan");
 
                 else server.setText("server : UNKNOWN");
             }
         }
 
         @Override
-        public void onNothingSelected(AdapterView<?> parent) { }
+        public void onNothingSelected(AdapterView<?> parent) {
+        }
     }
 
     @Override
