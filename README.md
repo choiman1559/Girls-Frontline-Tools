@@ -11,8 +11,8 @@ Useful Tools for Girls Frontline
 
 ## Features
  - XD User Center
- - GIRLS frontline Decompresser
  - Xapk Installer
+ - Girls frontline Decompresser
  - Girls Frontline App Version Control
  - Girls Frontline Data Backup/Restore
  - Girls Frontline Dic Portable
