@@ -35,6 +35,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.security.Provider;
 import java.util.ArrayList;
 
 public final class ICCActivity extends Activity {
@@ -205,7 +206,7 @@ final class PatchTask extends AsyncTask {
             this.updateLog("installing apk");
 
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            Uri uri = Build.VERSION.SDK_INT <= 23 ? Uri.fromFile(originalApk) : FileProvider.getUriForFile(main, BuildConfig.APPLICATION_ID + ".fileprovider", originalApk);
+            Uri uri = Build.VERSION.SDK_INT <= 23 ? Uri.fromFile(originalApk) : FileProvider.getUriForFile(main, BuildConfig.APPLICATION_ID + ".provider", originalApk);
             if (Build.VERSION.SDK_INT <= 23) {
                 intent.setDataAndType(uri, "application/vnd.android.package-archive");
             } else {
@@ -223,7 +224,6 @@ final class PatchTask extends AsyncTask {
                 }
             });
             ((Runnable)objects[0]).run();
-            main.recreate();
             this.updateProgress(100);
 
         } catch (Exception e) {
