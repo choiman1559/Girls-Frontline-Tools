@@ -22,7 +22,11 @@ public class PACAlarmActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_pacalarm);
         PAlarmAddClass.isasking = false;
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            Toast.makeText(getApplicationContext(), "안드로이드 5.0 이상에서만 사용 가능합니다!", Toast.LENGTH_SHORT).show();
+            this.finish();
+        }
+        else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if(!Settings.canDrawOverlays(PACAlarmActivity.this)) {
                 startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName())).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             }

@@ -19,6 +19,21 @@ public class PAlarmAddClass extends Application {
     public static Boolean isNO = false;
     public static Boolean isasking = false;
     public void add(File file) {
+
+        if(new PacketClass().isInclude(file,"Operation")) {
+
+            //Base64 String
+            String outcodedata = parseData(file);
+
+            if(new PacketClass().isInclude(file,"start")) {
+                //군수 시작처리
+            }
+
+            if(new PacketClass().isInclude(file,"abort")){
+                //군수 취소처리
+            }
+        }
+
         if (new PacketClass().isInclude(file, "uid")) {
             SharedPreferences sharedPreferences = context.getSharedPreferences("ListAlarm", 0);
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -65,6 +80,21 @@ public class PAlarmAddClass extends Application {
         } catch (Exception e) {
         }
         return substringBetween(toParse,"uid=","&out");
+    }
+
+    private String parseData(File file) {
+        String toParse = "";
+        String line;
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+
+            while ((line = bufferedReader.readLine()) != null) {
+                if (line.contains("outdatacode")) toParse = line;
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+        }
+        return substringBetween(toParse,"code=","&req");
     }
 
     private String substringBetween(String str, String open, String close) {
