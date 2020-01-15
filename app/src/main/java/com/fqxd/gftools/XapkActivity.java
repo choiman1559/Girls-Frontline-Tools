@@ -205,6 +205,8 @@ public class XapkActivity extends AppCompatActivity {
             try {
                 copyDirectory(new File("/sdcard/GF_Tool/Android"),new File("/sdcard/Android/"));
             } catch (IOException e) {
+                ExceptionCatchClass ecc = new ExceptionCatchClass();
+                ecc.CatchException(XapkActivity.this,e);
                 e.printStackTrace();
             }
 
@@ -227,12 +229,9 @@ public class XapkActivity extends AppCompatActivity {
                         new File(targetLocation, children[i]));
             }
         } else {
-
             InputStream in = new FileInputStream(sourceLocation);
-
             OutputStream out = new FileOutputStream(targetLocation);
 
-            // Copy the bits from instream to outstream
             byte[] buf = new byte[1024];
             int len;
             while ((len = in.read(buf)) > 0) {
@@ -247,7 +246,6 @@ public class XapkActivity extends AppCompatActivity {
 
     public String readTextFile(String path) {
         File file = new File(path);
-//Read text from file
         StringBuilder text = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -260,7 +258,8 @@ public class XapkActivity extends AppCompatActivity {
             br.close();
         }
         catch (IOException e) {
-            //You'll need to add proper error handling here
+            ExceptionCatchClass ecc = new ExceptionCatchClass();
+            ecc.CatchException(XapkActivity.this,e);
         }
         return text.toString();
     }

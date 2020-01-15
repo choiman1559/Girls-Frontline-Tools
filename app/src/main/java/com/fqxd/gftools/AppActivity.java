@@ -2,6 +2,7 @@ package com.fqxd.gftools;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -31,6 +32,7 @@ public class AppActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
 
@@ -102,7 +104,8 @@ public class AppActivity extends Activity {
             @Override
             public void onClick(View v) {
                 String path = "/sdcard/Android/data/" + packagename;
-                if(!new File(path).exists()) Toast.makeText(getApplicationContext(), "Can't Find Data!", Toast.LENGTH_SHORT).show();
+                if (!new File(path).exists())
+                    Toast.makeText(getApplicationContext(), "Can't Find Data!", Toast.LENGTH_SHORT).show();
                 else {
                     FileUtil.deleteDir dd = new FileUtil.deleteDir(AppActivity.this, path);
                     dd.execute();
@@ -133,6 +136,7 @@ public class AppActivity extends Activity {
     }
 
     void backup() {
+        if (!new File("/sdcard/GF_Tool/").exists()) new File("/sdcard/GF_Tool/").mkdir();
         if (!new File("/sdcard/GF_Tool/backup/").exists())
             new File("/sdcard/GF_Tool/backup/").mkdir();
         File dir = new File("/sdcard/GF_Tool/backup/" + packagename + "/");
@@ -141,7 +145,7 @@ public class AppActivity extends Activity {
         if (!data.exists())
             throw new NullPointerException("\"/sdcard/Android/data" + packagename + "/\" not found!");
 
-        FileUtil.copyDir cpd = new FileUtil.copyDir(AppActivity.this,data,dir);
+        FileUtil.copyDir cpd = new FileUtil.copyDir(AppActivity.this, data, dir);
         cpd.execute();
         Log.i("Backup", "complete");
     }
@@ -153,13 +157,13 @@ public class AppActivity extends Activity {
         if (!dir.exists())
             throw new NullPointerException("\"/sdcard/GF_Tool/backup/" + packagename + "/\" not found!");
         if (!data.exists()) data.mkdir();
-        FileUtil.copyDir cd = new FileUtil.copyDir(AppActivity.this,dir, data);
+        FileUtil.copyDir cd = new FileUtil.copyDir(AppActivity.this, dir, data);
         cd.execute();
         Log.i("Restore", "complete");
     }
 
     void delete() {
-        FileUtil.deleteDir dd = new FileUtil.deleteDir(AppActivity.this,"/sdcard/GF_Tool/backup/" + packagename + "/");
+        FileUtil.deleteDir dd = new FileUtil.deleteDir(AppActivity.this, "/sdcard/GF_Tool/backup/" + packagename + "/");
         dd.execute();
         Log.i("Delete", "complete");
     }
@@ -245,7 +249,7 @@ public class AppActivity extends Activity {
 
             @Override
             protected Object doInBackground(Object[] objects) {
-                copy(sourceF, targetF);
+                copy(sourceF, targetF, main.getApplicationContext());
                 return null;
             }
 
@@ -257,14 +261,14 @@ public class AppActivity extends Activity {
                 main.recreate();
             }
 
-            static void copy(File sourceF, File targetF) {
+            static void copy(File sourceF, File targetF, Context context) {
 
                 File[] ff = sourceF.listFiles();
                 for (File file : ff) {
                     File temp = new File(targetF.getAbsolutePath() + File.separator + file.getName());
                     if (file.isDirectory()) {
                         temp.mkdir();
-                        copy(file, temp);
+                        copy(file, temp, context);
                     } else {
                         FileInputStream fis = null;
                         FileOutputStream fos = null;
@@ -277,6 +281,8 @@ public class AppActivity extends Activity {
                                 fos.write(b, 0, cnt);
                             }
                         } catch (Exception e) {
+                            ExceptionCatchClass ecc = new ExceptionCatchClass();
+                            ecc.CatchException(context, e);
                             e.printStackTrace();
                         } finally {
                             try {
@@ -350,6 +356,8 @@ public class AppActivity extends Activity {
                     appname.setText("app name : " + pm.getApplicationLabel(pm.getApplicationInfo(packagename, PackageManager.GET_META_DATA)));
                     version.setText("version : " + pm.getPackageInfo(packagename, 0).versionName);
                 } catch (PackageManager.NameNotFoundException e) {
+                    ExceptionCatchClass ecc = new ExceptionCatchClass();
+                    ecc.CatchException(main.getApplicationContext(), e);
                 }
 
                 if (packagename == getString(R.string.target_cn_uc) ||

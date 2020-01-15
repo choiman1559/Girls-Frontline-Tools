@@ -19,6 +19,7 @@
     <string name="GFDButton">GF Dic Portable</string>
     <string name="TextKRButton">TextKR Patcher</string>
     <string name="AlarmButton">GF LSD Alarm [DEV]</string>
+    <string name="PAlarmButton">LSD Alarm with Packet [DEV]</string>
     <string name="ZasRun">Zas Run Calculator</string>
     <string name="BQMButton">BQM! Patcher</string>
     <string name="CenButton">GF Censorship [ROOT]</string>
@@ -102,6 +103,10 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n
 
+        vpnadaptercore - author minhui.zhu\n
+        Created by minhui.zhu on 2018/5/11.\n
+        Copyright (c) 2017年 Oceanwing. All rights reserved.\n\n
+
         Copyright (c) 2019, Freepik - Handymade Tools free icon\n
         Flaticon Basic License\n
     designed by Freepik from Flaticon\n\n
@@ -139,6 +144,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="nametext">이름</string>
+    <string name="PacAlarmService">패킷 군수알리미 On/Off</string>
+    <string name="PacAlarmWarning">
+        주의 : 이 기능은 Android OS의 보안상 이유로,\n
+        현 VPN 을 이용한 패킷 캡쳐만을 지원하고 있기 때문에,\n
+        타 VPN 앱 (Intra, OpenVPN, Https 검열우회 앱 등) 을 동시에 사용할 시
+        해당 기능은 작동하지 않습니다. \n또한, 현재 이 기능은 개발중인 기능으로서, \n
+        아직은 현 기능은 한섭 (kr.twxy.and.snqx) 에서만 지원됩니다.
+    </string>
 
     <string name="b1">인형 제조 시간표</string>
     <string name="b2">장비 제조 시간표</string>

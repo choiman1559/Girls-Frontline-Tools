@@ -15,6 +15,7 @@
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
@@ -24,18 +25,18 @@
         android:name="android.hardware.camera.autofocus"
         android:required="false" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:replace="android:label,android:theme">
+        tools:replace="android:label,android:theme"
+        android:name=".PAlarmAddClass">
+        <activity android:name=".PACAlarmActivity"/>
         <activity android:name=".BQMActivity" />
         <activity android:name=".AlarmListActivity" />
         <activity android:name=".JasActivity" />
@@ -55,7 +56,8 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths" tools:replace="android:resource"/>
+                android:resource="@xml/provider_paths"
+                tools:replace="android:resource" />
         </provider>
 
         <activity
@@ -160,6 +162,27 @@
             </intent-filter>
         </receiver>
         <receiver android:name=".AlarmReceiver" />
+
+        <receiver
+            android:name=".PacketReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.fqxd.gftools.PACKET_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.fqxd.gftools.vpn.service.FirewallVpnService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_VPN_SERVICE">
+
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+        </service>
+        <service android:name=".vpn.processparse.PortHostService" android:exported="false"/>
+
     </application>
 
 </manifest>

@@ -25,17 +25,20 @@ import android.net.*;
 import android.widget.*;
 import android.util.Log;
 
+import com.fqxd.gftools.vpn.utils.VpnServiceHelper;
 import com.xd.xdsdk.XDCallback;
 import com.xd.xdsdk.XDSDK;
 
 public class MainActivity extends AppCompatActivity {
     public static int REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES = 0x01;
     public static final String TAG = MainActivity.class.getSimpleName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(!getSharedPreferences("ListAlarm",MODE_PRIVATE).getBoolean("isChecked",false) && VpnServiceHelper.vpnRunningStatus()) new PacketClass().endVpn(MainActivity.this);
         if (Build.VERSION.SDK_INT >= 23 && this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
             if (Build.VERSION.SDK_INT >= 23 && this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -110,6 +113,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        final Button PAM = findViewById(R.id.PAlarmButton);
+        PAM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PACAlarmActivity.class);
+                startActivity(intent);
+            }
+        });
+
         final Button CEN = findViewById(R.id.CenButton);
         CEN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,14 +141,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         final Button BQM = findViewById(R.id.BQMButton);
-    BQM.setOnClickListener(new View.OnClickListener() {
+        BQM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!isOnline()) {
                     Snackbar.make(v, "Check Internet and Try Again", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                }
-                else {
+                } else {
                     Intent intent = new Intent(MainActivity.this, com.fqxd.gftools.BQMActivity.class);
                     startActivity(intent);
                 }
@@ -151,8 +162,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!isOnline()) {
                     Snackbar.make(v, "Check Internet and Try Again", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                }
-                else {
+                } else {
                     AppUpdater appUpdater = new AppUpdater(MainActivity.this)
                             .showAppUpdated(true)
                             .setDisplay(Display.DIALOG)
@@ -172,20 +182,20 @@ public class MainActivity extends AppCompatActivity {
                 if (!isOnline()) {
                     Snackbar.make(v, "Check Internet and Try Again", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                     }
-
-                else {
+                } else {
                     XDSDK.setCallback(new XDCallback() {
                         @Override
                         public void onInitSucceed() {
                             Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName());
                             Toast.makeText(getApplicationContext(), "Initialization Succeed", Toast.LENGTH_SHORT).show();
                         }
+
                         @Override
                         public void onInitFailed(String msg) {
                             Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + msg);
                             Toast.makeText(getApplicationContext(), "Initialization Failed", Toast.LENGTH_SHORT).show();
                         }
+
                         @Override
                         public void onLoginSucceed(String token) {
                             Toast.makeText(getApplicationContext(), XDSDK.getAccessToken(), Toast.LENGTH_LONG).show();
@@ -193,46 +203,55 @@ public class MainActivity extends AppCompatActivity {
                             Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + token);
                             Toast.makeText(getApplicationContext(), "Login Succeed", Toast.LENGTH_SHORT).show();
                         }
+
                         @Override
                         public void onLoginFailed(String msg) {
                             Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + msg);
                             Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
                         }
+
                         @Override
                         public void onLoginCanceled() {
                             Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName());
                             Toast.makeText(getApplicationContext(), "Login Canceled", Toast.LENGTH_SHORT).show();
                         }
+
                         @Override
                         public void onGuestBindSucceed(String token) {
                             Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + token);
                             Toast.makeText(getApplicationContext(), "onGuestBindSucceed", Toast.LENGTH_SHORT).show();
                         }
+
                         @Override
                         public void onLogoutSucceed() {
                             Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName());
                             Toast.makeText(getApplicationContext(), "Logout Succeed", Toast.LENGTH_SHORT).show();
                         }
+
                         @Override
                         public void onPayCompleted() {
                             Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName());
                             Toast.makeText(getApplicationContext(), "onPayCompleted", Toast.LENGTH_SHORT).show();
                         }
+
                         @Override
                         public void onPayFailed(String msg) {
                             Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + msg);
                             Toast.makeText(getApplicationContext(), "onPayFailed", Toast.LENGTH_SHORT).show();
                         }
+
                         @Override
                         public void onPayCanceled() {
                             Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName());
                             Toast.makeText(getApplicationContext(), "onPayCanceled", Toast.LENGTH_SHORT).show();
                         }
+
                         @Override
                         public void onRealNameSucceed() {
                             Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName());
                             Toast.makeText(getApplicationContext(), "onRealNameSucceed", Toast.LENGTH_SHORT).show();
                         }
+
                         @Override
                         public void onRealNameFailed(String msg) {
                             Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName());
@@ -250,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,AppActivity.class);
+                Intent intent = new Intent(MainActivity.this, AppActivity.class);
                 startActivity(intent);
             }
         });
@@ -258,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
         AppUpdater appUpdater = new AppUpdater(this)
                 .setDisplay(Display.SNACKBAR)
                 .setUpdateFrom(UpdateFrom.GITHUB)
-                .setGitHubUserAndRepo("choiman1559","Girls-Frontline-Tools")
+                .setGitHubUserAndRepo("choiman1559", "Girls-Frontline-Tools")
                 .showAppUpdated(true);
         appUpdater.start();
     }

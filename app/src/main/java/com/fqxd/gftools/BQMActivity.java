@@ -72,6 +72,7 @@ public class BQMActivity extends AppCompatActivity {
                 p2.add(s);
 
             } catch (PackageManager.NameNotFoundException e) {
+
             }
         }
         ArrayAdapter<String> packages = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, p2);
@@ -270,7 +271,9 @@ public class BQMActivity extends AppCompatActivity {
 
             outputStream.close();
             inputStream.close();
-        }catch (IOException e) { }
+        }catch (IOException e) {
+
+        }
     }
 
     void setEnable(boolean trueorfalse){

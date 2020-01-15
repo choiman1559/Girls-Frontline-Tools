@@ -1,2 +1,3 @@
 include ':app', ':xDSDKAndroid'
+include ':app', 'vpnadaptercore'
 rootProject.name='GF Tools'

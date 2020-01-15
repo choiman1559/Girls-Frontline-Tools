@@ -1,5 +1,8 @@
 package com.fqxd.gftools;
 
+import android.content.Context;
+import android.telecom.ConnectionService;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -65,13 +68,11 @@ public class OBBextrack {
     public boolean deleteDirectory(String path) {
         File directory = new File(path);
 
-        // If the directory exists then delete
         if (directory.exists()) {
             File[] files = directory.listFiles();
             if (files == null) {
                 return true;
             }
-            // Run on all sub files and folders and delete them
             for (int i = 0; i < files.length; i++) {
                 if (files[i].isDirectory()) {
                     deleteDirectory(files[i].getAbsolutePath());

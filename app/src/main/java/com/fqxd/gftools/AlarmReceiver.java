@@ -1,6 +1,5 @@
 package com.fqxd.gftools;
 
-import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -39,10 +38,12 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         Calendar next = Calendar.getInstance();
 
-        Log.d("AlarmReceiver.java","chk point1");
+        Log.d("AlarmReceiver.java", "chk point1");
         if (!(H == -1 || M == -1)) {
-            if(sharedPreferences.getBoolean("isCal",false)) {
-                while(!isRunning(context,packagename)) {continue;}
+            if (sharedPreferences.getBoolean("isCal", false)) {
+                while (!isRunning(context, packagename)) {
+                    continue;
+                }
             }
             AlarmUtills alarmUtills = new AlarmUtills();
             next = alarmUtills.calculate(H, M, context);
@@ -51,11 +52,11 @@ public class AlarmReceiver extends BroadcastReceiver {
             editor.putLong("nextAlarm", next.getTimeInMillis());
             editor.apply();
             alarmUtills.repeat(sharedPreferences, context, count);
-        } Log.d("AlarmReceiver.java","chk point2");
+        }
+        Log.d("AlarmReceiver.java", "chk point2");
     }
 
-    boolean isRunning(Context context,String PackageName) {
-
+    boolean isRunning(Context context, String PackageName) {
         return true;
-       }
+    }
 }

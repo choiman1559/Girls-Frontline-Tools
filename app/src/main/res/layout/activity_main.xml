@@ -69,6 +69,12 @@
                 android:text="@string/AlarmButton" />
 
             <Button
+                android:id="@+id/PAlarmButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/PAlarmButton" />
+
+            <Button
                 android:id="@+id/CenButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

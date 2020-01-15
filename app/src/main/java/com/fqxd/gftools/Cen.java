@@ -45,8 +45,7 @@ public class Cen extends AppCompatActivity {
                 this.getPackageManager().getPackageInfo(s, 0);
                 p2.add(s);
 
-            } catch (PackageManager.NameNotFoundException e) {
-            }
+            } catch (PackageManager.NameNotFoundException e) { }
         }
         ArrayAdapter<String> packages = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, p2);
         Spinner targetPackages = this.findViewById(R.id.targetPackage);
@@ -96,7 +95,10 @@ public class Cen extends AppCompatActivity {
             dos.close();
 
             Xmledit(istrue);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            ExceptionCatchClass ecc = new ExceptionCatchClass();
+            ecc.CatchException(Cen.this,e);
+        }
    }
 
    void copyXml(){
@@ -117,7 +119,10 @@ public class Cen extends AppCompatActivity {
             new File("/sdcard/GF_Tool/" + pacname + ".v2.playerprefs.xml").delete();
             updateLog("Task Done!\n");
 
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            ExceptionCatchClass ecc = new ExceptionCatchClass();
+            ecc.CatchException(Cen.this,e);
+        }
    }
 
     void Xmledit(boolean istrue){
@@ -154,7 +159,11 @@ public class Cen extends AppCompatActivity {
 
             copyXml();
 
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            ExceptionCatchClass ecc = new ExceptionCatchClass();
+            ecc.CatchException(Cen.this,e);
+            e.printStackTrace();
+        }
     }
 
     final class OnTargetSelectedListener implements AdapterView.OnItemSelectedListener {

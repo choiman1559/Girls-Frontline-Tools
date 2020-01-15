@@ -137,7 +137,10 @@ public class TXTActivity extends AppCompatActivity {
 
             outputStream.close();
             inputStream.close();
-        }catch (IOException e) { }
+        }catch (IOException e) {
+            ExceptionCatchClass ecc = new ExceptionCatchClass();
+            ecc.CatchException(TXTActivity.this,e);
+        }
     }
 
     final class OnTargetSelectedListener implements AdapterView.OnItemSelectedListener {

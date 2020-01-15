@@ -59,7 +59,8 @@ public final class ICCActivity extends Activity {
         TextView version = this.findViewById(R.id.version);
         try {
             version.setText(this.getPackageManager().getPackageInfo(this.getPackageName(), 0).versionName);
-        } catch (PackageManager.NameNotFoundException e) {}
+        } catch (PackageManager.NameNotFoundException e) {
+        }
         ArrayList<String> packageNames = new ArrayList<>();
         packageNames.add(getString(R.string.target_cn_uc));
         packageNames.add(getString(R.string.target_cn_bili));
