@@ -43,6 +43,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'net.lingala.zip4j:zip4j:2.2.8'
     implementation 'commons-io:commons-io:20030203.000550'
+    implementation 'commons-codec:commons-codec:1.10'
     implementation 'com.nononsenseapps:filepicker:4.1.0'
     implementation 'com.github.javiersantos:AppUpdater:2.7'
     implementation 'com.github.isradeleon:Notify-Android:1.0.3'

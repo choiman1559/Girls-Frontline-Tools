@@ -35,15 +35,15 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:label,android:theme"
-        android:name=".PAlarmAddClass">
-        <activity android:name=".PACAlarmActivity"/>
-        <activity android:name=".BQMActivity" />
-        <activity android:name=".AlarmListActivity" />
-        <activity android:name=".JasActivity" />
-        <activity android:name=".Cen" />
-        <activity android:name=".AddAlarmActivity" />
-        <activity android:name=".TXTActivity" />
-        <activity android:name=".GFDViewer" />
+        android:name=".alarm.palarm.PAlarmAddClass">
+        <activity android:name=".alarm.palarm.PACAlarmActivity"/>
+        <activity android:name=".features.BQMActivity" />
+        <activity android:name=".alarm.alarm.AlarmListActivity" />
+        <activity android:name=".features.JasActivity" />
+        <activity android:name=".features.CenActivity" />
+        <activity android:name=".alarm.alarm.AddAlarmActivity" />
+        <activity android:name=".features.txt.TXTActivity" />
+        <activity android:name=".features.gfd.GFDViewer" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -74,16 +74,16 @@
             android:name=".OSSActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ICCActivity"
+            android:name=".features.DecActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".XapkActivity"
+            android:name=".features.xapk.XapkActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
             android:name=".AppActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
-            android:name=".FilePicker"
+            android:name=".features.xapk.FilePicker"
             android:theme="@style/FilePickerTheme">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
@@ -92,7 +92,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TextPicker"
+            android:name=".features.txt.TextPicker"
             android:theme="@style/FilePickerTheme">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
@@ -101,7 +101,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GFDActivity"
+            android:name=".features.gfd.GFDActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
             android:name="com.xd.sdklib.helper.XDStartView"
@@ -155,16 +155,16 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <receiver
-            android:name=".DeviceBootReceiver"
+            android:name=".alarm.alarm.DeviceBootReceiver"
             android:enabled="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".AlarmReceiver" />
+        <receiver android:name=".alarm.alarm.AlarmReceiver" />
 
         <receiver
-            android:name=".PacketReceiver"
+            android:name=".alarm.palarm.PacketReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.fqxd.gftools.PACKET_RECEIVED"/>

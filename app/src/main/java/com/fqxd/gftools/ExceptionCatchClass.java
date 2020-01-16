@@ -10,8 +10,8 @@ import com.application.isradeleon.notify.Notify;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-class ExceptionCatchClass {
-    void CatchException(Context context,Exception Exception) {
+public class ExceptionCatchClass {
+    public void CatchException(Context context,Exception Exception) {
 
         StringWriter sw = new StringWriter();
         Exception.printStackTrace(new PrintWriter(sw));

@@ -4,8 +4,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.fqxd.gftools.PAlarmAddClass;
-import com.fqxd.gftools.PacketClass;
+import com.fqxd.gftools.alarm.palarm.PAlarmAddClass;
+import com.fqxd.gftools.alarm.palarm.PacketClass;
 import com.fqxd.gftools.vpn.VPNLog;
 
 import java.io.Closeable;

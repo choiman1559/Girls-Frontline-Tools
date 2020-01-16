@@ -3,6 +3,17 @@ package com.fqxd.gftools;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.fqxd.gftools.alarm.alarm.AlarmListActivity;
+import com.fqxd.gftools.alarm.palarm.PACAlarmActivity;
+import com.fqxd.gftools.alarm.palarm.PacketClass;
+import com.fqxd.gftools.features.BQMActivity;
+import com.fqxd.gftools.features.CenActivity;
+import com.fqxd.gftools.features.DecActivity;
+import com.fqxd.gftools.features.JasActivity;
+
+import com.fqxd.gftools.features.gfd.GFDActivity;
+import com.fqxd.gftools.features.txt.TXTActivity;
+import com.fqxd.gftools.features.xapk.XapkActivity;
 import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
@@ -71,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         ICC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, com.fqxd.gftools.ICCActivity.class);
+                Intent intent = new Intent(MainActivity.this, DecActivity.class);
                 startActivity(intent);
             }
         });
@@ -80,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         GFD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, com.fqxd.gftools.GFDActivity.class);
+                Intent intent = new Intent(MainActivity.this, GFDActivity.class);
                 startActivity(intent);
             }
         });
@@ -89,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         TXT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, com.fqxd.gftools.TXTActivity.class);
+                Intent intent = new Intent(MainActivity.this, TXTActivity.class);
                 startActivity(intent);
             }
         });
@@ -98,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         XAPK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, com.fqxd.gftools.XapkActivity.class);
+                Intent intent = new Intent(MainActivity.this, XapkActivity.class);
                 startActivity(intent);
             }
         });
@@ -108,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         Alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, com.fqxd.gftools.AlarmListActivity.class);
+                Intent intent = new Intent(MainActivity.this, AlarmListActivity.class);
                 startActivity(intent);
             }
         });
@@ -126,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
         CEN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, com.fqxd.gftools.Cen.class);
+                Intent intent = new Intent(MainActivity.this, CenActivity.class);
                 startActivity(intent);
             }
         });
@@ -135,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         ZAS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, com.fqxd.gftools.JasActivity.class);
+                Intent intent = new Intent(MainActivity.this, JasActivity.class);
                 startActivity(intent);
             }
         });
@@ -148,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                     Snackbar.make(v, "Check Internet and Try Again", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
-                    Intent intent = new Intent(MainActivity.this, com.fqxd.gftools.BQMActivity.class);
+                    Intent intent = new Intent(MainActivity.this, BQMActivity.class);
                     startActivity(intent);
                 }
             }
