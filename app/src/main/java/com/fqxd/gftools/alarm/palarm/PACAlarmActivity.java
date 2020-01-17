@@ -3,6 +3,7 @@ package com.fqxd.gftools.alarm.palarm;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fqxd.gftools.R;
+import com.fqxd.gftools.alarm.alarm.AlarmUtills;
 import com.fqxd.gftools.alarm.alarm.LSDTableClass;
 import com.fqxd.gftools.vpn.VPNConstants;
 import com.fqxd.gftools.vpn.utils.VpnServiceHelper;
@@ -132,6 +134,33 @@ public class PACAlarmActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) { }
         });
 
+        Button test = findViewById(R.id.test);
+        test.setCursorVisible(true);
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //addSharedprefs(PACAlarmActivity.this,0,0);
+                PACAlarmActivity.this.recreate();
+            }
+        });
+
+    }
+
+    public void addSharedprefs(Context context,int local1, int local2) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("ListAlarm", MODE_PRIVATE);
+        int count = sharedPreferences.getInt("PAlarmCount", 0);
+        SharedPreferences.Editor editor = context.getSharedPreferences("p" + Integer.toString(count += 1), MODE_PRIVATE).edit();
+
+        editor.putString("package", "kr.txwy.and.snqx");
+        editor.putString("name", Integer.toString(local1) + "-" + Integer.toString(local2));
+        editor.putInt("H", local1);
+        editor.putInt("M", local2);
+        editor.putLong("nextAlarm", new AlarmUtills().calculate(local1, local2, context).getTimeInMillis());
+        editor.apply();
+
+        sharedPreferences.edit().putInt("PAlarmCount", count).apply();
+
+        new PacketClass().repeat(context,Integer.toString(local1) + "-" + Integer.toString(local2));
     }
 
     void setText() {

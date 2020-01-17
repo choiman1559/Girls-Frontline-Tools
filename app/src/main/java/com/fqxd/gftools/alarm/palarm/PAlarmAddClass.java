@@ -197,7 +197,7 @@ public class PAlarmAddClass extends Application {
         }
     }
 
-    private void addSharedprefs(int local1, int local2) {
+    public void addSharedprefs(int local1, int local2) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("ListAlarm", MODE_PRIVATE);
         int count = sharedPreferences.getInt("PAlarmCount", 0);
         SharedPreferences.Editor editor = context.getSharedPreferences("p" + Integer.toString(count += 1), MODE_PRIVATE).edit();
