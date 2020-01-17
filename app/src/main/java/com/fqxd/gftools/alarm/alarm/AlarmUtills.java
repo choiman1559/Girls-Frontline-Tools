@@ -52,7 +52,6 @@ public class AlarmUtills {
         String HH = Character.toString(array[0]) + Character.toString(array[1]);
         String MM = Character.toString(array[2]) + Character.toString(array[3]);
 
-
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
@@ -74,7 +73,5 @@ public class AlarmUtills {
         editor.putInt("M",M);
         editor.putLong("nextAlarm",calendar.getTimeInMillis());
         editor.apply();
-
-        SharedPreferences defaults = context.getSharedPreferences("AlarmList",Context.MODE_PRIVATE);
     }
 }

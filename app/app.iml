@@ -162,5 +162,7 @@
     <orderEntry type="library" name="Gradle: com.github.isradeleon:Notify-Android:1.0.3@aar" level="project" />
     <orderEntry type="module" module-name="xDSDKAndroid" />
     <orderEntry type="module" module-name="xDSDKAndroid" />
+    <orderEntry type="module" module-name="xDSDKAndroid" />
+    <orderEntry type="module" module-name="xDSDKAndroid" />
   </component>
 </module>

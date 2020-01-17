@@ -145,6 +145,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <string name="cancel">Cancel</string>
     <string name="nametext">이름</string>
     <string name="PacAlarmService">패킷 군수알리미 On/Off</string>
+    <string name="deletecache">패킷 캐쉬 지우기</string>
     <string name="PacAlarmWarning">
         주의 : 이 기능은 Android OS의 보안상 이유로,\n
         현 VPN 을 이용한 패킷 캡쳐만을 지원하고 있기 때문에,\n
