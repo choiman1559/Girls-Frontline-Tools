@@ -179,6 +179,16 @@
             </intent-filter>
         </receiver>
 
+      <service
+          tools:targetApi="24"
+          android:name=".alarm.palarm.TileServiceClass"
+          android:label="군수알리미 서비스"
+          android:permission="android.permission.BIND_QUICK_SETTINGS_TILE" >
+          <intent-filter>
+              <action android:name="android.service.quicksettings.action.QS_TILE"/>
+          </intent-filter>
+      </service>
+
         <service
             android:name="com.fqxd.gftools.vpn.service.FirewallVpnService"
             android:enabled="true"
