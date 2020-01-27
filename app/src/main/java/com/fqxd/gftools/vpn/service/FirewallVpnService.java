@@ -324,7 +324,7 @@ public class FirewallVpnService extends VpnService implements Runnable {
     private ParcelFileDescriptor establishVPN() throws Exception {
         Builder builder = new Builder();
         builder.setMtu(MUTE_SIZE);
-        selectPackage = "kr.txwy.and.snqx";//sp.getString(DEFAULT_PACKAGE_ID, null);
+        selectPackage = "kr.txwy.and.snqx"; //sp.getString(DEFAULT_PACKAGE_ID, null);
         DebugLog.i("setMtu: %d\n", ProxyConfig.Instance.getMTU());
 
         ProxyConfig.IPAddress ipAddress = ProxyConfig.Instance.getDefaultLocalIP();
@@ -333,7 +333,6 @@ public class FirewallVpnService extends VpnService implements Runnable {
         DebugLog.i("addAddress: %s/%d\n", ipAddress.Address, ipAddress.PrefixLength);
 
         builder.addRoute(VPN_ROUTE, 0);
-
 
         builder.addDnsServer(GOOGLE_DNS_FIRST);
         builder.addDnsServer(CHINA_DNS_FIRST);
@@ -367,7 +366,7 @@ public class FirewallVpnService extends VpnService implements Runnable {
             udpQueue = new ConcurrentLinkedQueue<>();
 
             //启动TCP代理服务
-            mTcpProxyServer = new TcpProxyServer(0,context);
+            mTcpProxyServer = new TcpProxyServer(8000,context);
             mTcpProxyServer.start();
             udpServer = new UDPServer(this, udpQueue);
             udpServer.start();

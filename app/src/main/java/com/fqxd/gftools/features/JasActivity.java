@@ -17,6 +17,6 @@ public class JasActivity extends AppCompatActivity {
 
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        webView.loadUrl("file:///android_asset/www/zas.html");
+        webView.loadUrl("file:///android_asset/www/zas/zas.html");
     }
 }

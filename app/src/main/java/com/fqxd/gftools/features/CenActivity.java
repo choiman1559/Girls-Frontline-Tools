@@ -163,8 +163,7 @@ public class CenActivity extends AppCompatActivity {
             copyXml();
 
         } catch (IOException e) {
-            ExceptionCatchClass ecc = new ExceptionCatchClass();
-            ecc.CatchException(CenActivity.this,e);
+            new ExceptionCatchClass().CatchException(CenActivity.this,e);
             e.printStackTrace();
         }
     }
