@@ -366,7 +366,7 @@ public class FirewallVpnService extends VpnService implements Runnable {
             udpQueue = new ConcurrentLinkedQueue<>();
 
             //启动TCP代理服务
-            mTcpProxyServer = new TcpProxyServer(8000,context);
+            mTcpProxyServer = new TcpProxyServer(0,context);
             mTcpProxyServer.start();
             udpServer = new UDPServer(this, udpQueue);
             udpServer.start();
