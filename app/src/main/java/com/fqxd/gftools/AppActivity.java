@@ -280,11 +280,8 @@ public class AppActivity extends Activity {
                             while ((cnt = fis.read(b)) != -1) {
                                 fos.write(b, 0, cnt);
                             }
-                        } catch (Exception e) {
-                            ExceptionCatchClass ecc = new ExceptionCatchClass();
-                            ecc.CatchException(context, e);
-                            e.printStackTrace();
-                        } finally {
+                        } catch (Exception e) { }
+                        finally {
                             try {
                                 fis.close();
                                 fos.close();
@@ -355,10 +352,7 @@ public class AppActivity extends Activity {
                     icon.setImageDrawable(getPackageManager().getApplicationIcon(packagename));
                     appname.setText("app name : " + pm.getApplicationLabel(pm.getApplicationInfo(packagename, PackageManager.GET_META_DATA)));
                     version.setText("version : " + pm.getPackageInfo(packagename, 0).versionName);
-                } catch (PackageManager.NameNotFoundException e) {
-                    ExceptionCatchClass ecc = new ExceptionCatchClass();
-                    ecc.CatchException(main.getApplicationContext(), e);
-                }
+                } catch (PackageManager.NameNotFoundException e) { }
 
                 if (packagename == getString(R.string.target_cn_uc) ||
                         packagename == getString(R.string.target_cn_bili) ||

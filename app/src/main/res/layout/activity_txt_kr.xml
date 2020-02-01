@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/target" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Txtviewdescription" />
+
+    <Switch
+        android:id="@+id/onoff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/automaticTXTOnoff" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Switch
+            android:id="@+id/bill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bill" />
+
+        <Switch
+            android:id="@+id/dgts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dgts" />
+
+        <Switch
+            android:id="@+id/chna"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chna" />
+
+        <Switch
+            android:id="@+id/jpan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/jpan" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <Button
+        android:id="@+id/origin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/origintxtpatch" />
+</LinearLayout>

@@ -15,7 +15,8 @@
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
@@ -26,6 +27,7 @@
         android:required="false" />
 
     <application
+        android:name=".alarm.palarm.PAlarmAddClass"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_icon"
@@ -34,9 +36,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:replace="android:label,android:theme"
-        android:name=".alarm.palarm.PAlarmAddClass">
-        <activity android:name=".alarm.palarm.PACAlarmActivity"/>
+        tools:replace="android:label,android:theme">
+
+        <meta-data
+            android:name="firebase_crash_collection_enabled"
+            android:value="@bool/FIREBASE_CRASH_ENABLED"/>
+
+        <activity android:name=".features.txt.TxtKRActivity"/>
+        <activity android:name=".alarm.palarm.PACAlarmActivity" />
         <activity android:name=".features.BQMActivity" />
         <activity android:name=".alarm.alarm.AlarmListActivity" />
         <activity android:name=".features.JasActivity" />
@@ -74,7 +81,7 @@
             android:name=".OSSActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".features.DecActivity"
+            android:name=".features.decom.DecActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".features.xapk.XapkActivity"
@@ -168,39 +175,47 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
         <receiver android:name=".alarm.alarm.AlarmReceiver" />
-
         <receiver
             android:name=".alarm.palarm.PacketReceiver"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.fqxd.gftools.PACKET_RECEIVED"/>
+                <action android:name="com.fqxd.gftools.PACKET_RECEIVED" />
             </intent-filter>
         </receiver>
 
-      <service
-          tools:targetApi="24"
-          android:name=".alarm.palarm.TileServiceClass"
-          android:label="군수알리미 서비스"
-          android:permission="android.permission.BIND_QUICK_SETTINGS_TILE" >
-          <intent-filter>
-              <action android:name="android.service.quicksettings.action.QS_TILE"/>
-          </intent-filter>
-      </service>
-
         <service
-            android:name="com.fqxd.gftools.vpn.service.FirewallVpnService"
+            android:name=".features.txt.DetectGFService"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibilityservice"/>
+        </service>
+        <service
+            android:name=".alarm.palarm.TileServiceClass"
+            android:label="군수알리미 서비스"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            tools:targetApi="24">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".vpn.service.FirewallVpnService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_VPN_SERVICE">
-
             <intent-filter>
                 <action android:name="android.net.VpnService" />
             </intent-filter>
         </service>
-        <service android:name=".vpn.processparse.PortHostService" android:exported="false"/>
-
+        <service
+            android:name=".vpn.processparse.PortHostService"
+            android:exported="false" />
     </application>
 
 </manifest>

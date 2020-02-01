@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.fqxd.gftools.ExceptionCatchClass;
 import com.fqxd.gftools.R;
 
 import java.io.BufferedReader;
@@ -98,10 +97,7 @@ public class CenActivity extends AppCompatActivity {
             dos.close();
 
             Xmledit(istrue);
-        } catch (Exception e) {
-            ExceptionCatchClass ecc = new ExceptionCatchClass();
-            ecc.CatchException(CenActivity.this,e);
-        }
+        } catch (Exception e) { }
    }
 
    void copyXml(){
@@ -122,10 +118,7 @@ public class CenActivity extends AppCompatActivity {
             new File("/sdcard/GF_Tool/" + pacname + ".v2.playerprefs.xml").delete();
             updateLog("Task Done!\n");
 
-        } catch (Exception e) {
-            ExceptionCatchClass ecc = new ExceptionCatchClass();
-            ecc.CatchException(CenActivity.this,e);
-        }
+        } catch (Exception e) { }
    }
 
     void Xmledit(boolean istrue){
@@ -162,10 +155,7 @@ public class CenActivity extends AppCompatActivity {
 
             copyXml();
 
-        } catch (IOException e) {
-            new ExceptionCatchClass().CatchException(CenActivity.this,e);
-            e.printStackTrace();
-        }
+        } catch (IOException e) { }
     }
 
     final class OnTargetSelectedListener implements AdapterView.OnItemSelectedListener {

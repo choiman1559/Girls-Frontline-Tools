@@ -20,7 +20,6 @@ import androidx.core.content.FileProvider;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fqxd.gftools.BuildConfig;
-import com.fqxd.gftools.ExceptionCatchClass;
 import com.fqxd.gftools.MainActivity;
 import com.fqxd.gftools.R;
 import com.nononsenseapps.filepicker.FilePickerActivity;
@@ -208,11 +207,7 @@ public class XapkActivity extends AppCompatActivity {
             boolean b = my.unZip(lol.toString(),file.toString());
             try {
                 copyDirectory(new File("/sdcard/GF_Tool/Android"),new File("/sdcard/Android/"));
-            } catch (IOException e) {
-                ExceptionCatchClass ecc = new ExceptionCatchClass();
-                ecc.CatchException(XapkActivity.this,e);
-                e.printStackTrace();
-            }
+            } catch (IOException e) { }
 
             return String.valueOf(b);
         }
@@ -261,10 +256,7 @@ public class XapkActivity extends AppCompatActivity {
             }
             br.close();
         }
-        catch (IOException e) {
-            ExceptionCatchClass ecc = new ExceptionCatchClass();
-            ecc.CatchException(XapkActivity.this,e);
-        }
+        catch (IOException e) { }
         return text.toString();
     }
 

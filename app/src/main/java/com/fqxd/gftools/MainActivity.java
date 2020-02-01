@@ -6,14 +6,15 @@ import android.os.Bundle;
 import com.fqxd.gftools.alarm.alarm.AlarmListActivity;
 import com.fqxd.gftools.alarm.palarm.PACAlarmActivity;
 import com.fqxd.gftools.alarm.palarm.PacketClass;
+
 import com.fqxd.gftools.features.BQMActivity;
 import com.fqxd.gftools.features.CenActivity;
-import com.fqxd.gftools.features.DecActivity;
+import com.fqxd.gftools.features.decom.DecActivity;
 import com.fqxd.gftools.features.JasActivity;
-
 import com.fqxd.gftools.features.gfd.GFDActivity;
-import com.fqxd.gftools.features.txt.TXTActivity;
+import com.fqxd.gftools.features.txt.TxtKRActivity;
 import com.fqxd.gftools.features.xapk.XapkActivity;
+
 import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         TXT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, TXTActivity.class);
+                Intent intent = new Intent(MainActivity.this, TxtKRActivity.class);
                 startActivity(intent);
             }
         });

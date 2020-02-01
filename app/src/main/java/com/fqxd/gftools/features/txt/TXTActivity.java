@@ -1,6 +1,5 @@
 package com.fqxd.gftools.features.txt;
 
-import com.fqxd.gftools.ExceptionCatchClass;
 import com.fqxd.gftools.MainActivity;
 import com.fqxd.gftools.R;
 import com.nononsenseapps.filepicker.*;
@@ -140,10 +139,7 @@ public class TXTActivity extends AppCompatActivity {
 
             outputStream.close();
             inputStream.close();
-        }catch (IOException e) {
-            ExceptionCatchClass ecc = new ExceptionCatchClass();
-            ecc.CatchException(TXTActivity.this,e);
-        }
+        }catch (IOException e) { }
     }
 
     final class OnTargetSelectedListener implements AdapterView.OnItemSelectedListener {

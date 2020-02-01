@@ -10,6 +10,7 @@
     <string name="info_patch_started" translatable="false">Patch Started!</string>
     <string name="permission_required">patch won\'t work without essential permissions</string>
     <string name="info_no_obb">there were no obb file found.\nobb file won\'t be patched.\nsome releases doesn\'t includes obb files.\nif  you\'re not sure about it, please check if girl\'s fronline does works and reinstall if it doesn\'t</string>
+
     <string name="app_name">GF Tools</string>
     <string name="action_settings">Settings</string>
     <string name="Title">GF Tools</string>
@@ -24,6 +25,7 @@
     <string name="BQMButton">BQM! Patcher</string>
     <string name="CenButton">GF Censorship [ROOT]</string>
     <string name="ChkUpdate">Check Updates</string>
+
     <string name="OSS">
 
         \nUsed Open Sources In package \"com.fqxd.gftools\"\n\n\n
@@ -103,6 +105,14 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n
 
+                The MIT License (MIT)
+
+Copyright (c) 2009-2019 Jonathan Hedley - jsoup\n
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n
+
         vpnadaptercore - author minhui.zhu\n
         Created by minhui.zhu on 2018/5/11.\n
         Copyright (c) 2017年 Oceanwing. All rights reserved.\n\n
@@ -117,7 +127,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     +님들 그거 앎? fq는 "Fuck you" 의 약자임 ㅇㅇ</string>
     <string name="ImgSel">Select Image</string>
     <string name="imgpreview">image preview</string>
-    <string name="XAPKInstall">XAPK   Installer</string>
+    <string name="XAPKInstall">XAPK Installer</string>
     <string name="version">version : UNKNOWN</string>
     <string name="runApp">run app</string>
     <string name="deleteapp">Delete App</string>
@@ -171,5 +181,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <string name="notify_channel_id">LSD_Alarm</string>
     <string name="notify_channel_name">군수알리미</string>
     <string name="notify_channel_description">군수알리미용 알림 채널</string>
+
+    <string name="description">소녀전선 앱의 시작을 감지합니다. \n이 권한을 사용하면 패킷 설정 없이도 간편하게 한패를 적용할수 있습니다.</string>
+    <string name="automaticTXTOnoff">자동 한패 On/Off</string>
+    <string name="Txtviewdescription">자동 한패를 적용합니다. 프록시 서버를 설정할 필요가 없으며,\n소녀전선 앱을 실행할때마다 한패 업데이트를 확인합니다.\n
+        (주의 : 정상 작동이 확인되지 않은 기능이며, 알려지지 않은 각종 문제가 발견될수 있습니다.)</string>
+    <string name="origintxtpatch">수동 방식으로 패치(직접 파일 선택)</string>
+    <string name="bill">비리섭</string>
+    <string name="dgts">운영사</string>섭
+    <string name="chna">중섭</string>
+    <string name="jpan">일섭</string>
 
 </resources>

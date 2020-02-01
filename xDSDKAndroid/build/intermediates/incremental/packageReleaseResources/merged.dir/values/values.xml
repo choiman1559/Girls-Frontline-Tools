@@ -26,6 +26,7 @@
     <color name="tableheader">#271511</color>
     <color name="textField_bg">#ffffff</color>
     <color name="title">#b2927d</color>
+    <color name="transparent">#00000000</color>
     <color name="uc_label">#332321</color>
     <color name="uc_label_pressed">#ff6600</color>
     <color name="xd_white">#ffffff</color>
