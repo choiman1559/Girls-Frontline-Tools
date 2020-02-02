@@ -3,6 +3,8 @@ package com.fqxd.gftools.vpn;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import com.fqxd.gftools.vpn.utils.CommonMethods;
 import java.util.ArrayList;
 import java.util.List;

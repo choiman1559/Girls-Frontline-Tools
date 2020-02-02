@@ -9,7 +9,9 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
+import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 
 import com.fqxd.gftools.MainActivity;
@@ -95,6 +97,9 @@ class UpdateTask extends AsyncTask {
         dialog.setProgressStyle(R.style.Widget_AppCompat_ProgressBar_Horizontal);
         dialog.setCancelable(false);
         dialog.setMessage("Checking Files...");
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
+        else dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
         dialog.show();
     }
 

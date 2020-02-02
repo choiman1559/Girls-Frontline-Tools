@@ -98,6 +98,7 @@ public class TcpDataSaveHelper {
         } finally {
             close(fileOutputStream);
         }
+
         if(lastSaveFile.toString().contains("request") && new PacketClass().isInclude(lastSaveFile,"gf-game")) {
             Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(new Runnable() {
@@ -108,7 +109,6 @@ public class TcpDataSaveHelper {
             },0);
         }
     }
-
 
     public static class SaveData {
         boolean isRequest;
