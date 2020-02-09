@@ -23,6 +23,7 @@
     <string name="PAlarmButton">LSD Alarm with Packet [DEV]</string>
     <string name="ZasRun">Zas Run Calculator</string>
     <string name="BQMButton">BQM! Patcher</string>
+    <string name="NotiButton">Noti Plugin</string>
     <string name="CenButton">GF Censorship [ROOT]</string>
     <string name="ChkUpdate">Check Updates</string>
 
@@ -192,4 +193,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <string name="chna">중섭</string>
     <string name="jpan">일섭</string>
 
+    <string name="noit_des">GF Tools Noti Plugin 으로부터 저장된 FireBase DB 정보를 불러와 실시간으로 알람을 표시합니다.</string>
+    <string name="noti_onoff">Service On/Off</string>
+    <string name="glogin">Google 에 로그아웃</string>
+    <string name="glogout">Google 에 로그인</string>
+    <string name="guid">User Id : Unknown</string>
 </resources>

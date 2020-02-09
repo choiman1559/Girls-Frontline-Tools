@@ -160,7 +160,7 @@ public class PAlarmAddClass extends Application {
         }
 
         if (new PacketClass().isInclude(file, "uid")) {
-            SharedPreferences sharedPreferences = context.getSharedPreferences("ListAlarm", 0);
+            SharedPreferences sharedPreferences = getSharedPreferences("ListAlarm", 0);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             String uid = parseUID(file);
             String temp = sharedPreferences.getString("uid", "000000");

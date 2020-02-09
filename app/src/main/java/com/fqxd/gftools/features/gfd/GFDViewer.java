@@ -2,6 +2,7 @@ package com.fqxd.gftools.features.gfd;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -62,6 +63,7 @@ public class GFDViewer extends AppCompatActivity {
                 break;
 
                 default:
+                    imageView.setImageResource(R.drawable.splashimage);
                     Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_SHORT).show();
                     break;
         }

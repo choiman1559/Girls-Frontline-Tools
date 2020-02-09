@@ -20,23 +20,32 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_crashlytics_17_0_0_beta01_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_3_12_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_1_15_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__net_lingala_zip4j_zip4j_2_2_8_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jsoup_jsoup_1_11_3_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/release/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/txt/DetectGFService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/txt/DetectGFService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/ProxyConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/ProxyConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/tunnel/RemoteTcpTunnel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/tunnel/RemoteTcpTunnel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/utils/TcpDataSaveHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/utils/TcpDataSaveHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xDSDKAndroid/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/xDSDKAndroid/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/alarm/palarm/PAlarmAddClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/alarm/palarm/PAlarmAddClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/gfd/GFDViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/gfd/GFDViewer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/txt/TxtKRActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/txt/TxtKRActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-v24/ko_producttable_doll.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/ko_producttable_doll.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_gfdviewer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_gfdviewer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_txt_kr.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_txt_kr.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +56,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="1f55bc1a" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3_XL_API_24" />
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
@@ -68,74 +77,71 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="37" selection-start-line="37" selection-end-line="37" />
+            <state relative-caret-position="3405">
+              <caret line="227" column="33" selection-start-line="227" selection-start-column="33" selection-end-line="227" selection-end-column="33" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/utils/TcpDataSaveHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7">
-              <caret line="84" column="29" selection-start-line="84" selection-start-column="29" selection-end-line="84" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3321#3322#0" expanded="true" />
-                <element signature="e#3399#3400#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+          <provider editor-type-id="android-manifest" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/txt/DetectGFService.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/noti/FirebaseMessageService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="104" column="5" selection-start-line="104" selection-start-column="5" selection-end-line="104" selection-end-column="5" />
+            <state relative-caret-position="50">
+              <caret line="20" column="103" selection-start-line="20" selection-start-column="103" selection-end-line="20" selection-end-column="103" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5924#5925#0" expanded="true" />
-                <element signature="e#5970#5971#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/alarm/palarm/PAlarmAddClass.java">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.isradeleon/Notify-Android/1.0.3/3f88b0ecbb177e5ef2ec386c1c040b03f06eee5b/Notify-Android-1.0.3-sources.jar!/com/application/isradeleon/notify/Notify.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="110" column="35" lean-forward="true" selection-start-line="110" selection-start-column="35" selection-end-line="110" selection-end-column="35" />
+            <state relative-caret-position="180">
+              <caret line="162" column="37" lean-forward="true" selection-start-line="162" selection-start-column="37" selection-end-line="162" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/txt/TXTActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/noti/NotiActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1845">
-              <caret line="150" selection-start-line="150" selection-end-line="150" />
+            <state relative-caret-position="140">
+              <caret line="71" column="13" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/txt/TxtKRActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="2790">
+              <caret line="186" column="58" selection-start-line="186" selection-start-column="58" selection-end-line="186" selection-end-column="58" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_txt_kr.xml">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="855">
+              <caret line="57" column="33" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_noti.xml">
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="330">
+              <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
             </state>
           </provider>
           <provider selected="true" editor-type-id="android-designer2" />
@@ -148,15 +154,13 @@
       <list>
         <option value="layoutResourceFile_vertical" />
         <option value="resourceFile" />
-        <option value="Class" />
         <option value="valueResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CONFIG_DIR</find>
-      <find>DATA_DIR</find>
       <find>&quot;request</find>
       <find>isReq</find>
       <find>isRequest</find>
@@ -185,6 +189,8 @@
       <find>proxy</find>
       <find>RemoteTcpTunnel</find>
       <find>createTunnelByConfig</find>
+      <find>newFileAndSaveData</find>
+      <find>notify</find>
     </findStrings>
     <replaceStrings>
       <replace>DecomActivity</replace>
@@ -212,16 +218,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/alarm/alarm/DeviceBootReceiver.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/alarm/alarm/LSDTableClass.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/BQMActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/ExceptionCatchClass.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/GFD/GFDActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/GFD/GFDViewer.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/gfd/GFDViewer.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/txt/TextPicker.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/xapk/FilePicker.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/xapk/OBBextrack.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/alarm/alarm/AlarmListActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/alarm/alarm/AlarmReceiver.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/ICCActivity.java" />
@@ -242,12 +238,9 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/service/FirewallVpnService.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/xml/accessibilityservice.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/gfd/GFDActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_txt_kr.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/decom/DecActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/decom/OnTargetSelectedListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/decom/PatchTask.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/alarm/palarm/TileServiceClass.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/txt/TXTActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/CenActivity.java" />
@@ -256,13 +249,26 @@
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/bool.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/bools.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/txt/TxtKRActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/ProxyConfig.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/tunnel/RemoteTcpTunnel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/utils/TcpDataSaveHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/txt/DetectGFService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_txt_kr.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/txt/TxtKRActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_gfdviewer.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_noti.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/gfd/GFDViewer.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/noti/FireStoreListener.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/noti/CloudMessageService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/noti/FirebaseInstanceIDService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/noti/FirebaseMessagingService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/noti/NotiActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/noti/FirebaseMessageService.java" />
       </list>
     </option>
   </component>
@@ -280,55 +286,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="GF Tools" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="GF Tools" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="GF Tools" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="gftools" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GF Tools" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="gftools" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="alarm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GF Tools" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="gftools" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="alarm" type="462c0819:PsiDirectoryNode" />
-              <item name="palarm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GF Tools" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="gftools" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="features" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GF Tools" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -345,7 +302,19 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="GF Tools" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -355,7 +324,7 @@
     <property name="DEBUGGABLE_PROCESS" value="com.fqxd.gftools" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="1f55bc1a" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-01-30T13:48:13.832Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-02-02T12:21:56.210Z" />
     <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/app" />
     <property name="ExportApk.BuildVariants" value="release" />
     <property name="ExportApk.SignV1" value="true" />
@@ -364,8 +333,9 @@
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="ScreenshotViewer.SavePath" value="$PROJECT_DIR$/../image" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Suggestions" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AndroidStudioProjects/NotiTest" />
+    <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -379,6 +349,7 @@
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
+      <recent name="com.fqxd.gftools.noti" />
       <recent name="com.fqxd.gftools.features.txt" />
       <recent name="com.fqxd.gftools" />
     </key>
@@ -706,26 +677,26 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.25669882" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4992" visible="true" weight="0.25669882" />
       <window_info id="Structure" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Favorites" order="3" sideWeight="0.5008" side_tool="true" weight="0.25669882" />
       <window_info id="Build Variants" order="4" side_tool="true" />
       <window_info id="Image Layers" order="5" />
       <window_info id="Designer" order="6" />
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Run" order="0" weight="0.32821724" />
-      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49390244" weight="0.42857143" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="1" sideWeight="0.49390244" visible="true" weight="0.42857143" />
       <window_info anchor="bottom" id="TODO" order="2" sideWeight="0.49919486" weight="0.32821724" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.32909092" />
       <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.49758455" weight="0.32821724" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50609756" side_tool="true" weight="0.43272728" />
       <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49919486" weight="0.32467532" />
-      <window_info anchor="bottom" id="Android Profiler" order="7" weight="0.94545454" />
+      <window_info anchor="bottom" id="Android Profiler" order="7" weight="0.94451004" />
       <window_info anchor="bottom" id="Find" order="8" weight="0.32821724" />
       <window_info active="true" anchor="bottom" id="Messages" order="9" sideWeight="0.49919486" visible="true" weight="0.3293718" />
       <window_info anchor="bottom" id="Inspection Results" order="10" weight="0.3293718" />
-      <window_info anchor="bottom" id="Build" order="11" sideWeight="0.49466464" visible="true" weight="0.26210153" />
+      <window_info anchor="bottom" id="Build" order="11" sideWeight="0.49466464" weight="0.26328218" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" weight="0.32930756" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" weight="0.3290461" />
@@ -776,202 +747,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/assets/www/spine/js/pixi-spine.js" />
-    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-29/android/view/accessibility/AccessibilityManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="185" column="28" selection-start-line="185" selection-start-column="19" selection-end-line="185" selection-end-column="28" />
-          <folding>
-            <element signature="e#6483#6484#0" expanded="true" />
-            <element signature="e#6511#6512#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_bqm.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/alarm/palarm/PACAlarmActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-29/android/view/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="27561" column="21" selection-start-line="27561" selection-start-column="21" selection-end-line="27561" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/gfd/GFDActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="44" column="22" lean-forward="true" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-29/android/widget/CompoundButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2157">
-          <caret line="226" column="5" lean-forward="true" selection-start-line="226" selection-start-column="5" selection-end-line="226" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/accessibilityservice.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="65" selection-start-line="7" selection-start-column="65" selection-end-line="7" selection-end-column="65" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/20030203.000550/506fc1d8e200a9e664d8befb991d407ae551d7fe/commons-io-20030203.000550.jar!/org/apache/commons/io/FileUtils.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="275" column="23" selection-start-line="275" selection-start-column="23" selection-end-line="275" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/DecActivity.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_txt.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="45" lean-forward="true" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/decom/OnTargetSelectedListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2042#2062#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/decom/PatchTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-441">
-          <caret line="12" column="42" lean-forward="true" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
-          <folding>
-            <element signature="e#1406#1407#0" expanded="true" />
-            <element signature="e#1475#1476#0" expanded="true" />
-            <element signature="e#1520#1568#0" expanded="true" />
-            <element signature="e#5547#5548#0" expanded="true" />
-            <element signature="e#5598#5599#0" expanded="true" />
-            <element signature="e#5962#5963#0" expanded="true" />
-            <element signature="e#6023#6024#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/decom/DecActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-96">
-          <caret line="70" column="53" lean-forward="true" selection-start-line="70" selection-start-column="53" selection-end-line="70" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/BQMActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1479">
-          <caret line="243" column="33" selection-start-line="243" selection-start-column="33" selection-end-line="243" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/alarm/palarm/TileServiceClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="36" column="68" selection-start-line="36" selection-start-column="68" selection-end-line="36" selection-end-column="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/xapk/XapkActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3330">
-          <caret line="260" column="5" selection-start-line="260" selection-start-column="5" selection-end-line="260" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/AppActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="358" column="50" selection-start-line="358" selection-start-column="50" selection-end-line="358" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/provider_paths.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/CenActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="157" column="34" selection-start-line="157" selection-start-column="34" selection-end-line="157" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/google-services.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="191" column="35" selection-start-line="191" selection-start-column="35" selection-end-line="191" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/bools.xml" />
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="80" selection-start-line="10" selection-start-column="80" selection-end-line="10" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/generated/res/resValues/debug/values/gradleResValues.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="39" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/txt/TXTActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1845">
@@ -979,12 +754,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/txt/TxtKRActivity.java">
+    <entry file="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1fee530b3c7481553b58e8fec8759890/appcompat-1.1.0/res/values/values.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="15">
+          <caret line="1823" column="39" selection-start-line="1823" selection-start-column="39" selection-end-line="1823" selection-end-column="39" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-29/android/app/Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="6236" selection-start-line="6236" selection-end-line="6236" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/utils/TcpDataSaveHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_delete.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/txt/DetectGFService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1125">
+          <caret line="108" column="23" selection-start-line="108" selection-start-column="23" selection-end-line="108" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_alarm.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="22" column="44" lean-forward="true" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/alarm/palarm/PAlarmAddClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1245">
+          <caret line="110" column="35" selection-start-line="110" selection-start-column="35" selection-end-line="110" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/gfd/GFDActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="108" column="12" selection-start-line="108" selection-start-column="12" selection-end-line="108" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_gfdviewer.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_txt_kr.xml">
       <provider editor-type-id="text-editor">
@@ -994,172 +830,248 @@
       </provider>
       <provider selected="true" editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/tcpip/IPHeader.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/alarm/palarm/PACAlarmActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1162">
-          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+        <state relative-caret-position="330">
+          <caret line="52" column="30" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/ProxyConfig.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/txt/TxtKRActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1223">
-          <caret line="89" column="50" lean-forward="true" selection-start-line="89" selection-start-column="50" selection-end-line="89" selection-end-column="50" />
+        <state relative-caret-position="450">
+          <caret line="50" column="88" selection-start-line="50" selection-start-column="88" selection-end-line="50" selection-end-column="88" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-29/java/net/InetSocketAddress.java">
+    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/proguard-rules.pro">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradle.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1378">
+        <state relative-caret-position="240">
+          <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="97" column="52" selection-start-line="97" selection-start-column="52" selection-end-line="97" selection-end-column="52" />
+          <folding>
+            <element signature="e#3563#3583#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/alarm/palarm/PacketReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="51" column="24" lean-forward="true" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ko_fairyattribute.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ko_producttable_equipment.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ko_producttable_fairy.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ko_recommendbreeding.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ko_recommenddollrecipe.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ko_recommendequipmentrecipe.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ko_recommendleveling.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ko_recommendmd.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ko_md_table.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ko_producttable_doll.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/gfd/GFDViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/AppActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4717">
+          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/processparse/PortHostService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/12f4428b0fe9bcdcecc8a0690435d7e8/jetified-firebase-common-19.3.0/jars/classes.jar!/com/google/firebase/FirebaseApp.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3465">
           <caret line="52" column="13" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/tunnel/TunnelFactory.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b6b0859c71c1258ee80efc2bc4493274/jetified-firebase-firestore-21.4.0/jars/classes.jar!/com/google/firebase/firestore/FirebaseFirestore.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/tunnel/RawTcpTunnel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/proxy/TcpProxyServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="156" column="59" selection-start-line="156" selection-start-column="59" selection-end-line="156" selection-end-column="59" />
+        <state relative-caret-position="-3010">
+          <caret line="43" column="28" lean-forward="true" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#12257#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/http/HttpRequestHeaderParser.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2032">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/tunnel/RemoteTcpTunnel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/processparse/PackageNames.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-142">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/utils/VpnServiceHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-832">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/KeyHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        <state relative-caret-position="2130">
+          <caret line="182" selection-start-line="182" selection-end-line="182" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/service/FirewallVpnService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5512">
-          <caret line="53" column="78" lean-forward="true" selection-start-line="53" selection-start-column="78" selection-end-line="53" selection-end-column="78" />
+        <state relative-caret-position="-570">
+          <caret line="45" column="68" selection-start-line="45" selection-start-column="68" selection-end-line="45" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/tunnel/TcpTunnel.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/noti/CloudMessageService.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/noti/FirebaseInstanceIDService.java" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/19a6484483828d73542f8ed1c39c6026/firebase-iid-20.0.2/jars/classes.jar!/com/google/firebase/iid/FirebaseInstanceId.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="288" lean-forward="true" selection-start-line="288" selection-end-line="288" />
+        <state relative-caret-position="-840">
+          <caret line="175" column="18" selection-start-line="175" selection-start-column="18" selection-end-line="175" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/utils/SaveDataFileParser.java">
+    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-29/java/lang/Thread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1687">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        <state relative-caret-position="-5520">
+          <caret line="853" column="25" lean-forward="true" selection-start-line="853" selection-start-column="25" selection-end-line="853" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/utils/SocketUtils.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f50d8d5ef31f2887cfd25abfa6af07ca/jetified-play-services-basement-17.0.0/jars/classes.jar!/com/google/android/gms/common/util/concurrent/zza.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-112">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        <state relative-caret-position="255">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/93455fbc45af9673dd6b69231a2baa2d/jetified-firebase-messaging-20.1.0/jars/classes.jar!/com/google/firebase/messaging/FirebaseMessagingService.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="217" selection-start-line="217" selection-end-line="217" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3154a6a299b4ecf74b74c730647ca580/jetified-Notify-Android-1.0.3/jars/classes.jar!/com/application/isradeleon/notify/Notify.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="331" column="25" lean-forward="true" selection-start-line="331" selection-start-column="25" selection-end-line="331" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/noti/FireStoreListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="677">
+          <caret line="62" column="40" selection-start-line="62" selection-start-column="40" selection-end-line="62" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3405">
+          <caret line="227" column="33" selection-start-line="227" selection-start-column="33" selection-end-line="227" selection-end-column="33" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2790">
+          <caret line="186" column="58" selection-start-line="186" selection-start-column="58" selection-end-line="186" selection-end-column="58" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="37" selection-start-line="37" selection-end-line="37" />
+        <state relative-caret-position="855">
+          <caret line="57" column="33" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Android/Sdk/sources/android-29/java/lang/String.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_noti.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/noti/NotiActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="2225" lean-forward="true" selection-start-line="2225" selection-end-line="2225" />
+        <state relative-caret-position="140">
+          <caret line="71" column="13" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
           <folding>
-            <element signature="e#91450#91451#0" expanded="true" />
-            <element signature="e#91499#91500#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/alarm/palarm/PacketClass.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.isradeleon/Notify-Android/1.0.3/3f88b0ecbb177e5ef2ec386c1c040b03f06eee5b/Notify-Android-1.0.3-sources.jar!/com/application/isradeleon/notify/Notify.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="33" column="55" lean-forward="true" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
+          <caret line="162" column="37" lean-forward="true" selection-start-line="162" selection-start-column="37" selection-end-line="162" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/vpn/utils/TcpDataSaveHelper.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/noti/FirebaseMessageService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="84" column="29" selection-start-line="84" selection-start-column="29" selection-end-line="84" selection-end-column="29" />
+        <state relative-caret-position="50">
+          <caret line="20" column="103" selection-start-line="20" selection-start-column="103" selection-end-line="20" selection-end-column="103" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3321#3322#0" expanded="true" />
-            <element signature="e#3399#3400#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/alarm/palarm/PAlarmAddClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="110" column="35" lean-forward="true" selection-start-line="110" selection-start-column="35" selection-end-line="110" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/txt/DetectGFService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="104" column="5" selection-start-line="104" selection-start-column="5" selection-end-line="104" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5924#5925#0" expanded="true" />
-            <element signature="e#5970#5971#0" expanded="true" />
           </folding>
         </state>
       </provider>

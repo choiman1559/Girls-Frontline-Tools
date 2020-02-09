@@ -15,6 +15,7 @@ import com.fqxd.gftools.features.gfd.GFDActivity;
 import com.fqxd.gftools.features.txt.TxtKRActivity;
 import com.fqxd.gftools.features.xapk.XapkActivity;
 
+import com.fqxd.gftools.noti.NotiActivity;
 import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
@@ -161,6 +162,20 @@ public class MainActivity extends AppCompatActivity {
                             .setAction("Action", null).show();
                 } else {
                     Intent intent = new Intent(MainActivity.this, BQMActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        final Button NTI = findViewById(R.id.NotiButton);
+        NTI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isOnline()) {
+                    Snackbar.make(v, "Check Internet and Try Again", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                } else {
+                    Intent intent = new Intent(MainActivity.this, NotiActivity.class);
                     startActivity(intent);
                 }
             }
