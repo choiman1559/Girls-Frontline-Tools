@@ -50,7 +50,7 @@
         <activity android:name=".alarm.alarm.AddAlarmActivity" />
         <activity android:name=".features.txt.TXTActivity" />
         <activity android:name=".features.gfd.GFDViewer" />
-        <activity android:name=".noti.NotiActivity" />
+        <activity android:name=".features.noti.NotiActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -89,6 +89,9 @@
         <activity
             android:name=".AppActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".features.noti.MessageSendClass"
+            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert" />
         <activity
             android:name=".features.xapk.FilePicker"
             android:theme="@style/FilePickerTheme">
@@ -219,13 +222,14 @@
             android:exported="false" />
 
         <service
-            android:name=".noti.FireStoreListener"
+            android:name=".features.noti.FireStoreListener"
             android:enabled="true"
             android:stopWithTask="false" />
 
         <service
-            android:name=".noti.FirebaseMessageService"
-            android:enabled="true">
+            android:name=".features.noti.FirebaseMessageService"
+            android:enabled="true"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>

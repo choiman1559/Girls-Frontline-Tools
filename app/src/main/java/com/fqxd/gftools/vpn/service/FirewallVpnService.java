@@ -1,8 +1,11 @@
 package com.fqxd.gftools.vpn.service;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ProxyInfo;
+import android.net.Uri;
 import android.net.VpnService;
 import android.os.Build;
 import android.os.Handler;
@@ -289,8 +292,6 @@ public class FirewallVpnService extends VpnService implements Runnable {
                 session.remoteHost = HttpRequestHeaderParser.getRemoteHost(tcpHeader.mData, dataOffset,
                         tcpDataSize);
                 session.requestUrl = "http://" + session.remoteHost + "/" + session.pathUrl;
-
-
             }
 
             //转发给本地TCP服务器
@@ -338,12 +339,20 @@ public class FirewallVpnService extends VpnService implements Runnable {
         builder.addDnsServer(CHINA_DNS_FIRST);
         builder.addDnsServer(GOOGLE_DNS_SECOND);
         builder.addDnsServer(AMERICA);
+        //TODO : add setHttpProxy
+        if(Build.VERSION.SDK_INT >= 29 && getSharedPreferences("TxtKRPrefs",MODE_PRIVATE).getBoolean("GFPACEnabled",false))
+            builder.setHttpProxy(ProxyInfo.buildPacProxy(Uri.parse("http://speedtest63120.synology.me:404/GFPAC.js")));
         vpnStartTime = System.currentTimeMillis();
         lastVpnStartTimeFormat = TimeFormatUtil.formatYYMMDDHHMMSS(vpnStartTime);
         try {
             if (selectPackage != null) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    builder.addAllowedApplication(selectPackage);
+                    builder.addAllowedApplication(getString(R.string.target_cn_bili));
+                    builder.addAllowedApplication(getString(R.string.target_cn_uc));
+                    builder.addAllowedApplication(getString(R.string.target_tw));
+                    builder.addAllowedApplication(getString(R.string.target_jp));
+                    builder.addAllowedApplication(getString(R.string.target_kr));
+                    builder.addAllowedApplication(getString(R.string.target_en));
                     builder.addAllowedApplication(getPackageName());
                 }
             }
@@ -353,7 +362,6 @@ public class FirewallVpnService extends VpnService implements Runnable {
 
         builder.setSession(getString(R.string.app_name));
         ParcelFileDescriptor pfdDescriptor = builder.establish();
-        //  notifyStatus(new VPNEvent(VPNEvent.Status.ESTABLISHED));
         return pfdDescriptor;
     }
 

@@ -51,7 +51,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/jpan" />
+
     </com.google.android.material.chip.ChipGroup>
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/GFPAC_des" />
+
+    <Switch
+        android:id="@+id/GFPACOnOff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/GFPACOnOff" />
 
     <Button
         android:id="@+id/origin"

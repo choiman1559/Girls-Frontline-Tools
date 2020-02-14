@@ -46,6 +46,21 @@ limitations under the License.
 
    END OF TERMS AND CONDITIONS\n\n
 
+        Copyright © 2019, Google LLC - Firebase Android SDK \n
+   Licensed under the Apache License\nLicensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+   END OF TERMS AND CONDITIONS\n\n
+
         Copyright © 2019, srikanth lingala - Zip4j\n
    Licensed under the Apache License\nLicensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -188,6 +203,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <string name="Txtviewdescription">자동 한패를 적용합니다. 프록시 서버를 설정할 필요가 없으며,\n소녀전선 앱을 실행할때마다 한패 업데이트를 확인합니다.\n
         (주의 : 정상 작동이 확인되지 않은 기능이며, 알려지지 않은 각종 문제가 발견될수 있습니다.)</string>
     <string name="origintxtpatch">수동 방식으로 패치(직접 파일 선택)</string>
+    <string name="GFPAC_des">익살가면님이 제작하신 프록시 한패와 동일한 그것입니다.\n차이점이라면,소전의 실행을 감지해 자동으로 프록시를 설정/해제 해줄 뿐이죠. (HTTP 프록시 제작 : 익살가면님) (안드로이드 10 이상부터 사용 가능합니다)</string>
+    <string name="GFPACOnOff">자동 GFPAC On/Off</string>
     <string name="bill">비리섭</string>
     <string name="dgts">운영사</string>섭
     <string name="chna">중섭</string>
@@ -198,4 +215,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <string name="glogin">Google 에 로그아웃</string>
     <string name="glogout">Google 에 로그인</string>
     <string name="guid">User Id : Unknown</string>
+    <string name="serverKey">AAAAd2xYJoc:APA91bEI-KASWZ7hQoHTsKJQhFshvUnyBEnTwSPGeD9VGJmATJvpE2r4_2qaP0D8Tk38hkbTLqmATp5if7roxcWrOKWr9Q7q9RBxK_ORSM7gGLZos8VcP9QcK9tHnDSv7OYJRTlclwTp</string>
 </resources>

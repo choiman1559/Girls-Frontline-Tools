@@ -18,7 +18,6 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.fqxd.gftools.R;
-import com.fqxd.gftools.alarm.palarm.PACAlarmActivity;
 
 import java.util.List;
 
@@ -31,6 +30,7 @@ public class TxtKRActivity extends AppCompatActivity {
 
         Button origin = findViewById(R.id.origin);
         Switch onoff = findViewById(R.id.onoff);
+        Switch gfpac = findViewById(R.id.GFPACOnOff);
 
         Switch bill = findViewById(R.id.bill);
         Switch dgts = findViewById(R.id.dgts);
@@ -39,10 +39,10 @@ public class TxtKRActivity extends AppCompatActivity {
 
         SharedPreferences prefs = getSharedPreferences("TxtKRPrefs", MODE_PRIVATE);
 
-        bill.setChecked(prefs.getBoolean("bill",false));
-        dgts.setChecked(prefs.getBoolean("dgts",false));
-        chna.setChecked(prefs.getBoolean("chna",false));
-        jpan.setChecked(prefs.getBoolean("jpan",false));
+        bill.setChecked(prefs.getBoolean("bill", false));
+        dgts.setChecked(prefs.getBoolean("dgts", false));
+        chna.setChecked(prefs.getBoolean("chna", false));
+        jpan.setChecked(prefs.getBoolean("jpan", false));
 
 
         onoff.setChecked(prefs.getBoolean("isChecked", false));
@@ -50,20 +50,15 @@ public class TxtKRActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (onoff.isChecked()) {
-                    if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                        Toast.makeText(getApplicationContext(), "안드로이드 5.0 이상에서만 사용 가능합니다!", Toast.LENGTH_SHORT).show();
+                    if (!isContainedInAccessbility(TxtKRActivity.this)) {
+                        Toast.makeText(TxtKRActivity.this, "해당 기능은 접근성 권한이 필요합니다!", Toast.LENGTH_SHORT).show();
+                        startActivityForResult(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS), 0);
                         onoff.setChecked(false);
-                    } else {
-                        if (!isContainedInAccessbility(TxtKRActivity.this)) {
-                            Toast.makeText(TxtKRActivity.this, "해당 기능은 접근성 권한이 필요합니다!", Toast.LENGTH_SHORT).show();
-                            startActivityForResult(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS), 0);
+                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (!Settings.canDrawOverlays(TxtKRActivity.this)) {
+                            startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName())).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                            Toast.makeText(getApplicationContext(), "다른 앱 위에 그리기 권한 없음", Toast.LENGTH_SHORT).show();
                             onoff.setChecked(false);
-                        } else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            if (!Settings.canDrawOverlays(TxtKRActivity.this)) {
-                                startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName())).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                                Toast.makeText(getApplicationContext(), "다른 앱 위에 그리기 권한 없음", Toast.LENGTH_SHORT).show();
-                                onoff.setChecked(false);
-                            }
                         }
                     }
                 } else prefs.edit().putBoolean("isChecked", onoff.isChecked()).apply();
@@ -72,6 +67,23 @@ public class TxtKRActivity extends AppCompatActivity {
                 dgts.setEnabled(onoff.isChecked());
                 //chna.setEnabled(onoff.isChecked());
                 jpan.setEnabled(onoff.isChecked());
+            }
+        });
+
+        if(Build.VERSION.SDK_INT < 29) {
+            gfpac.setEnabled(false);
+            gfpac.setChecked(false);
+            prefs.edit().putBoolean("GFPACEnabled", false).apply();
+        }
+        gfpac.setChecked(prefs.getBoolean("GFPACEnabled",false));
+        gfpac.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (gfpac.isChecked() && !isContainedInAccessbility(TxtKRActivity.this)) {
+                        Toast.makeText(TxtKRActivity.this, "해당 기능은 접근성 권한이 필요합니다!", Toast.LENGTH_SHORT).show();
+                        startActivityForResult(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS), 0);
+                        gfpac.setChecked(false);
+                } else prefs.edit().putBoolean("GFPACEnabled", gfpac.isChecked()).apply();
             }
         });
 
@@ -84,31 +96,31 @@ public class TxtKRActivity extends AppCompatActivity {
         origin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TxtKRActivity.this,TXTActivity.class));
+                startActivity(new Intent(TxtKRActivity.this, TXTActivity.class));
             }
         });
 
 
-        Switch.OnCheckedChangeListener OnCheckedChangeListener = (foo,bar) -> {
+        Switch.OnCheckedChangeListener OnCheckedChangeListener = (foo, bar) -> {
             switch (foo.getId()) {
                 case R.id.bill:
-                    prefs.edit().putBoolean("bill",foo.isChecked()).apply();
-                     break;
+                    prefs.edit().putBoolean("bill", foo.isChecked()).apply();
+                    break;
 
                 case R.id.dgts:
-                    prefs.edit().putBoolean("dgts",foo.isChecked()).apply();
+                    prefs.edit().putBoolean("dgts", foo.isChecked()).apply();
                     break;
 
                 case R.id.chna:
-                    prefs.edit().putBoolean("chna",foo.isChecked()).apply();
+                    prefs.edit().putBoolean("chna", foo.isChecked()).apply();
                     break;
 
                 case R.id.jpan:
-                    prefs.edit().putBoolean("jpan",foo.isChecked()).apply();
+                    prefs.edit().putBoolean("jpan", foo.isChecked()).apply();
                     break;
 
-                    default:
-                        break;
+                default:
+                    break;
             }
         };
 

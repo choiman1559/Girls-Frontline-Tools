@@ -15,7 +15,7 @@ import com.fqxd.gftools.features.gfd.GFDActivity;
 import com.fqxd.gftools.features.txt.TxtKRActivity;
 import com.fqxd.gftools.features.xapk.XapkActivity;
 
-import com.fqxd.gftools.noti.NotiActivity;
+import com.fqxd.gftools.features.noti.NotiActivity;
 import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
