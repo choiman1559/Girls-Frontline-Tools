@@ -11,6 +11,27 @@
     <string name="permission_required">patch won\'t work without essential permissions</string>
     <string name="info_no_obb">there were no obb file found.\nobb file won\'t be patched.\nsome releases doesn\'t includes obb files.\nif  you\'re not sure about it, please check if girl\'s fronline does works and reinstall if it doesn\'t</string>
 
+    <string name="skin_name_neko">IDW the Many</string>
+    <string name="notification_enable">neko is running.</string>
+    <string name="notification_disable">neko is sleeping.</string>
+    <string name="pref_cat_motion">Settings</string>
+    <string name="pref_motion_enable_title">Enable a neko</string>
+    <string name="pref_motion_enable_summary">To neko, or not to neko.</string>
+    <string name="pref_motion_behaviour_title">Behaviour</string>
+    <string name="pref_motion_behaviour_summary">Behaviour of neko</string>
+    <string name="pref_motion_behaviour_default">whimsical</string>
+    <string name="pref_motion_transparency_title">Transparency</string>
+    <string name="pref_motion_transparency_summary">Transparency of neko</string>
+    <string name="pref_motion_size_title">Size</string>
+    <string name="pref_motion_size_summary">Size of neko</string>
+    <string name="pref_motion_skin_title">Skin</string>
+    <string name="pref_motion_skin_summary">Skin of neko</string>
+    <string name="pref_skin_dialog_title">Skin</string>
+    <string name="pref_skin_search_button">Search Skin</string>
+    <string name="msg_skin_load_failed">Failed to load skin.</string>
+    <string name="msg_market_not_found">Market application is not found.</string>
+    <string name="skin_search_uri">market://search?q=GFNeko%20skin</string>
+
     <string name="app_name">GF Tools</string>
     <string name="action_settings">Settings</string>
     <string name="Title">GF Tools</string>
@@ -25,122 +46,9 @@
     <string name="BQMButton">BQM! Patcher</string>
     <string name="NotiButton">Noti Plugin</string>
     <string name="CenButton">GF Censorship [ROOT]</string>
+    <string name="NekoButton">GF Neko Floating</string>
     <string name="ChkUpdate">Check Updates</string>
 
-    <string name="OSS">
-
-        \nUsed Open Sources In package \"com.fqxd.gftools\"\n\n\n
-
-        Copyright © 2005-2013, Google LLC - The Android Open Source Project\n
-   Licensed under the Apache License\nLicensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-   END OF TERMS AND CONDITIONS\n\n
-
-        Copyright © 2019, Google LLC - Firebase Android SDK \n
-   Licensed under the Apache License\nLicensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-   END OF TERMS AND CONDITIONS\n\n
-
-        Copyright © 2019, srikanth lingala - Zip4j\n
-   Licensed under the Apache License\nLicensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-   END OF TERMS AND CONDITIONS\n\n
-
-             Copyright © 2019, apache - commons-io\n
-   Licensed under the Apache License\nLicensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-   END OF TERMS AND CONDITIONS\n\n
-
-        The MIT License (MIT)
-
-Copyright (c) 2019 lee jisoo - GLFR Decompresser\n
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n
-
-             Copyright 2016 Javier Santos - AppUpdater\n
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.\n\n
-
-        The MIT License (MIT)
-
-Copyright (c) 2019 Isra de Leon - Notify\n
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n
-
-                The MIT License (MIT)
-
-Copyright (c) 2009-2019 Jonathan Hedley - jsoup\n
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n
-
-        vpnadaptercore - author minhui.zhu\n
-        Created by minhui.zhu on 2018/5/11.\n
-        Copyright (c) 2017年 Oceanwing. All rights reserved.\n\n
-
-        Copyright (c) 2019, Freepik - Handymade Tools free icon\n
-        Flaticon Basic License\n
-    designed by Freepik from Flaticon\n\n
-
-    Special Thanks to - Fucking Xd Global\n
-
-    소전에 오픈소스 고지 안해줘서 참도 고맙다 우중아\n\n
-    +님들 그거 앎? fq는 "Fuck you" 의 약자임 ㅇㅇ</string>
     <string name="ImgSel">Select Image</string>
     <string name="imgpreview">image preview</string>
     <string name="XAPKInstall">XAPK Installer</string>
@@ -194,19 +102,19 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <string name="b11">소전사전 v2 설치/실행</string>
     <string name="thx">special thanks to. URK96</string>
 
-    <string name="notify_channel_id">LSD_Alarm</string>
-    <string name="notify_channel_name">군수알리미</string>
-    <string name="notify_channel_description">군수알리미용 알림 채널</string>
+    <string name="notify_channel_id">GFTools</string>
+    <string name="notify_channel_name">GFTools</string>
+    <string name="notify_channel_description">소전툴즈 알림 채널</string>
 
     <string name="description">소녀전선 앱의 시작을 감지합니다. \n이 권한을 사용하면 패킷 설정 없이도 간편하게 한패를 적용할수 있습니다.</string>
     <string name="automaticTXTOnoff">자동 한패 On/Off</string>
     <string name="Txtviewdescription">자동 한패를 적용합니다. 프록시 서버를 설정할 필요가 없으며,\n소녀전선 앱을 실행할때마다 한패 업데이트를 확인합니다.\n
         (주의 : 정상 작동이 확인되지 않은 기능이며, 알려지지 않은 각종 문제가 발견될수 있습니다.)</string>
     <string name="origintxtpatch">수동 방식으로 패치(직접 파일 선택)</string>
-    <string name="GFPAC_des">익살가면님이 제작하신 프록시 한패와 동일한 그것입니다.\n차이점이라면,소전의 실행을 감지해 자동으로 프록시를 설정/해제 해줄 뿐이죠. (HTTP 프록시 제작 : 익살가면님) (안드로이드 10 이상부터 사용 가능합니다)</string>
-    <string name="GFPACOnOff">자동 GFPAC On/Off</string>
+    <string name="GFPAC_des">익살가면님이 제작하신 프록시 한패와 동일한 그것입니다.\n차이점이라면,소전의 실행을 감지해 자동으로 프록시를 설정/해제 해줄 뿐이죠. (HTTP 프록시 제작 : 익살가면님) (안드로이드 10 이상부터 사용 가능합니다)\n구글의 안드로이드 보안 정책에 의거하여, 해당 기능은 작동하지 않을수도 있습니다.</string>
+    <string name="GFPACOnOff">자동 GFPAC With VPN On/Off</string>
     <string name="bill">비리섭</string>
-    <string name="dgts">운영사</string>섭
+    <string name="dgts">운영사</string>
     <string name="chna">중섭</string>
     <string name="jpan">일섭</string>
 
@@ -216,4 +124,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <string name="glogout">Google 에 로그인</string>
     <string name="guid">User Id : Unknown</string>
     <string name="serverKey">AAAAd2xYJoc:APA91bEI-KASWZ7hQoHTsKJQhFshvUnyBEnTwSPGeD9VGJmATJvpE2r4_2qaP0D8Tk38hkbTLqmATp5if7roxcWrOKWr9Q7q9RBxK_ORSM7gGLZos8VcP9QcK9tHnDSv7OYJRTlclwTp</string>
+
 </resources>

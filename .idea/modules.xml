@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GF Tools.iml" filepath="$PROJECT_DIR$/GF Tools.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/xDSDKAndroid/xDSDKAndroid.iml" filepath="$PROJECT_DIR$/xDSDKAndroid/xDSDKAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GF Tools.iml" filepath="$PROJECT_DIR$/GF Tools.iml" group="GF Tools" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="GF Tools/app" />
+      <module fileurl="file://$PROJECT_DIR$/xDSDKAndroid/xDSDKAndroid.iml" filepath="$PROJECT_DIR$/xDSDKAndroid/xDSDKAndroid.iml" group="GF Tools/xDSDKAndroid" />
     </modules>
   </component>
 </project>

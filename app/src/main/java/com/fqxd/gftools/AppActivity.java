@@ -26,6 +26,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.annotation.Nullable;
+
 public class AppActivity extends Activity {
 
     String packagename = null;
@@ -147,7 +149,6 @@ public class AppActivity extends Activity {
 
         FileUtil.copyDir cpd = new FileUtil.copyDir(AppActivity.this, data, dir);
         cpd.execute();
-        Log.i("Backup", "complete");
     }
 
     void restore() {
@@ -173,11 +174,11 @@ public class AppActivity extends Activity {
 
         public static class deleteDir extends AsyncTask {
 
-            AppActivity main;
+            Activity main;
             String dirname;
             ProgressDialog progressDialog;
 
-            deleteDir(AppActivity main, String dirname) {
+            deleteDir(Activity main, String dirname) {
                 this.main = main;
                 this.dirname = dirname;
                 progressDialog = new ProgressDialog(this.main);
@@ -285,10 +286,9 @@ public class AppActivity extends Activity {
                             try {
                                 fis.close();
                                 fos.close();
-                            } catch (IOException e) {
+                            } catch (Exception e) {
                                 e.printStackTrace();
                             }
-
                         }
                     }
                 }

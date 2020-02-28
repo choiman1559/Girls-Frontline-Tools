@@ -16,14 +16,16 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.WRITE_SECURE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
-
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature
-        android:name="android.hardware.camera.autofocus"
-        android:required="false" />
 
     <application
         android:name=".alarm.palarm.PAlarmAddClass"
@@ -51,6 +53,7 @@
         <activity android:name=".features.txt.TXTActivity" />
         <activity android:name=".features.gfd.GFDViewer" />
         <activity android:name=".features.noti.NotiActivity" />
+        <activity android:name=".features.gfneko.GFNekoActivity"/>
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -77,6 +80,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:label="@string/skin_name_neko" android:name=".features.gfneko.NekoSkin">
+            <intent-filter>
+                <action android:name="com.fqxd.gftools.features.gfneko.action.GET_SKIN"/>
+            </intent-filter>
+            <meta-data android:name="com.fqxd.gftools.features.gfneko.skin" android:resource="@xml/neko"/>
+        </activity>
+
         <activity
             android:name=".OSSActivity"
             android:theme="@style/AppTheme" />
@@ -187,6 +198,17 @@
             </intent-filter>
         </receiver>
 
+        <receiver android:name=".features.gfneko.GFNekoReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED"/>
+                <data android:scheme="package"/>
+            </intent-filter>
+        </receiver>
+        <service android:name=".features.gfneko.AnimationService"/>
+
         <service
             android:name=".features.txt.DetectGFService"
             android:enabled="true"
@@ -220,21 +242,18 @@
         <service
             android:name=".vpn.processparse.PortHostService"
             android:exported="false" />
-
         <service
             android:name=".features.noti.FireStoreListener"
             android:enabled="true"
             android:stopWithTask="false" />
-
         <service
             android:name=".features.noti.FirebaseMessageService"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>

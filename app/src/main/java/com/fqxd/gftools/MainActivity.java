@@ -3,6 +3,8 @@ package com.fqxd.gftools;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.core.CrashlyticsCore;
 import com.fqxd.gftools.alarm.alarm.AlarmListActivity;
 import com.fqxd.gftools.alarm.palarm.PACAlarmActivity;
 import com.fqxd.gftools.alarm.palarm.PacketClass;
@@ -12,6 +14,7 @@ import com.fqxd.gftools.features.CenActivity;
 import com.fqxd.gftools.features.decom.DecActivity;
 import com.fqxd.gftools.features.JasActivity;
 import com.fqxd.gftools.features.gfd.GFDActivity;
+import com.fqxd.gftools.features.gfneko.GFNekoActivity;
 import com.fqxd.gftools.features.txt.TxtKRActivity;
 import com.fqxd.gftools.features.xapk.XapkActivity;
 
@@ -42,6 +45,8 @@ import com.fqxd.gftools.vpn.utils.VpnServiceHelper;
 import com.xd.xdsdk.XDCallback;
 import com.xd.xdsdk.XDSDK;
 
+import io.fabric.sdk.android.Fabric;
+
 public class MainActivity extends AppCompatActivity {
     public static int REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES = 0x01;
     public static final String TAG = MainActivity.class.getSimpleName();
@@ -51,10 +56,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Crashlytics crashlyticsKit = new Crashlytics.Builder()
+                .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build())
+                .build();
+        Fabric.with(this, crashlyticsKit);
+
         if(!getSharedPreferences("ListAlarm",MODE_PRIVATE).getBoolean("isChecked",false) && VpnServiceHelper.vpnRunningStatus()) new PacketClass().endVpn(MainActivity.this);
         if (Build.VERSION.SDK_INT >= 23 && this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
-            if (Build.VERSION.SDK_INT >= 23 && this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(getApplicationContext(), "Storage Permission was rejected", Toast.LENGTH_SHORT).show();
                 this.recreate();
             }
@@ -66,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                     new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).setData(Uri.parse("package:" + this.getPackageName())),
                     MainActivity.REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES
             );
-            if (Build.VERSION.SDK_INT >= 26 && !this.getPackageManager().canRequestPackageInstalls()) {
+            if (!this.getPackageManager().canRequestPackageInstalls()) {
                 Toast.makeText(getApplicationContext(), "Package Install Permission was rejected", Toast.LENGTH_SHORT).show();
                 this.finish();
             }
@@ -178,6 +188,19 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, NotiActivity.class);
                     startActivity(intent);
                 }
+            }
+        });
+
+        final Button NKO = findViewById(R.id.NekoButton);
+        NKO.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, GFNekoActivity.class);
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (!Settings.canDrawOverlays(MainActivity.this)) {
+                        startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName())).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                    } else startActivity(intent);
+                } else startActivity(intent);
             }
         });
 

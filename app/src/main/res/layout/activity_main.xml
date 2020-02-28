@@ -93,6 +93,12 @@
                 android:text="@string/NotiButton" />
 
             <Button
+                android:id="@+id/NekoButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/NekoButton" />
+
+            <Button
                 android:id="@+id/ChkButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

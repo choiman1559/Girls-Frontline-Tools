@@ -7,9 +7,6 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.fqxd.gftools.R;
 
@@ -48,21 +45,13 @@ public class MessageSendClass extends Activity {
         final String TAG = "NOTIFICATION TAG";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(FCM_API, notification,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.i(TAG, "onResponse: " + response.toString());
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MessageSendClass.this, "Request error", Toast.LENGTH_LONG).show();
-                        Log.i(TAG, "onErrorResponse: Didn't work");
-                    }
+                response -> Log.i(TAG, "onResponse: " + response.toString()),
+                error -> {
+                    Toast.makeText(MessageSendClass.this, "Request error", Toast.LENGTH_LONG).show();
+                    Log.i(TAG, "onErrorResponse: Didn't work");
                 }){
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<>();
                 params.put("Authorization", serverKey);
                 params.put("Content-Type", contentType);

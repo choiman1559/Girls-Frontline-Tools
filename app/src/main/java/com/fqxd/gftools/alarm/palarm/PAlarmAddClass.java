@@ -35,6 +35,7 @@ public class PAlarmAddClass extends Application {
     public static Boolean isasking = false;
     private static int m_RSeqNo = 0;
 
+    @Deprecated
     @SuppressLint({"TrulyRandom"})
     public String parseJsonPacket(String encoded) throws Exception {
         Cipher m_RCipher = Cipher.getInstance("AES");
