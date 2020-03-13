@@ -33,6 +33,7 @@ import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Iterator;
+import java.util.Objects;
 
 class UpdateTask extends AsyncTask {
 
@@ -55,8 +56,10 @@ class UpdateTask extends AsyncTask {
         dialog.setCancelable(false);
         dialog.setMessage("Checking Files...");
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
-        else dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            Objects.requireNonNull(dialog.getWindow()).setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
+        else
+            Objects.requireNonNull(dialog.getWindow()).setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
         dialog.show();
     }
 
@@ -74,9 +77,11 @@ class UpdateTask extends AsyncTask {
 
         String OriginMD5 = calculateMD5(new File("/sdcard/Android/data/" + PackageName + "/files/Android/New/asset_textes.ab"));
         SharedPreferences prefs = context.getSharedPreferences("TxtKRVer", Context.MODE_PRIVATE);
+        assert OriginMD5 != null;
         if (!OriginMD5.equals(getUpdateMD5(getName(PackageName))) || prefs.getInt(PackageName, 0) < getUpdateDate(PackageName)) {
 
-            if(new File("/sdcard/GF_Tool/asset_textes.ab").exists()) new File("/sdcard/GF_Tool/asset_textes.ab").delete();
+            if (new File("/sdcard/GF_Tool/asset_textes.ab").exists())
+                new File("/sdcard/GF_Tool/asset_textes.ab").delete();
 
             String u = "https://github.com/choiman1559/choiman1559.github.io/tree/master/asset" + getName(PackageName) + "/asset_textes.ab";
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(u));
@@ -85,18 +90,20 @@ class UpdateTask extends AsyncTask {
             request.setVisibleInDownloadsUi(false);
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
             request.allowScanningByMediaScanner();
-            request.setDestinationInExternalPublicDir("/GF_Tool/","asset_textes.ab");
+            request.setDestinationInExternalPublicDir("/GF_Tool/", "asset_textes.ab");
 
-            DownloadManager manager = (DownloadManager)context.getSystemService(Context.DOWNLOAD_SERVICE);
+            DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
             manager.enqueue(request);
 
-            while(!new File("/sdcard/GF_Tool/asset_textes.ab").exists()) {}
-            if(DownloadManager.STATUS_SUCCESSFUL == 8) {
+            while (!new File("/sdcard/GF_Tool/asset_textes.ab").exists()) {
+            }
+            if (DownloadManager.STATUS_SUCCESSFUL == 8) {
                 File from = new File("/sdcard/GF_Tool/asset_textes.ab");
                 File to = new File("/sdcard/Android/data/" + PackageName + "/files/Android/New/");
 
-                copy(from.toString(),to.toString());
-                if(prefs.getInt(PackageName, 0) != getUpdateDate(PackageName)) prefs.edit().putInt(PackageName,getUpdateDate(PackageName)).apply();
+                copy(from.toString(), to.toString());
+                if (prefs.getInt(PackageName, 0) != getUpdateDate(PackageName))
+                    prefs.edit().putInt(PackageName, getUpdateDate(PackageName)).apply();
             } else {
                 Req_id = 3;
                 return null;
@@ -143,14 +150,13 @@ class UpdateTask extends AsyncTask {
                 .setMessage(Req_message)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
+                    public void onClick(DialogInterface dialog, int which) { }
                 }).show();
     }
 
-    public boolean isOnline() {
-        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    private boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        assert cm != null;
         if (cm.getActiveNetworkInfo() != null) {
             NetworkInfo ni = cm.getActiveNetworkInfo();
             return ni != null && ni.isConnected();
@@ -158,17 +164,21 @@ class UpdateTask extends AsyncTask {
         return false;
     }
 
-    private String getName(String Packagename){
-        if(Packagename.equals(context.getString(R.string.target_cn_bili))) return "bill";
-        else if(Packagename.equals(context.getString(R.string.target_cn_uc))) return "dgts";
-        else if(Packagename.equals(context.getString(R.string.target_tw))) return "chna";
-        else if(Packagename.equals(context.getString(R.string.target_jp))) return "jpan";
+    private String getName(String Packagename) {
+        if (Packagename.equals(context.getString(R.string.target_cn_bili))) return "bill";
+        else if (Packagename.equals(context.getString(R.string.target_cn_uc))) return "dgts";
+        else if (Packagename.equals(context.getString(R.string.target_tw))) return "chna";
+        else if (Packagename.equals(context.getString(R.string.target_jp))) return "jpan";
         else return null;
     }
 
     private int getUpdateDate(String name) {
         Document doc = null;
-        try { doc = Jsoup.connect("https://choiman1559.github.io/").get(); } catch (IOException e) { e.printStackTrace(); }
+        try {
+            doc = Jsoup.connect("https://choiman1559.github.io/").get();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Elements element = doc.select("div.container-lg.px-3.my-5.markdown-body");
         Iterator<Element> ie1 = element.select("p").iterator();
         String json = ie1.next().text();
@@ -177,13 +187,18 @@ class UpdateTask extends AsyncTask {
             JSONObject foo = new JSONObject(json);
             JSONObject boo = foo.getJSONObject(name);
             return Integer.parseInt(boo.getString("date"));
-        } catch (Exception e) {}
+        } catch (Exception ignored) {
+        }
         return 1;
     }
 
     private String getUpdateMD5(String name) {
         Document doc = null;
-        try { doc = Jsoup.connect("https://choiman1559.github.io/").get(); } catch (IOException e) { e.printStackTrace(); }
+        try {
+            doc = Jsoup.connect("https://choiman1559.github.io/").get();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Elements element = doc.select("div.container-lg.px-3.my-5.markdown-body");
         Iterator<Element> ie1 = element.select("p").iterator();
         String json = ie1.next().text();
@@ -192,12 +207,13 @@ class UpdateTask extends AsyncTask {
             JSONObject foo = new JSONObject(json);
             JSONObject boo = foo.getJSONObject(name);
             return boo.getString("md5");
-        } catch (Exception e) {}
+        } catch (Exception ignored) {
+        }
         return null;
     }
 
 
-    public static String calculateMD5(File updateFile) {
+    private static String calculateMD5(File updateFile) {
         MessageDigest digest;
         try {
             digest = MessageDigest.getInstance("MD5");
@@ -237,7 +253,7 @@ class UpdateTask extends AsyncTask {
         }
     }
 
-    void copy(String from,String to){
+    private void copy(String from, String to) {
         File file = new File(from);
         try {
             FileInputStream inputStream = new FileInputStream(file);
@@ -254,8 +270,7 @@ class UpdateTask extends AsyncTask {
 
             outputStream.close();
             inputStream.close();
-        }catch (IOException e) {
-
+        } catch (IOException ignored) {
         }
         new File(from).delete();
     }

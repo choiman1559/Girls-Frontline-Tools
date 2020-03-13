@@ -2,6 +2,7 @@ package com.fqxd.gftools.features.gfneko;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -44,11 +45,9 @@ import java.util.Random;
 public class AnimationService extends Service {
     public static final String ACTION_START = "com.fqxd.gftools.features.gfneko.action.START";
     public static final String ACTION_STOP = "com.fqxd.gftools.features.gfneko.action.STOP";
-    public static final String ACTION_TOGGLE =
-            "com.fqxd.gftools.features.gfneko.action.TOGGLE";
+    public static final String ACTION_TOGGLE = "com.fqxd.gftools.features.gfneko.action.TOGGLE";
 
-    public static final String ACTION_GET_SKIN =
-            "com.fqxd.gftools.features.gfneko.action.GET_SKIN";
+    public static final String ACTION_GET_SKIN = "com.fqxd.gftools.features.gfneko.action.GET_SKIN";
     public static final String META_KEY_SKIN = "com.fqxd.gftools.features.gfneko.skin";
 
     public static final String PREF_KEY_ENABLE = "motion.enable";
@@ -58,8 +57,6 @@ public class AnimationService extends Service {
     public static final String PREF_KEY_SIZE = "motion.size";
     public static final String PREF_KEY_BEHAVIOUR = "motion.behaviour";
     public static final String PREF_KEY_SKIN_COMPONENT = "motion.skin";
-
-    private static final int NOTIF_ID = 1;
 
     private static final int MSG_ANIMATE = 1;
     private static final int MSG_TXT = 1;
@@ -141,10 +138,7 @@ public class AnimationService extends Service {
 
     @Override
     public void onConfigurationChanged(Configuration conf) {
-        if (!is_started || motion_state == null) {
-            return;
-        }
-
+        if (!is_started || motion_state == null) return;
         WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
         assert wm != null;
         Display display = wm.getDefaultDisplay();
@@ -177,7 +171,8 @@ public class AnimationService extends Service {
             this.image_params.gravity = 51;
             wm.addView(this.image_view, this.image_params);
             //TODO : balloon
-            /*this.balloonV = new ImageView(this);
+            /*
+            this.balloonV = new ImageView(this);
             this.balloonV.setImageResource(R.drawable.balloon);
             this.balloonParams = new LayoutParams(100, 80, Build.VERSION.SDK_INT > 25 ? 2038 : 2006, 536, -3);
             this.balloonParams.gravity = 51;
@@ -192,6 +187,7 @@ public class AnimationService extends Service {
             setBalloonVisible(this.showTimeBattery);*/
             requestAnimate();
         }
+
     }
 
     void setBalloonVisible(boolean v) {
@@ -250,18 +246,26 @@ public class AnimationService extends Service {
                 new Intent(this, AnimationService.class).setAction(ACTION_TOGGLE),
                 0);
 
+        if (Build.VERSION.SDK_INT > 25) {
+            NotificationChannel channel = new NotificationChannel(getString(R.string.notify_channel_id), "GFNeko Service",
+                    NotificationManager.IMPORTANCE_MIN);
+            ((NotificationManager) Objects.requireNonNull(getSystemService(Context.NOTIFICATION_SERVICE)))
+                    .createNotificationChannel(channel);
+        }
+
         Notification.Builder builder = Build.VERSION.SDK_INT > 25 ? new Notification.Builder(this, getString(R.string.notify_channel_id)) : new Notification.Builder(this);
         builder
                 .setContentIntent(intent)
                 .setSmallIcon(R.drawable.icon)
                 .setContentTitle(getString(R.string.app_name))
-                .setContentText(getString(start ? R.string.notification_enable : R.string.notification_disable));
+                .setContentText(getString(start ? R.string.notification_enable : R.string.notification_disable))
+                .setPriority(Notification.PRIORITY_LOW);
 
         Notification notif = builder.build();
         notif.flags = Notification.FLAG_ONGOING_EVENT;
         notif.flags = Notification.FLAG_AUTO_CANCEL;
         notif.flags = Notification.FLAG_ONLY_ALERT_ONCE;
-
+c 
         stopForeground(true);
         if (start) {
             startForeground(1, notif);
@@ -282,7 +286,6 @@ public class AnimationService extends Service {
 //    showTimeBattery =  prefs.getBoolean(PREF_KEY_BATTERY, false);
 
         try {
-
             File externalStorageDirectory = Environment.getExternalStorageDirectory();
 //      File gfnekoDir = new File(externalStorageDirectory, "/GFNeko");
 //      gfnekoDir.mkdirs();
@@ -353,9 +356,7 @@ public class AnimationService extends Service {
                     .setAction(ACTION_TOGGLE));
             return false;
         }
-
         afterMotionLoaded();
-
         return true;
     }
 
@@ -383,7 +384,7 @@ public class AnimationService extends Service {
         String alpha_str = prefs.getString(PREF_KEY_TRANSPARENCY, "0.0");
         float opacity = 1 - Float.parseFloat(alpha_str);
         motion_state.alpha = (int) (opacity * 0xff);
-//    textV.setAlpha(opacity);
+        //textV.setAlpha(opacity);
 
         motion_state.setBehaviour(
                 Behaviour.valueOf(
@@ -393,9 +394,7 @@ public class AnimationService extends Service {
         motion_state.setDisplaySize(dw, dh);
         motion_state.setCurrentPosition(cx, cy);
         motion_state.setTargetPositionDirect(dw >> 1, dh >> 1);
-
         refreshMotionSize();
-
     }
 
     private void refreshMotionSize() {
@@ -494,7 +493,7 @@ public class AnimationService extends Service {
         tvHandler.removeMessages(msg.what);
         if (showTimeBattery) {
             Calendar cal = Calendar.getInstance();
-            String ts = String.format(Locale.KOREAN,"%02d:%02d", cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE));
+            String ts = String.format(Locale.KOREAN, "%02d:%02d", cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE));
             if (batteryInfo != null) {
 //      batteryInfo.getLevel() + batteryInfo.get
                 textV.setText(ts + "\n" + batteryInfo.level + "%");

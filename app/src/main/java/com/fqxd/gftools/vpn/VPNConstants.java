@@ -10,7 +10,7 @@ import android.os.Environment;
 public interface VPNConstants {
     int BUFFER_SIZE = 2560;
     int MAX_PAYLOAD_SIZE = 2520;
-    String BASE_DIR = Environment.getExternalStorageDirectory() + "/GF_Tool/Conversation/";
+    String BASE_DIR = Environment.getExternalStorageDirectory() + "/GF_Tool/Packets/";
     String DATA_DIR = BASE_DIR + "data/";
     String CONFIG_DIR=BASE_DIR+"config/";
     String VPN_SP_NAME="vpn_sp_name";

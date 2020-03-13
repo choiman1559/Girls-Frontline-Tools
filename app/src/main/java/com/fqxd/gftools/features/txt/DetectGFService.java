@@ -57,8 +57,7 @@ public class DetectGFService extends AccessibilityService {
         if(BuildConfig.DEBUG && Packagename.equals(getString(R.string.target_en))) return true;
         if(Packagename.equals(getString(R.string.target_jp))) return true;
         if(BuildConfig.DEBUG && Packagename.equals(getString(R.string.target_kr))) return true;
-        if(Packagename.equals(getString(R.string.target_tw))) return true;
-        return false;
+        return Packagename.equals(getString(R.string.target_tw));
     }
 
     @Override

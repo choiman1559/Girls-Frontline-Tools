@@ -17,6 +17,8 @@ import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.fqxd.gftools.R;
 import com.fqxd.gftools.alarm.alarm.AlarmUtills;
 
@@ -25,6 +27,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -52,7 +55,7 @@ public class PAlarmAddClass extends Application {
             throw new Exception("SDK support 'null key' only");
         }
         byte[] buffer = m_RCipher.doFinal(data, 1, data.length - 1);
-        if (((((buffer[3] & 255) << 24) + ((buffer[2] & 255) << 16)) + ((buffer[1] & 255) << 8)) + ((buffer[0] & 255) << 0) != m_RSeqNo) {
+        if (((((buffer[3] & 255) << 24) + ((buffer[2] & 255) << 16)) + ((buffer[1] & 255) << 8)) + ((buffer[0] & 255)) != m_RSeqNo) {
             throw new Exception("Packet is damaged because of 'invalid seqeunce'");
         }
         plain = new byte[(buffer.length - 4)];
@@ -61,8 +64,7 @@ public class PAlarmAddClass extends Application {
         return new String(plain);
     }
 
-    public void add(File file) {
-
+    public void add(@NonNull File file) {
         if (new PacketClass().isInclude(file, "Operation")) {
 
             //Base64 String
@@ -106,9 +108,8 @@ public class PAlarmAddClass extends Application {
                 builder.setMessage("군수 지역을 선택해 주세요.");
 
                 AlertDialog alertDialog = builder.create();
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
-                else alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                Objects.requireNonNull(alertDialog.getWindow()).
+                        setType(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY : WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
                 alertDialog.show();
             }
 
@@ -123,7 +124,7 @@ public class PAlarmAddClass extends Application {
                 ArrayList<String> Mlist = new ArrayList<>();
                 Mlist.add("...");
                 for (int i = 1; i <= count; i++) {
-                    SharedPreferences a = context.getSharedPreferences("p" + Integer.toString(i), MODE_PRIVATE);
+                    SharedPreferences a = context.getSharedPreferences("p" + i, MODE_PRIVATE);
                     Mlist.add(a.getString("name", ""));
                 }
                 ArrayAdapter<String> Madpt = new ArrayAdapter<String>(context, R.layout.support_simple_spinner_dropdown_item, Mlist);
@@ -135,7 +136,7 @@ public class PAlarmAddClass extends Application {
 
                         int count = context.getSharedPreferences("ListAlarm", MODE_PRIVATE).getInt("PAlarmCount", 0);
                         if (!List.getSelectedItem().toString().equals("...")) {
-                            //new PacketClass().cancel(context,List.getSelectedItem().toString());
+                            new PacketClass().cancel(context,List.getSelectedItem().toString());
 
                         } else {
                             Toast.makeText(context, "값을 선택하여 주십시오.", Toast.LENGTH_SHORT).show();
@@ -144,24 +145,21 @@ public class PAlarmAddClass extends Application {
                     }
                 }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
+                    public void onClick(DialogInterface dialog, int which) { }
                 });
 
                 builder.setTitle("군수 취소 확인됨!");
                 builder.setMessage("취소할 군수 지역을 선택해 주세요.");
 
                 AlertDialog alertDialog = builder.create();
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
-                else alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                Objects.requireNonNull(alertDialog.getWindow()).
+                        setType(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY : WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
                 alertDialog.show();
             }
         }
 
         if (new PacketClass().isInclude(file, "uid")) {
-            SharedPreferences sharedPreferences = getSharedPreferences("ListAlarm", 0);
+            SharedPreferences sharedPreferences = context.getSharedPreferences("ListAlarm", 0);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             String uid = parseUID(file);
             String temp = sharedPreferences.getString("uid", "000000");
@@ -188,10 +186,8 @@ public class PAlarmAddClass extends Application {
                         }
                     });
                     AlertDialog alertDialog = builder.create();
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                        alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
-                    else
-                        alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                    Objects.requireNonNull(alertDialog.getWindow()).
+                            setType(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY : WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
                     alertDialog.show();
                 }
             }
@@ -201,10 +197,11 @@ public class PAlarmAddClass extends Application {
     public void addSharedprefs(int local1, int local2) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("ListAlarm", MODE_PRIVATE);
         int count = sharedPreferences.getInt("PAlarmCount", 0);
-        SharedPreferences.Editor editor = context.getSharedPreferences("p" + Integer.toString(count += 1), MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = context.getSharedPreferences("p" + (count += 1), MODE_PRIVATE).edit();
 
         editor.putString("package", "kr.txwy.and.snqx");
-        editor.putString("name", Integer.toString(local1) + "-" + Integer.toString(local2));
+        String value = Integer.toString(local1) + "-" + Integer.toString(local2);
+        editor.putString("name", value);
         editor.putInt("H", local1);
         editor.putInt("M", local2);
         editor.putLong("nextAlarm", new AlarmUtills().calculate(local1, local2, context).getTimeInMillis());
@@ -212,7 +209,7 @@ public class PAlarmAddClass extends Application {
 
         sharedPreferences.edit().putInt("PAlarmCount", count).apply();
 
-        new PacketClass().repeat(context,Integer.toString(local1) + "-" + Integer.toString(local2));
+        new PacketClass().repeat(context, value);
     }
 
     private String parseUID(File file) {
@@ -225,8 +222,7 @@ public class PAlarmAddClass extends Application {
                 if (line.contains("outdatacode")) toParse = line;
             }
             bufferedReader.close();
-        } catch (Exception e) {
-        }
+        } catch (Exception ignored) { }
         return substringBetween(toParse, "uid=", "&out");
     }
 
@@ -240,8 +236,7 @@ public class PAlarmAddClass extends Application {
                 if (line.contains("outdatacode")) toParse = line;
             }
             bufferedReader.close();
-        } catch (Exception e) {
-        }
+        } catch (Exception ignored) { }
         return substringBetween(toParse, "code=", "&req");
     }
 

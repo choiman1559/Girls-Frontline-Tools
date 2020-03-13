@@ -32,7 +32,7 @@ public class PacketClass {
     }
 
     public Boolean isInclude(File file,String string) {
-        String line = null;
+        String line;
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
 
@@ -80,7 +80,7 @@ public class PacketClass {
         int count = 0;
 
         for(int i = 1;i <= temp;i++) {
-            if(context.getSharedPreferences("p" + Integer.toString(i), MODE_PRIVATE).getString("name", "") == name) {
+            if(context.getSharedPreferences("p" + Integer.toString(i), MODE_PRIVATE).getString("name", "").equals(name)) {
                 count = i;
                 break;
             }
@@ -96,7 +96,6 @@ public class PacketClass {
             alarmManager.cancel(pendingIntent);
         }
         pm.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED,PackageManager.DONT_KILL_APP);
-
         delete(context,temp,name);
     }
 

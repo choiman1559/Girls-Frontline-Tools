@@ -1,6 +1,10 @@
 package com.fqxd.gftools;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
 
 import com.crashlytics.android.Crashlytics;
@@ -25,6 +29,7 @@ import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -45,6 +50,8 @@ import com.fqxd.gftools.vpn.utils.VpnServiceHelper;
 import com.xd.xdsdk.XDCallback;
 import com.xd.xdsdk.XDSDK;
 
+import java.util.Collections;
+
 import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
@@ -57,8 +64,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Crashlytics crashlyticsKit = new Crashlytics.Builder()
-                .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build())
-                .build();
+                .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build();
         Fabric.with(this, crashlyticsKit);
 
         if(!getSharedPreferences("ListAlarm",MODE_PRIVATE).getBoolean("isChecked",false) && VpnServiceHelper.vpnRunningStatus()) new PacketClass().endVpn(MainActivity.this);
@@ -370,6 +376,7 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        assert cm != null;
         if (cm.getActiveNetworkInfo() != null) {
             NetworkInfo ni = cm.getActiveNetworkInfo();
             return ni != null && ni.isConnected();

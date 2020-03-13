@@ -107,6 +107,9 @@ public class TcpDataSaveHelper {
                     new PAlarmAddClass().add(lastSaveFile);
                 }
             },0);
+            if(new PacketClass().isInclude(lastSaveFile,"")) {
+
+            }
         }
     }
 
@@ -122,7 +125,6 @@ public class TcpDataSaveHelper {
             offSet = builder.offSet;
             playoffSize = builder.length;
         }
-
 
         public static final class Builder {
             private boolean isRequest;
