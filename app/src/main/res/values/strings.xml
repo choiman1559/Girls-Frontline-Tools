@@ -1,5 +1,4 @@
 <resources>
-    <string name="title">GF Icon Changer</string>
     <string name="run_patch" translatable="false">run patch</string>
     <string name="target_cn_uc" translatable="false">com.digitalsky.girlsfrontline.cn.uc</string>
     <string name="target_cn_bili" translatable="false">com.digitalsky.girlsfrontline.cn.bili</string>
@@ -37,11 +36,11 @@
     <string name="Title">GF Tools</string>
     <string name="UCButton">XD User Center</string>
     <string name="ORSCButton">Open Source License</string>
-    <string name="ICCButton">GF Decompresser</string>
+    <string name="DECButton">GF Decompresser</string>
     <string name="GFDButton">GF Dic Portable</string>
     <string name="TextKRButton">TextKR Patcher</string>
-    <string name="AlarmButton">GF LSD Alarm [DEV]</string>
-    <string name="PAlarmButton">LSD Alarm with Packet [DEV]</string>
+    <string name="AlarmButton">GF LSD Alarm</string>
+    <string name="PAlarmButton">LSD Alarm with Packet</string>
     <string name="ZasRun">Zas Run Calculator</string>
     <string name="BQMButton">BQM! Patcher</string>
     <string name="NotiButton">Noti Plugin</string>
@@ -59,8 +58,8 @@
     <string name="RBak">Restore Backup</string>
     <string name="DBak">Delete Backup</string>
     <string name="ABak">Add Backup</string>
-    <string name="appname">app name : UNKNOWN</string>
-    <string name="server">server : UNKNOWN</string>
+    <string name="appname">UNKNOWN</string>
+    <string name="packagedefault">package : UNKNOWN</string>
     <string name="Title_GFD">소전사전 Portable</string>
     <string name="Textview1">지역</string>
     <string name="Textview2">세부</string>
@@ -106,7 +105,7 @@
     <string name="notify_channel_name">GFTools</string>
     <string name="notify_channel_description">소전툴즈 알림 채널</string>
 
-    <string name="description">소녀전선 앱의 시작을 감지합니다. \n이 권한을 사용하면 패킷 설정 없이도 간편하게 한패를 적용할수 있습니다.</string>
+    <string name="description">소전의 시작을 인식하는 기능(vpn 등) 을 사용하려면 필수적인 기능입니다.</string>
     <string name="automaticTXTOnoff">자동 한패 On/Off</string>
     <string name="Txtviewdescription">자동 한패를 적용합니다. 프록시 서버를 설정할 필요가 없으며,\n소녀전선 앱을 실행할때마다 한패 업데이트를 확인합니다.\n
         (주의 : 정상 작동이 확인되지 않은 기능이며, 알려지지 않은 각종 문제가 발견될수 있습니다.)</string>

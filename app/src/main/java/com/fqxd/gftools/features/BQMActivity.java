@@ -9,6 +9,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,6 +27,7 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
+@Deprecated
 public class BQMActivity extends AppCompatActivity {
 
     @Override
@@ -56,44 +59,10 @@ public class BQMActivity extends AppCompatActivity {
         Button Welrod_O = findViewById(R.id.Welrod_);
         Button dorm = findViewById(R.id.dorm);
 
-        setEnable(false);
-
-        ArrayList<String> packageNames = new ArrayList<>();
-        packageNames.add(getString(R.string.target_cn_uc));
-        packageNames.add(getString(R.string.target_cn_bili));
-        packageNames.add(getString(R.string.target_en));
-        packageNames.add(getString(R.string.target_jp));
-        packageNames.add(getString(R.string.target_tw));
-        packageNames.add(getString(R.string.target_kr));
-
-        ArrayList<String> p2 = new ArrayList<>();
-        p2.add("...");
-        for (String s : packageNames) {
-            try {
-                this.getPackageManager().getPackageInfo(s, 0);
-                p2.add(s);
-
-            } catch (PackageManager.NameNotFoundException e) {
-
-            }
-        }
-        ArrayAdapter<String> packages = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, p2);
-        Spinner targetPackages = this.findViewById(R.id.targetPackage);
-        packages.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        targetPackages.setAdapter(packages);
-        targetPackages.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(final AdapterView<?> parent, final View view, int position, long id) {
-                if(targetPackages.getSelectedItem().toString() != "...") setEnable(true);
-                else setEnable(false);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) { }
-        });
+        setEnable(getIntent().getStringExtra("pkg") != null);
 
         Button.OnClickListener onClickListener = v -> {
-            String pk = targetPackages.getSelectedItem().toString();
+            String pk = getIntent().getStringExtra("pkg");
             switch (v.getId()) {
 
                 case R.id.PSG1:
@@ -211,7 +180,7 @@ public class BQMActivity extends AppCompatActivity {
     }
 
     void progress(String type,String name,String packagename) {
-
+        setEnable(false);
         if(!new File("/sdcard/GF_Tool").exists()) new File("/sdcard/GF_Tool").mkdir();
         if(!new File("/sdcard/GF_Tool/BQM").exists()) new File("/sdcard/GF_Tool/BQM").mkdir();
 
@@ -219,6 +188,10 @@ public class BQMActivity extends AppCompatActivity {
         if(!dir.exists()) dir.mkdir();
         String moveto = "/sdcard/Android/data/" + packagename + "/files/Android/New/";
         File asset = new File("/sdcard/GF_Tool/BQM/" + type + "/" + name + ".acb.bytes");
+
+        File tempAsset = new File(getExternalFilesDir("/temp/") + "/" + name + ".acb.bytes");
+        Log.d("log",tempAsset.getPath());
+        if(tempAsset.exists()) tempAsset.delete();
 
         if(!asset.exists()) {
             if(!isOnline()) {
@@ -231,17 +204,21 @@ public class BQMActivity extends AppCompatActivity {
                 request.setVisibleInDownloadsUi(false);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);
                 request.allowScanningByMediaScanner();
-                request.setDestinationInExternalPublicDir("/GF_Tool/BQM/" + type + "/",name + ".acb.bytes");
+                request.setDestinationInExternalFilesDir(getApplicationContext(),"/temp/",name + ".acb.bytes");
 
                 DownloadManager manager = (DownloadManager)getSystemService(Context.DOWNLOAD_SERVICE);
                 manager.enqueue(request);
 
                 if(DownloadManager.STATUS_SUCCESSFUL == 8) {
+                    while(true) {if(tempAsset.exists()) break;}
+                    copy(tempAsset.getPath(),asset.getPath().replace(name + ".acb.bytes",""),name);
+
                     if(new File(moveto).exists()) {
                         new File(moveto + name + ".acb.bytes").delete();
                         copy(asset.getPath(),moveto,name);
                     }
                     Toast.makeText(getApplicationContext(), "task completed", Toast.LENGTH_SHORT).show();
+                    setEnable(true);
                 } else {
                     Toast.makeText(getApplicationContext(), "Check Internet and Try again!", Toast.LENGTH_SHORT).show();
                 }
@@ -249,9 +226,10 @@ public class BQMActivity extends AppCompatActivity {
         }
         else {
             if(new File(moveto).exists()) {
-                boolean a = new File(moveto + name + ".acb.bytes").delete();
+                new File(moveto + name + ".acb.bytes").delete();
                 copy(asset.getPath(),moveto,name);
                 Toast.makeText(getApplicationContext(), "task completed", Toast.LENGTH_SHORT).show();
+                setEnable(true);
             }
         }
     }
@@ -274,7 +252,7 @@ public class BQMActivity extends AppCompatActivity {
             outputStream.close();
             inputStream.close();
         }catch (IOException e) {
-
+            e.printStackTrace();
         }
     }
 

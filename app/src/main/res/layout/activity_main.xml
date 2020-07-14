@@ -7,14 +7,19 @@
     tools:context=".MainActivity">
     <include layout="@layout/content_main" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center|top">
+
+            <ImageView
+                android:id="@+id/MainImageView"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:contentDescription="TODO"
+                android:layout_gravity="center"
+                app:srcCompat="@mipmap/ic_icon" />
 
             <TextView
                 android:id="@+id/textView"
@@ -26,100 +31,95 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="50sp" />
 
-            <Button
-                android:id="@+id/UCButton"
+            <com.ogaclejapan.smarttablayout.SmartTabLayout
+                android:id="@+id/viewpagertab"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/UCButton" />
+                android:layout_height="48dp"
+                app:stl_indicatorAlwaysInCenter="false"
+                app:stl_indicatorWithoutPadding="false"
+                app:stl_indicatorInFront="false"
+                app:stl_indicatorInterpolation="smart"
+                app:stl_indicatorGravity="bottom"
+                app:stl_indicatorColor="#40C4FF"
+                app:stl_indicatorThickness="4dp"
+                app:stl_indicatorWidth="auto"
+                app:stl_indicatorCornerRadius="2dp"
+                app:stl_overlineColor="#4D000000"
+                app:stl_overlineThickness="0dp"
+                app:stl_underlineColor="#4D000000"
+                app:stl_underlineThickness="1dp"
+                app:stl_dividerColor="#4D000000"
+                app:stl_dividerThickness="1dp"
+                app:stl_defaultTabBackground="?attr/selectableItemBackground"
+                app:stl_defaultTabTextAllCaps="true"
+                app:stl_defaultTabTextColor="#FC000000"
+                app:stl_defaultTabTextSize="12sp"
+                app:stl_defaultTabTextHorizontalPadding="16dp"
+                app:stl_defaultTabTextMinWidth="0dp"
+                app:stl_distributeEvenly="false"
+                app:stl_clickable="true"
+                app:stl_titleOffset="24dp"
+                app:stl_drawDecorationAfterTab="false"
+                />
 
-            <Button
-                android:id="@+id/ICCButton"
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ICCButton" />
-
-            <Button
-                android:id="@+id/XAPKInstaller"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/XAPKInstall" />
-
-            <Button
-                android:id="@+id/TextKRButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/TextKRButton" />
-
-            <Button
-                android:id="@+id/GFDButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/GFDButton" />
-
-            <Button
-                android:id="@+id/ZasButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ZasRun" />
-
-            <Button
-                android:id="@+id/AlarmButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/AlarmButton" />
-
-            <Button
-                android:id="@+id/PAlarmButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/PAlarmButton" />
-
-            <Button
-                android:id="@+id/CenButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/CenButton" />
-
-            <Button
-                android:id="@+id/BQMButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/BQMButton" />
-
-            <Button
-                android:id="@+id/NotiButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/NotiButton" />
-
-            <Button
-                android:id="@+id/NekoButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/NekoButton" />
-
-            <Button
-                android:id="@+id/ChkButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ChkUpdate" />
-
-
-            <Button
-                android:id="@+id/ORSCButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ORSCButton" />
+                android:layout_height="match_parent" >
+            </androidx.viewpager.widget.ViewPager>
         </LinearLayout>
-    </ScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        app:fab_addButtonSize="normal"
         app:backgroundTint="@color/colorPrimary"
-        app:srcCompat="@android:drawable/ic_media_play" />
+        app:fab_colorNormal="@color/pink"
+        app:fab_labelStyle="@style/menu_labels_style"
+        app:fab_colorPressed="@color/pink_pressed">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/action_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_size="mini"
+            app:fab_icon="@drawable/ic_update"
+            app:fab_colorNormal="@color/white"
+            app:fab_colorPressed="@color/white_pressed"
+            app:fab_title="Check Update" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/action_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_size="mini"
+            app:fab_icon="@drawable/ic_github"
+            app:fab_colorNormal="@color/white"
+            app:fab_colorPressed="@color/white_pressed"
+            app:fab_title="Go to Git repo" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/action_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_size="mini"
+            app:fab_icon="@drawable/ic_open_source"
+            app:fab_colorNormal="@color/white"
+            app:fab_colorPressed="@color/white_pressed"
+            app:fab_title="Open Source License" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/action_d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_size="mini"
+            app:fab_icon="@drawable/ic_baseline_developer_mode_24"
+            app:fab_colorNormal="@color/white"
+            app:fab_colorPressed="@color/white_pressed"
+            app:fab_title="Show Unstable features" />
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

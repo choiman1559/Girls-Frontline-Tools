@@ -1,56 +1,39 @@
 package com.fqxd.gftools;
 
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.pm.ShortcutInfo;
-import android.content.pm.ShortcutManager;
-import android.graphics.drawable.Icon;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
-import com.fqxd.gftools.alarm.alarm.AlarmListActivity;
-import com.fqxd.gftools.alarm.palarm.PACAlarmActivity;
-import com.fqxd.gftools.alarm.palarm.PacketClass;
 
-import com.fqxd.gftools.features.BQMActivity;
-import com.fqxd.gftools.features.CenActivity;
-import com.fqxd.gftools.features.decom.DecActivity;
-import com.fqxd.gftools.features.JasActivity;
-import com.fqxd.gftools.features.gfd.GFDActivity;
-import com.fqxd.gftools.features.gfneko.GFNekoActivity;
-import com.fqxd.gftools.features.txt.TxtKRActivity;
-import com.fqxd.gftools.features.xapk.XapkActivity;
-
-import com.fqxd.gftools.features.noti.NotiActivity;
+import com.fqxd.gftools.fragment.HomeFragment;
+import com.fqxd.gftools.fragment.GFFragment;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Context;
 import android.net.*;
 import android.widget.*;
-import android.util.Log;
 
-import com.fqxd.gftools.vpn.utils.VpnServiceHelper;
-import com.xd.xdsdk.XDCallback;
+import com.ogaclejapan.smarttablayout.SmartTabLayout;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 import com.xd.xdsdk.XDSDK;
-
-import java.util.Collections;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -67,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
                 .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build();
         Fabric.with(this, crashlyticsKit);
 
-        if(!getSharedPreferences("ListAlarm",MODE_PRIVATE).getBoolean("isChecked",false) && VpnServiceHelper.vpnRunningStatus()) new PacketClass().endVpn(MainActivity.this);
         if (Build.VERSION.SDK_INT >= 23 && this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
             if (this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -88,246 +70,91 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        final Button OSS = findViewById(R.id.ORSCButton);
-        OSS.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), OSSActivity.class));
-            }
-        });
+        ((ImageView) findViewById(R.id.MainImageView)).setImageResource(R.mipmap.ic_icon_round);
+        FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
+                getSupportFragmentManager(), FragmentPagerItems.with(this)
+                .add("메인", HomeFragment.class)
+                .add("한섭", GFFragment.class)
+                .add("중섭 번체", GFFragment.class)
+                .add("중섭 간체", GFFragment.class)
+                .add("일섭", GFFragment.class)
+                .add("글섭", GFFragment.class)
+                .add("비리섭", GFFragment.class)
+                .create());
 
-        final Button ICC = findViewById(R.id.ICCButton);
-        ICC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DecActivity.class);
-                startActivity(intent);
-            }
-        });
+        ViewPager viewPager = findViewById(R.id.viewpager);
+        viewPager.setAdapter(adapter);
 
-        final Button GFD = findViewById(R.id.GFDButton);
-        GFD.setOnClickListener(new View.OnClickListener() {
+        SmartTabLayout viewPagerTab = findViewById(R.id.viewpagertab);
+        viewPagerTab.setViewPager(viewPager);
+        viewPagerTab.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, GFDActivity.class);
-                startActivity(intent);
-            }
-        });
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-        final Button TXT = findViewById(R.id.TextKRButton);
-        TXT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, TxtKRActivity.class);
-                startActivity(intent);
             }
-        });
 
-        final Button XAPK = findViewById(R.id.XAPKInstaller);
-        XAPK.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, XapkActivity.class);
-                startActivity(intent);
-            }
-        });
+            public void onPageSelected(int position) {
+                viewPager.setCurrentItem(position);
+                adapter.notifyDataSetChanged();
+                switch (position) {
+                    case 1:
+                        changeImg(R.drawable.ic_south_korea);
+                        break;
 
-        final Button Alarm = findViewById(R.id.AlarmButton);
-        //Alarm.setEnabled(false);
-        Alarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AlarmListActivity.class);
-                startActivity(intent);
-            }
-        });
+                    case 2:
+                    case 3:
+                        changeImg(R.drawable.ic_china);
+                        break;
 
-        final Button PAM = findViewById(R.id.PAlarmButton);
-        PAM.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PACAlarmActivity.class);
-                startActivity(intent);
-            }
-        });
+                    case 4:
+                        changeImg(R.drawable.ic_japan);
+                        break;
 
-        final Button CEN = findViewById(R.id.CenButton);
-        CEN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CenActivity.class);
-                startActivity(intent);
-            }
-        });
+                    case 5:
+                        changeImg(R.drawable.ic_global);
+                        break;
 
-        final Button ZAS = findViewById(R.id.ZasButton);
-        ZAS.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, JasActivity.class);
-                startActivity(intent);
-            }
-        });
+                    case 6:
+                        changeImg(R.mipmap.ic_bilbil);
+                        break;
 
-        final Button BQM = findViewById(R.id.BQMButton);
-        BQM.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!isOnline()) {
-                    Snackbar.make(v, "Check Internet and Try Again", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                } else {
-                    Intent intent = new Intent(MainActivity.this, BQMActivity.class);
-                    startActivity(intent);
+                    default:
+                        changeImg(R.mipmap.ic_icon_round);
                 }
             }
-        });
 
-        final Button NTI = findViewById(R.id.NotiButton);
-        NTI.setOnClickListener(new View.OnClickListener() {
+            void changeImg(int resId) { ((ImageView)findViewById(R.id.MainImageView)).setImageResource(resId); }
+
             @Override
-            public void onClick(View v) {
-                if (!isOnline()) {
-                    Snackbar.make(v, "Check Internet and Try Again", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                } else {
-                    Intent intent = new Intent(MainActivity.this, NotiActivity.class);
-                    startActivity(intent);
-                }
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
 
-        final Button NKO = findViewById(R.id.NekoButton);
-        NKO.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, GFNekoActivity.class);
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (!Settings.canDrawOverlays(MainActivity.this)) {
-                        startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName())).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                    } else startActivity(intent);
-                } else startActivity(intent);
+        findViewById(R.id.action_a).setOnClickListener(v -> {
+            if (!isOnline()) {
+                Snackbar.make(v, "Check Internet and Try Again", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            } else {
+                AppUpdater appUpdater = new AppUpdater(MainActivity.this)
+                        .showAppUpdated(true)
+                        .setDisplay(Display.DIALOG)
+                        .setUpdateFrom(UpdateFrom.GITHUB)
+                        .setGitHubUserAndRepo("choiman1559", "Girls-Frontline-Tools")
+                        .setButtonDoNotShowAgain(null);
+                appUpdater.start();
             }
         });
 
-        final Button Chk = findViewById(R.id.ChkButton);
-        Chk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (!isOnline()) {
-                    Snackbar.make(v, "Check Internet and Try Again", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                } else {
-                    AppUpdater appUpdater = new AppUpdater(MainActivity.this)
-                            .showAppUpdated(true)
-                            .setDisplay(Display.DIALOG)
-                            .setUpdateFrom(UpdateFrom.GITHUB)
-                            .setGitHubUserAndRepo("choiman1559", "Girls-Frontline-Tools")
-                            .setButtonDoNotShowAgain(null);
-                    appUpdater.start();
-                }
-            }
-        });
-
-
-        Button UCB = findViewById(R.id.UCButton);
-        UCB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!isOnline()) {
-                    Snackbar.make(v, "Check Internet and Try Again", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                } else {
-                    XDSDK.setCallback(new XDCallback() {
-                        @Override
-                        public void onInitSucceed() {
-                            Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName());
-                            Toast.makeText(getApplicationContext(), "Initialization Succeed", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onInitFailed(String msg) {
-                            Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + msg);
-                            Toast.makeText(getApplicationContext(), "Initialization Failed", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onLoginSucceed(String token) {
-                            Toast.makeText(getApplicationContext(), XDSDK.getAccessToken(), Toast.LENGTH_LONG).show();
-                            XDSDK.openUserCenter();
-                            Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + token);
-                            Toast.makeText(getApplicationContext(), "Login Succeed", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onLoginFailed(String msg) {
-                            Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + msg);
-                            Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onLoginCanceled() {
-                            Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName());
-                            Toast.makeText(getApplicationContext(), "Login Canceled", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onGuestBindSucceed(String token) {
-                            Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + token);
-                            Toast.makeText(getApplicationContext(), "onGuestBindSucceed", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onLogoutSucceed() {
-                            Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName());
-                            Toast.makeText(getApplicationContext(), "Logout Succeed", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onPayCompleted() {
-                            Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName());
-                            Toast.makeText(getApplicationContext(), "onPayCompleted", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onPayFailed(String msg) {
-                            Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName() + ":" + msg);
-                            Toast.makeText(getApplicationContext(), "onPayFailed", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onPayCanceled() {
-                            Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName());
-                            Toast.makeText(getApplicationContext(), "onPayCanceled", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onRealNameSucceed() {
-                            Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName());
-                            Toast.makeText(getApplicationContext(), "onRealNameSucceed", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onRealNameFailed(String msg) {
-                            Log.e(TAG, Thread.currentThread().getStackTrace()[2].getMethodName());
-                            Toast.makeText(getApplicationContext(), "onRealNameFailed", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                    XDSDK.initSDK(MainActivity.this, "a4d6xky5gt4c80s", 1, "AndroidChannel", "AndroidVersion", true);
-                    XDSDK.login();
-                }
-            }
-        });
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AppActivity.class);
-                startActivity(intent);
-            }
+        findViewById(R.id.action_b).setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/choiman1559/Girls-Frontline-Tools"))));
+        findViewById(R.id.action_c).setOnClickListener(v -> startActivity(new Intent(MainActivity.this,OSSActivity.class)));
+        FloatingActionButton debug = findViewById(R.id.action_d);
+        debug.setTitle((getPreferences(MODE_PRIVATE).getBoolean("debug",false) ? "Hide" : "Show") + " Unstable features");
+        debug.setOnClickListener(v -> {
+            SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+            prefs.edit().putBoolean("debug",!prefs.getBoolean("debug",false)).apply();
+            MainActivity.this.recreate();
         });
 
         AppUpdater appUpdater = new AppUpdater(this)

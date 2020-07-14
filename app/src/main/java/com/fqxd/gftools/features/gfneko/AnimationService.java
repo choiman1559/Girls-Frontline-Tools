@@ -247,13 +247,13 @@ public class AnimationService extends Service {
                 0);
 
         if (Build.VERSION.SDK_INT > 25) {
-            NotificationChannel channel = new NotificationChannel(getString(R.string.notify_channel_id), "GFNeko Service",
+            NotificationChannel channel = new NotificationChannel("GFNeko", "GFNeko Service",
                     NotificationManager.IMPORTANCE_MIN);
             ((NotificationManager) Objects.requireNonNull(getSystemService(Context.NOTIFICATION_SERVICE)))
                     .createNotificationChannel(channel);
         }
 
-        Notification.Builder builder = Build.VERSION.SDK_INT > 25 ? new Notification.Builder(this, getString(R.string.notify_channel_id)) : new Notification.Builder(this);
+        Notification.Builder builder = Build.VERSION.SDK_INT > 25 ? new Notification.Builder(this, "GFNeko") : new Notification.Builder(this);
         builder
                 .setContentIntent(intent)
                 .setSmallIcon(R.drawable.icon)
@@ -265,7 +265,7 @@ public class AnimationService extends Service {
         notif.flags = Notification.FLAG_ONGOING_EVENT;
         notif.flags = Notification.FLAG_AUTO_CANCEL;
         notif.flags = Notification.FLAG_ONLY_ALERT_ONCE;
-c 
+
         stopForeground(true);
         if (start) {
             startForeground(1, notif);
@@ -309,7 +309,6 @@ c
 
             loaded = true;
         } catch (Exception e) {
-
             Toast.makeText(this, "" + e.getMessage(), Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }

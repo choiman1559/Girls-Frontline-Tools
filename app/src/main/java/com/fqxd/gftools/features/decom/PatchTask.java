@@ -25,7 +25,6 @@ import java.io.File;
 
 final class PatchTask extends AsyncTask {
     public static final int REQUEST_INSTALL = 0x00;
-    private static final int REQUEST_CODE = 0;
     private DecActivity main;
     private TextView status;
     private TextView log;
@@ -43,12 +42,7 @@ final class PatchTask extends AsyncTask {
     protected Object doInBackground(Object[] objects) {
         try {
             final ProgressBar p = this.main.findViewById(R.id.running);
-            p.post(new Runnable() {
-                @Override
-                public void run() {
-                    p.setVisibility(View.VISIBLE);
-                }
-            });
+            p.post(() -> p.setVisibility(View.VISIBLE));
             this.updateLog(this.main.getString(R.string.info_patch_started));
             this.updateLog("Target: " + this.target);
             File temp = this.main.getExternalFilesDir(null);
@@ -56,8 +50,10 @@ final class PatchTask extends AsyncTask {
             temp.mkdir();
             this.updateStatus("extracting obb");
             final File obb = new File(temp.getAbsolutePath() + "/obb");
+            Log.d("obb",obb.toString());
             obb.mkdir();
             File originalObb = (new File(Environment.getExternalStorageDirectory() + "/Android/obb/" + this.target)).listFiles()[0];
+            Log.d("origin",originalObb.toString());
             ZipFile zipFile = new ZipFile(originalObb);
             zipFile.extractAll(obb.getAbsolutePath());
             if (obb.listFiles() == null) {
@@ -118,12 +114,9 @@ final class PatchTask extends AsyncTask {
             main.startActivityForResult(intent, REQUEST_INSTALL);
 
             FileUtils.deleteDirectory(apk);
-            p.post(new Runnable() {
-                @Override
-                public void run() {
-                    p.setVisibility(View.INVISIBLE);
-                    status.setVisibility(View.INVISIBLE);
-                }
+            p.post(() -> {
+                p.setVisibility(View.INVISIBLE);
+                status.setVisibility(View.INVISIBLE);
             });
             ((Runnable)objects[0]).run();
             this.updateProgress(100);
@@ -134,12 +127,7 @@ final class PatchTask extends AsyncTask {
         return null;
     }
     private void updateStatus(final String str) {
-        this.status.post(new Runnable() {
-            @Override
-            public void run() {
-                status.setText(str);
-            }
-        });
+        this.status.post(() -> status.setText(str));
         this.updateLog(str);
     }
     private void updateLog(final String str) {
@@ -149,12 +137,7 @@ final class PatchTask extends AsyncTask {
         });
     }
     private void updateProgress(final int percent) {
-        this.progress.post(new Runnable() {
-            @Override
-            public void run() {
-                progress.setProgress(percent);
-            }
-        });
+        this.progress.post(() -> progress.setProgress(percent));
     }
 }
 

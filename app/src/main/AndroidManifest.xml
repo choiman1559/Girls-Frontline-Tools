@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.fqxd.gftools">
 
@@ -29,7 +30,6 @@
         tools:ignore="ProtectedPermissions" />
 
     <application
-        android:name=".alarm.palarm.PAlarmAddClass"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_icon"
@@ -38,20 +38,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
+        android:requestLegacyExternalStorage="true"
         tools:replace="android:label,android:theme">
 
         <meta-data
             android:name="firebase_crash_collection_enabled"
             android:value="@bool/FIREBASE_CRASH_ENABLED" />
 
-        <activity android:name=".features.txt.TxtKRActivity" />
-        <activity android:name=".alarm.palarm.PACAlarmActivity" />
         <activity android:name=".features.BQMActivity" />
-        <activity android:name=".alarm.alarm.AlarmListActivity" />
         <activity android:name=".features.JasActivity" />
-        <activity android:name=".features.CenActivity" />
-        <activity android:name=".alarm.alarm.AddAlarmActivity" />
-        <activity android:name=".features.txt.TXTActivity" />
         <activity android:name=".features.gfd.GFDViewer" />
         <activity android:name=".features.noti.NotiActivity" />
         <activity android:name=".features.gfneko.GFNekoActivity"/>
@@ -89,32 +84,29 @@
             <meta-data android:name="com.fqxd.gftools.features.gfneko.skin" android:resource="@xml/neko"/>
         </activity>
 
+        <activity android:name=".features.CenActivity"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"/>
+
         <activity
             android:name=".OSSActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".features.decom.DecActivity"
+            android:name=".features.alarm.AlarmListActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".features.xapk.XapkActivity"
+            android:name=".features.alarm.AddAlarmManuallyClass"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".features.decom.DecActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
-            android:name=".AppActivity"
+            android:name=".features.xapk.XapkActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
             android:name=".features.noti.MessageSendClass"
             android:theme="@style/Theme.AppCompat.Light.Dialog.Alert" />
         <activity
             android:name=".features.xapk.FilePicker"
-            android:theme="@style/FilePickerTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.GET_CONTENT" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".features.txt.TextPicker"
             android:theme="@style/FilePickerTheme">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
@@ -142,21 +134,21 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
         <activity
             android:name="com.xd.sdklib.helper.WXEntryActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" /> <!-- 微信登录 -->
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
         <activity-alias
             android:name=".wxapi.WXEntryActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:targetActivity="com.xd.sdklib.helper.WXEntryActivity" /> <!-- Ping++ SDK -->
+            android:targetActivity="com.xd.sdklib.helper.WXEntryActivity" />
         <activity
             android:name="com.pingplusplus.android.PaymentActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" /> <!-- 微信支付 -->
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity-alias
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
-            android:targetActivity="com.pingplusplus.android.PaymentActivity" /> <!-- 支付宝 -->
+            android:targetActivity="com.pingplusplus.android.PaymentActivity" />
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
@@ -168,7 +160,7 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="fullSensor"
-            tools:replace="android:screenOrientation" /> <!-- QQ登录 -->
+            tools:replace="android:screenOrientation" />
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
@@ -177,29 +169,6 @@
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        <receiver
-            android:name=".alarm.alarm.DeviceBootReceiver"
-            android:enabled="false">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name=".alarm.palarm.DeviceBootReceiver"
-            android:enabled="false">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-        <receiver android:name=".alarm.alarm.AlarmReceiver" />
-        <receiver
-            android:name=".alarm.palarm.PacketReceiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.fqxd.gftools.PACKET_RECEIVED" />
-            </intent-filter>
-        </receiver>
 
         <receiver android:name=".features.gfneko.GFNekoReceiver">
             <intent-filter>
@@ -210,10 +179,20 @@
                 <data android:scheme="package"/>
             </intent-filter>
         </receiver>
+        <receiver
+            android:name=".features.alarm.BootCompleteReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".features.alarm.AlarmReceiver"
+            android:enabled="true">
+        </receiver>
         <service android:name=".features.gfneko.AnimationService"/>
-
         <service
-            android:name=".features.txt.DetectGFService"
+            android:name=".features.alarm.DetectGFService"
             android:enabled="true"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
@@ -224,27 +203,7 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibilityservice" />
         </service>
-        <service
-            android:name=".alarm.palarm.TileServiceClass"
-            android:label="군수알리미 서비스"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
-            tools:targetApi="24">
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE" />
-            </intent-filter>
-        </service>
-        <service
-            android:name=".vpn.service.FirewallVpnService"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="android.permission.BIND_VPN_SERVICE">
-            <intent-filter>
-                <action android:name="android.net.VpnService" />
-            </intent-filter>
-        </service>
-        <service
-            android:name=".vpn.processparse.PortHostService"
-            android:exported="false" />
+
         <service
             android:name=".features.noti.FireStoreListener"
             android:enabled="true"

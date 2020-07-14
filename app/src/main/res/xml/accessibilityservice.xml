@@ -4,5 +4,5 @@
     android:accessibilityFeedbackType="feedbackGeneric"
     android:accessibilityFlags="flagIncludeNotImportantViews"
     android:description="@string/description"
-    android:settingsActivity="com.fqxd.features.txt.TxtKRActivity"
+    android:settingsActivity="com.fqxd.gftools.MainActivity"
     xmlns:android="http://schemas.android.com/apk/res/android" />

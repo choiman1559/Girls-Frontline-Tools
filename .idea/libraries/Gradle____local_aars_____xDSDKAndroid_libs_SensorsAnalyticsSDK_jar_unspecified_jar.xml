@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: __local_aars__:./xDSDKAndroid/libs/SensorsAnalyticsSDK.jar:unspecified@jar">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/xDSDKAndroid/libs/SensorsAnalyticsSDK.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp">
 
-    <Spinner
-        android:id="@+id/targetPackage"
+    <TextView
+        android:id="@+id/PkgInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbarSize="35sp" />
+        android:text="@string/target" />
 
     <Button
         android:id="@+id/centrue"
@@ -16,8 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/run_patch"
-        android:textAllCaps="false"
-        android:visibility="visible" />
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/cenfalse"
@@ -26,11 +26,12 @@
         android:layout_height="wrap_content"
         android:text="@string/run_patch"
         android:textAllCaps="false"
-        android:visibility="visible" />
+        android:layout_marginBottom="5dp"/>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="300dp"
+        android:background="@drawable/outline">
 
         <TextView
             android:id="@+id/log"

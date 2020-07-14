@@ -1,29 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"><![CDATA[
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="30sp"
-        app:layout_constraintTop_toTopOf="parent">
-
-        ]]>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/version"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Spinner
-            android:id="@+id/targetPackage"
-            android:layout_width="match_parent"
+            android:id="@+id/packageinfo"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scrollbarSize="35sp" />
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            tools:text="target : TextForTest (com.xxx.yyy)"/>
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -34,24 +24,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                tools:progress="1" />
 
             <TextView
                 android:id="@+id/status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center|left"
+                android:gravity="center|start"
                 android:textSize="10pt"
-                android:visibility="gone" />
+                tools:text="Testing layout"/>
         </LinearLayout>
 
         <ProgressBar
             android:id="@+id/progress"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/centrue"
@@ -59,8 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/run_patch"
-            android:textAllCaps="false"
-            android:visibility="gone" />
+            android:textAllCaps="false" />
 
         <ScrollView
             android:layout_width="match_parent"

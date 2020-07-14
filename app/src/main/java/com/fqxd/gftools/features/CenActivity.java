@@ -23,64 +23,36 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class CenActivity extends AppCompatActivity {
-    String pacname;
+    String Package;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cen);
-        Button runpatch = findViewById(R.id.centrue);
-        runpatch.setEnabled(false);
 
-        ArrayList<String> packageNames = new ArrayList<>();
-        packageNames.add(getString(R.string.target_cn_uc));
-        packageNames.add(getString(R.string.target_cn_bili));
-        packageNames.add(getString(R.string.target_en));
-        packageNames.add(getString(R.string.target_jp));
-        packageNames.add(getString(R.string.target_tw));
-        packageNames.add(getString(R.string.target_kr));
+        this.Package = getIntent().getStringExtra("pkg");
+        PackageManager pm = getPackageManager();
+        TextView pkgInfo = findViewById(R.id.PkgInfo);
 
-        ArrayList<String> p2 = new ArrayList<>();
-        p2.add("...");
-        for (String s : packageNames) {
-            try {
-                this.getPackageManager().getPackageInfo(s, 0);
-                p2.add(s);
+        try {
+            pkgInfo.setText("target : " + pm.getApplicationLabel(pm.getApplicationInfo(Package, PackageManager.GET_META_DATA)) + " (" + Package + ")");
+        } catch (PackageManager.NameNotFoundException ignored) { }
 
-            } catch (PackageManager.NameNotFoundException e) { }
-        }
-        ArrayAdapter<String> packages = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, p2);
-        Spinner targetPackages = this.findViewById(R.id.targetPackage);
-        packages.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        targetPackages.setAdapter(packages);
-        targetPackages.setOnItemSelectedListener(new CenActivity.OnTargetSelectedListener(this));
+        updateLog("task Log should appear here.");
 
         final Button CEN = findViewById(R.id.centrue);
         CEN.setText("Censorship off");
-        CEN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateLog("=== New Task ===");
-                updateLog("Task : Censorship off");
-                editTask(true);
-            }
-        });
+        CEN.setOnClickListener(v -> editTask(true));
 
         final Button reCEN = findViewById(R.id.cenfalse);
         reCEN.setText("Censorship on");
-        reCEN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateLog("=== New Task ===");
-                updateLog("Task : Censorship on");
-                editTask(false);
-            }
-        });
-
-
+        reCEN.setOnClickListener(v -> editTask(false));
     }
 
    void editTask(boolean istrue) {
+       updateLog("=== New Task ===");
+       updateLog("Task : Censorship " + (istrue ? "off" : "on"));
+
         try {
             if(!new File("/sdcard/GF_Tool/").exists()) new File("/sdcard/GF_Tool/").mkdir();
             else if(new File("/sdcard/GF_Tool/newXML.xml").exists()) new File("/sdcard/GF_Tool/newXML.xml").delete();
@@ -91,13 +63,13 @@ public class CenActivity extends AppCompatActivity {
             updateLog("mounting /data...");
             dos.writeBytes("mount -o remount,rw /data\n");
             updateLog("copying XML file from /data/data...");
-            dos.writeBytes("cp -f /data/data/" + pacname + "/shared_prefs/" + pacname + ".v2.playerprefs.xml /sdcard/GF_Tool/\n");
+            dos.writeBytes("cp -f /data/data/" + Package + "/shared_prefs/" + Package + ".v2.playerprefs.xml /sdcard/GF_Tool/\n");
             dos.writeBytes("exit\n");
             dos.flush();
             dos.close();
 
             Xmledit(istrue);
-        } catch (Exception e) { }
+        } catch (Exception ignored) { }
    }
 
    void copyXml(){
@@ -108,17 +80,17 @@ public class CenActivity extends AppCompatActivity {
             updateLog("mounting /data...");
             dos.writeBytes("mount -o remount,rw /data\n");
             updateLog("copying XML file from storage...");
-            dos.writeBytes("cp -fp /sdcard/GF_Tool/" + pacname + ".v2.playerprefs.xml /data/data/" + pacname + "/shared_prefs/\n");
+            dos.writeBytes("cp -fp /sdcard/GF_Tool/" + Package + ".v2.playerprefs.xml /data/data/" + Package + "/shared_prefs/\n");
             dos.writeBytes("exit\n");
             dos.flush();
             dos.close();
             p.waitFor();
 
             updateLog("cleaning up...");
-            new File("/sdcard/GF_Tool/" + pacname + ".v2.playerprefs.xml").delete();
+            new File("/sdcard/GF_Tool/" + Package + ".v2.playerprefs.xml").delete();
             updateLog("Task Done!\n");
 
-        } catch (Exception e) { }
+        } catch (Exception ignored) { }
    }
 
     void Xmledit(boolean istrue){
@@ -126,18 +98,18 @@ public class CenActivity extends AppCompatActivity {
 
         updateLog("editing XML...");
         File newXml = new File("/sdcard/GF_Tool/newXML.xml");
-        File Xml = new File("/sdcard/GF_Tool/" + pacname + ".v2.playerprefs.xml");
+        File Xml = new File("/sdcard/GF_Tool/" + Package + ".v2.playerprefs.xml");
 
-        String line = null;
+        String line;
         try {
-            while(!Xml.exists()) { continue; }
+            while(true) { if(Xml.exists()) break; }
 
             FileWriter Xmlwrite = new FileWriter(newXml);
             BufferedReader bufferedReader = new BufferedReader(new FileReader(Xml));
 
             while ((line = bufferedReader.readLine()) != null) {
                 if(line.contains("Normal")) {
-                    Xmlwrite.append("    <int name=\"Normal\" value=\"" + Integer.toString(cen) + "\" />\n");
+                    Xmlwrite.append("    <int name=\"Normal\" value=\"" + cen + "\" />\n");
                     Xmlwrite.flush();
                     continue;
                 }
@@ -152,41 +124,9 @@ public class CenActivity extends AppCompatActivity {
             Xml.delete();
             updateLog("renameing to new Xml file...");
             newXml.renameTo(Xml);
-
             copyXml();
 
-        } catch (IOException e) { }
-    }
-
-    final class OnTargetSelectedListener implements AdapterView.OnItemSelectedListener {
-        private CenActivity main;
-        Button CEN = findViewById(R.id.centrue);
-        Button reCEN= findViewById(R.id.cenfalse);
-
-
-        OnTargetSelectedListener(CenActivity main) {
-            this.main = main;
-        }
-        final Spinner spinner = findViewById(R.id.targetPackage);
-
-        @Override
-        public void onItemSelected(final AdapterView<?> parent, final View view, int position, long id) {
-            if (((TextView)view).getText().equals("...")) {
-                CEN.setEnabled(false);
-                reCEN.setEnabled(false);
-
-            } else {
-                CEN.setEnabled(true);
-                reCEN.setEnabled(true);
-                pacname = spinner.getSelectedItem().toString();
-            }
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-
-        }
-
+        } catch (IOException ignored) { }
     }
 
 

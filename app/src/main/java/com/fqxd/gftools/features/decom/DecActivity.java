@@ -6,22 +6,24 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
+import android.os.Environment;
 import android.provider.Settings;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.fqxd.gftools.MainActivity;
 import com.fqxd.gftools.R;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public final class DecActivity extends Activity {
 
@@ -30,6 +32,7 @@ public final class DecActivity extends Activity {
     {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_dec);
+        String pkg = getIntent().getStringExtra("pkg");
 
         if (Build.VERSION.SDK_INT >= 23 && this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
@@ -41,34 +44,33 @@ public final class DecActivity extends Activity {
                     MainActivity.REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES
             );
         }
-        TextView version = this.findViewById(R.id.version);
+        TextView packageinfo = this.findViewById(R.id.packageinfo);
         try {
-            version.setText(this.getPackageManager().getPackageInfo(this.getPackageName(), 0).versionName);
+            PackageManager pm = this.getPackageManager();
+            packageinfo.setText("target : " + pm.getApplicationLabel(pm.getApplicationInfo(pkg, PackageManager.GET_META_DATA)) + " (" + pkg + ")");
         } catch (PackageManager.NameNotFoundException e) {
         }
-        ArrayList<String> packageNames = new ArrayList<>();
-        packageNames.add(getString(R.string.target_cn_uc));
-        packageNames.add(getString(R.string.target_cn_bili));
-        packageNames.add(getString(R.string.target_en));
-        packageNames.add(getString(R.string.target_jp));
-        packageNames.add(getString(R.string.target_tw));
-        packageNames.add(getString(R.string.target_kr));
 
-        ArrayList<String> p2 = new ArrayList<>();
-        p2.add("...");
-        for (String s : packageNames) {
-            try {
-                this.getPackageManager().getPackageInfo(s, 0);
-                p2.add(s);
+        final Button runPatch = findViewById(R.id.centrue);
+        final TextView status = findViewById(R.id.status);
+        final TextView log = findViewById(R.id.log);
+        final ProgressBar progress = findViewById(R.id.progress);
 
-            } catch (PackageManager.NameNotFoundException e) {
-            }
+        File obbDir = new File(Environment.getExternalStorageDirectory().getPath() + "/Android/obb/" + pkg + "/");
+        File[] files = obbDir.listFiles((dir, name) -> name.substring(name.length() - 4).equals(".obb"));
+        if (files == null || files.length == 0) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setMessage(R.string.info_no_obb);
+            alert.setPositiveButton(Resources.getSystem().getText(android.R.string.ok), null);
+            alert.setCancelable(false);
+            alert.show();
         }
-        ArrayAdapter<String> packages = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, p2);
-        Spinner targetPackages = this.findViewById(R.id.targetPackage);
-        packages.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        targetPackages.setAdapter(packages);
-        targetPackages.setOnItemSelectedListener(new OnTargetSelectedListener(this));
+        runPatch.setOnClickListener(v -> {
+
+            runPatch.setEnabled(false);
+            PatchTask patchTask = new PatchTask(this, status, log, progress, pkg);
+            patchTask.execute(new Object[]{(Runnable) () -> runPatch.post(() -> runPatch.setEnabled(true))});
+        });
     }
 
     @Override
