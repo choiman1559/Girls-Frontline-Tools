@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center|bottom"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/appname"
+                    android:layout_gravity="end"
+                    android:gravity="end"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/black_semi_transparent"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:text="@string/appname" />
+
+                <TextView
+                    android:id="@+id/version"
+                    android:layout_width="match_parent"
+                    android:gravity="end|bottom"
+                    android:textColor="@color/half_black"
+                    android:layout_height="match_parent"
+                    android:text="@string/version" />
+
+                <TextView
+                    android:id="@+id/packagename"
+                    android:layout_width="match_parent"
+                    android:gravity="end|bottom"
+                    android:textColor="@color/half_black"
+                    android:layout_height="match_parent"
+                    android:text="@string/packagedefault" />
+
+            </LinearLayout>
+
+        <ImageView
+            android:id="@+id/IconView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="5dp"
+            app:srcCompat="@drawable/ic_broken_image" />
+        </LinearLayout>
+
+    <Button
+            android:id="@+id/Runapp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/runApp" />
+
+        <Button
+            android:id="@+id/DeleteApp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/deleteapp" />
+
+        <Button
+            android:id="@+id/DeleteData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Deletedata" />
+
+    <Button
+        android:id="@+id/BQMButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/BQMButton" />
+
+    <Button
+        android:id="@+id/DECButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/DECButton" />
+
+    <Button
+        android:id="@+id/CENButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/CenButton" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/ABak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ABak" />
+
+            <Button
+                android:id="@+id/RBak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/RBak" />
+
+            <Button
+                android:id="@+id/DBak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/DBak" />
+        </com.google.android.material.chip.ChipGroup>
+</LinearLayout>

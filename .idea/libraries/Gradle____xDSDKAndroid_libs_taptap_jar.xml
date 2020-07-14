@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: ./xDSDKAndroid/libs/taptap.jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/xDSDKAndroid/libs/taptap.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
