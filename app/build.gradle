@@ -59,6 +59,9 @@ dependencies {
     implementation 'commons-io:commons-io:20030203.000550'
     implementation 'org.jsoup:jsoup:1.12.2'
 
+    implementation group: 'commons-httpclient', name: 'commons-httpclient', version: '3.1'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.7'
+
     implementation 'com.google.firebase:firebase-firestore:21.5.0'
     implementation 'com.google.firebase:firebase-auth:19.3.2'
     implementation 'com.google.android.gms:play-services-auth:18.0.0'
@@ -70,6 +73,7 @@ dependencies {
     implementation 'com.github.djdisodo.NetBare:netbare-core:ff1f786d91'
     implementation 'com.github.djdisodo.NetBare:netbare-injector:ff1f786d91'
 
+    implementation 'org.threeten:threetenbp:1.4.4'
     implementation 'com.nononsenseapps:filepicker:4.1.0'
     implementation 'com.github.javiersantos:AppUpdater:2.7'
     implementation 'com.github.isradeleon:Notify-Android:1.0.3'

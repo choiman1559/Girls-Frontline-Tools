@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
@@ -33,11 +34,15 @@ public class AlarmListActivity extends AppCompatActivity {
         Switch alarmOnOff = findViewById(R.id.OnOff);
         alarmOnOff.setChecked(prefs.getBoolean("AlarmOnOff", false));
         alarmOnOff.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if(checkAccessibilityPermissions() || !alarmOnOff.isChecked()) prefs.edit().putBoolean("AlarmOnOff", alarmOnOff.isChecked()).apply();
-            else {
-                setAccessibilityPermissions();
-                alarmOnOff.setChecked(false);
+            Log.d("access",checkAccessibilityPermissions() ? "true" : "false");
+            if(!checkAccessibilityPermissions()) {
+                if(!alarmOnOff.isChecked()) prefs.edit().putBoolean("AlarmOnOff", alarmOnOff.isChecked()).apply();
+                else {
+                    setAccessibilityPermissions();
+                    alarmOnOff.setChecked(false);
+                }
             }
+            else prefs.edit().putBoolean("AlarmOnOff", alarmOnOff.isChecked()).apply();
         });
 
         Button add = findViewById(R.id.add);
@@ -64,13 +69,9 @@ public class AlarmListActivity extends AppCompatActivity {
     }
 
     boolean checkAccessibilityPermissions() {
-        AccessibilityManager accessibilityManager = (AccessibilityManager) getSystemService(Context.ACCESSIBILITY_SERVICE);
-        List<AccessibilityServiceInfo> list = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.DEFAULT);
-        for (int i = 0; i < list.size(); i++) {
-            AccessibilityServiceInfo info = list.get(i);
-            if (info.getResolveInfo().serviceInfo.packageName.equals(getApplication().getPackageName())) return true;
-        }
-        return false;
+        AccessibilityManager accessibilityManager = (AccessibilityManager)getSystemService(Context.ACCESSIBILITY_SERVICE);
+        List<AccessibilityServiceInfo> serviceList = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK);
+        return serviceList.toString().contains("com.fqxd.gftools");
     }
 
     public void setAccessibilityPermissions() {

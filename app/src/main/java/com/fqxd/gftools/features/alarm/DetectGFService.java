@@ -3,19 +3,20 @@ package com.fqxd.gftools.features.alarm;
 import android.accessibilityservice.AccessibilityService;
 import android.view.accessibility.AccessibilityEvent;
 
+import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
+import com.github.megatronking.netbare.NetBare;
 
 import java.util.ArrayList;
 
 public class DetectGFService extends AccessibilityService {
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        VpnUtils vpnUtils = new VpnUtils(this);
         if(isGF("" + event.getPackageName()) &&
                 getSharedPreferences("MainActivity",MODE_PRIVATE).getBoolean("AlarmOnOff",false)) {
-            vpnUtils.PrepareAndRunVpn();
+            NetBare.get().start(((Global)getApplication()).getConfig());
         } else {
-            vpnUtils.StopVpn();
+            NetBare.get().stop();
         }
     }
 
