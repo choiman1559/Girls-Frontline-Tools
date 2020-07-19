@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.util.Linkify;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -31,6 +32,9 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.fqxd.gftools.R;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class NotiActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
     private static final int RC_SIGN_IN = 100;
@@ -41,6 +45,11 @@ public class NotiActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_noti);
+
+        TextView HTU = findViewById(R.id.HTU);
+        Linkify.TransformFilter mTransform = (match, url) -> "";
+        Pattern pattern1 = Pattern.compile("플러그인");
+        Linkify.addLinks(HTU, pattern1, "https://github.com/choiman1559/GF-Tools-Noti-Plugin/releases",null,mTransform);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))

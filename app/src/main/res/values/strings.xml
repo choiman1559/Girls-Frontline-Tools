@@ -123,5 +123,12 @@
     <string name="glogout">Google 에 로그인</string>
     <string name="guid">User Id : Unknown</string>
     <string name="serverKey">AAAAd2xYJoc:APA91bEI-KASWZ7hQoHTsKJQhFshvUnyBEnTwSPGeD9VGJmATJvpE2r4_2qaP0D8Tk38hkbTLqmATp5if7roxcWrOKWr9Q7q9RBxK_ORSM7gGLZos8VcP9QcK9tHnDSv7OYJRTlclwTp</string>
-
+    <string name="noti_HowToUse">
+        How-To-Use\n
+        \n\n1. 알람을 받고싶은 기기(클라이언트)에는 소전툴즈를, 소전 알람을 내보내는 기기(서버) 에는 플러그인을 각각 설치한다.
+        \n\n2. 클라이언트에서 소전툴즈를 실행해, "NOTI PLUGIN" 메뉴에 들어간 후, 구글에 로그인한다.
+        \n\n3. 서버에서 플러그인을 실행해, 구글에 로그인한다. (단, 클라이언트에서 로그인한것과 같은 계정이여야 한다.)
+        \n\n4. 클라이언트와 서버 모두에서 "구글에 로그인/로그아웃" 버튼 위에 있는 User ID 가 서로 동일한지 확인한다.
+        \n\n5. 클라이언트와 서버 모두에서 Service On/Off 스위치를 켠다.
+        \n\n6. 이제부터 서버에서 소전 알람이 올때마다 클라이언트에도 알람이 동일하게 올것이다. 이제 즐겨주자.</string>
 </resources>
