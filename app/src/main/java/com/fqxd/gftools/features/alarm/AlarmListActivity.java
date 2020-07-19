@@ -18,7 +18,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
+import com.github.megatronking.netbare.NetBare;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,17 +34,27 @@ public class AlarmListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alarmlist);
         SharedPreferences prefs = getSharedPreferences("MainActivity", MODE_PRIVATE);
         Switch alarmOnOff = findViewById(R.id.OnOff);
+        if(!checkAccessibilityPermissions()) prefs.edit().putBoolean("AlarmOnOff",false).apply();
         alarmOnOff.setChecked(prefs.getBoolean("AlarmOnOff", false));
         alarmOnOff.setOnCheckedChangeListener((buttonView, isChecked) -> {
             Log.d("access",checkAccessibilityPermissions() ? "true" : "false");
             if(!checkAccessibilityPermissions()) {
-                if(!alarmOnOff.isChecked()) prefs.edit().putBoolean("AlarmOnOff", alarmOnOff.isChecked()).apply();
+                if(!alarmOnOff.isChecked()) {
+                    prefs.edit().putBoolean("AlarmOnOff", alarmOnOff.isChecked()).apply();
+                    NetBare.get().stop();
+                }
                 else {
                     setAccessibilityPermissions();
                     alarmOnOff.setChecked(false);
                 }
             }
-            else prefs.edit().putBoolean("AlarmOnOff", alarmOnOff.isChecked()).apply();
+            else {
+                prefs.edit().putBoolean("AlarmOnOff", alarmOnOff.isChecked()).apply();
+                if(alarmOnOff.isChecked()) {
+                    NetBare.get().prepare();
+                    NetBare.get().start(((Global) getApplication()).getConfig());
+                } else NetBare.get().stop();
+            }
         });
 
         Button add = findViewById(R.id.add);

@@ -43,10 +43,13 @@ public class Sector {
        return list;
     }
 
+    public static Sector getSectorFromOpId(int Opid) {
+        return new Sector(Opid / 4, Opid % 4);
+    }
+
     public String GetLSDTable(){
         String HHMM = null;
         switch (H){
-
             case 0:
                 HHMM = case0(M);
                 break;

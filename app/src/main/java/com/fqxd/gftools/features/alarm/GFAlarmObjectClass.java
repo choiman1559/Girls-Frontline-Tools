@@ -58,7 +58,7 @@ public class GFAlarmObjectClass {
         timeToTrigger = date.getTimeInMillis();
     }
 
-    void setTimeToTriggerAndHourAndMinuteFromSector() {
+    public void setTimeToTriggerAndHourAndMinuteFromSector() {
         setHourAndMinuteFromSector();
         setTimeToTriggerFromHourAndMinute();
     }

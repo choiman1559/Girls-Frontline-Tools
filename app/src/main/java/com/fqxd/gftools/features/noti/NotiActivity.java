@@ -63,13 +63,10 @@ public class NotiActivity extends AppCompatActivity implements GoogleApiClient.O
         else guid.setText(R.string.guid);
 
         onoff.setChecked(prefs.getBoolean("Enabled", false));
-        onoff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(!getSharedPreferences("NotiPrefs", MODE_PRIVATE).getString("uid", "").equals(""))
-                    FirebaseMessaging.getInstance().subscribeToTopic(getSharedPreferences("NotiPrefs", MODE_PRIVATE).getString("uid", ""));
-                prefs.edit().putBoolean("Enabled",onoff.isChecked()).apply();
-            }
+        onoff.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(!getSharedPreferences("NotiPrefs", MODE_PRIVATE).getString("uid", "").equals(""))
+                FirebaseMessaging.getInstance().subscribeToTopic(getSharedPreferences("NotiPrefs", MODE_PRIVATE).getString("uid", ""));
+            prefs.edit().putBoolean("Enabled",onoff.isChecked()).apply();
         });
 
         if (!prefs.getString("uid", "").equals("")) {
@@ -82,14 +79,11 @@ public class NotiActivity extends AppCompatActivity implements GoogleApiClient.O
             onoff.setEnabled(false);
             prefs.edit().putBoolean("Enabled", false).apply();
         }
-        glogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (prefs.getString("uid", "").equals("")) {
-                    Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-                    startActivityForResult(signInIntent, RC_SIGN_IN);
-                } else signOut(onoff,prefs);
-            }
+        glogin.setOnClickListener(v -> {
+            if (prefs.getString("uid", "").equals("")) {
+                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+                startActivityForResult(signInIntent, RC_SIGN_IN);
+            } else signOut(onoff,prefs);
         });
     }
 
@@ -119,18 +113,15 @@ public class NotiActivity extends AppCompatActivity implements GoogleApiClient.O
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(NotiActivity.this, "인증 실패", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(NotiActivity.this, "구글 로그인 인증 성공", Toast.LENGTH_SHORT).show();
-                            final TextView guid = findViewById(R.id.guid);
-                            guid.setText("User Id : " + mAuth.getUid());
-                            getSharedPreferences("NotiPrefs", MODE_PRIVATE).edit().putString("uid", mAuth.getUid()).apply();
-                            NotiActivity.this.recreate();
-                        }
+                .addOnCompleteListener(this, task -> {
+                    if (!task.isSuccessful()) {
+                        Toast.makeText(NotiActivity.this, "인증 실패", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(NotiActivity.this, "구글 로그인 인증 성공", Toast.LENGTH_SHORT).show();
+                        final TextView guid = findViewById(R.id.guid);
+                        guid.setText("User Id : " + mAuth.getUid());
+                        getSharedPreferences("NotiPrefs", MODE_PRIVATE).edit().putString("uid", mAuth.getUid()).apply();
+                        NotiActivity.this.recreate();
                     }
                 });
     }

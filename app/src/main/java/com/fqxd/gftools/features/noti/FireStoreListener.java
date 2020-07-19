@@ -37,33 +37,29 @@ public class FireStoreListener extends Service {
         if(getSharedPreferences("NotiPrefs",MODE_PRIVATE).getBoolean("Enabled",false)) {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             final DocumentReference docRef = db.collection(getSharedPreferences("NotiPrefs", MODE_PRIVATE).getString("uid", "error")).document("data");
-            docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                @Override
-                public void onEvent(@Nullable DocumentSnapshot snapshot,
-                                    @Nullable FirebaseFirestoreException e) {
-                    if (e != null) {
-                        Log.w(TAG, "Listen failed.", e);
-                        return;
-                    }
+            docRef.addSnapshotListener((snapshot, e) -> {
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e);
+                    return;
+                }
 
-                    if (snapshot != null && snapshot.exists()) {
-                        String packagename = snapshot.getString("package");
-                        CharSequence title = snapshot.getString("title");
-                        CharSequence text = snapshot.getString("text");
-                        CharSequence subtext = snapshot.getString("subtext");
+                if (snapshot != null && snapshot.exists()) {
+                    String packagename = snapshot.getString("package");
+                    CharSequence title = snapshot.getString("title");
+                    CharSequence text = snapshot.getString("text");
+                    CharSequence subtext = snapshot.getString("subtext");
 
-                        Notify.create(FireStoreListener.this)
-                                .setTitle(title.toString())
-                                .setContent(text.toString())
-                                .setLargeIcon(R.drawable.gf_icon)
-                                .setImportance(Notify.NotificationImportance.MAX)
-                                .setSmallIcon(R.drawable.start_xd)
-                                .enableVibration(true)
-                                .setAutoCancel(true)
-                                .show();
-                    } else {
-                        Log.d(TAG, "Current data: null");
-                    }
+                    Notify.create(FireStoreListener.this)
+                            .setTitle(title.toString())
+                            .setContent(text.toString())
+                            .setLargeIcon(R.drawable.gf_icon)
+                            .setImportance(Notify.NotificationImportance.MAX)
+                            .setSmallIcon(R.drawable.start_xd)
+                            .enableVibration(true)
+                            .setAutoCancel(true)
+                            .show();
+                } else {
+                    Log.d(TAG, "Current data: null");
                 }
             });
         }

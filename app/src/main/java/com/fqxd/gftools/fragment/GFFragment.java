@@ -198,36 +198,36 @@ public class GFFragment extends Fragment {
     }
 
     String indexToPackage(int index) {
-        int i;
+        String i;
         switch (index) {
             case 1:
-                i = R.string.target_kr;
+                i = "kr.txwy.and.snqx";
                 break;
 
             case 2:
-                i = R.string.target_tw;
+                i = "tw.txwy.and.snqx";
                 break;
 
             case 3:
-                i = R.string.target_cn_uc;
+                i = "com.digitalsky.girlsfrontline.cn.uc";
                 break;
 
             case 4:
-                i = R.string.target_jp;
+                i = "com.sunborn.girlsfrontline.jp";
                 break;
 
             case 5:
-                i = R.string.target_en;
+                i = "com.sunborn.girlsfrontline.en";
                 break;
 
             case 6:
-                i = R.string.target_cn_bili;
+                i = "com.digitalsky.girlsfrontline.cn.bili";
                 break;
 
             default:
                 return "";
         }
-        return getString(i);
+        return i;
     }
 
     void backup(String pkg) {

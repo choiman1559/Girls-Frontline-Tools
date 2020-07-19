@@ -6,18 +6,24 @@ import android.view.accessibility.AccessibilityEvent;
 import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
 import com.github.megatronking.netbare.NetBare;
+import com.tencent.mm.opensdk.utils.Log;
 
 import java.util.ArrayList;
 
 public class DetectGFService extends AccessibilityService {
+    String lastPackage = "";
+
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        if(isGF("" + event.getPackageName()) &&
+        Log.d("event","" + event.getPackageName());
+        if((isGF("" + event.getPackageName()) || (isGF(lastPackage) && ("" + event.getPackageName()).equals("com.android.systemui")))  &&
                 getSharedPreferences("MainActivity",MODE_PRIVATE).getBoolean("AlarmOnOff",false)) {
-            NetBare.get().start(((Global)getApplication()).getConfig());
+            //NetBare.get().prepare();
+            //NetBare.get().start(((Global)getApplication()).getConfig());
         } else {
-            NetBare.get().stop();
+            //NetBare.get().stop();
         }
+        this.lastPackage = "" + event.getPackageName();
     }
 
     boolean isGF(String Package) {

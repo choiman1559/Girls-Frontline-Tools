@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,5 +57,24 @@ public class AlarmUtils {
             }
         }
         prefs.edit().putString("AlarmData",array.toString()).apply();
+    }
+
+    void onPacketReceived(String rawData) {
+        String outdatacode = substringBetween(rawData.replace("%3d","="),"outdatacode=","&req_id=");
+        Log.d("outdatacode",outdatacode);
+    }
+
+    private String substringBetween(String str, String open, String close) {
+        if (str == null || open == null || close == null) {
+            return null;
+        }
+        int start = str.indexOf(open);
+        if (start != -1) {
+            int end = str.indexOf(close, start + open.length());
+            if (end != -1) {
+                return str.substring(start + open.length(), end);
+            }
+        }
+        return null;
     }
 }

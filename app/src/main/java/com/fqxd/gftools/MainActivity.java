@@ -13,6 +13,7 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -147,8 +148,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        OssLicensesMenuActivity.setActivityTitle("OSS License Notice");
         findViewById(R.id.action_b).setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/choiman1559/Girls-Frontline-Tools"))));
-        findViewById(R.id.action_c).setOnClickListener(v -> startActivity(new Intent(MainActivity.this,OSSActivity.class)));
+        findViewById(R.id.action_c).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, OssLicensesMenuActivity.class)));
         FloatingActionButton debug = findViewById(R.id.action_d);
         debug.setTitle((getPreferences(MODE_PRIVATE).getBoolean("debug",false) ? "Hide" : "Show") + " Unstable features");
         debug.setOnClickListener(v -> {

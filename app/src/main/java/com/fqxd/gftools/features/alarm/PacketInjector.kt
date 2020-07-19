@@ -47,7 +47,9 @@ class PacketInjector(private val session: Session, private val context: Context)
     @Throws(IOException::class)
     override fun onRequestInject(request: HttpRequest, body: HttpBody, callback: InjectorCallback) {
         callback.onFinished(body)
-        Log.d("REQUEST", String(body.toBuffer().array()))
+        val str = String(body.toBuffer().array())
+        Log.d("REQUEST", str)
+        if(str.contains("outdatacode")) AlarmUtils().onPacketReceived(str)
         this.request = RequestFactory[request.path(), body.toBuffer().array()]
         session.networkManager.requestHandlerManager.handle(this.request!!)
     }
@@ -94,6 +96,8 @@ class PacketInjector(private val session: Session, private val context: Context)
                             line,
                             request!!
                     ]
+
+                    Log.d("INDEX",response.toString())
 
                     try {
                         session.networkManager.responseHandlerManager.handle(response)

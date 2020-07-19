@@ -58,7 +58,7 @@ public class Global extends Application {
     private void registerNotificationChannels() {
         NotificationManager mNotificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         if(Build.VERSION.SDK_INT > 25) {
-            NotificationChannel mChannel = new NotificationChannel("VpnService", "VpnService", NotificationManager.IMPORTANCE_MIN);
+            NotificationChannel mChannel = new NotificationChannel("VpnService", "VpnService", NotificationManager.IMPORTANCE_NONE);
             mChannel.setDescription("vpn service Notification Channel");
             mChannel.enableVibration(false);
             mChannel.setImportance(NotificationManager.IMPORTANCE_NONE);
