@@ -9,14 +9,12 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/Hour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Hour"
             android:enabled="false"/>
 
         <EditText
-            android:id="@+id/Minute"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Minute"
@@ -41,7 +39,6 @@
             android:hint="SquadNumber" />
 
         <EditText
-            android:id="@+id/timeToTrigger"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="timeToTrigger"

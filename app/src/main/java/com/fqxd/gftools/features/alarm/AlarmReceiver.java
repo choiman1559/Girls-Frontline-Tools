@@ -33,7 +33,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                     .show();
 
             SharedPreferences prefs = context.getSharedPreferences("MainActivity",Context.MODE_PRIVATE);
-            JSONArray array = new JSONArray(prefs.getString("AlarmData","[]"));
+            JSONArray array = new JSONArray(prefs.getString("AlarmData","[ ]"));
             for(int i = 0;i < array.length();i++) {
                 if(array.getJSONObject(i).getLong("ID") == obj.parse().getLong("ID")) {
                     array.remove(i);

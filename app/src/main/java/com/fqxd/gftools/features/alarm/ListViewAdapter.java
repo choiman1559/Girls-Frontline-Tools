@@ -25,6 +25,7 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.ViewHo
 
     private JSONArray data;
     private Context context;
+    OnDataChangedListener Listener;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView sector;
@@ -87,7 +88,7 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.ViewHo
                     pm.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED,PackageManager.DONT_KILL_APP);
 
                     SharedPreferences prefs = context.getSharedPreferences("MainActivity",Context.MODE_PRIVATE);
-                    JSONArray array = new JSONArray(prefs.getString("AlarmData","[]"));
+                    JSONArray array = new JSONArray(prefs.getString("AlarmData","[ ]"));
                     for(int i = 0;i < array.length();i++) {
                         if(array.getJSONObject(i).getLong("ID") == obj.getLong("ID")) {
                             array.remove(i);
@@ -95,16 +96,26 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.ViewHo
                         }
                     }
                     prefs.edit().putString("AlarmData",array.toString()).apply();
+                    Listener.onDataChangedEvent();
                     notifyItemRemoved(position);
                     notifyDataSetChanged();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                Listener.onDataChangedEvent();
                 notifyDataSetChanged();
             });
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public interface OnDataChangedListener{
+        void onDataChangedEvent();
+    }
+
+    public void setOnDataChangedListener(OnDataChangedListener listener){
+        Listener = listener;
     }
 
     @Override

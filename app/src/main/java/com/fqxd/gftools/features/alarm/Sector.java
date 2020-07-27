@@ -10,7 +10,7 @@ public class Sector {
     private int H;
     private int M;
 
-    Sector(int H,int M) {
+    Sector(int H, int M) {
         this.H = H;
         this.M = M;
     }
@@ -25,31 +25,31 @@ public class Sector {
 
     public JSONObject getJsonObj() throws JSONException {
         JSONObject json = new JSONObject();
-        json.put("H",H);
-        json.put("M",M);
+        json.put("H", H);
+        json.put("M", M);
         return json;
     }
 
     public static Sector getSectorFromJson(JSONObject jsonObject) throws JSONException {
-        return new Sector(jsonObject.getInt("H"),jsonObject.getInt("M"));
+        return new Sector(jsonObject.getInt("H"), jsonObject.getInt("M"));
     }
 
     public List<Integer> toInteger(String HHMM) {
-       char[] arr = HHMM.toCharArray();
-       List<Integer> list = new ArrayList<>();
+        char[] arr = HHMM.toCharArray();
+        List<Integer> list = new ArrayList<>();
 
-       list.add(Integer.parseInt(Character.toString(arr[0]) + Character.toString(arr[1])));
-       list.add(Integer.parseInt(Character.toString(arr[2]) + Character.toString(arr[3])));
-       return list;
+        list.add(Integer.parseInt(Character.toString(arr[0]) + Character.toString(arr[1])));
+        list.add(Integer.parseInt(Character.toString(arr[2]) + Character.toString(arr[3])));
+        return list;
     }
 
     public static Sector getSectorFromOpId(int Opid) {
-        return new Sector(Opid / 4, Opid % 4);
+        return new Sector((Opid - 1) / 4, Opid % 4 != 0 ? Opid % 4 : 4);
     }
 
-    public String GetLSDTable(){
+    public String GetLSDTable() {
         String HHMM = null;
-        switch (H){
+        switch (H) {
             case 0:
                 HHMM = case0(M);
                 break;
@@ -102,22 +102,24 @@ public class Sector {
                 HHMM = case12(M);
                 break;
 
+            case 13:
+                HHMM = case13(M);
+                break;
+
             default:
-                throwExcept(H,M);
+                throwExcept(H, M);
                 break;
         }
         return HHMM;
     }
 
-    private void throwExcept(int H,int M){
+    private void throwExcept(int H, int M) {
         throw new IllegalArgumentException("Local " + H + "-" + M + " is not correct local!");
     }
 
-    private String case0(int M)
-    {
+    private String case0(int M) {
         String imsi = null;
-        switch (M)
-        {
+        switch (M) {
             case 0:
                 imsi = "0001";
                 break;
@@ -139,17 +141,15 @@ public class Sector {
                 break;
 
             default:
-                throwExcept(0,M);
+                throwExcept(0, M);
                 break;
         }
         return imsi;
     }
 
-    private String case1(int M)
-    {
+    private String case1(int M) {
         String imsi = null;
-        switch (M)
-        {
+        switch (M) {
             case 1:
                 imsi = "0015";
                 break;
@@ -167,17 +167,15 @@ public class Sector {
                 break;
 
             default:
-                throwExcept(1,M);
+                throwExcept(1, M);
                 break;
         }
         return imsi;
     }
 
-    private String case2(int M)
-    {
+    private String case2(int M) {
         String imsi = null;
-        switch (M)
-        {
+        switch (M) {
             case 1:
                 imsi = "0040";
                 break;
@@ -195,17 +193,15 @@ public class Sector {
                 break;
 
             default:
-                throwExcept(2,M);
+                throwExcept(2, M);
                 break;
         }
         return imsi;
     }
 
-    private String case3(int M)
-    {
+    private String case3(int M) {
         String imsi = null;
-        switch (M)
-        {
+        switch (M) {
             case 1:
                 imsi = "0020";
                 break;
@@ -223,17 +219,15 @@ public class Sector {
                 break;
 
             default:
-                throwExcept(3,M);
+                throwExcept(3, M);
                 break;
         }
         return imsi;
     }
 
-    private String case4(int M)
-    {
+    private String case4(int M) {
         String imsi = null;
-        switch (M)
-        {
+        switch (M) {
             case 1:
                 imsi = "0100";
                 break;
@@ -251,17 +245,15 @@ public class Sector {
                 break;
 
             default:
-                throwExcept(4,M);
+                throwExcept(4, M);
                 break;
         }
         return imsi;
     }
 
-    private String case5(int M)
-    {
+    private String case5(int M) {
         String imsi = null;
-        switch (M)
-        {
+        switch (M) {
             case 1:
                 imsi = "0030";
                 break;
@@ -279,17 +271,15 @@ public class Sector {
                 break;
 
             default:
-                throwExcept(5,M);
+                throwExcept(5, M);
                 break;
         }
         return imsi;
     }
 
-    private String case6(int M)
-    {
+    private String case6(int M) {
         String imsi = null;
-        switch (M)
-        {
+        switch (M) {
             case 1:
                 imsi = "0200";
                 break;
@@ -307,17 +297,15 @@ public class Sector {
                 break;
 
             default:
-                throwExcept(6,M);
+                throwExcept(6, M);
                 break;
         }
         return imsi;
     }
 
-    private String case7(int M)
-    {
+    private String case7(int M) {
         String imsi = null;
-        switch (M)
-        {
+        switch (M) {
             case 1:
                 imsi = "0230";
                 break;
@@ -335,17 +323,15 @@ public class Sector {
                 break;
 
             default:
-                throwExcept(7,M);
+                throwExcept(7, M);
                 break;
         }
         return imsi;
     }
 
-    private String case8(int M)
-    {
+    private String case8(int M) {
         String imsi = null;
-        switch (M)
-        {
+        switch (M) {
             case 1:
                 imsi = "0100";
                 break;
@@ -363,17 +349,15 @@ public class Sector {
                 break;
 
             default:
-                throwExcept(8,M);
+                throwExcept(8, M);
                 break;
         }
         return imsi;
     }
 
-    private String case9(int M)
-    {
+    private String case9(int M) {
         String imsi = null;
-        switch (M)
-        {
+        switch (M) {
             case 1:
                 imsi = "0030";
                 break;
@@ -391,17 +375,15 @@ public class Sector {
                 break;
 
             default:
-                throwExcept(9,M);
+                throwExcept(9, M);
                 break;
         }
         return imsi;
     }
 
-    private String case10(int M)
-    {
+    private String case10(int M) {
         String imsi = null;
-        switch (M)
-        {
+        switch (M) {
             case 1:
                 imsi = "0040";
                 break;
@@ -419,17 +401,15 @@ public class Sector {
                 break;
 
             default:
-                throwExcept(10,M);
+                throwExcept(10, M);
                 break;
         }
         return imsi;
     }
 
-    private String case11(int M)
-    {
+    private String case11(int M) {
         String imsi = null;
-        switch (M)
-        {
+        switch (M) {
             case 1:
                 imsi = "0400";
                 break;
@@ -447,17 +427,15 @@ public class Sector {
                 break;
 
             default:
-                throwExcept(11,M);
+                throwExcept(11, M);
                 break;
         }
         return imsi;
     }
 
-    private String case12(int M)
-    {
+    private String case12(int M) {
         String imsi = null;
-        switch (M)
-        {
+        switch (M) {
             case 1:
                 imsi = "0100";
                 break;
@@ -475,7 +453,33 @@ public class Sector {
                 break;
 
             default:
-                throwExcept(12,M);
+                throwExcept(12, M);
+                break;
+        }
+        return imsi;
+    }
+
+    private String case13(int M) {
+        String imsi = null;
+        switch (M) {
+            case 1:
+                imsi = "0300";
+                break;
+
+            case 2:
+                imsi = "0600";
+                break;
+
+            case 3:
+                imsi = "2400";
+                break;
+
+            case 4:
+                imsi = "0600";
+                break;
+
+            default:
+                throwExcept(12, M);
                 break;
         }
         return imsi;

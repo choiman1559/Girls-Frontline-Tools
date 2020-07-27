@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,8 +43,18 @@ public class HomeFragment extends Fragment {
         view.findViewById(R.id.XAPKInstall).setOnClickListener(v -> startActivity(new Intent(v.getContext(), XapkActivity.class)));
         view.findViewById(R.id.GFDButton).setOnClickListener(v -> startActivity(new Intent(v.getContext(), GFDActivity.class)));
         view.findViewById(R.id.ZASButton).setOnClickListener(v -> startActivity(new Intent(v.getContext(), JasActivity.class)));
-        view.findViewById(R.id.NekoButton).setOnClickListener(v -> startActivity(new Intent(v.getContext(), GFNekoActivity.class)));
         view.findViewById(R.id.AlarmButton).setOnClickListener(v -> startActivity(new Intent(v.getContext(), AlarmListActivity.class)));
+        view.findViewById(R.id.NekoButton).setOnClickListener(v -> {
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                if(Settings.canDrawOverlays(v.getContext())) {
+                    startActivity(new Intent(v.getContext(), GFNekoActivity.class));
+                }else{
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + v.getContext().getPackageName()));
+                    Toast.makeText(v.getContext().getApplicationContext(), "이 기능을 사용하려면 다른 앱 위에 그리기 기능이 필요합니다!", Toast.LENGTH_SHORT).show();
+                    v.getContext().startActivity(intent);
+                }
+            }
+        });
         view.findViewById(R.id.NotiButton).setOnClickListener(v -> {
             if (isOffline(v.getContext())) {
                 Snackbar.make(v, "Check Internet and Try Again", Snackbar.LENGTH_LONG)
@@ -52,8 +65,8 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        int visiblity = view.getContext().getSharedPreferences("MainActivity", Context.MODE_PRIVATE).getBoolean("debug", false) ? View.VISIBLE : View.GONE;
-        view.findViewById(R.id.AlarmButton).setVisibility(visiblity);
+        //int visibility = view.getContext().getSharedPreferences("MainActivity", Context.MODE_PRIVATE).getBoolean("debug", false) ? View.VISIBLE : View.GONE;
+        //view.findViewById(R.id.AlarmButton).setVisibility(visibility);
     }
 
     public boolean isOffline(Context context) {

@@ -16,7 +16,7 @@ public class BootCompleteReceiver extends BroadcastReceiver {
         if (Objects.equals(intent.getAction(), "android.intent.action.BOOT_COMPLETED")) {
             SharedPreferences prefs = context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE);
             try {
-                JSONArray array = new JSONArray(prefs.getString("AlarmData","[]"));
+                JSONArray array = new JSONArray(prefs.getString("AlarmData","[ ]"));
                 for(int i = 0;i < array.length();i++) {
                     GFAlarmObjectClass obj = GFAlarmObjectClass.getGFAlarmObjectClassFromJson(array.getJSONObject(i));
                     if(System.currentTimeMillis() < obj.getTimeToTrigger()) {

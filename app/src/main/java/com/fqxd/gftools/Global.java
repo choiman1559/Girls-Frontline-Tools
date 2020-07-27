@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 
+import com.dp.logcat.Logcat;
 import com.fqxd.gftools.features.alarm.PacketInjector;
 import com.github.megatronking.netbare.NetBare;
 import com.github.megatronking.netbare.NetBareConfig;
@@ -20,6 +21,11 @@ import kotlin.collections.CollectionsKt;
 public class Global extends Application {
     private JKS jks;
     private final Session session = new Session();
+    private String currentPackage = "";
+    public Logcat logcat;
+
+    public String getCurrentPackage() { return currentPackage; }
+    public void setCurrentPackage(String string) { currentPackage = string; }
 
     public final Session getSession() {
         return this.session;
@@ -58,8 +64,8 @@ public class Global extends Application {
     private void registerNotificationChannels() {
         NotificationManager mNotificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         if(Build.VERSION.SDK_INT > 25) {
-            NotificationChannel mChannel = new NotificationChannel("VpnService", "VpnService", NotificationManager.IMPORTANCE_NONE);
-            mChannel.setDescription("vpn service Notification Channel");
+            NotificationChannel mChannel = new NotificationChannel("GFPacketService", "GFPacketService", NotificationManager.IMPORTANCE_NONE);
+            mChannel.setDescription("GF Packet Notification Channel");
             mChannel.enableVibration(false);
             mChannel.setImportance(NotificationManager.IMPORTANCE_NONE);
             mChannel.enableLights(false);

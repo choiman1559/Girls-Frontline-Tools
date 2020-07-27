@@ -27,7 +27,7 @@ public class netBareService extends NetBareService {
                 .setContentTitle("VPN running")
                 .setContentText("click here to open")
                 .setContentIntent(pendingIntent);
-        if(Build.VERSION.SDK_INT > 25) builder.setChannelId("VpnService");
+        if(Build.VERSION.SDK_INT > 25) builder.setChannelId("GFPacketService");
         return builder.build();
     }
 }

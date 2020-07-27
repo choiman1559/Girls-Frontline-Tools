@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/GF_Tools.iml" filepath="$PROJECT_DIR$/.idea/modules/GF_Tools.iml" group="GF_Tools" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="GF Tools/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/collections/collections.iml" filepath="$PROJECT_DIR$/.idea/modules/collections/collections.iml" group="GF Tools/collections" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/logcat/logcat.iml" filepath="$PROJECT_DIR$/.idea/modules/logcat/logcat.iml" group="GF Tools/logcat" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/logger/logger.iml" filepath="$PROJECT_DIR$/.idea/modules/logger/logger.iml" group="GF Tools/logger" />
       <module fileurl="file://$PROJECT_DIR$/xDSDKAndroid/xDSDKAndroid.iml" filepath="$PROJECT_DIR$/xDSDKAndroid/xDSDKAndroid.iml" group="GF Tools/xDSDKAndroid" />
     </modules>
   </component>

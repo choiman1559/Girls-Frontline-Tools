@@ -46,16 +46,6 @@
   </string-array>
 
   <!-- behaviour -->
-  <string-array name="pref_motion_behaviour_entries">
-    <item>Closer</item>
-    <item>Further</item>
-    <item>Whimsical</item>
-  </string-array>
 
-  <string-array name="pref_motion_behaviour_entryvalues">
-    <item>closer</item>
-    <item>further</item>
-    <item>whimsical</item>
-  </string-array>
 </resources>
 

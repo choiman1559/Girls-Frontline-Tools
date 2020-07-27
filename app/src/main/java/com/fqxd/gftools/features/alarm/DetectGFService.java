@@ -5,28 +5,28 @@ import android.view.accessibility.AccessibilityEvent;
 
 import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
-import com.github.megatronking.netbare.NetBare;
 import com.tencent.mm.opensdk.utils.Log;
 
 import java.util.ArrayList;
 
 public class DetectGFService extends AccessibilityService {
-    String lastPackage = "";
+    public static String lastPackage = "";
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         Log.d("event","" + event.getPackageName());
         if((isGF("" + event.getPackageName()) || (isGF(lastPackage) && ("" + event.getPackageName()).equals("com.android.systemui")))  &&
                 getSharedPreferences("MainActivity",MODE_PRIVATE).getBoolean("AlarmOnOff",false)) {
+            new Global().setCurrentPackage(event.getPackageName() + "");
             //NetBare.get().prepare();
             //NetBare.get().start(((Global)getApplication()).getConfig());
         } else {
             //NetBare.get().stop();
         }
-        this.lastPackage = "" + event.getPackageName();
+        lastPackage = "" + event.getPackageName();
     }
 
-    boolean isGF(String Package) {
+    public boolean isGF(String Package) {
         ArrayList<String> PackageNames = new ArrayList<>();
         PackageNames.add(getString(R.string.target_cn_uc));
         PackageNames.add(getString(R.string.target_cn_bili));

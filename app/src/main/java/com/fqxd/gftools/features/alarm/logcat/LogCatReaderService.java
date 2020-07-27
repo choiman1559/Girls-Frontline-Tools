@@ -1,21 +1,42 @@
 package com.fqxd.gftools.features.alarm.logcat;
 
+import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
+import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.dp.logcat.Log;
+import com.dp.logcat.Logcat;
+
+import com.fqxd.gftools.BuildConfig;
+import com.fqxd.gftools.features.alarm.AlarmListActivity;
 import com.fqxd.gftools.features.alarm.AlarmUtils;
+import com.fqxd.gftools.features.alarm.DetectGFService;
 import com.fqxd.gftools.features.alarm.GFAlarmObjectClass;
 import com.fqxd.gftools.features.alarm.Sector;
 
+import org.jetbrains.annotations.NotNull;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LogCatReaderService extends Service {
+    Logcat logcat;
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -24,32 +45,110 @@ public class LogCatReaderService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        new Thread(() -> {
-            String lastline = "";
-            while(true) {
-                try {
-                    Process process = Runtime.getRuntime().exec("logcat -t 1 | grep Unity");
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                    String line;
-                    while ((line = bufferedReader.readLine()) != null) {
-                        if(lastline.equals(line)) continue;
-                        if (line.contains("Enqueue: Operation/startOperation")) {
-                            JSONObject obj = new JSONObject("{" + substringBetween(line,"Enqueue: Operation/startOperation\t{","}") + "}");
-                            GFAlarmObjectClass objectClass = new GFAlarmObjectClass();
-                            objectClass.setSector(Sector.getSectorFromOpId(obj.getInt("operation_id")));
-                            objectClass.setTimeToTriggerAndHourAndMinuteFromSector();
-                            objectClass.setPackage("kr.txwy.and.snqx");
-                            objectClass.setSquadNumber(obj.getInt("team_id"));
-                            new AlarmUtils().setAlarm(objectClass.parse(),this);
-                            lastline = line;
-                        }
+        startForeground(1, createNotification());
+        logcat.bind(AlarmListActivity.appCompatActivity);
+        logcat.addEventListener(this::onReceivedLogs);
+        logcat.start();
+        return START_STICKY;
+    }
+
+    Notification createNotification() {
+        Intent intent = new Intent(this, AlarmListActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Notification.Builder builder = new Notification.Builder(this)
+                .setSmallIcon(android.R.drawable.ic_lock_idle_lock)
+                .setContentTitle("Logcat Reader is running")
+                .setContentText("click here to open")
+                .setContentIntent(pendingIntent);
+        if (Build.VERSION.SDK_INT > 25) builder.setChannelId("GFPacketService");
+        return builder.build();
+    }
+
+    @Override
+    public void onCreate() {
+        logcat = new Logcat(250000);
+        logcat.setMaxLogsCount(250000);
+        logcat.setPollInterval(1);
+        logcat.setLogcatBuffers(Logcat.Companion.getDEFAULT_BUFFERS());
+        super.onCreate();
+    }
+
+    public void onReceivedLogs(@NotNull List<Log> logs) {
+        String msg = logs.get(logs.size() - 1).getMsg();
+        if (msg.contains("The referenced script on this Behaviour (Game Object '<null>') is missing!")) return;
+        if(!msg.contains(logs.get(logs.size() - 1).getPriority() + "/logC:") && BuildConfig.DEBUG)
+            android.util.Log.d("log",  logs.get(logs.size() - 1).getPriority() + "/logC: " + msg);
+        try {
+            if (isGF(DetectGFService.lastPackage)) {
+                if (msg.contains("Dequeue: Operation/startOperation\t{")) {
+                    JSONObject obj = new JSONObject("{" + substringBetween(msg, "Dequeue: Operation/startOperation\t{", "}") + "}");
+                    JSONObject o = new AlarmUtils().checkOverlap(obj.getInt("operation_id"),DetectGFService.lastPackage,getApplicationContext());
+                    if(o == null) {
+                        android.util.Log.d("json", obj.toString());
+                        GFAlarmObjectClass objectClass = new GFAlarmObjectClass();
+                        objectClass.setSector(Sector.getSectorFromOpId(obj.getInt("operation_id")));
+                        objectClass.setTimeToTriggerAndHourAndMinuteFromSector();
+                        objectClass.setPackage(DetectGFService.lastPackage);
+                        objectClass.setSquadNumber(obj.getInt("team_id"));
+                        new AlarmUtils().setAlarm(objectClass.parse(), this);
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                        builder.setTitle("중복된 군수알람이 있습니다!").setMessage("덮어 씌우시겠습니까?");
+                        builder.setNegativeButton("취소", (dialog, id) -> { });
+                        builder.setPositiveButton("덮어쓰기", (dialog, id) -> {
+                            try {
+                                new AlarmUtils().cancel(o,getApplicationContext());
+                                GFAlarmObjectClass objectClass = new GFAlarmObjectClass();
+                                objectClass.setSector(Sector.getSectorFromOpId(obj.getInt("operation_id")));
+                                objectClass.setTimeToTriggerAndHourAndMinuteFromSector();
+                                objectClass.setPackage(DetectGFService.lastPackage);
+                                objectClass.setSquadNumber(obj.getInt("team_id"));
+                                new AlarmUtils().setAlarm(objectClass.parse(), this);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        });
+                        AlertDialog alertDialog = builder.create();
+                        alertDialog.getWindow().setType((Build.VERSION.SDK_INT > 25 ? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY : WindowManager.LayoutParams.TYPE_SYSTEM_ALERT));
+                        alertDialog.show();
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                }
+
+                if (msg.contains("Dequeue: Operation/abortOperation\t{")) {
+                    JSONObject obj = new JSONObject("{" + substringBetween(msg, "Dequeue: Operation/abortOperation\t{", "}") + "}");
+                    JSONObject o = new AlarmUtils().checkOverlap(obj.getInt("operation_id"),DetectGFService.lastPackage,getApplicationContext());
+
+                    if(o != null) {
+                        new AlarmUtils().cancel(o,getApplicationContext());
+                        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                            try {
+                                GFAlarmObjectClass ob = GFAlarmObjectClass.getGFAlarmObjectClassFromJson(o);
+                                Toast.makeText(getApplicationContext(), "제 " + ob.getSquadNumber() + "제대의 " + ob.getSector().getH() + "-" + ob.getSector().getM() + " 지 군수지원 알람이 삭제되었습니다!", Toast.LENGTH_SHORT).show();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }, 0);
+                    }
                 }
             }
-        }).start();
-        return super.onStartCommand(intent, flags, startId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isGF(String Package) {
+        ArrayList<String> PackageNames = new ArrayList<>();
+        PackageNames.add("com.digitalsky.girlsfrontline.cn.uc");
+        PackageNames.add("com.digitalsky.girlsfrontline.cn.bili");
+        PackageNames.add("com.sunborn.girlsfrontline.en");
+        PackageNames.add("com.sunborn.girlsfrontline.jp");
+        PackageNames.add("tw.txwy.and.snqx");
+        PackageNames.add("kr.txwy.and.snqx");
+
+        for(String i : PackageNames) {
+            if(i.equals(Package)) return true;
+        }
+        return false;
     }
 
     private String substringBetween(String str, String open, String close) {
@@ -68,6 +167,8 @@ public class LogCatReaderService extends Service {
 
     @Override
     public void onDestroy() {
+        android.util.Log.d("dde","dde");
         super.onDestroy();
+        logcat.stop();
     }
 }

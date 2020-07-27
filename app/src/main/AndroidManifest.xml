@@ -168,16 +168,6 @@
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        <receiver android:name=".features.gfneko.GFNekoReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REPLACED"/>
-                <data android:scheme="package"/>
-            </intent-filter>
-        </receiver>
         <receiver
             android:name=".features.alarm.BootCompleteReceiver"
             android:enabled="true">
@@ -223,5 +213,8 @@
                 <action android:name="com.github.megatronking.netbare.action.Stop"/>
             </intent-filter>
         </service>
+        <service android:name=".features.alarm.logcat.LogCatReaderService"
+            android:permission="android.permission.READ_LOGS">
+    </service>
     </application>
 </manifest>

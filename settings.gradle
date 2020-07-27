@@ -1,2 +1,2 @@
-include ':app', ':xDSDKAndroid'
+include ':app', ':xDSDKAndroid',':logcat',':logger',':collections'
 rootProject.name='GF Tools'
