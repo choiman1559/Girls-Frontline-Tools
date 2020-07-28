@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.djdisodo.NetBare:netbare-injector:ff1f786d91@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/03bc751f0f8efc20bdbfc26766e9a135/jetified-netbare-injector-ff1f786d91/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/03bc751f0f8efc20bdbfc26766e9a135/jetified-netbare-injector-ff1f786d91/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/03bc751f0f8efc20bdbfc26766e9a135/jetified-netbare-injector-ff1f786d91/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a7032e2c2194b6e5aa263e8bac201985/jetified-netbare-injector-ff1f786d91/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a7032e2c2194b6e5aa263e8bac201985/jetified-netbare-injector-ff1f786d91/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a7032e2c2194b6e5aa263e8bac201985/jetified-netbare-injector-ff1f786d91/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

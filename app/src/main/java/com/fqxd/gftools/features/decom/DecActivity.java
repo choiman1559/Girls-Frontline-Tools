@@ -43,6 +43,7 @@ public final class DecActivity extends Activity {
                     new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).setData(Uri.parse("package:" + this.getPackageName())),
                     MainActivity.REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES
             );
+            finish();
         }
         TextView packageinfo = this.findViewById(R.id.packageinfo);
         try {

@@ -24,7 +24,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
-import android.provider.Settings;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Context;
@@ -55,20 +55,8 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
             if (this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(getApplicationContext(), "Storage Permission was rejected", Toast.LENGTH_SHORT).show();
-                this.recreate();
             }
-            return;
-        }
-
-        if (Build.VERSION.SDK_INT >= 26 && !this.getPackageManager().canRequestPackageInstalls()) {
-            this.startActivityForResult(
-                    new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).setData(Uri.parse("package:" + this.getPackageName())),
-                    MainActivity.REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES
-            );
-            if (!this.getPackageManager().canRequestPackageInstalls()) {
-                Toast.makeText(getApplicationContext(), "Package Install Permission was rejected", Toast.LENGTH_SHORT).show();
-                this.finish();
-            }
+            this.finish();
         }
 
         ((ImageView) findViewById(R.id.MainImageView)).setImageResource(R.mipmap.ic_icon_round);
