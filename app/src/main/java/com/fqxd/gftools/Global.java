@@ -20,22 +20,22 @@ import kotlin.collections.CollectionsKt;
 
 public class Global extends Application {
     private JKS jks;
-    private final Session session = new Session();
+    //private final Session session = new Session();
     private String currentPackage = "";
     public Logcat logcat;
 
     public String getCurrentPackage() { return currentPackage; }
     public void setCurrentPackage(String string) { currentPackage = string; }
 
-    public final Session getSession() {
+    /*public final Session getSession() {
         return this.session;
-    }
+    }*/
 
     public final JKS getJks() {
         return this.jks;
     }
 
-    public final NetBareConfig getConfig() {
+    /*public final NetBareConfig getConfig() {
         JKS jks2 = this.jks;
         NetBareConfig.Builder configBuilder = NetBareConfig.defaultHttpConfig(jks2, CollectionsKt.listOf(HttpInjectInterceptor.createFactory(new PacketInjector(this.session, this)))).newBuilder();
         ArrayList<String> array = new ArrayList<>();
@@ -47,7 +47,7 @@ public class Global extends Application {
         array.add("kr.txwy.and.snqx");
         for(String str : array) configBuilder.addAllowedApplication(str);
         return configBuilder.build();
-    }
+    }*/
 
     @Override
     public void onCreate() {

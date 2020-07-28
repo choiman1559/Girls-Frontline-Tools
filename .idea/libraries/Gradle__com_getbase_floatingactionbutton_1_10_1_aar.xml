@@ -4,6 +4,7 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dad62b7821d48e71f516b1ae7de4ebd2/jetified-floatingactionbutton-1.10.1/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dad62b7821d48e71f516b1ae7de4ebd2/jetified-floatingactionbutton-1.10.1/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dad62b7821d48e71f516b1ae7de4ebd2/jetified-floatingactionbutton-1.10.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dad62b7821d48e71f516b1ae7de4ebd2/jetified-floatingactionbutton-1.10.1/res" />
     </CLASSES>
