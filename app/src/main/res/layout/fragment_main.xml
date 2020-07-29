@@ -8,54 +8,65 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/UCButton"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/outline"
-            android:text="@string/UCButton" />
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/XAPKInstall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/outline"
-            android:text="@string/XAPKInstall" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/GFDButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/outline"
-            android:text="@string/GFDButton" />
+                <Button
+                    android:id="@+id/UCButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/outline"
+                    android:text="@string/UCButton" />
 
-        <Button
-            android:id="@+id/ZASButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/outline"
-            android:text="@string/ZasRun" />
+                <Button
+                    android:id="@+id/XAPKInstall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/outline"
+                    android:text="@string/XAPKInstall" />
 
-        <Button
-            android:id="@+id/NekoButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/outline"
-            android:text="@string/NekoButton" />
+                <Button
+                    android:id="@+id/ZASButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/outline"
+                    android:text="@string/ZasRun" />
 
-        <Button
-            android:id="@+id/NotiButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/outline"
-            android:text="@string/NotiButton" />
+                <Button
+                    android:id="@+id/GFDButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/outline"
+                    android:text="@string/GFDButton" />
 
-        <Button
-            android:id="@+id/AlarmButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/outline"
-            android:text="@string/AlarmButton" />
+                <Button
+                    android:id="@+id/NekoButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/outline"
+                    android:text="@string/NekoButton" />
+
+                <Button
+                    android:id="@+id/NotiButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/outline"
+                    android:text="@string/NotiButton" />
+
+                <Button
+                    android:id="@+id/AlarmButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/outline"
+                    android:text="@string/AlarmButton" />
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
