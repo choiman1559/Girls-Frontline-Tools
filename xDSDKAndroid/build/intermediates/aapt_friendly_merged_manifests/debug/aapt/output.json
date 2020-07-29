@@ -10,8 +10,7 @@
       "apkData": {
         "type": "MAIN",
         "splits": [],
-        "versionCode": 1,
-        "versionName": "1.0",
+        "versionCode": -1,
         "outputFile": "xDSDKAndroid-debug.aar",
         "fullName": "debug",
         "baseName": "debug",

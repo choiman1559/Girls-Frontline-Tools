@@ -129,8 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 AppUpdater appUpdater = new AppUpdater(MainActivity.this)
                         .showAppUpdated(true)
                         .setDisplay(Display.DIALOG)
-                        .setUpdateFrom(UpdateFrom.GITHUB)
-                        .setGitHubUserAndRepo("choiman1559", "Girls-Frontline-Tools")
+                        .setUpdateFrom(UpdateFrom.GOOGLE_PLAY)
                         .setButtonDoNotShowAgain(null);
                 appUpdater.start();
             }

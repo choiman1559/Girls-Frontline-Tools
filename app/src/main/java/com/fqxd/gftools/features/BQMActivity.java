@@ -1,9 +1,11 @@
 package com.fqxd.gftools.features;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -34,6 +36,9 @@ public class BQMActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bqm);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("경고").setMessage("이 기능은 더이상 동작하지 않습니다. (deprecated)").setNegativeButton("확인", (dialog, which) -> { }).show();
 
         Button BrenMK = findViewById(R.id.BrenMK);
         Button PSG1 = findViewById(R.id.PSG1);
