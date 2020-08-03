@@ -20,7 +20,10 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.READ_LOGS" tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+    <uses-permission android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
@@ -63,6 +66,7 @@
         <activity android:name=".features.gfd.GFDViewer" />
         <activity android:name=".features.noti.NotiActivity" />
         <activity android:name=".features.gfneko.GFNekoActivity"/>
+        <activity android:name=".features.proxy.ProxyActivity"/>
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -89,10 +93,10 @@
         <activity android:name=".features.CenActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog"/>
         <activity
-            android:name=".features.alarm.AlarmListActivity"
+            android:name=".features.alarm.ui.AlarmListActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".features.alarm.AddAlarmManuallyClass"
+            android:name=".features.alarm.ui.AddAlarmManuallyClass"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".features.decom.DecActivity"
@@ -105,6 +109,15 @@
             android:theme="@style/Theme.AppCompat.Light.Dialog.Alert" />
         <activity
             android:name=".features.xapk.FilePicker"
+            android:theme="@style/FilePickerTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".features.proxy.CAFilePicker"
             android:theme="@style/FilePickerTheme">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
@@ -168,19 +181,19 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <receiver
-            android:name=".features.alarm.BootCompleteReceiver"
+            android:name=".features.alarm.receiver.BootCompleteReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".features.alarm.AlarmReceiver"
+            android:name=".features.alarm.receiver.AlarmReceiver"
             android:enabled="true">
         </receiver>
         <service android:name=".features.gfneko.AnimationService"/>
         <service
-            android:name=".features.alarm.DetectGFService"
+            android:name=".DetectGFService"
             android:enabled="true"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
@@ -204,7 +217,7 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service android:name=".features.alarm.netBareService"
+        <service android:name=".features.alarm.vpn.netBareService"
             android:permission="android.permission.BIND_VPN_SERVICE">
             <intent-filter>
                 <action android:name="android.net.VpnService" />

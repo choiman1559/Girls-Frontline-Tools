@@ -20,7 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.fqxd.gftools.R;
 import com.fqxd.gftools.features.JasActivity;
-import com.fqxd.gftools.features.alarm.AlarmListActivity;
+import com.fqxd.gftools.features.alarm.ui.AlarmListActivity;
 import com.fqxd.gftools.features.gfd.GFDActivity;
 import com.fqxd.gftools.features.gfneko.GFNekoActivity;
 import com.fqxd.gftools.features.noti.NotiActivity;

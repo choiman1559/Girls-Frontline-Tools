@@ -1,2 +1,2 @@
-include ':app', ':xDSDKAndroid',':logcat',':logger',':collections'
+include ':app', ':xDSDKAndroid',':netbare-core',':netbare-injector'
 rootProject.name='GF Tools'

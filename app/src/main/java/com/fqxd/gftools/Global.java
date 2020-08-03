@@ -6,8 +6,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 
-import com.dp.logcat.Logcat;
-import com.fqxd.gftools.features.alarm.PacketInjector;
+import com.fqxd.gftools.features.alarm.vpn.PacketInjector;
 import com.github.megatronking.netbare.NetBare;
 import com.github.megatronking.netbare.NetBareConfig;
 import com.github.megatronking.netbare.http.HttpInjectInterceptor;
@@ -19,25 +18,12 @@ import java.util.ArrayList;
 import kotlin.collections.CollectionsKt;
 
 public class Global extends Application {
-    private JKS jks;
-    //private final Session session = new Session();
-    private String currentPackage = "";
-    public Logcat logcat;
+    private static JKS jks;
+    private static Session session = new Session();
 
-    public String getCurrentPackage() { return currentPackage; }
-    public void setCurrentPackage(String string) { currentPackage = string; }
-
-    /*public final Session getSession() {
-        return this.session;
-    }*/
-
-    public final JKS getJks() {
-        return this.jks;
-    }
-
-    /*public final NetBareConfig getConfig() {
-        JKS jks2 = this.jks;
-        NetBareConfig.Builder configBuilder = NetBareConfig.defaultHttpConfig(jks2, CollectionsKt.listOf(HttpInjectInterceptor.createFactory(new PacketInjector(this.session, this)))).newBuilder();
+    public NetBareConfig getConfig() {
+        JKS jks2 = jks;
+        NetBareConfig.Builder configBuilder = NetBareConfig.defaultHttpConfig(jks2, CollectionsKt.listOf(HttpInjectInterceptor.createFactory(new PacketInjector(session, this)))).newBuilder();
         ArrayList<String> array = new ArrayList<>();
         array.add("com.digitalsky.girlsfrontline.cn.uc");
         array.add("com.digitalsky.girlsfrontline.cn.bili");
@@ -47,7 +33,7 @@ public class Global extends Application {
         array.add("kr.txwy.and.snqx");
         for(String str : array) configBuilder.addAllowedApplication(str);
         return configBuilder.build();
-    }*/
+    }
 
     @Override
     public void onCreate() {
@@ -56,7 +42,7 @@ public class Global extends Application {
         String string = getString(R.string.app_name);
         String string2 = getString(R.string.app_name);
         char[] charArray = string2.toCharArray();
-        this.jks = new JKS(context, string, charArray, getString(R.string.app_name), getString(R.string.app_name), getString(R.string.app_name), getString(R.string.app_name), getString(R.string.app_name));
+        jks = new JKS(context, string, charArray, getString(R.string.app_name), getString(R.string.app_name), getString(R.string.app_name), getString(R.string.app_name), getString(R.string.app_name));
         registerNotificationChannels();
         NetBare.get().attachApplication(this, false);
     }

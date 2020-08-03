@@ -101,6 +101,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/CenButton" />
 
+            <Button
+                android:id="@+id/PXYButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/PXYButton" />
+
             <com.google.android.material.chip.ChipGroup
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">

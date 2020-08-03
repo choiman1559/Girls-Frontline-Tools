@@ -39,6 +39,7 @@
     <string name="BQMButton">BQM! Patcher</string>
     <string name="NotiButton">Noti Plugin</string>
     <string name="CenButton">GF Censorship [ROOT]</string>
+    <string name="PXYButton">Auto Proxy Config [ROOT]</string>
     <string name="NekoButton">GF Neko Floating</string>
 
     <string name="XAPKInstall">XAPK Installer</string>
@@ -56,6 +57,12 @@
     <string name="delete">Delete Alarm</string>
     <string name="add">Add Alarm</string>
     <string name="PacAlarmService">패킷 군수알리미 On/Off</string>
+    <string name="alarm_sel_type_textivew">패킷 캡쳐 방법 선택</string>
+    <string name="alarm_sel_type_adb">ADB 로 패킷 캡쳐(불안정,완자동)</string>
+    <string name="alarm_sel_type_vpn">VPN 으로 패킷 캡쳐(안정됨,반자동)</string>
+    <string name="selnum_H">지역</string>
+    <string name="selnum_M">세부</string>
+    <string name="selnum_S">제대</string>
 
     <string name="b1">인형 제조 시간표</string>
     <string name="b2">장비 제조 시간표</string>

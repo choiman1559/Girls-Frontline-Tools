@@ -95,18 +95,8 @@ public class XapkActivity extends AppCompatActivity {
             b.setTitle("Notice");
             b.setMessage("Do you want to Install ?");
             final File finalFile = file;
-            b.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    new work(finalFile).execute();
-                }
-            });
-            b.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    finish();
-                }
-            });
+            b.setPositiveButton("Yes", (dialogInterface, i) -> new work(finalFile).execute());
+            b.setNegativeButton("No", (dialogInterface, i) -> finish());
             AlertDialog d = b.create();
             d.show();
         }
@@ -162,33 +152,30 @@ public class XapkActivity extends AppCompatActivity {
             builder.setTitle("Attention!");
             builder.setMessage(s);
             final String finalBtn = btn;
-            builder.setPositiveButton(btn, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    if (finalBtn.equals("Install")){
-                        File toInstall = new File(apk);
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            Uri apkUri = FileProvider.getUriForFile(XapkActivity.this, BuildConfig.APPLICATION_ID + ".provider", toInstall);
-                            Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
-                            intent.setData(apkUri);
-                            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                            XapkActivity.this.startActivity(intent);
-                        } else {
-                            Uri apkUri = Uri.fromFile(toInstall);
-                            Intent intent = new Intent(Intent.ACTION_VIEW);
-                            intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            XapkActivity.this.startActivity(intent);
-                        }
-
-                        OBBextrack my = new OBBextrack();
-                        my.deleteDirectory("/sdcard/GF_Tool/Android");
-                        my.deleteFile("/sdcard/GF_Tool/manifest.json");
-                        my.deleteFile("/sdcard/GF_Tool/icon.png");
-                        finish();
+            builder.setPositiveButton(btn, (dialogInterface, i) -> {
+                if (finalBtn.equals("Install")){
+                    File toInstall = new File(apk);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        Uri apkUri = FileProvider.getUriForFile(XapkActivity.this, BuildConfig.APPLICATION_ID + ".provider", toInstall);
+                        Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
+                        intent.setData(apkUri);
+                        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        XapkActivity.this.startActivity(intent);
+                    } else {
+                        Uri apkUri = Uri.fromFile(toInstall);
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        XapkActivity.this.startActivity(intent);
                     }
-                    else finish();
+
+                    OBBextrack my = new OBBextrack();
+                    my.deleteDirectory("/sdcard/GF_Tool/Android");
+                    my.deleteFile("/sdcard/GF_Tool/manifest.json");
+                    my.deleteFile("/sdcard/GF_Tool/icon.png");
+                    finish();
                 }
+                else finish();
             });
 
             AlertDialog alertDialog = builder.create();

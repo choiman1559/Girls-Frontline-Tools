@@ -25,6 +25,7 @@ import com.fqxd.gftools.R;
 import com.fqxd.gftools.features.BQMActivity;
 import com.fqxd.gftools.features.CenActivity;
 import com.fqxd.gftools.features.decom.DecActivity;
+import com.fqxd.gftools.features.proxy.ProxyActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem;
 
@@ -73,6 +74,7 @@ public class GFFragment extends Fragment {
             Button BQM = view.findViewById(R.id.BQMButton);
             Button DEC = view.findViewById(R.id.DECButton);
             Button CEN = view.findViewById(R.id.CENButton);
+            Button PXY = view.findViewById(R.id.PXYButton);
 
             if (new File("/sdcard/GF_Tool/backup/" + pkg + "/").exists()) {
                 RBak.setEnabled(true);
@@ -105,6 +107,7 @@ public class GFFragment extends Fragment {
                 BQM.setEnabled(false);
                 DEC.setEnabled(false);
                 CEN.setEnabled(false);
+                PXY.setEnabled(false);
             }
 
             run.setOnClickListener(v -> {
@@ -134,6 +137,7 @@ public class GFFragment extends Fragment {
             BQM.setOnClickListener(v -> startActivity(BQMActivity.class));
             DEC.setOnClickListener(v -> startActivity(DecActivity.class));
             CEN.setOnClickListener(v -> startActivity(CenActivity.class));
+            PXY.setOnClickListener(v -> startActivity(ProxyActivity.class));
         }
         else ((TextView)view.findViewById(R.id.NoneMessage)).setText("Can't find package \"" + indexToPackage(FragmentPagerItem.getPosition(getArguments())) + "\"");
     }

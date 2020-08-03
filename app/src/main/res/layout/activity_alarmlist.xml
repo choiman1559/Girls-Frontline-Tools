@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#DBDBDB"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -17,7 +19,6 @@
                 android:id="@+id/OnOff"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="#DBDBDB"
                 android:gravity="center"
                 android:text="@string/PacAlarmService" />
 
@@ -29,21 +30,59 @@
 
         </RelativeLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/alarm_sel_type_textivew" />
+
+            <RadioGroup
+                android:id="@+id/RadioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <RadioButton
+                    android:id="@+id/ADBRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alarm_sel_type_adb" />
+
+                <RadioButton
+                    android:id="@+id/VPNRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alarm_sel_type_vpn" />
+            </RadioGroup>
+
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ListView"
             android:layout_marginTop="5dp"
+            android:background="#FFFFFF"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
         </androidx.recyclerview.widget.RecyclerView>
 
         <TextView
+            android:background="#FFFFFF"
             android:id="@+id/dataEmpty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="데이터 없음" />
+            android:text="데이터 없음"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
