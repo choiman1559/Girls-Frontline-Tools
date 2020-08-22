@@ -1,7 +1,5 @@
 package com.fqxd.gftools.features.alarm.utils;
 
-import com.fqxd.gftools.features.alarm.Sector;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,7 +18,7 @@ public class GFAlarmObjectClass {
 
     public void setHour(int Hour) { this.Hour = Hour; }
     public void setMinute(int Minute) { this.Minute = Minute; }
-    public void setSector(com.fqxd.gftools.features.alarm.Sector sector) { this.sector = sector; }
+    public void setSector(Sector sector) { this.sector = sector; }
     public void setSquadNumber(int SquadNumber) { this.SquadNumber = SquadNumber; }
     public void setTimeToTrigger(long timeToTrigger) { this.timeToTrigger = timeToTrigger; }
     public void setPackage(String Package) { this.Package = Package; }
@@ -28,7 +26,7 @@ public class GFAlarmObjectClass {
 
     public int getHour() { return Hour; }
     public int getMinute() { return Minute; }
-    public com.fqxd.gftools.features.alarm.Sector getSector() { return sector; }
+    public Sector getSector() { return sector; }
     public int getSquadNumber() { return SquadNumber; }
     public long getTimeToTrigger() { return timeToTrigger; }
     public String getPackage() { return Package; }

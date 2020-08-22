@@ -33,8 +33,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import eu.chainfire.libsuperuser.Shell;
-
 public class ProxyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

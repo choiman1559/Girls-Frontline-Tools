@@ -20,7 +20,7 @@ import com.fqxd.gftools.features.alarm.ui.AlarmListActivity;
 import com.fqxd.gftools.features.alarm.utils.AlarmUtils;
 import com.fqxd.gftools.DetectGFService;
 import com.fqxd.gftools.features.alarm.utils.GFAlarmObjectClass;
-import com.fqxd.gftools.features.alarm.Sector;
+import com.fqxd.gftools.features.alarm.utils.Sector;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;

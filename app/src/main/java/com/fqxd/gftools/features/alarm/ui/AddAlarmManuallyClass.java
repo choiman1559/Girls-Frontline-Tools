@@ -12,7 +12,7 @@ import com.fqxd.gftools.BuildConfig;
 import com.fqxd.gftools.R;
 import com.fqxd.gftools.features.alarm.utils.AlarmUtils;
 import com.fqxd.gftools.features.alarm.utils.GFAlarmObjectClass;
-import com.fqxd.gftools.features.alarm.Sector;
+import com.fqxd.gftools.features.alarm.utils.Sector;
 
 import org.json.JSONException;
 

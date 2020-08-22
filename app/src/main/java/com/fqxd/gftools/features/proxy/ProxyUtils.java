@@ -10,14 +10,14 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 public class ProxyUtils {
-    public static void setProxy(ProxyConfig r0) throws IOException {
+    public static void setProxy(ProxyConfig r0) throws IOException, InterruptedException {
         String cmd = "su -c settings put global http_proxy " + r0.getAddress() + ":" + r0.getPort();
-        Runtime.getRuntime().exec(cmd);
+        Runtime.getRuntime().exec(cmd).waitFor();
     }
 
-    public static void undoProxy() throws IOException {
+    public static void undoProxy() throws IOException, InterruptedException {
         String cmd = "su -c settings put global http_proxy :0";
-        Runtime.getRuntime().exec(cmd);
+        Runtime.getRuntime().exec(cmd).waitFor();
     }
 
     public static JSONObject getJsonFromPrefs(String Package,Context context) throws JSONException {

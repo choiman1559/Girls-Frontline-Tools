@@ -1,4 +1,4 @@
-package com.fqxd.gftools.features.alarm;
+package com.fqxd.gftools.features.alarm.utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -479,7 +479,7 @@ public class Sector {
                 break;
 
             default:
-                throwExcept(12, M);
+                throwExcept(13, M);
                 break;
         }
         return imsi;

@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.fqxd.gftools.DetectGFService;
 import com.fqxd.gftools.R;
-import com.fqxd.gftools.features.alarm.Sector;
 import com.fqxd.gftools.features.alarm.receiver.AlarmReceiver;
 import com.fqxd.gftools.features.alarm.receiver.BootCompleteReceiver;
 
@@ -115,6 +114,7 @@ public class AlarmUtils {
 
         builder.setTitle("새 군수 확인됨!");
         builder.setMessage("군수 지역을 선택해 주세요.");
+        builder.setView(view);
 
         selH.setMaxValue(13);
         selM.setMaxValue(4);
@@ -138,7 +138,6 @@ public class AlarmUtils {
                 e.printStackTrace();
             }
         }).setNegativeButton("취소",(dialog, which) -> {});
-
         AlertDialog alertDialog = builder.create();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);

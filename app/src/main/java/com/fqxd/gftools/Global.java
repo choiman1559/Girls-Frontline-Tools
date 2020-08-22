@@ -22,8 +22,7 @@ public class Global extends Application {
     private static Session session = new Session();
 
     public NetBareConfig getConfig() {
-        JKS jks2 = jks;
-        NetBareConfig.Builder configBuilder = NetBareConfig.defaultHttpConfig(jks2, CollectionsKt.listOf(HttpInjectInterceptor.createFactory(new PacketInjector(session, this)))).newBuilder();
+        NetBareConfig.Builder configBuilder = NetBareConfig.defaultHttpConfig(jks, CollectionsKt.listOf(HttpInjectInterceptor.createFactory(new PacketInjector(session, this)))).newBuilder();
         ArrayList<String> array = new ArrayList<>();
         array.add("com.digitalsky.girlsfrontline.cn.uc");
         array.add("com.digitalsky.girlsfrontline.cn.bili");

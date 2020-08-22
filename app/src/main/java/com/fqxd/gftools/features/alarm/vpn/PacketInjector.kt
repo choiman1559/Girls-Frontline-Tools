@@ -1,8 +1,10 @@
 package com.fqxd.gftools.features.alarm.vpn
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
-
+import com.fqxd.gftools.features.alarm.utils.AlarmUtils
 import com.github.megatronking.netbare.http.HttpBody
 import com.github.megatronking.netbare.http.HttpRequest
 import com.github.megatronking.netbare.http.HttpResponse
@@ -14,17 +16,16 @@ import com.gitlab.prototypeg.Session
 import com.gitlab.prototypeg.network.request.Request
 import com.gitlab.prototypeg.network.request.RequestFactory
 import com.gitlab.prototypeg.network.response.ResponseFactory
-
 import org.apache.commons.httpclient.ChunkedInputStream
 import org.apache.commons.httpclient.ChunkedOutputStream
 import org.apache.commons.io.IOUtil
-
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.nio.ByteBuffer
 import java.util.zip.GZIPInputStream
 import java.util.zip.GZIPOutputStream
+
 
 class PacketInjector(private val session: Session, private val context: Context) : SimpleHttpInjector() {
     private var buffer: ByteArrayOutputStream? = null
@@ -58,6 +59,8 @@ class PacketInjector(private val session: Session, private val context: Context)
         Log.d("HEADERS", header.headers().toString())
         this.header = header
         Log.d("URL", header.uri().toString())
+        if(header.uri().toString() == "http://gf-game.girlfrontline.co.kr/index.php/1001/Operation/startOperation")
+            Handler(Looper.getMainLooper()).postDelayed({ AlarmUtils().onSemiAutoPacketReceived(context) },0)
         callback.onFinished(header)
         buffer = ByteArrayOutputStream()
     }

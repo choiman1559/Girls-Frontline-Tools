@@ -137,8 +137,9 @@ public class AlarmListActivity extends AppCompatActivity {
                         else {
                             if(adbRadio.isChecked()) startService();
                             else {
-                                NetBare.get().prepare();
-                                NetBare.get().start(((Global) getApplication()).getConfig());
+                                Intent netBareIntent = NetBare.get().prepare();
+                                if(netBareIntent == null) NetBare.get().start(((Global)getApplication()).getConfig());
+                                else startActivityForResult(netBareIntent,0);
                             }
                             adbRadio.setEnabled(false);
                             vpnRadio.setEnabled(false);
@@ -175,8 +176,21 @@ public class AlarmListActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
 
-        vpnRadio.setEnabled(BuildConfig.DEBUG);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0 || requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                if (!NetBare.get().isActive()) {
+                    NetBare.get().start(((Global) getApplication()).getConfig());
+                }
+            } else {
+                Intent intent = NetBare.get().prepare();
+                startActivityForResult(intent, requestCode);
+            }
+        }
     }
 
     void startService() {
