@@ -96,6 +96,12 @@
                 android:text="@string/DECButton" />
 
             <Button
+                android:id="@+id/ROTButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ROTButton" />
+
+            <Button
                 android:id="@+id/CENButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

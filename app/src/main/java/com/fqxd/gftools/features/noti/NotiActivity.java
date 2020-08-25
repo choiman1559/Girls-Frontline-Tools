@@ -4,42 +4,34 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.util.Linkify;
-import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import com.fqxd.gftools.R;
 import com.google.firebase.messaging.FirebaseMessaging;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class NotiActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
+public class NotiActivity extends AppCompatActivity{
 
     private static final int RC_SIGN_IN = 100;
     private FirebaseAuth mAuth;
-    private GoogleApiClient mGoogleApiClient;
+    private GoogleSignInClient mGoogleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +47,7 @@ public class NotiActivity extends AppCompatActivity implements GoogleApiClient.O
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
         mAuth = FirebaseAuth.getInstance();
 
         final SharedPreferences prefs = getSharedPreferences("NotiPrefs", MODE_PRIVATE);
@@ -90,7 +79,7 @@ public class NotiActivity extends AppCompatActivity implements GoogleApiClient.O
         }
         glogin.setOnClickListener(v -> {
             if (prefs.getString("uid", "").equals("")) {
-                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
                 startActivityForResult(signInIntent, RC_SIGN_IN);
             } else signOut(onoff,prefs);
         });
@@ -98,7 +87,7 @@ public class NotiActivity extends AppCompatActivity implements GoogleApiClient.O
 
     public void signOut(Switch onoff,SharedPreferences prefs) {
         mAuth.signOut();
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient);
+        mGoogleSignInClient.signOut();
         NotiActivity.this.recreate();
         prefs.edit().remove("uid").apply();
 
@@ -134,7 +123,4 @@ public class NotiActivity extends AppCompatActivity implements GoogleApiClient.O
                     }
                 });
     }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) { }
 }

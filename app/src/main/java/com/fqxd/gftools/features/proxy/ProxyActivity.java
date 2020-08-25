@@ -50,14 +50,23 @@ public class ProxyActivity extends AppCompatActivity {
         Switch Enabled = findViewById(R.id.proxy_toggle);
         EditText Address = findViewById(R.id.proxy_address);
         EditText Port = findViewById(R.id.proxy_port);
+        Switch PAC_Enabled = findViewById(R.id.pac_proxy_toggle);
+        EditText PAC_Address = findViewById(R.id.pac_proxy_address);
 
         try {
-            JSONObject json = ProxyUtils.getJsonFromPrefs(Package, this);
-            if (json != null) {
-                ProxyConfig cfg = ProxyConfig.getProxyConfigFromJson(json);
+            JSONObject json1 = ProxyUtils.getProxyJsonFromPrefs(Package, this);
+            if (json1 != null) {
+                ProxyConfig cfg = ProxyConfig.getProxyConfigFromJson(json1);
                 Enabled.setChecked(cfg.getEnabled());
                 Address.setText(cfg.getAddress());
                 Port.setText(cfg.getPort());
+            }
+
+            JSONObject json2 = ProxyUtils.getPacProxyJsonFromPrefs(Package, this);
+            if (json2 != null) {
+                PacProxyConfig cfg = PacProxyConfig.getProxyConfigFromJson(json2);
+                PAC_Enabled.setChecked(cfg.getEnabled());
+                PAC_Address.setText(cfg.getAddress());
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -67,6 +76,7 @@ public class ProxyActivity extends AppCompatActivity {
             Address.setEnabled(false);
             Port.setEnabled(false);
         }
+        PAC_Address.setEnabled(!PAC_Enabled.isChecked());
 
         Enabled.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
@@ -96,7 +106,7 @@ public class ProxyActivity extends AppCompatActivity {
                                     config.setPackage(Package);
                                     config.setAddress(Address.getText().toString());
                                     config.setPort(Port.getText().toString());
-                                    ProxyUtils.saveJsonInPrefs(ProxyConfig.getJsonFromProxyConfig(config), this);
+                                    ProxyUtils.saveProxyJsonInPrefs(ProxyConfig.getJsonFromProxyConfig(config), this);
 
                                     Address.setEnabled(false);
                                     Port.setEnabled(false);
@@ -121,10 +131,63 @@ public class ProxyActivity extends AppCompatActivity {
                     config.setPackage(Package);
                     config.setAddress(Address.getText().toString());
                     config.setPort(Port.getText().toString());
-                    ProxyUtils.saveJsonInPrefs(ProxyConfig.getJsonFromProxyConfig(config), this);
+                    ProxyUtils.saveProxyJsonInPrefs(ProxyConfig.getJsonFromProxyConfig(config), this);
 
                     Address.setEnabled(true);
                     Port.setEnabled(true);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        PAC_Enabled.setOnCheckedChangeListener((ButtonView,isChecked) -> {
+            if (isChecked) {
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_SECURE_SETTINGS) != PackageManager.PERMISSION_GRANTED) {
+                    PAC_Enabled.setChecked(false);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("특수 권한이 필요합니다").setMessage("이 기능을 사용하려면 WRITE_SECURE_SETTINGS 권한이 필요합니다");
+                    builder.setPositiveButton("슈퍼유저 사용", (dialog, id) -> {
+                        try {
+                            Runtime.getRuntime().exec("su -c pm grant com.fqxd.gftools android.permission.WRITE_SECURE_SETTINGS");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }).setNegativeButton("취소", (dialog, which) -> { }).show();
+                } else {
+                    if (checkAccessibilityPermissions()) {
+                        if(PAC_Address.getText().toString().equals("")) {
+                            PAC_Address.setError("Input Address");
+                            PAC_Enabled.setChecked(false);
+                        } else {
+                            if (Patterns.WEB_URL.matcher(PAC_Address.getText()).matches()) {
+                                try {
+                                    PacProxyConfig config = new PacProxyConfig();
+                                    config.setEnabled(true);
+                                    config.setPackage(Package);
+                                    config.setAddress(PAC_Address.getText().toString());
+                                    ProxyUtils.savePacProxyJsonInPrefs(PacProxyConfig.getJsonFromProxyConfig(config), this);
+                                    PAC_Address.setEnabled(false);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                PAC_Address.setError("Invalid Url Address");
+                            }
+                        }
+                    } else {
+                        PAC_Enabled.setChecked(false);
+                        setAccessibilityPermissions();
+                    }
+                }
+            } else {
+                try {
+                    PacProxyConfig config = new PacProxyConfig();
+                    config.setEnabled(false);
+                    config.setPackage(Package);
+                    config.setAddress(PAC_Address.getText().toString());
+                    ProxyUtils.savePacProxyJsonInPrefs(PacProxyConfig.getJsonFromProxyConfig(config), this);
+                    PAC_Address.setEnabled(true);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

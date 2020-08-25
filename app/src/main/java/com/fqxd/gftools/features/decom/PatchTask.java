@@ -39,6 +39,12 @@ final class PatchTask extends AsyncTask {
     }
 
     @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        this.updateStatus("이전 작업이 완료될때까지 대기중...");
+    }
+
+    @Override
     protected Object doInBackground(Object[] objects) {
         try {
             final ProgressBar p = this.main.findViewById(R.id.running);

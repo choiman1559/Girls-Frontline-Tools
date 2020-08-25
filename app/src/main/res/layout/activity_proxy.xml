@@ -15,19 +15,22 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/target"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
         <Switch
             android:id="@+id/proxy_toggle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="자동 프록시 On/Off"
+            android:layout_marginTop="20dp"
             android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/target"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:gravity="center"/>
 
         <EditText
             android:layout_marginTop="15dp"
@@ -48,12 +51,29 @@
             android:hint="프록시 포트"
             android:autofillHints="프록시 포트" />
 
+        <Switch
+            android:id="@+id/pac_proxy_toggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="자동 PAC 프록시 On/Off"
+            android:textSize="16sp"/>
+
+        <EditText
+            android:layout_marginTop="15dp"
+            android:id="@+id/pac_proxy_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="PAC 프록시 주소"
+            android:autofillHints="PAC 프록시 주소"
+            android:inputType="textWebEmailAddress" />
+
         <Button
             android:id="@+id/install_ca"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Install trusted CA manually [ROOT]" />
+            android:layout_marginTop="20dp"
+            android:text="시스템 CA 인증서 설치 [ROOT]" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

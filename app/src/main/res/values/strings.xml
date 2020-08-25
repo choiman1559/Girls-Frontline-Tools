@@ -40,6 +40,7 @@
     <string name="NotiButton">Noti Plugin</string>
     <string name="CenButton">GF Censorship [ROOT]</string>
     <string name="PXYButton">Auto Proxy Config [ROOT]</string>
+    <string name="ROTButton">Auto Screen Rotation</string>
     <string name="NekoButton">GF Neko Floating</string>
 
     <string name="XAPKInstall">XAPK Installer</string>
@@ -78,6 +79,7 @@
     <string name="thx">special thanks to. URK96</string>
 
     <string name="description">소전의 시작을 인식하는 기능(vpn 등) 을 사용하려면 필수적인 기능입니다.</string>
+    <string name="rotation_switch">자동 화면 세로 고정 On/Off</string>
 
     <string name="noit_des">GF Tools Noti Plugin 으로부터 저장된 FireBase DB 정보를 불러와 실시간으로 알람을 표시합니다.</string>
     <string name="noti_onoff">Service On/Off</string>

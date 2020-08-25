@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.fqxd.gftools">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -107,6 +108,8 @@
         <activity
             android:name=".features.noti.MessageSendClass"
             android:theme="@style/Theme.AppCompat.Light.Dialog.Alert" />
+        <activity android:name=".features.rotation.RotationActivity"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"/>
         <activity
             android:name=".features.xapk.FilePicker"
             android:theme="@style/FilePickerTheme">
@@ -230,5 +233,6 @@
         <service android:name=".features.alarm.logcat.LogCatReaderService"
             android:permission="android.permission.READ_LOGS">
     </service>
+    <service android:name=".features.rotation.RotationService"/>
     </application>
 </manifest>

@@ -6,6 +6,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 
 import com.application.isradeleon.notify.Notify;
 import com.fqxd.gftools.R;
@@ -15,9 +16,12 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import org.jetbrains.annotations.TestOnly;
+
 import static com.crashlytics.android.core.CrashlyticsCore.TAG;
 
 @Deprecated
+@VisibleForTesting
 public class FireStoreListener extends Service {
 
     @Nullable
