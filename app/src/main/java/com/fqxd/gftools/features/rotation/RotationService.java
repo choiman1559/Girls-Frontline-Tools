@@ -5,30 +5,36 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.IBinder;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 
-import com.fqxd.gftools.BuildConfig;
 import com.fqxd.gftools.DetectGFService;
-import com.fqxd.gftools.features.alarm.ui.AlarmListActivity;
+import com.fqxd.gftools.R;
 
-import org.json.JSONObject;
+import java.util.ArrayList;
 
 public class RotationService extends Service {
-    private static WindowManager windowManager;
-    private View view;
+    public static WindowManager windowManager;
+    public View view;
 
     @Override
     public void onCreate() {
         super.onCreate();
         createNotification();
         windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        Settings.System.putInt(getContentResolver(), "accelerometer_rotation", 1);
+        int LayoutParam = Build.VERSION.SDK_INT > 25 ? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY : WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;
+        RotationControlViewParam param = new RotationControlViewParam(LayoutParam, 1);
+        if (view == null) {
+            view = new View(getApplicationContext());
+            windowManager.addView(view, param);
+        } else windowManager.updateViewLayout(view, param);
     }
 
     @Override
@@ -36,34 +42,50 @@ public class RotationService extends Service {
         super.onStartCommand(intent, flags, startId);
         startForeground(1, createNotification());
 
-        SharedPreferences prefs = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
-        try {
-            JSONObject obj = new JSONObject(prefs.getString("RotationData", ""));
-            if (obj.getBoolean(DetectGFService.lastPackage)) {
-                Settings.System.putInt(getContentResolver(), "accelerometer_rotation", 1);
-                int LayoutParam = Build.VERSION.SDK_INT > 25 ? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY : WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;
-                RotationControlViewParam param = new RotationControlViewParam(LayoutParam, 1);
-                if (view == null) {
-                    view = new View(getApplicationContext());
-                    windowManager.addView(view, param);
-                } else windowManager.updateViewLayout(view, param);
+        new Thread(() -> {
+            while (true) if (!isGF(DetectGFService.lastPackage)) {
+                return;
             }
-        } catch (Exception e) {
-            if (BuildConfig.DEBUG) e.printStackTrace();
-        }
-        return START_STICKY;
+        }).start();
+        return START_NOT_STICKY;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        String lastPackage = DetectGFService.lastPackage;
+        Log.d("Destroyed",lastPackage);
+        if (this.view != null) windowManager.removeView(view);
+        windowManager = null;
+        this.view = null;
+        stopForeground(true);
     }
 
     Notification createNotification() {
-        Intent intent = new Intent(this, AlarmListActivity.class);
+        Intent intent = new Intent(this, RotationActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         Notification.Builder builder = new Notification.Builder(this)
                 .setSmallIcon(android.R.drawable.ic_lock_idle_lock)
                 .setContentTitle("Rotation Service is running")
-                .setContentText("Close Girls Frontline ")
+                .setContentText("Close Girls Frontline to Stop")
                 .setContentIntent(pendingIntent);
         if (Build.VERSION.SDK_INT > 25) builder.setChannelId("GFPacketService");
         return builder.build();
+    }
+
+    public boolean isGF(String Package) {
+        ArrayList<String> PackageNames = new ArrayList<>();
+        PackageNames.add(getString(R.string.target_cn_uc));
+        PackageNames.add(getString(R.string.target_cn_bili));
+        PackageNames.add(getString(R.string.target_en));
+        PackageNames.add(getString(R.string.target_jp));
+        PackageNames.add(getString(R.string.target_tw));
+        PackageNames.add(getString(R.string.target_kr));
+
+        for (String i : PackageNames) {
+            if (i.equals(Package)) return true;
+        }
+        return false;
     }
 
     @Nullable

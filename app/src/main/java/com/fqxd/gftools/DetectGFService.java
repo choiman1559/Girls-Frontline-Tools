@@ -2,14 +2,11 @@ package com.fqxd.gftools;
 
 import android.Manifest;
 import android.accessibilityservice.AccessibilityService;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.provider.Settings;
-import android.view.View;
-import android.view.WindowManager;
+import android.os.Looper;
 import android.view.accessibility.AccessibilityEvent;
 
 import androidx.core.content.ContextCompat;
@@ -18,7 +15,6 @@ import com.fqxd.gftools.features.proxy.PacProxyConfig;
 import com.fqxd.gftools.features.proxy.ProxyConfig;
 import com.fqxd.gftools.features.proxy.ProxyUtils;
 
-import com.fqxd.gftools.features.rotation.RotationControlViewParam;
 import com.fqxd.gftools.features.rotation.RotationService;
 import com.tencent.mm.opensdk.utils.Log;
 
@@ -56,9 +52,23 @@ public class DetectGFService extends AccessibilityService {
         }
 
         if (isGF(lastPackage)) {
-            if(Build.VERSION.SDK_INT > 25) startForegroundService(new Intent(this,RotationService.class));
-            else startService(new Intent(this,RotationService.class));
-        } else if(!lastPackage.equals("com.android.systemui")) stopService(new Intent(this,RotationService.class));
+            new Thread(() -> {
+                Looper.prepare();
+                SharedPreferences prefs = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
+                try {
+                    JSONObject obj = new JSONObject(prefs.getString("RotationData", ""));
+                    if (obj.getBoolean(lastPackage)) {
+                        if (Build.VERSION.SDK_INT > 25)
+                            startForegroundService(new Intent(this, RotationService.class));
+                        else startService(new Intent(this, RotationService.class));
+                    }
+                } catch (Exception ignored) {
+                }
+                Looper.loop();
+            }).start();
+        } else if (!(lastPackage.equals("com.android.systemui") || lastPackage.equals(getPackageName()))) {
+            stopService(new Intent(this,RotationService.class));
+        }
     }
 
     public boolean isGF(String Package) {

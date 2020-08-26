@@ -47,8 +47,7 @@ public class LogCatReaderService extends Service {
         logcat.start();
 
         new Thread(() -> {
-            android.util.Log.d("isexit", logcat.isRunning() ? "t" : "f");
-            if (!logcat.isRunning()) logcat.restart();
+            while(true) if (!logcat.isRunning()) logcat.restart();
         }).start();
         return START_STICKY;
     }
