@@ -26,7 +26,6 @@ public class RotationService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        createNotification();
         windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         Settings.System.putInt(getContentResolver(), "accelerometer_rotation", 1);
         int LayoutParam = Build.VERSION.SDK_INT > 25 ? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY : WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;
@@ -40,7 +39,7 @@ public class RotationService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-        startForeground(1, createNotification());
+        startForeground(1, createNotification(intent.getStringExtra("pkg")));
 
         new Thread(() -> {
             while (true) if (!isGF(DetectGFService.lastPackage)) {
@@ -61,8 +60,8 @@ public class RotationService extends Service {
         stopForeground(true);
     }
 
-    Notification createNotification() {
-        Intent intent = new Intent(this, RotationActivity.class);
+    Notification createNotification(String pkg) {
+        Intent intent = new Intent(this, RotationActivity.class).putExtra("pkg",pkg);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         Notification.Builder builder = new Notification.Builder(this)
                 .setSmallIcon(android.R.drawable.ic_lock_idle_lock)

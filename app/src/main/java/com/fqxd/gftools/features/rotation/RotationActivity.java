@@ -47,6 +47,7 @@ public class RotationActivity extends AppCompatActivity {
         Enabled.setChecked(checkAccessibilityPermissions());
 
         Enabled.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(!isChecked) stopService(new Intent(this, RotationService.class));
             JSONObject obj;
             try {
                 if(Build.VERSION.SDK_INT > 22 && !Settings.canDrawOverlays(RotationActivity.this)) {

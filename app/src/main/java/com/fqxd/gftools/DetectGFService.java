@@ -52,6 +52,7 @@ public class DetectGFService extends AccessibilityService {
         }
 
         if (isGF(lastPackage)) {
+            Intent intent = new Intent(this, RotationService.class).putExtra("pkg",lastPackage);
             new Thread(() -> {
                 Looper.prepare();
                 SharedPreferences prefs = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
@@ -59,15 +60,15 @@ public class DetectGFService extends AccessibilityService {
                     JSONObject obj = new JSONObject(prefs.getString("RotationData", ""));
                     if (obj.getBoolean(lastPackage)) {
                         if (Build.VERSION.SDK_INT > 25)
-                            startForegroundService(new Intent(this, RotationService.class));
-                        else startService(new Intent(this, RotationService.class));
+                            startForegroundService(intent);
+                        else startService(intent);
                     }
                 } catch (Exception ignored) {
                 }
                 Looper.loop();
             }).start();
         } else if (!(lastPackage.equals("com.android.systemui") || lastPackage.equals(getPackageName()))) {
-            stopService(new Intent(this,RotationService.class));
+            stopService(new Intent(this, RotationService.class));
         }
     }
 

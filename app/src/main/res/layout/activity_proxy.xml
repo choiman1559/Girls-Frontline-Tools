@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:text="자동 프록시 On/Off"
             android:layout_marginTop="20dp"
+            android:background="#DBDBDB"
             android:textSize="16sp"/>
 
         <EditText
@@ -56,7 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="자동 PAC 프록시 On/Off"
+            android:text="자동 PAC 프록시 On/Off (베타)"
+            android:background="#DBDBDB"
             android:textSize="16sp"/>
 
         <EditText

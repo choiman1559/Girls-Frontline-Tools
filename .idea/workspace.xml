@@ -27,15 +27,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.2.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.2.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/netbare-core/netbare-core.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/netbare-core/netbare-core.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/netbare-injector/netbare-injector.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/netbare-injector/netbare-injector.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/DetectGFService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/DetectGFService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/alarm/logcat/LogCatReaderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/alarm/logcat/LogCatReaderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/rotation/RotationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/rotation/RotationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xDSDKAndroid/xDSDKAndroid.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xDSDKAndroid/xDSDKAndroid.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_proxy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_proxy.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -596,30 +590,30 @@
       <screen x="0" y="25" width="1920" height="989" />
     </state>
     <state x="365" y="38" width="1179" height="958" key="CommitChangelistDialog2/0.25.1920.989@0.25.1920.989" timestamp="1594706619935" />
-    <state x="100" y="125" width="1720" height="789" key="DiffContextDialog" timestamp="1596004558172">
+    <state x="100" y="125" width="1720" height="789" key="DiffContextDialog" timestamp="1598468718328">
       <screen x="0" y="25" width="1920" height="989" />
     </state>
-    <state x="100" y="125" width="1720" height="789" key="DiffContextDialog/0.25.1920.989@0.25.1920.989" timestamp="1596004558172" />
+    <state x="100" y="125" width="1720" height="789" key="DiffContextDialog/0.25.1920.989@0.25.1920.989" timestamp="1598468718328" />
     <state x="743" y="277" width="421" height="476" key="FileChooserDialogImpl" timestamp="1596588635482">
       <screen x="0" y="25" width="1920" height="989" />
     </state>
     <state x="743" y="277" width="421" height="476" key="FileChooserDialogImpl/0.25.1920.989@0.25.1920.989" timestamp="1596588635482" />
-    <state width="1866" height="251" key="GridCell.Tab.0.bottom" timestamp="1598453011752">
+    <state width="1866" height="251" key="GridCell.Tab.0.bottom" timestamp="1598468853939">
       <screen x="0" y="25" width="1920" height="989" />
     </state>
-    <state width="1866" height="251" key="GridCell.Tab.0.bottom/0.25.1920.989@0.25.1920.989" timestamp="1598453011752" />
-    <state width="1866" height="251" key="GridCell.Tab.0.center" timestamp="1598453011751">
+    <state width="1866" height="251" key="GridCell.Tab.0.bottom/0.25.1920.989@0.25.1920.989" timestamp="1598468853939" />
+    <state width="1866" height="251" key="GridCell.Tab.0.center" timestamp="1598468853939">
       <screen x="0" y="25" width="1920" height="989" />
     </state>
-    <state width="1866" height="251" key="GridCell.Tab.0.center/0.25.1920.989@0.25.1920.989" timestamp="1598453011751" />
-    <state width="1866" height="251" key="GridCell.Tab.0.left" timestamp="1598453011750">
+    <state width="1866" height="251" key="GridCell.Tab.0.center/0.25.1920.989@0.25.1920.989" timestamp="1598468853939" />
+    <state width="1866" height="251" key="GridCell.Tab.0.left" timestamp="1598468853939">
       <screen x="0" y="25" width="1920" height="989" />
     </state>
-    <state width="1866" height="251" key="GridCell.Tab.0.left/0.25.1920.989@0.25.1920.989" timestamp="1598453011750" />
-    <state width="1866" height="251" key="GridCell.Tab.0.right" timestamp="1598453011752">
+    <state width="1866" height="251" key="GridCell.Tab.0.left/0.25.1920.989@0.25.1920.989" timestamp="1598468853939" />
+    <state width="1866" height="251" key="GridCell.Tab.0.right" timestamp="1598468853939">
       <screen x="0" y="25" width="1920" height="989" />
     </state>
-    <state width="1866" height="251" key="GridCell.Tab.0.right/0.25.1920.989@0.25.1920.989" timestamp="1598453011752" />
+    <state width="1866" height="251" key="GridCell.Tab.0.right/0.25.1920.989@0.25.1920.989" timestamp="1598468853939" />
     <state width="1866" height="314" key="GridCell.Tab.1.bottom" timestamp="1595844630607">
       <screen x="0" y="25" width="1920" height="989" />
     </state>
