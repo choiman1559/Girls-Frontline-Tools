@@ -343,7 +343,7 @@ public class AnimationService extends Service {
 
             int rid = ai.metaData.getInt(META_KEY_SKIN, 0);
 
-            MotionParams params = new MotionParams(this, res, rid);
+            MotionParams params = new MotionParams(res, rid);
             motion_state.setParams(params);
         } catch (Exception e) {
             e.printStackTrace();
@@ -641,8 +641,10 @@ public class AnimationService extends Service {
 
                 WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
                 assert wm != null;
-                int dw = wm.getDefaultDisplay().getWidth();
-                int dh = wm.getDefaultDisplay().getHeight();
+                Point pnt = new Point();
+                wm.getDefaultDisplay().getSize(pnt);
+                int dw = pnt.x;
+                int dh = pnt.y;
 
                 float x = random.nextInt(dw);
                 float y = random.nextInt(dh);

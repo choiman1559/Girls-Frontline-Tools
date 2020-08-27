@@ -206,8 +206,7 @@ public class ProxyActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }).setNegativeButton("취소", (dialog, which) -> {
-                }).show();
+                }).setNegativeButton("취소", (dialog, which) -> { }).show();
             } else {
                 Intent i = new Intent(this, CAFilePicker.class);
                 i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,false);

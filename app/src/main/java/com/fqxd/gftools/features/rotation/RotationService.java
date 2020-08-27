@@ -40,12 +40,6 @@ public class RotationService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
         startForeground(1, createNotification(intent.getStringExtra("pkg")));
-
-        new Thread(() -> {
-            while (true) if (!isGF(DetectGFService.lastPackage)) {
-                return;
-            }
-        }).start();
         return START_NOT_STICKY;
     }
 
@@ -68,7 +62,7 @@ public class RotationService extends Service {
                 .setContentTitle("Rotation Service is running")
                 .setContentText("Close Girls Frontline to Stop")
                 .setContentIntent(pendingIntent);
-        if (Build.VERSION.SDK_INT > 25) builder.setChannelId("GFPacketService");
+        if (Build.VERSION.SDK_INT > 25) builder.setChannelId("GFRotationService");
         return builder.build();
     }
 

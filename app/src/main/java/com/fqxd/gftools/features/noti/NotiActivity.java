@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.util.Linkify;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -57,8 +58,8 @@ public class NotiActivity extends AppCompatActivity{
         final TextView guid = findViewById(R.id.guid);
 
         if (!prefs.getString("uid", "").equals(""))
-            guid.setText("User Id : " + prefs.getString("uid", ""));
-        else guid.setText(R.string.guid);
+            guid.setText("Logined as " + mAuth.getCurrentUser().getEmail());
+        else guid.setVisibility(View.GONE);
 
         onoff.setChecked(prefs.getBoolean("Enabled", false));
         onoff.setOnCheckedChangeListener((buttonView, isChecked) -> {

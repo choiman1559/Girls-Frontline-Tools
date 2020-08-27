@@ -6,7 +6,6 @@ import java.util.HashMap;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -67,7 +66,7 @@ public class MotionParams {
   public String move_state_prefix;
   public String wall_state_prefix;
 
-  public HashMap<String, Motion> motions = new HashMap<String, Motion>();
+  public HashMap<String, Motion> motions = new HashMap<>();
 
   public static class Motion {
     public String name;
@@ -79,7 +78,7 @@ public class MotionParams {
     public MotionDrawable items = null;
   }
   public MotionParams() {}
-  public MotionParams(Context context, Resources res, int resid) {
+  public MotionParams(Resources res, int resid) {
     XmlPullParser xml = res.getXml(resid);
     AttributeSet attrs = Xml.asAttributeSet(xml);
     try {
@@ -281,8 +280,7 @@ public class MotionParams {
   }
 
   public void parseItem(Resources res, MotionDrawable items,
-                         XmlPullParser xml, AttributeSet attrs)
-      throws XmlPullParserException, IOException {
+                         XmlPullParser xml, AttributeSet attrs) {
     int drawable = attrs.getAttributeResourceValue(
         null, ATTR_ITEM_DRAWABLE, 0);
     int duration = attrs.getAttributeIntValue(

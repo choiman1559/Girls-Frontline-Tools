@@ -10,6 +10,8 @@ import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
 public class MotionDrawable extends Drawable implements Animatable {
@@ -100,7 +102,7 @@ public class MotionDrawable extends Drawable implements Animatable {
   }
   
   @Override
-  public void draw(Canvas canvas) {
+  public void draw(@NonNull Canvas canvas) {
     Drawable current = getCurrentFrame();
     if (current != null) {
       current.draw(canvas);
@@ -324,12 +326,14 @@ public class MotionDrawable extends Drawable implements Animatable {
       return changing_configurations;
     }
     
+    @NonNull
     @Override
     public Drawable newDrawable() {
       throw new UnsupportedOperationException(
           "newDrawable is not supported");
     }
     
+    @NonNull
     @Override
     public Drawable newDrawable(Resources res) {
       throw new UnsupportedOperationException(
@@ -353,21 +357,21 @@ public class MotionDrawable extends Drawable implements Animatable {
   
   private class ChildCallback implements Drawable.Callback {
     @Override
-    public void invalidateDrawable(Drawable who) {
+    public void invalidateDrawable(@NonNull Drawable who) {
       if (who == getCurrentFrame()) {
         invalidateSelf();
       }
     }
     
     @Override
-    public void scheduleDrawable(Drawable who, Runnable what, long when) {
+    public void scheduleDrawable(@NonNull Drawable who,@NonNull Runnable what, long when) {
       if (who == getCurrentFrame()) {
         scheduleSelf(what, when);
       }
     }
     
     @Override
-    public void unscheduleDrawable(Drawable who, Runnable what) {
+    public void unscheduleDrawable(@NonNull Drawable who, @NonNull Runnable what) {
       if (who == getCurrentFrame()) {
         unscheduleSelf(what);
       }
