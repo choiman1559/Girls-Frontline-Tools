@@ -11,7 +11,6 @@ import com.github.megatronking.netbare.NetBare;
 import com.github.megatronking.netbare.NetBareConfig;
 import com.github.megatronking.netbare.http.HttpInjectInterceptor;
 import com.github.megatronking.netbare.ssl.JKS;
-import com.gitlab.prototypeg.Session;
 
 import java.util.ArrayList;
 
@@ -19,10 +18,9 @@ import kotlin.collections.CollectionsKt;
 
 public class Global extends Application {
     private static JKS jks;
-    private static Session session = new Session();
 
     public NetBareConfig getConfig() {
-        NetBareConfig.Builder configBuilder = NetBareConfig.defaultHttpConfig(jks, CollectionsKt.listOf(HttpInjectInterceptor.createFactory(new PacketInjector(session, this)))).newBuilder();
+        NetBareConfig.Builder configBuilder = NetBareConfig.defaultHttpConfig(jks, CollectionsKt.listOf(HttpInjectInterceptor.createFactory(new PacketInjector(new com.gitlab.prototypeg.Session(), this)))).newBuilder();
         ArrayList<String> array = new ArrayList<>();
         array.add("com.digitalsky.girlsfrontline.cn.uc");
         array.add("com.digitalsky.girlsfrontline.cn.bili");
