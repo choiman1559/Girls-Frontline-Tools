@@ -208,10 +208,6 @@
         </service>
 
         <service
-            android:name=".features.noti.FireStoreListener"
-            android:enabled="true"
-            android:stopWithTask="false" />
-        <service
             android:name=".features.noti.FirebaseMessageService"
             android:enabled="true"
             android:exported="false">

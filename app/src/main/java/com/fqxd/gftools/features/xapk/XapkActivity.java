@@ -44,8 +44,6 @@ public class XapkActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         if (checkPermissions()){
             Intent i = new Intent(this, FilePicker.class);
             i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,false);

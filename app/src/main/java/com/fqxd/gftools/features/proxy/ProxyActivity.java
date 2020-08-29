@@ -233,8 +233,7 @@ public class ProxyActivity extends AppCompatActivity {
             File finalFile = file;
             b.setPositiveButton("Yes", (dialogInterface, i) -> mvCA(finalFile));
             b.setNegativeButton("No", (dialogInterface, i) -> finish());
-            AlertDialog d = b.create();
-            d.show();
+            b.create().show();
         }
     }
 
@@ -255,8 +254,7 @@ public class ProxyActivity extends AppCompatActivity {
                 }
             });
             b.setNegativeButton("Later", (dialogInterface, i) -> finish());
-            AlertDialog d = b.create();
-            d.show();
+            b.create().show();
         } catch (Throwable e) {
             e.printStackTrace();
         }

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
-import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.ListPreference;
@@ -36,10 +35,10 @@ public class GFNekoActivity extends AppCompatActivity {
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
       setPreferencesFromResource(R.xml.neko_prefs, rootKey);
       SharedPreferences prefs = context.getSharedPreferences(context.getPackageName() + "preferences", MODE_PRIVATE);
-      Preference Service_Enable = findPreference("motion.enable");
+      Preference Service_Enable = findPreference(AnimationService.PREF_KEY_ENABLE);
       ListPreference Skin = findPreference("motion.skin");
 
-      if(prefs.getBoolean("motion.enable",false)) startAnimationService();
+      if(prefs.getBoolean(AnimationService.PREF_KEY_ENABLE,false)) startAnimationService();
       Service_Enable.setOnPreferenceChangeListener((preference, newValue) -> {
         if((Boolean)newValue) startAnimationService();
         return true;

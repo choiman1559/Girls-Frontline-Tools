@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Generic Menu">
+        <Preference
+            android:key="Button_RUN"
+            android:summary="소녀젼선 실행"
+            android:title="Run App"
+            android:icon="@mipmap/ic_gf_play_foreground"/>
+
+        <Preference
+            android:key="Button_DEL"
+            android:summary="앱 삭제"
+            android:title="Delete App"
+            android:icon="@mipmap/ic_gf_del_foreground"/>
+
+        <Preference
+            android:key="Button_DELD"
+            android:summary="앱 데이터 삭제"
+            android:title="Delete App Data"
+            android:icon="@mipmap/ic_gf_deld_foreground"/>
+
+        <Preference
+            android:key="TextView_SIZE"
+            android:summary="데이터 크기 : 약"
+            android:icon="@drawable/ic_error_outline"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Features">
+        <Preference
+            android:key="Button_DEC"
+            android:summary="클라이언트 압축해제"
+            android:title="GF Decompresser"
+            android:icon="@mipmap/ic_gf_dec_foreground"/>
+
+        <Preference
+            android:key="Button_ROT"
+            android:summary="자동 화면 세로 고정"
+            android:title="Auto Screen Rotation"
+            android:icon="@mipmap/ic_gf_rot_foreground"/>
+
+        <Preference
+            android:key="Button_CEN"
+            android:title="GF Censorship"
+            android:summary="검열 설정/해제"
+            android:icon="@mipmap/ic_gf_cen_foreground"/>
+
+        <Preference
+            android:key="Button_PXY"
+            android:title="Auto Proxy Configer"
+            android:summary="자동 프록시 설정"
+            android:icon="@mipmap/ic_gf_pxy_foreground"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Back Up">
+        <Preference
+            android:key="Button_BAD"
+            android:summary="백업 추가"
+            android:title="Add Backup"
+            android:icon="@mipmap/ic_gf_bad_foreground"/>
+
+        <Preference
+            android:key="Button_BRT"
+            android:summary="데이터 복구"
+            android:title="Restore from Backup"
+            android:icon="@mipmap/ic_gf_brt_foreground"/>
+
+        <Preference
+            android:key="Button_BDT"
+            android:summary="백업 삭제"
+            android:title="Delete Data"
+            android:icon="@mipmap/ic_gf_bdt_foreground"/>
+
+        <Preference
+            android:key="TextView_BSIZE"
+            android:summary="백업 크기 : 약"
+            android:icon="@drawable/ic_error_outline"/>
+    </PreferenceCategory>
+</PreferenceScreen>

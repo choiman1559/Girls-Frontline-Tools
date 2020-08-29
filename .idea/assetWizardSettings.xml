@@ -99,8 +99,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="$USER_HOME$/다운로드/5f01af5e6788e.png" />
-                                                <entry key="scalingPercent" value="67" />
+                                                <entry key="imagePath" value="$USER_HOME$/다운로드/icons/playstore/icon.png" />
+                                                <entry key="scalingPercent" value="74" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -132,7 +132,11 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="ic_bilbil" />
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="generateLegacyIcon" value="false" />
+                                      <entry key="generatePlayStoreIcon" value="false" />
+                                      <entry key="generateRoundIcon" value="false" />
+                                      <entry key="outputName" value="ic_gf_bdt" />
                                     </map>
                                   </option>
                                 </PersistentState>

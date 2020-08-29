@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
     <include layout="@layout/content_main" />
 
         <LinearLayout
@@ -58,8 +57,7 @@
                 app:stl_distributeEvenly="false"
                 app:stl_clickable="true"
                 app:stl_titleOffset="24dp"
-                app:stl_drawDecorationAfterTab="false"
-                />
+                app:stl_drawDecorationAfterTab="false" />
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewpager"
@@ -108,16 +106,5 @@
             app:fab_colorNormal="@color/white"
             app:fab_colorPressed="@color/white_pressed"
             app:fab_title="Open Source License" />
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/action_d"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_size="mini"
-            app:fab_icon="@drawable/ic_baseline_developer_mode_24"
-            app:fab_colorNormal="@color/white"
-            app:fab_colorPressed="@color/white_pressed"
-            app:fab_title="Show Unstable features" />
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

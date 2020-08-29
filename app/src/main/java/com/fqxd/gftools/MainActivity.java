@@ -40,7 +40,6 @@ import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
     public static int REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES = 0x01;
-    public static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +77,7 @@ public class MainActivity extends AppCompatActivity {
         viewPagerTab.setViewPager(viewPager);
         viewPagerTab.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
 
             @Override
             public void onPageSelected(int position) {
@@ -116,9 +113,7 @@ public class MainActivity extends AppCompatActivity {
             void changeImg(int resId) { ((ImageView)findViewById(R.id.MainImageView)).setImageResource(resId); }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
+            public void onPageScrollStateChanged(int state) { }
         });
 
         findViewById(R.id.action_a).setOnClickListener(v -> {
@@ -138,13 +133,6 @@ public class MainActivity extends AppCompatActivity {
         OssLicensesMenuActivity.setActivityTitle("OSS License Notice");
         findViewById(R.id.action_b).setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/choiman1559/Girls-Frontline-Tools"))));
         findViewById(R.id.action_c).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, OssLicensesMenuActivity.class)));
-        FloatingActionButton debug = findViewById(R.id.action_d);
-        debug.setTitle((getPreferences(MODE_PRIVATE).getBoolean("debug",false) ? "Hide" : "Show") + " Unstable features");
-        debug.setOnClickListener(v -> {
-            SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-            prefs.edit().putBoolean("debug",!prefs.getBoolean("debug",false)).apply();
-            MainActivity.this.recreate();
-        });
 
         AppUpdater appUpdater = new AppUpdater(this)
                 .setDisplay(Display.SNACKBAR)

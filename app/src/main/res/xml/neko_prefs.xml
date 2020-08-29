@@ -21,16 +21,15 @@
             android:summary="@string/pref_motion_transparency_summary"
             android:entries="@array/pref_motion_transparency_entries"
             android:entryValues="@array/pref_motion_transparency_entryvalues"
-            android:defaultValue="0.0"
-            />
+            android:defaultValue="0.0" />
         <ListPreference
             android:key="motion.size"
             android:title="@string/pref_motion_size_title"
             android:summary="@string/pref_motion_size_summary"
             android:entries="@array/pref_motion_size"
             android:entryValues="@array/pref_motion_size_entryvalues"
-            android:defaultValue="240"
-            />
+            android:defaultValue="240" />
+
         <ListPreference
             android:key="motion.skin"
             android:title="@string/pref_motion_skin_title"
