@@ -77,8 +77,6 @@ public class LogCatReaderService extends Service {
         String msg = logs.get(logs.size() - 1).getMsg();
         if (msg.contains("The referenced script on this Behaviour (Game Object '<null>') is missing!"))
             return;
-        if (!msg.contains(logs.get(logs.size() - 1).getPriority() + "/logC:") && BuildConfig.DEBUG)
-            android.util.Log.d("log", logs.get(logs.size() - 1).getPriority() + "/logC: " + msg);
         try {
             if (isGF(DetectGFService.lastPackage)) {
                 if (msg.contains("Dequeue: Operation/startOperation\t{")) {

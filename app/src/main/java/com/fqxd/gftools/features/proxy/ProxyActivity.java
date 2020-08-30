@@ -22,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
 import com.nononsenseapps.filepicker.FilePickerActivity;
 import com.nononsenseapps.filepicker.Utils;
@@ -93,7 +94,7 @@ public class ProxyActivity extends AppCompatActivity {
                     }).setNegativeButton("취소", (dialog, which) -> {
                     }).show();
                 } else {
-                    if (checkAccessibilityPermissions()) {
+                    if (Global.checkAccessibilityPermissions(this)) {
                         if(Address.getText().toString().equals("") || Port.getText().toString().equals("")) {
                             if(Address.getText().toString().equals("")) Address.setError("Input Address");
                             if(Port.getText().toString().equals("")) Port.setError("Input Port");
@@ -120,9 +121,8 @@ public class ProxyActivity extends AppCompatActivity {
                         }
                     } else {
                         Enabled.setChecked(false);
-                        setAccessibilityPermissions();
+                        Global.setAccessibilityPermissions(this);
                     }
-
                 }
             } else {
                 try {
@@ -155,7 +155,7 @@ public class ProxyActivity extends AppCompatActivity {
                         }
                     }).setNegativeButton("취소", (dialog, which) -> { }).show();
                 } else {
-                    if (checkAccessibilityPermissions()) {
+                    if (Global.checkAccessibilityPermissions(this)) {
                         if(PAC_Address.getText().toString().equals("")) {
                             PAC_Address.setError("Input Address");
                             PAC_Enabled.setChecked(false);
@@ -177,7 +177,7 @@ public class ProxyActivity extends AppCompatActivity {
                         }
                     } else {
                         PAC_Enabled.setChecked(false);
-                        setAccessibilityPermissions();
+                        Global.setAccessibilityPermissions(this);
                     }
                 }
             } else {
@@ -258,21 +258,5 @@ public class ProxyActivity extends AppCompatActivity {
         } catch (Throwable e) {
             e.printStackTrace();
         }
-    }
-
-    boolean checkAccessibilityPermissions() {
-        AccessibilityManager accessibilityManager = (AccessibilityManager) getSystemService(Context.ACCESSIBILITY_SERVICE);
-        List<AccessibilityServiceInfo> serviceList = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK);
-        return serviceList.toString().contains("com.fqxd.gftools");
-    }
-
-    public void setAccessibilityPermissions() {
-        AlertDialog.Builder gsDialog = new AlertDialog.Builder(this);
-        gsDialog.setTitle("접근성 권한 설정");
-        gsDialog.setMessage("이 기능을 사용하려면 접근성 권한이 필요합니다");
-        gsDialog.setPositiveButton("확인", (dialog, which) -> startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))).create();
-        gsDialog.setNegativeButton("취소", ((dialog, which) -> {
-        }));
-        gsDialog.show();
     }
 }

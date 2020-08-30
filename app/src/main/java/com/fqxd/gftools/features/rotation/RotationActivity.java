@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
 
 import org.json.JSONObject;
@@ -44,7 +45,7 @@ public class RotationActivity extends AppCompatActivity {
         } catch (Exception e) {
             Enabled.setChecked(false);
         }
-        Enabled.setChecked(checkAccessibilityPermissions());
+        Enabled.setChecked(Global.checkAccessibilityPermissions(this));
 
         Enabled.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(!isChecked) stopService(new Intent(this, RotationService.class));
@@ -67,8 +68,8 @@ public class RotationActivity extends AppCompatActivity {
                         Enabled.setChecked(false);
                     }
                     else {
-                        if(!checkAccessibilityPermissions()) {
-                            setAccessibilityPermissions();
+                        if(!Global.checkAccessibilityPermissions(this)) {
+                            Global.setAccessibilityPermissions(this);
                             Enabled.setChecked(false);
                         }
                         else {
@@ -83,21 +84,5 @@ public class RotationActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
-    }
-
-    boolean checkAccessibilityPermissions() {
-        AccessibilityManager accessibilityManager = (AccessibilityManager) getSystemService(Context.ACCESSIBILITY_SERVICE);
-        List<AccessibilityServiceInfo> serviceList = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK);
-        return serviceList.toString().contains("com.fqxd.gftools");
-    }
-
-    public void setAccessibilityPermissions() {
-        AlertDialog.Builder gsDialog = new AlertDialog.Builder(this);
-        gsDialog.setTitle("접근성 권한 설정");
-        gsDialog.setMessage("이 기능을 사용하려면 접근성 권한이 필요합니다");
-        gsDialog.setPositiveButton("확인", (dialog, which) -> startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))).create();
-        gsDialog.setNegativeButton("취소", ((dialog, which) -> {
-        }));
-        gsDialog.show();
     }
 }

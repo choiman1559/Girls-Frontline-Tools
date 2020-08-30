@@ -4,8 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/GF_Tools.iml" filepath="$PROJECT_DIR$/.idea/modules/GF_Tools.iml" group="GF_Tools" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="GF Tools/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/netbare-core/netbare-core.iml" filepath="$PROJECT_DIR$/.idea/modules/netbare-core/netbare-core.iml" group="GF Tools/netbare-core" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/netbare-injector/netbare-injector.iml" filepath="$PROJECT_DIR$/.idea/modules/netbare-injector/netbare-injector.iml" group="GF Tools/netbare-injector" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/netbare/netbare.iml" filepath="$PROJECT_DIR$/.idea/modules/netbare/netbare.iml" group="GF Tools/netbare" />
       <module fileurl="file://$PROJECT_DIR$/xDSDKAndroid/xDSDKAndroid.iml" filepath="$PROJECT_DIR$/xDSDKAndroid/xDSDKAndroid.iml" group="GF Tools/xDSDKAndroid" />
     </modules>
   </component>

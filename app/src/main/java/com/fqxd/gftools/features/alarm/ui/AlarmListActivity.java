@@ -78,11 +78,11 @@ public class AlarmListActivity extends AppCompatActivity {
             } else prefs.edit().putString("AlarmMethod","Vpn").apply();
         });
 
-        if(!checkAccessibilityPermissions()) prefs.edit().putBoolean("AlarmOnOff",false).apply();
+        if(!Global.checkAccessibilityPermissions(this)) prefs.edit().putBoolean("AlarmOnOff",false).apply();
         alarmOnOff.setChecked(prefs.getBoolean("AlarmOnOff", false));
         alarmOnOff.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            Log.d("access",checkAccessibilityPermissions() ? "true" : "false");
-            if(!checkAccessibilityPermissions()) {
+            Log.d("access",Global.checkAccessibilityPermissions(this) ? "true" : "false");
+            if(!Global.checkAccessibilityPermissions(this)) {
                 if(!alarmOnOff.isChecked()) {
                     prefs.edit().putBoolean("AlarmOnOff", alarmOnOff.isChecked()).apply();
                     stopService();
@@ -205,12 +205,6 @@ public class AlarmListActivity extends AppCompatActivity {
 
     void stopService() {
         stopService(new Intent(this,LogCatReaderService.class));
-    }
-
-    boolean checkAccessibilityPermissions() {
-        AccessibilityManager accessibilityManager = (AccessibilityManager)getSystemService(Context.ACCESSIBILITY_SERVICE);
-        List<AccessibilityServiceInfo> serviceList = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK);
-        return serviceList.toString().contains("com.fqxd.gftools");
     }
 
     public void setAccessibilityPermissions() {
