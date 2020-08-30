@@ -1,9 +1,9 @@
 # Girls-Frontline-Tools
-[![version](https://img.shields.io/github/v/release/choiman1559/Girls-Frontline-Tools?include_prereleases)](https://semver.org)
+[![version](https://img.shields.io/github/v/release/choiman1559/Girls-Frontline-Tools?include_prereleases)](https://github.com/choiman1559/Girls-Frontline-Tools/releases/latest)
 [![license](https://img.shields.io/badge/License-LGPL--3.0-green.svg?logo=gnu)](https://www.gnu.org/licenses/lgpl-3.0.html)
-![language](https://img.shields.io/badge/Language-Java-green?logo=java) 
-![Last](https://img.shields.io/github/last-commit/choiman1559/Girls-Frontline-Tools)
-![download](https://img.shields.io/github/downloads/choiman1559/Girls-Frontline-Tools/total)
+[![language](https://img.shields.io/badge/Language-Java-green?logo=java)]()
+[![Last](https://img.shields.io/github/last-commit/choiman1559/Girls-Frontline-Tools)](https://github.com/choiman1559/Girls-Frontline-Tools/commit/master)
+[![download](https://img.shields.io/github/downloads/choiman1559/Girls-Frontline-Tools/total)]()
 
 [![version](https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQKUUtefY6l9YGHF0GmQAijrUAUueZcJqwGIA&usqp=CAU)](https://play.google.com/store/apps/details?id=com.fqxd.gftools)
 
