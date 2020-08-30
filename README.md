@@ -23,11 +23,14 @@ Useful Tools for Girls Frontline
 (Thanks to tempkaridc)
  - Girls Frontline Censorship Tool
 (For Root Users)
- - Girls Frontline BQM! Patcher (KOZ39)
- - Girls Frontline LSD Alarm (Alpha)
+ - Girls Frontline LSD Alarm
+ - Proxy Auto Config
+ - GF Screen Auto Rotation
 
-## List-To-Add
- - Recommand me
+## ScreenShots
+
+ ![s](https://lh3.googleusercontent.com/JhnJrPSuENSk0VTzDohsDMW2BfC3oP69lE-pAU2kEmacf9VcTJMdxsvSF1Wi5JmUbLk=w720-h310)
+ ![s](https://lh3.googleusercontent.com/rzj9jmevtaaYv8BKY9AOde-wJMjI_q6FK0sU4svUcasSyOxh7v2OtWrVc-8Oqh8S9Q=w720-h310)
 
 ---------------------------
 
