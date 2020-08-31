@@ -1,8 +1,6 @@
 package com.fqxd.gftools.features.rotation;
 
 import android.Manifest;
-import android.accessibilityservice.AccessibilityServiceInfo;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,7 +9,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.view.accessibility.AccessibilityManager;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,8 +22,6 @@ import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
 
 import org.json.JSONObject;
-
-import java.util.List;
 
 public class RotationActivity extends AppCompatActivity {
     @Override

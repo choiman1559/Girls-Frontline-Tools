@@ -1,7 +1,6 @@
 package com.fqxd.gftools.features.alarm.ui;
 
 import android.Manifest;
-import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -15,7 +14,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
-import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -28,7 +26,6 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fqxd.gftools.BuildConfig;
 import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
 import com.fqxd.gftools.features.alarm.logcat.LogCatReaderService;
@@ -39,7 +36,6 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class AlarmListActivity extends AppCompatActivity {

@@ -3,7 +3,7 @@ package com.fqxd.gftools.features;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.webkit.*;
+import android.webkit.WebView;
 
 import com.fqxd.gftools.R;
 

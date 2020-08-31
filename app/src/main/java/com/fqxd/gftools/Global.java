@@ -69,8 +69,7 @@ public class Global extends Application {
         gsDialog.setTitle("접근성 권한 설정");
         gsDialog.setMessage("이 기능을 사용하려면 접근성 권한이 필요합니다");
         gsDialog.setPositiveButton("확인", (dialog, which) -> context.startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))).create();
-        gsDialog.setNegativeButton("취소", ((dialog, which) -> {
-        }));
+        gsDialog.setNegativeButton("취소", ((dialog, which) -> { }));
         gsDialog.show();
     }
 

@@ -17,7 +17,6 @@
 package com.fqxd.gftools.features.gfneko;
 
 import android.content.Intent;
-import android.os.BatteryManager;
 
 import static android.os.BatteryManager.*;
 //import static android.os.BatteryManager.EXTRA_LEVEL;

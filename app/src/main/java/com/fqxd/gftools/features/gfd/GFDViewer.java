@@ -2,7 +2,6 @@ package com.fqxd.gftools.features.gfd;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;

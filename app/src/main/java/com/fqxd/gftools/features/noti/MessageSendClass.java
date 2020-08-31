@@ -1,6 +1,5 @@
 package com.fqxd.gftools.features.noti;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;

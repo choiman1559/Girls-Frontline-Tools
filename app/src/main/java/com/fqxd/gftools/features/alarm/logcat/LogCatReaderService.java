@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.fqxd.gftools.BuildConfig;
 import com.fqxd.gftools.features.alarm.ui.AlarmListActivity;
 import com.fqxd.gftools.features.alarm.utils.AlarmUtils;
 import com.fqxd.gftools.DetectGFService;

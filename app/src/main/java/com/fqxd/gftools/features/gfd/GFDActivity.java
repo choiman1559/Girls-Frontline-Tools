@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 
-import com.fqxd.gftools.MainActivity;
 import com.fqxd.gftools.R;
 
 public class GFDActivity extends AppCompatActivity {

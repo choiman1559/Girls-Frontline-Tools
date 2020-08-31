@@ -69,13 +69,5 @@
             android:hint="PAC 프록시 주소"
             android:autofillHints="PAC 프록시 주소"
             android:inputType="textWebEmailAddress" />
-
-        <Button
-            android:id="@+id/install_ca"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="시스템 CA 인증서 설치 [ROOT]" />
-
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

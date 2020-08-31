@@ -1,19 +1,12 @@
 package com.fqxd.gftools.features.proxy;
 
 import android.Manifest;
-import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.Intent;
 
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 
-import android.provider.Settings;
 import android.util.Patterns;
-import android.view.accessibility.AccessibilityManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -24,15 +17,11 @@ import androidx.core.content.ContextCompat;
 
 import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
-import com.nononsenseapps.filepicker.FilePickerActivity;
-import com.nononsenseapps.filepicker.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 public class ProxyActivity extends AppCompatActivity {
     @Override
@@ -193,70 +182,5 @@ public class ProxyActivity extends AppCompatActivity {
                 }
             }
         });
-
-        Button InstallCA = findViewById(R.id.install_ca);
-        InstallCA.setOnClickListener(v -> {
-            if(ContextCompat.checkSelfPermission(this, "android.permission.PACKAGE_USAGE_STATS") != PackageManager.PERMISSION_GRANTED) {
-                Enabled.setChecked(false);
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("특수 권한이 필요합니다").setMessage("이 기능을 사용하려면 ROOT 권한이 필요합니다");
-                builder.setPositiveButton("슈퍼유저 사용", (dialog, id) -> {
-                    try {
-                        Runtime.getRuntime().exec("su -c pm grant com.fqxd.gftools android.permission.PACKAGE_USAGE_STATS");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }).setNegativeButton("취소", (dialog, which) -> { }).show();
-            } else {
-                Intent i = new Intent(this, CAFilePicker.class);
-                i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,false);
-                i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR,false);
-                startActivityForResult(i, 5217);
-            }
-        });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == 5217 && resultCode == RESULT_OK) {
-            List<Uri> files = Utils.getSelectedFilesFromResult(data);
-            File file = null;
-            for (Uri uri: files) {
-                file = Utils.getFileForUri(uri);
-            }
-
-            AlertDialog.Builder b = new AlertDialog.Builder(this);
-            b.setTitle("Notice");
-            b.setMessage("Do you want to Install?");
-            File finalFile = file;
-            b.setPositiveButton("Yes", (dialogInterface, i) -> mvCA(finalFile));
-            b.setNegativeButton("No", (dialogInterface, i) -> finish());
-            b.create().show();
-        }
-    }
-
-    private void mvCA(File file) {
-        try {
-            Runtime.getRuntime().exec("su -c mount -o remount,rw /").waitFor();
-            Runtime.getRuntime().exec("su -c cp " + file.getAbsolutePath() + " /system/etc/security/cacerts").waitFor();
-            Runtime.getRuntime().exec("su -c chmod 644 /system/etc/security/cacerts/" + file.getName()).waitFor();
-            Runtime.getRuntime().exec("su -c mount -o remount,ro /").waitFor();
-            AlertDialog.Builder b = new AlertDialog.Builder(this);
-            b.setTitle("Waring");
-            b.setMessage("You Need Reboot to apply the CA.\nAre you want to reboot?");
-            b.setPositiveButton("Reboot", (dialogInterface, i) -> {
-                try {
-                    Runtime.getRuntime().exec("su -c reboot");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-            b.setNegativeButton("Later", (dialogInterface, i) -> finish());
-            b.create().show();
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
     }
 }

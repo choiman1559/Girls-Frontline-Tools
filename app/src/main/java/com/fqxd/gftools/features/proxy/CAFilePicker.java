@@ -64,7 +64,6 @@ public class CAFilePicker extends FilePickerActivity {
             }
             return ret;
         }
-
     }
 
     @Override
