@@ -1,6 +1,5 @@
 package com.fqxd.gftools.features.proxy;
 
-import android.Manifest;
 import android.app.AlertDialog;
 
 import android.content.pm.PackageManager;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
@@ -70,48 +68,52 @@ public class ProxyActivity extends AppCompatActivity {
 
         Enabled.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_SECURE_SETTINGS) != PackageManager.PERMISSION_GRANTED) {
-                    Enabled.setChecked(false);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("특수 권한이 필요합니다").setMessage("이 기능을 사용하려면 WRITE_SECURE_SETTINGS 권한이 필요합니다");
-                    builder.setPositiveButton("슈퍼유저 사용", (dialog, id) -> {
-                        try {
-                            Runtime.getRuntime().exec("su -c pm grant com.fqxd.gftools android.permission.WRITE_SECURE_SETTINGS");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }).setNegativeButton("취소", (dialog, which) -> {
-                    }).show();
-                } else {
-                    if (Global.checkAccessibilityPermissions(this)) {
-                        if(Address.getText().toString().equals("") || Port.getText().toString().equals("")) {
-                            if(Address.getText().toString().equals("")) Address.setError("Input Address");
-                            if(Port.getText().toString().equals("")) Port.setError("Input Port");
-                            Enabled.setChecked(false);
-                        } else {
-                            if (Patterns.IP_ADDRESS.matcher(Address.getText()).matches()) {
-                                try {
-                                    ProxyConfig config = new ProxyConfig();
-                                    config.setEnabled(true);
-                                    config.setPackage(Package);
-                                    config.setAddress(Address.getText().toString());
-                                    config.setPort(Port.getText().toString());
-                                    ProxyUtils.saveProxyJsonInPrefs(ProxyConfig.getJsonFromProxyConfig(config), this);
-
-                                    Address.setEnabled(false);
-                                    Port.setEnabled(false);
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            } else {
-                                Address.setError("Invalid IP Address");
-                                Enabled.setChecked(false);
-                            }
-                        }
-                    } else {
+                try {
+                    if (!Global.checkRootPermission()) {
                         Enabled.setChecked(false);
-                        Global.setAccessibilityPermissions(this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        builder.setTitle("특수 권한이 필요합니다").setMessage("이 기능을 사용하려면 ROOT 권한이 필요합니다");
+                        builder.setPositiveButton("슈퍼유저 사용", (dialog, id) -> {
+                            try {
+                                Runtime.getRuntime().exec("su -c pm grant com.fqxd.gftools android.permission.WRITE_SECURE_SETTINGS");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }).setNegativeButton("취소", (dialog, which) -> {
+                        }).show();
+                    } else {
+                        if (Global.checkAccessibilityPermissions(this)) {
+                            if(Address.getText().toString().equals("") || Port.getText().toString().equals("")) {
+                                if(Address.getText().toString().equals("")) Address.setError("Input Address");
+                                if(Port.getText().toString().equals("")) Port.setError("Input Port");
+                                Enabled.setChecked(false);
+                            } else {
+                                if (Patterns.IP_ADDRESS.matcher(Address.getText()).matches()) {
+                                    try {
+                                        ProxyConfig config = new ProxyConfig();
+                                        config.setEnabled(true);
+                                        config.setPackage(Package);
+                                        config.setAddress(Address.getText().toString());
+                                        config.setPort(Port.getText().toString());
+                                        ProxyUtils.saveProxyJsonInPrefs(ProxyConfig.getJsonFromProxyConfig(config), this);
+
+                                        Address.setEnabled(false);
+                                        Port.setEnabled(false);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                } else {
+                                    Address.setError("Invalid IP Address");
+                                    Enabled.setChecked(false);
+                                }
+                            }
+                        } else {
+                            Enabled.setChecked(false);
+                            Global.setAccessibilityPermissions(this);
+                        }
                     }
+                } catch (IOException | InterruptedException e) {
+                    e.printStackTrace();
                 }
             } else {
                 try {
@@ -132,42 +134,46 @@ public class ProxyActivity extends AppCompatActivity {
 
         PAC_Enabled.setOnCheckedChangeListener((ButtonView,isChecked) -> {
             if (isChecked) {
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_SECURE_SETTINGS) != PackageManager.PERMISSION_GRANTED) {
-                    PAC_Enabled.setChecked(false);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("특수 권한이 필요합니다").setMessage("이 기능을 사용하려면 WRITE_SECURE_SETTINGS 권한이 필요합니다");
-                    builder.setPositiveButton("슈퍼유저 사용", (dialog, id) -> {
-                        try {
-                            Runtime.getRuntime().exec("su -c pm grant com.fqxd.gftools android.permission.WRITE_SECURE_SETTINGS");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }).setNegativeButton("취소", (dialog, which) -> { }).show();
-                } else {
-                    if (Global.checkAccessibilityPermissions(this)) {
-                        if(PAC_Address.getText().toString().equals("")) {
-                            PAC_Address.setError("Input Address");
-                            PAC_Enabled.setChecked(false);
-                        } else {
-                            if (Patterns.WEB_URL.matcher(PAC_Address.getText()).matches()) {
-                                try {
-                                    PacProxyConfig config = new PacProxyConfig();
-                                    config.setEnabled(true);
-                                    config.setPackage(Package);
-                                    config.setAddress(PAC_Address.getText().toString());
-                                    ProxyUtils.savePacProxyJsonInPrefs(PacProxyConfig.getJsonFromProxyConfig(config), this);
-                                    PAC_Address.setEnabled(false);
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            } else {
-                                PAC_Address.setError("Invalid Url Address");
-                            }
-                        }
-                    } else {
+                try {
+                    if (!Global.checkRootPermission()) {
                         PAC_Enabled.setChecked(false);
-                        Global.setAccessibilityPermissions(this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        builder.setTitle("특수 권한이 필요합니다").setMessage("이 기능을 사용하려면 ROOT 권한이 필요합니다");
+                        builder.setPositiveButton("슈퍼유저 사용", (dialog, id) -> {
+                            try {
+                                Runtime.getRuntime().exec("su -c pm grant com.fqxd.gftools android.permission.WRITE_SECURE_SETTINGS");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }).setNegativeButton("취소", (dialog, which) -> { }).show();
+                    } else {
+                        if (Global.checkAccessibilityPermissions(this)) {
+                            if(PAC_Address.getText().toString().equals("")) {
+                                PAC_Address.setError("Input Address");
+                                PAC_Enabled.setChecked(false);
+                            } else {
+                                if (Patterns.WEB_URL.matcher(PAC_Address.getText()).matches()) {
+                                    try {
+                                        PacProxyConfig config = new PacProxyConfig();
+                                        config.setEnabled(true);
+                                        config.setPackage(Package);
+                                        config.setAddress(PAC_Address.getText().toString());
+                                        ProxyUtils.savePacProxyJsonInPrefs(PacProxyConfig.getJsonFromProxyConfig(config), this);
+                                        PAC_Address.setEnabled(false);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                } else {
+                                    PAC_Address.setError("Invalid Url Address");
+                                }
+                            }
+                        } else {
+                            PAC_Enabled.setChecked(false);
+                            Global.setAccessibilityPermissions(this);
+                        }
                     }
+                } catch (IOException | InterruptedException e) {
+                    e.printStackTrace();
                 }
             } else {
                 try {

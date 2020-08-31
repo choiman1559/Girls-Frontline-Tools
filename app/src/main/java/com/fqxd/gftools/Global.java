@@ -17,6 +17,9 @@ import com.github.megatronking.netbare.NetBareConfig;
 import com.github.megatronking.netbare.http.HttpInjectInterceptor;
 import com.github.megatronking.netbare.ssl.JKS;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,6 +74,18 @@ public class Global extends Application {
         gsDialog.setPositiveButton("확인", (dialog, which) -> context.startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))).create();
         gsDialog.setNegativeButton("취소", ((dialog, which) -> { }));
         gsDialog.show();
+    }
+
+    public static boolean checkRootPermission() throws IOException, InterruptedException {
+        Process process = Runtime.getRuntime().exec("su -c id");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String line;
+        boolean value = false;
+        while ((line = reader.readLine()) != null) {
+            if(line.contains("uid=0") && line.contains("gid=0") && line.contains("root")) value = true;
+        }
+        process.waitFor();
+        return value;
     }
 
     private void registerNotificationChannels(String ID, String DES) {

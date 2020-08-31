@@ -2,12 +2,14 @@ package com.fqxd.gftools.features;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
 
 import java.io.BufferedReader;
@@ -37,11 +39,29 @@ public class CenActivity extends AppCompatActivity {
 
         final Button CEN = findViewById(R.id.centrue);
         CEN.setText("Censorship off");
-        CEN.setOnClickListener(v -> editTask(true));
+        CEN.setOnClickListener(v -> checkRootAndRunTask(true));
 
         final Button reCEN = findViewById(R.id.cenfalse);
         reCEN.setText("Censorship on");
-        reCEN.setOnClickListener(v -> editTask(false));
+        reCEN.setOnClickListener(v -> checkRootAndRunTask(false));
+    }
+
+    void checkRootAndRunTask(boolean istrue) {
+        try {
+            if(!Global.checkRootPermission()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("특수 권한이 필요합니다").setMessage("이 기능을 사용하려면 ROOT 권한이 필요합니다");
+                builder.setPositiveButton("슈퍼유저 사용", (dialog, id) -> {
+                    try {
+                        Runtime.getRuntime().exec("su");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }).setNegativeButton("취소", (dialog, which) -> { }).show();
+            } else editTask(istrue);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
    void editTask(boolean istrue) {

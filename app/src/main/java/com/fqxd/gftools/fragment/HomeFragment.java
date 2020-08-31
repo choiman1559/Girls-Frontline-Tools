@@ -3,7 +3,6 @@ package com.fqxd.gftools.fragment;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -13,13 +12,11 @@ import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
+import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
 import com.fqxd.gftools.features.JasActivity;
 import com.fqxd.gftools.features.alarm.ui.AlarmListActivity;
@@ -38,6 +35,7 @@ import com.xd.xdsdk.XDSDK;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -45,6 +43,7 @@ public class HomeFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.main_prefs, rootKey);
+        findPreference("Button_RATE").setVisible(new Random().nextInt(100) < 30);
     }
 
     @Override
@@ -94,22 +93,31 @@ public class HomeFragment extends PreferenceFragmentCompat {
                 break;
 
             case "Button_CA":
-                if(ContextCompat.checkSelfPermission(getContext(), "android.permission.PACKAGE_USAGE_STATS") != PackageManager.PERMISSION_GRANTED) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setTitle("특수 권한이 필요합니다").setMessage("이 기능을 사용하려면 ROOT 권한이 필요합니다");
-                    builder.setPositiveButton("슈퍼유저 사용", (dialog, id) -> {
-                        try {
-                            Runtime.getRuntime().exec("su -c pm grant com.fqxd.gftools android.permission.PACKAGE_USAGE_STATS");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }).setNegativeButton("취소", (dialog, which) -> { }).show();
-                } else {
-                    Intent i = new Intent(getContext(), CAFilePicker.class);
-                    i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,false);
-                    i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR,false);
-                    startActivityForResult(i, 5217);
+                try {
+                    if(!Global.checkRootPermission()) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setTitle("특수 권한이 필요합니다").setMessage("이 기능을 사용하려면 ROOT 권한이 필요합니다");
+                        builder.setPositiveButton("슈퍼유저 사용", (dialog, id) -> {
+                            try {
+                                Runtime.getRuntime().exec("su");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }).setNegativeButton("취소", (dialog, which) -> { }).show();
+                    } else {
+                        Intent i = new Intent(getContext(), CAFilePicker.class);
+                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,false);
+                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR,false);
+                        startActivityForResult(i, 5217);
+                    }
+                } catch (IOException | InterruptedException e) {
+                    e.printStackTrace();
                 }
+                break;
+
+            case "Button_RATE":
+                startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=" + getContext().getPackageName())));
+                preference.setVisible(false);
                 break;
         }
         return super.onPreferenceTreeClick(preference);
@@ -118,7 +126,6 @@ public class HomeFragment extends PreferenceFragmentCompat {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if(requestCode == 5217 && resultCode == RESULT_OK) {
             List<Uri> files = Utils.getSelectedFilesFromResult(data);
             File file = null;

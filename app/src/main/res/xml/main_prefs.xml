@@ -47,4 +47,10 @@
         android:title="Install Trusted CA"
         android:summary="CA 인증서 설치"
         android:icon="@mipmap/ic_main_key_foreground"/>
+
+    <Preference
+        android:key="Button_RATE"
+        android:title="Rate GF Tools!"
+        android:summary="앱을 평가해 주세요!"
+        android:icon="@mipmap/ic_main_rate_foreground"/>
 </PreferenceScreen>
