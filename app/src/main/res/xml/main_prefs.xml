@@ -13,10 +13,10 @@
         android:icon="@mipmap/ic_main_apk_foreground"/>
 
     <Preference
-        android:key="Button_ZAS"
-        android:title="ZAS Run Calculator"
-        android:summary="자스런 계산기"
-        android:icon="@mipmap/ic_main_run_foreground"/>
+        android:key="Button_CAL"
+        android:title="LS Calculator"
+        android:summary="군수 효율 계산기"
+        android:icon="@mipmap/ic_main_calculator_foreground"/>
 
     <Preference
         android:key="Button_GFDIC"

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
 
+import com.fqxd.gftools.features.calculator.CalculatorActivity;
 import com.fqxd.gftools.fragment.HomeFragment;
 import com.fqxd.gftools.fragment.GFFragment;
 import com.github.javiersantos.appupdater.AppUpdater;

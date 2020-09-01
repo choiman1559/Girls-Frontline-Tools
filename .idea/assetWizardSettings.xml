@@ -136,7 +136,7 @@
                                       <entry key="generateLegacyIcon" value="false" />
                                       <entry key="generatePlayStoreIcon" value="false" />
                                       <entry key="generateRoundIcon" value="false" />
-                                      <entry key="outputName" value="ic_main_rate" />
+                                      <entry key="outputName" value="ic_main_calculator" />
                                     </map>
                                   </option>
                                 </PersistentState>

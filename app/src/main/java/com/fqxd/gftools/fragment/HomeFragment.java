@@ -18,7 +18,8 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
-import com.fqxd.gftools.features.JasActivity;
+import com.fqxd.gftools.features.calculator.CalculatorActivity;
+import com.fqxd.gftools.features.calculator.WebViewActivity;
 import com.fqxd.gftools.features.alarm.ui.AlarmListActivity;
 import com.fqxd.gftools.features.gfd.GFDActivity;
 import com.fqxd.gftools.features.gfneko.GFNekoActivity;
@@ -58,8 +59,8 @@ public class HomeFragment extends PreferenceFragmentCompat {
                 startActivity(new Intent(getContext(), XapkActivity.class));
                 break;
 
-            case "Button_ZAS":
-                startActivity(new Intent(getContext(), JasActivity.class));
+            case "Button_CAL":
+                startActivity(new Intent(getContext(), CalculatorActivity.class));
                 break;
 
             case "Button_GFDIC":

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        android:key="Button_agenda"
+        android:title="Logistics Agenda [Beta]"
+        android:summary="군수 시간표"/>
+
+    <Preference
+        android:key="Button_index"
+        android:title="Logistics Calculator"
+        android:summary="군수 효율 계산기"/>
+
+    <Preference
+        android:key="Button_moon"
+        android:title="Lego Placer"
+        android:summary="레고 놀이"/>
+
+    <Preference
+        android:key="Button_vec"
+        android:title="Vector Run Cal"
+        android:summary="벡터런 계산기"/>
+
+    <Preference
+        android:key="Button_zas"
+        android:title="Zas Run Cal"
+        android:summary="자스런 계산기"/>
+
+    <Preference
+        android:key="Button_gunsu"
+        android:summary="Source from gunsu.kr"
+        android:icon="@drawable/ic_error_outline"/>
+
+</PreferenceScreen>

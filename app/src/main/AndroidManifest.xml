@@ -59,11 +59,12 @@
         </activity>
 
         <activity android:name=".features.BQMActivity" />
-        <activity android:name=".features.JasActivity" />
+        <activity android:name=".features.calculator.WebViewActivity" />
         <activity android:name=".features.gfd.GFDViewer" />
         <activity android:name=".features.noti.NotiActivity" />
         <activity android:name=".features.gfneko.GFNekoActivity"/>
         <activity android:name=".features.proxy.ProxyActivity"/>
+        <activity android:name=".features.calculator.CalculatorActivity"/>
 
         <uses-library
             android:name="org.apache.http.legacy"
