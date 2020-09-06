@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -63,7 +64,13 @@ public class GFFragment extends Fragment {
                 new GetVersionCode().execute();
             } catch (PackageManager.NameNotFoundException ignored) { }
         }
-        else ((TextView)view.findViewById(R.id.NoneMessage)).setText("Can't find package \"" + indexToPackage(FragmentPagerItem.getPosition(getArguments())) + "\"");
+        else {
+            String pkg = indexToPackage(FragmentPagerItem.getPosition(getArguments()));
+            ((TextView)view.findViewById(R.id.NoneMessage)).setText("Can't find package \"" + pkg + "\"");
+            view.findViewById(R.id.Button_Download).setOnClickListener(v -> {
+                startActivity(new Intent(getContext(),GFDownloadActivity.class).putExtra("pkg",pkg));
+            });
+        }
     }
 
     class GetVersionCode extends AsyncTask<Void, String, String> {
@@ -112,9 +119,7 @@ public class GFFragment extends Fragment {
 
                 if (!newV.isEmpty() && now < newi) {
                     Snackbar.make(getView(), pm.getApplicationLabel(pm.getApplicationInfo(pkg, PackageManager.GET_META_DATA)) + "의 새 업데이트가 있습니다!", Snackbar.LENGTH_LONG)
-                            .setAction("업데이트", v -> {
-                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + pkg)));
-                            }).show();
+                            .setAction("업데이트", v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + pkg)))).show();
                 }
             } catch (PackageManager.NameNotFoundException ignore) {
             }

@@ -23,7 +23,6 @@ public class CalculatorActivity extends AppCompatActivity {
     }
 
     public static class SettingFragment extends PreferenceFragmentCompat {
-
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.calculator_prefs,rootKey);
@@ -31,7 +30,6 @@ public class CalculatorActivity extends AppCompatActivity {
 
         @Override
         public boolean onPreferenceTreeClick(Preference preference) {
-
             if(!preference.getKey().equals("Button_gunsu")) startWebView(preference.getKey());
             return super.onPreferenceTreeClick(preference);
         }

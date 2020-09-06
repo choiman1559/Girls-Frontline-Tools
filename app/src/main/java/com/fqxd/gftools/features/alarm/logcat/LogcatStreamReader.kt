@@ -26,10 +26,8 @@ class LogcatStreamReader(inputStream: InputStream) : Iterator<Log>, Closeable {
                     log = Log.parse(metadata, msgBuffer.toString())
                     true
                 } catch (e: Exception) {
-                    LogCatReaderService.logcat.stop()
-                    LogCatReaderService.logcat.start()
+                    LogCatReaderService.logcat.restart()
                     e.printStackTrace()
-//                    Logger.debug(Logcat::class, "${e.message}: $metadata")
                     false
                 } finally {
                     msgBuffer.setLength(0)

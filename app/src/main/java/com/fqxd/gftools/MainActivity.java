@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
                 .add("메인", HomeFragment.class)
                 .add("한섭", GFFragment.class)
-                .add("중섭 번체", GFFragment.class)
-                .add("중섭 간체", GFFragment.class)
+                .add("대만섭", GFFragment.class)
+                .add("중섭", GFFragment.class)
                 .add("일섭", GFFragment.class)
                 .add("글섭", GFFragment.class)
                 .add("비리섭", GFFragment.class)
@@ -89,6 +89,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case 2:
+                        changeImg(R.drawable.ic_taiwan_foreground);
+                        break;
+
                     case 3:
                         changeImg(R.drawable.ic_china);
                         break;

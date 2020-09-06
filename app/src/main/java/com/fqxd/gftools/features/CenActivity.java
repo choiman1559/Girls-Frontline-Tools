@@ -60,6 +60,11 @@ public class CenActivity extends AppCompatActivity {
                 }).setNegativeButton("취소", (dialog, which) -> { }).show();
             } else editTask(istrue);
         } catch (Exception e) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Error!").setMessage("Can't get Root permission! Please check if su is installed on your device and try again!");
+            builder.setPositiveButton("OK", (dialog, id) -> { });
+            builder.create().show();
+            e.printStackTrace();
             e.printStackTrace();
         }
     }

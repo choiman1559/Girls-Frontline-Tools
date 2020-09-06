@@ -46,7 +46,7 @@ public class LogCatReaderService extends Service {
         logcat.start();
 
         new Thread(() -> {
-            while(true) if (!logcat.isRunning()) logcat.restart();
+            while (true) if (!logcat.isRunning()) logcat.restart();
         }).start();
         return START_STICKY;
     }
@@ -170,7 +170,6 @@ public class LogCatReaderService extends Service {
 
     @Override
     public void onDestroy() {
-        android.util.Log.d("dde", "dde");
         super.onDestroy();
         logcat.stop();
     }

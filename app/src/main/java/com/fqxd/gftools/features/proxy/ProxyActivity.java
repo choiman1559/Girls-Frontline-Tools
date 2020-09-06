@@ -113,6 +113,11 @@ public class ProxyActivity extends AppCompatActivity {
                         }
                     }
                 } catch (IOException | InterruptedException e) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("Error!").setMessage("Can't get Root permission! Please check if su is installed on your device and try again!");
+                    builder.setPositiveButton("OK", (dialog, id) -> { });
+                    builder.create().show();
+                    e.printStackTrace();
                     e.printStackTrace();
                 }
             } else {
@@ -173,6 +178,11 @@ public class ProxyActivity extends AppCompatActivity {
                         }
                     }
                 } catch (IOException | InterruptedException e) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("Error!").setMessage("Can't get Root permission! Please check if su is installed on your device and try again!");
+                    builder.setPositiveButton("OK", (dialog, id) -> { });
+                    builder.create().show();
+                    e.printStackTrace();
                     e.printStackTrace();
                 }
             } else {

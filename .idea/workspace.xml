@@ -20,21 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d89fc38-a73d-4015-9281-146543130a7f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/assets/www/gf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/calculator/CalculatorActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/calculator/WebViewActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_calculator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_main_calculator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_main_calculator_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_main_calculator_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_main_calculator_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_main_calculator_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_main_calculator_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/ic_main_calculator_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/xml/calculator_prefs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xDSDKAndroid/build/.transforms/c461b6fbae5936b427f1000fa236c7f5.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xDSDKAndroid/build/.transforms/c461b6fbae5936b427f1000fa236c7f5/classes/classes.dex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.2.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.2.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.2.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -45,40 +30,27 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.2.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.2.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.2.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/netbare/netbare.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/netbare/netbare.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/output-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/output-metadata.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/css/highcharts.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/favicon_zas.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/fonts/glyphicons-halflings-regulard41d.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/img/zas/auto.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/img/zas/auto2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/img/zas/formation.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/img/zas/help_buff.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/img/zas/help_fairy.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/img/zas/help_stat.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/img/zas/supl.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/img/zas/zas.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/js/jquery-2.2.4.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/js/zas.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/zas/zas.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/JasActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/CenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/CenActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/alarm/logcat/LogCatReaderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/alarm/logcat/LogCatReaderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/alarm/logcat/LogcatStreamReader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/alarm/logcat/LogcatStreamReader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/calculator/CalculatorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/calculator/CalculatorActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/proxy/ProxyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/proxy/ProxyActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/xapk/XapkActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/xapk/XapkActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/fragment/GFFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/fragment/GFFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/fragment/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/fragment/HomeFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/main_prefs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/xml/main_prefs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_gfnone.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_gfnone.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xDSDKAndroid/xDSDKAndroid.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xDSDKAndroid/xDSDKAndroid.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +58,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="192.168.31.234:5555" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="5.4_FWVGA_API_24" />
   <component name="ExportToHTMLSettings">
     <option name="printScope" value="1" />
     <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/exportToHTML" />
@@ -119,9 +91,9 @@
         <option value="valueResourceFile" />
         <option value="layoutResourceFile_vertical" />
         <option value="Kotlin File" />
-        <option value="Class" />
         <option value="layoutResourceFile" />
         <option value="resourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -147,6 +119,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="AnalyzeApkAction.lastApkPath" value="$PROJECT_DIR$/app/build/outputs/apk/debug/app-debug.apk" />
     <property name="ApkExportedModule" value="app" />
+    <property name="BundleExportedModule" value="app" />
     <property name="DEBUGGABLE_DEVICE" value="xiaomi-redmi_note_7-1f55bc1a" />
     <property name="DEBUGGABLE_PROCESS" value="com.fqxd.gftools" />
     <property name="DEBUGGER_ID" value="Auto" />
@@ -466,7 +439,7 @@
         <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
       </Profilers>
       <option name="DEEP_LINK" value="" />
-      <option name="ACTIVITY_CLASS" value="com.fqxd.gftools.MainActivity" />
+      <option name="ACTIVITY_CLASS" value="com.fqxd.gftools.fragment.GFXapkInstallActivity" />
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
@@ -602,17 +575,20 @@
       <screen x="0" y="25" width="1920" height="989" />
     </state>
     <state x="693" y="277" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.25.1920.989@0.25.1920.989" timestamp="1596443267927" />
-    <state x="166" y="115" width="1084" height="727" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598368030136">
-      <screen x="0" y="25" width="1920" height="989" />
+    <state x="166" y="115" width="1084" height="727" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599332213337">
+      <screen x="0" y="25" width="1920" height="986" />
     </state>
+    <state x="166" y="115" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1920.986@0.25.1920.986" timestamp="1599332213337" />
     <state x="166" y="115" width="1084" height="727" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1920.989@0.25.1920.989" timestamp="1598368030136" />
-    <state x="768" y="227" width="374" height="581" key="#com.intellij.ide.util.MemberChooser" timestamp="1598960129467">
-      <screen x="0" y="25" width="1920" height="989" />
+    <state x="768" y="226" width="374" height="581" key="#com.intellij.ide.util.MemberChooser" timestamp="1599294498620">
+      <screen x="0" y="25" width="1920" height="986" />
     </state>
+    <state x="768" y="226" key="#com.intellij.ide.util.MemberChooser/0.25.1920.986@0.25.1920.986" timestamp="1599294498620" />
     <state x="768" y="227" width="374" height="581" key="#com.intellij.ide.util.MemberChooser/0.25.1920.989@0.25.1920.989" timestamp="1598960129467" />
-    <state x="692" y="302" width="525" height="429" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1596442685187">
-      <screen x="0" y="25" width="1920" height="989" />
+    <state x="692" y="301" width="525" height="429" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1599332208771">
+      <screen x="0" y="25" width="1920" height="986" />
     </state>
+    <state x="692" y="301" key="#com.intellij.ide.util.TreeClassChooserDialog/0.25.1920.986@0.25.1920.986" timestamp="1599332208771" />
     <state x="692" y="302" width="525" height="429" key="#com.intellij.ide.util.TreeClassChooserDialog/0.25.1920.989@0.25.1920.989" timestamp="1596442685187" />
     <state x="643" y="240" width="624" height="566" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1598778823641">
       <screen x="0" y="25" width="1920" height="989" />
@@ -658,25 +634,30 @@
       <screen x="0" y="25" width="1920" height="989" />
     </state>
     <state x="100" y="125" width="1720" height="789" key="DiffContextDialog/0.25.1920.989@0.25.1920.989" timestamp="1598468718328" />
-    <state x="743" y="277" width="421" height="476" key="FileChooserDialogImpl" timestamp="1598697971905">
-      <screen x="0" y="25" width="1920" height="989" />
+    <state x="743" y="276" width="424" height="491" key="FileChooserDialogImpl" timestamp="1599107297336">
+      <screen x="0" y="25" width="1920" height="986" />
     </state>
+    <state x="743" y="276" width="424" height="491" key="FileChooserDialogImpl/0.25.1920.986@0.25.1920.986" timestamp="1599107297336" />
     <state x="743" y="277" width="421" height="476" key="FileChooserDialogImpl/0.25.1920.989@0.25.1920.989" timestamp="1598697971905" />
-    <state width="1866" height="231" key="GridCell.Tab.0.bottom" timestamp="1598964297422">
-      <screen x="0" y="25" width="1920" height="989" />
+    <state width="1866" height="229" key="GridCell.Tab.0.bottom" timestamp="1599390669332">
+      <screen x="0" y="25" width="1920" height="986" />
     </state>
+    <state width="1866" height="229" key="GridCell.Tab.0.bottom/0.25.1920.986@0.25.1920.986" timestamp="1599390669332" />
     <state width="1866" height="231" key="GridCell.Tab.0.bottom/0.25.1920.989@0.25.1920.989" timestamp="1598964297422" />
-    <state width="1866" height="231" key="GridCell.Tab.0.center" timestamp="1598964297422">
-      <screen x="0" y="25" width="1920" height="989" />
+    <state width="1866" height="229" key="GridCell.Tab.0.center" timestamp="1599390669332">
+      <screen x="0" y="25" width="1920" height="986" />
     </state>
+    <state width="1866" height="229" key="GridCell.Tab.0.center/0.25.1920.986@0.25.1920.986" timestamp="1599390669332" />
     <state width="1866" height="231" key="GridCell.Tab.0.center/0.25.1920.989@0.25.1920.989" timestamp="1598964297422" />
-    <state width="1866" height="231" key="GridCell.Tab.0.left" timestamp="1598964297421">
-      <screen x="0" y="25" width="1920" height="989" />
+    <state width="1866" height="229" key="GridCell.Tab.0.left" timestamp="1599390669331">
+      <screen x="0" y="25" width="1920" height="986" />
     </state>
+    <state width="1866" height="229" key="GridCell.Tab.0.left/0.25.1920.986@0.25.1920.986" timestamp="1599390669331" />
     <state width="1866" height="231" key="GridCell.Tab.0.left/0.25.1920.989@0.25.1920.989" timestamp="1598964297421" />
-    <state width="1866" height="231" key="GridCell.Tab.0.right" timestamp="1598964297422">
-      <screen x="0" y="25" width="1920" height="989" />
+    <state width="1866" height="229" key="GridCell.Tab.0.right" timestamp="1599390669332">
+      <screen x="0" y="25" width="1920" height="986" />
     </state>
+    <state width="1866" height="229" key="GridCell.Tab.0.right/0.25.1920.986@0.25.1920.986" timestamp="1599390669332" />
     <state width="1866" height="231" key="GridCell.Tab.0.right/0.25.1920.989@0.25.1920.989" timestamp="1598964297422" />
     <state width="1866" height="309" key="GridCell.Tab.1.bottom" timestamp="1598551043677">
       <screen x="0" y="25" width="1920" height="989" />
@@ -702,17 +683,19 @@
       <screen x="0" y="25" width="1920" height="989" />
     </state>
     <state x="555" y="254" width="800" height="527" key="Vcs.Push.Dialog.v2/0.25.1920.989@0.25.1920.989" timestamp="1598717469513" />
-    <state x="100" y="125" width="1720" height="789" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1598715109303">
-      <screen x="0" y="25" width="1920" height="989" />
+    <state x="100" y="125" width="1720" height="787" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1599237199219">
+      <screen x="0" y="25" width="1920" height="986" />
     </state>
+    <state x="100" y="125" width="1720" height="787" key="com.android.tools.idea.avdmanager.AvdListDialog/0.25.1920.986@0.25.1920.986" timestamp="1599237199219" />
     <state x="100" y="125" width="1720" height="789" key="com.android.tools.idea.avdmanager.AvdListDialog/0.25.1920.989@0.25.1920.989" timestamp="1598715109303" />
     <state x="622" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1596463269306">
       <screen x="0" y="25" width="1920" height="989" />
     </state>
     <state x="622" y="347" key="com.intellij.ide.util.TipDialog/0.25.1920.989@0.25.1920.989" timestamp="1596463269306" />
-    <state x="624" y="162" width="662" height="711" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1596363043451">
-      <screen x="0" y="25" width="1920" height="989" />
+    <state x="624" y="162" width="662" height="711" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1599294528946">
+      <screen x="0" y="25" width="1920" height="986" />
     </state>
+    <state x="624" y="162" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.25.1920.986@0.25.1920.986" timestamp="1599294528946" />
     <state x="624" y="162" width="662" height="711" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.25.1920.989@0.25.1920.989" timestamp="1596363043451" />
     <state x="695" y="350" width="489" height="335" key="edit.logcat.filter.dialog.dimensions" timestamp="1595830364257">
       <screen x="0" y="25" width="1920" height="989" />
@@ -722,9 +705,10 @@
       <screen x="0" y="25" width="1920" height="989" />
     </state>
     <state x="693" y="251" width="524" height="532" key="extract.method.dialog/0.25.1920.989@0.25.1920.989" timestamp="1594225015731" />
-    <state x="688" y="177" width="838" height="712" key="find.popup" timestamp="1598972477357">
-      <screen x="0" y="25" width="1920" height="989" />
+    <state x="688" y="177" width="838" height="710" key="find.popup" timestamp="1599285040757">
+      <screen x="0" y="25" width="1920" height="986" />
     </state>
+    <state x="688" y="177" width="838" height="710" key="find.popup/0.25.1920.986@0.25.1920.986" timestamp="1599285040757" />
     <state x="688" y="177" width="838" height="712" key="find.popup/0.25.1920.989@0.25.1920.989" timestamp="1598972477357" />
     <state x="909" y="364" width="619" height="366" key="psd.add.jar.dependency.panel.dimension" timestamp="1596464668143">
       <screen x="0" y="25" width="1920" height="989" />
@@ -746,9 +730,10 @@
       <screen x="0" y="25" width="1920" height="989" />
     </state>
     <state x="624" y="237" key="run.anything.popup/0.25.1920.989@0.25.1920.989" timestamp="1596099904229" />
-    <state x="623" y="241" width="672" height="678" key="search.everywhere.popup" timestamp="1598963597913">
-      <screen x="0" y="25" width="1920" height="989" />
+    <state x="623" y="240" width="672" height="676" key="search.everywhere.popup" timestamp="1599381160471">
+      <screen x="0" y="25" width="1920" height="986" />
     </state>
+    <state x="623" y="240" width="672" height="676" key="search.everywhere.popup/0.25.1920.986@0.25.1920.986" timestamp="1599381160471" />
     <state x="623" y="241" width="672" height="678" key="search.everywhere.popup/0.25.1920.989@0.25.1920.989" timestamp="1598963597913" />
   </component>
   <component name="XDebuggerManager">

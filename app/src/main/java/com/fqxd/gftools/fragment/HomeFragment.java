@@ -19,7 +19,6 @@ import androidx.preference.PreferenceFragmentCompat;
 import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
 import com.fqxd.gftools.features.calculator.CalculatorActivity;
-import com.fqxd.gftools.features.calculator.WebViewActivity;
 import com.fqxd.gftools.features.alarm.ui.AlarmListActivity;
 import com.fqxd.gftools.features.gfd.GFDActivity;
 import com.fqxd.gftools.features.gfneko.GFNekoActivity;
@@ -112,6 +111,10 @@ public class HomeFragment extends PreferenceFragmentCompat {
                         startActivityForResult(i, 5217);
                     }
                 } catch (IOException | InterruptedException e) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle("Error!").setMessage("Can't get Root permission! Please check if su is installed on your device and try again!");
+                    builder.setPositiveButton("OK", (dialog, id) -> { });
+                    builder.create().show();
                     e.printStackTrace();
                 }
                 break;

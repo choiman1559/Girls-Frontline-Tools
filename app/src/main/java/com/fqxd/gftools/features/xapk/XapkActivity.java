@@ -53,7 +53,6 @@ public class XapkActivity extends AppCompatActivity {
         }
     }
 
-
     private boolean checkPermissions() {
         int REQUEST_ID_MULTIPLE_PERMISSIONS = 5217;
         int storage = ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -86,7 +85,6 @@ public class XapkActivity extends AppCompatActivity {
             for (Uri uri: files) {
                 file = Utils.getFileForUri(uri);
             }
-
 
             AlertDialog.Builder b = new AlertDialog.Builder(XapkActivity.this);
             b.setTitle("Notice");
@@ -240,7 +238,7 @@ public class XapkActivity extends AppCompatActivity {
             }
             br.close();
         }
-        catch (IOException e) { }
+        catch (IOException ignored) { }
         return text.toString();
     }
 
@@ -250,5 +248,4 @@ public class XapkActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
 }

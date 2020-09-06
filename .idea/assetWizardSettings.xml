@@ -37,6 +37,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="imagePath" value="$USER_HOME$/다운로드/iconfinder_Untitled-2-07_3253484.svg" />
                                                 <entry key="opacityPercent" value="80" />
                                               </map>
                                             </option>
@@ -70,6 +71,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
+                                      <entry key="imageAsset" value="$USER_HOME$/다운로드/iconfinder_Untitled-2-07_3253484.svg" />
                                       <entry key="theme" value="HOLO_DARK" />
                                       <entry key="themeColor" value="ffffff" />
                                     </map>
@@ -87,6 +89,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
+                                                <entry key="color" value="000000" />
                                                 <entry key="imagePath" value="/tmp/ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
@@ -99,8 +102,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="$USER_HOME$/다운로드/icons/playstore/icon.png" />
-                                                <entry key="scalingPercent" value="74" />
+                                                <entry key="imagePath" value="$USER_HOME$/다운로드/iconfinder_Untitled-2-07_3253484.svg" />
+                                                <entry key="scalingPercent" value="60" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -136,7 +139,7 @@
                                       <entry key="generateLegacyIcon" value="false" />
                                       <entry key="generatePlayStoreIcon" value="false" />
                                       <entry key="generateRoundIcon" value="false" />
-                                      <entry key="outputName" value="ic_main_calculator" />
+                                      <entry key="outputName" value="ic_taiwan" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -154,6 +157,19 @@
                                               <map>
                                                 <entry key="color" value="000000" />
                                                 <entry key="imagePath" value="/tmp/ic_android_black_24dp.xml" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                      <entry key="image">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="color" value="000000" />
+                                                <entry key="imagePath" value="$USER_HOME$/다운로드/iconfinder_Untitled-2-07_3253484.svg" />
+                                                <entry key="paddingPercent" value="10" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -181,6 +197,12 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                    </map>
+                                  </option>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="imageAsset" value="$USER_HOME$/다운로드/iconfinder_Untitled-2-07_3253484.svg" />
                                     </map>
                                   </option>
                                 </PersistentState>
