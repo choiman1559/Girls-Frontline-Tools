@@ -55,20 +55,51 @@ public class GFNekoActivity extends AppCompatActivity {
       context.startService(new Intent(context, AnimationService.class).setAction(AnimationService.ACTION_START));
     }
 
-    private CharSequence[] getEntries(String PreValue) {
+    private boolean isXMLContain(File dir) {
+      if(dir.isDirectory()) {
+        for(File file : dir.listFiles()) {
+          String name = file.getName();
+          if (name.substring(name.lastIndexOf(".") + 1).equals("xml")) {
+                return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    private int checkFiles(){
       String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/GF_Tool/skins/";
-      CharSequence[] list = new CharSequence[new File(dir).exists() ? new File(dir).listFiles().length : 1];
-      int count = 0;
-      list[count++] = PreValue;
+      int count = 1;
 
       if(new File(dir).exists()) {
-        for(File skindir : new File(dir).listFiles()) {
-          if(skindir.isDirectory()) {
-            for(File files : skindir.listFiles()) {
-              String name = files.getName();
-              if(name.substring(name.lastIndexOf(".") + 1).equals("xml")) {
-                list[count++] = files.getAbsolutePath().replace(dir,"");
-                break;
+        for(File skinDir : new File(dir).listFiles()) {
+          if(!skinDir.isDirectory()) {
+            count -= 1;
+            continue;
+          }
+          if(!isXMLContain(skinDir)) count -= 1;
+        }
+      }
+      return count;
+    }
+
+    private CharSequence[] getEntries(String PreValue) {
+      String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/GF_Tool/skins/";
+      CharSequence[] list = new CharSequence[new File(dir).exists() ? new File(dir).listFiles().length + checkFiles(): 1];
+      list[0] = PreValue;
+      int count = 1;
+
+      if(new File(dir).exists()) {
+        File[] skinDir = new File(dir).listFiles();
+        for (File skinObj : skinDir) {
+          if (skinObj.isDirectory()) {
+            for (File files : skinObj.listFiles()) {
+              if(files.isFile()) {
+                String name = files.getName();
+                if (name.substring(name.lastIndexOf(".") + 1).equals("xml")) {
+                  list[count++] = files.getAbsolutePath().replace(dir, "");
+                  break;
+                }
               }
             }
           }

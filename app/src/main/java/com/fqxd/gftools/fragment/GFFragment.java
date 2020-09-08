@@ -1,5 +1,6 @@
 package com.fqxd.gftools.fragment;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -8,7 +9,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,39 +36,44 @@ public class GFFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Intent intent = getContext().getPackageManager().getLaunchIntentForPackage(indexToPackage(FragmentPagerItem.getPosition(getArguments())));
         LayoutMode = intent == null ? 0 : 1;
-        return inflater.inflate(LayoutMode == 1 ? R.layout.fragment_gf : R.layout.fragment_gfnone,container,false);
+        return inflater.inflate(LayoutMode == 1 ? R.layout.fragment_gf : R.layout.fragment_gfnone, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        if(LayoutMode == 1) {
-            super.onViewCreated(view, savedInstanceState);
-            String pkg = indexToPackage(FragmentPagerItem.getPosition(getArguments()));
-            PackageManager pm = view.getContext().getApplicationContext().getPackageManager();
-            TextView name = view.findViewById(R.id.appname);
-            TextView ver = view.findViewById(R.id.version);
-            TextView pk = view.findViewById(R.id.packagename);
-            ImageView icon = view.findViewById(R.id.IconView);
-
-            getActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.prefs, newInstance(pkg))
-                    .commit();
-
+        if (LayoutMode == 1) {
             try {
+                super.onViewCreated(view, savedInstanceState);
+                String pkg = indexToPackage(FragmentPagerItem.getPosition(getArguments()));
+                PackageManager pm = view.getContext().getApplicationContext().getPackageManager();
+                TextView name = view.findViewById(R.id.appname);
+                TextView ver = view.findViewById(R.id.version);
+                TextView pk = view.findViewById(R.id.packagename);
+                ImageView icon = view.findViewById(R.id.IconView);
+
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.prefs, newInstance(pkg))
+                        .commit();
+
                 name.setText(pm.getApplicationLabel(pm.getApplicationInfo(pkg, PackageManager.GET_META_DATA)));
                 ver.setText("version : " + pm.getPackageInfo(pkg, 0).versionName);
                 pk.setText("package : " + pkg);
 
                 icon.setImageDrawable(pm.getApplicationIcon(pkg));
                 new GetVersionCode().execute();
-            } catch (PackageManager.NameNotFoundException ignored) { }
-        }
-        else {
+            } catch (Exception e) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Error!").setMessage("Unexpected Exception catched!\nCause : " + e.toString());
+                builder.setPositiveButton("CLOSE APP", (dialog, id) -> { getActivity().finish(); });
+                builder.setNegativeButton("RESTART APP",((dialog, which) -> getActivity().recreate()));
+                builder.create().show();
+            }
+        } else {
             String pkg = indexToPackage(FragmentPagerItem.getPosition(getArguments()));
-            ((TextView)view.findViewById(R.id.NoneMessage)).setText("Can't find package \"" + pkg + "\"");
+            ((TextView) view.findViewById(R.id.NoneMessage)).setText("Can't find package \"" + pkg + "\"");
             view.findViewById(R.id.Button_Download).setOnClickListener(v -> {
-                startActivity(new Intent(getContext(),GFDownloadActivity.class).putExtra("pkg",pkg));
+                startActivity(new Intent(getContext(), GFDownloadActivity.class).putExtra("pkg", pkg));
             });
         }
     }
@@ -126,9 +131,9 @@ public class GFFragment extends Fragment {
         }
     }
 
-    public static GFPrefsFragment newInstance(String pkg){
+    public static GFPrefsFragment newInstance(String pkg) {
         GFPrefsFragment fragment = new GFPrefsFragment(pkg);
-        Bundle args =  new Bundle();
+        Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }

@@ -58,8 +58,25 @@
             android:contentDescription="@string/app_name" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/progressbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center" />
+    </LinearLayout>
+
     <FrameLayout
         android:id="@+id/prefs"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 </LinearLayout>

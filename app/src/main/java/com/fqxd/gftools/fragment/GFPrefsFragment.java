@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.preference.Preference;
@@ -60,6 +63,16 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
             BRT.setVisible(false);
             BDT.setVisible(false);
             BSZ.setVisible(false);
+        }
+
+        try {
+            PackageInfo pm = getActivity().getPackageManager().getPackageInfo(Package, 0);
+            long ver = Build.VERSION.SDK_INT > 28 ? pm.getLongVersionCode() : pm.versionCode;
+            String obb = "main." + ver + "." + Package + ".obb";
+            findPreference("TextView_OBBNF").setVisible(!new File("/sdcard/Android/obb/" + Package + "/" + obb).exists());
+            getActivity().findViewById(R.id.progressbarLayout).setVisibility(View.GONE);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

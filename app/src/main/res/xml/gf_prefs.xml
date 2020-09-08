@@ -24,6 +24,12 @@
             android:key="TextView_SIZE"
             android:summary="데이터 크기 : 약"
             android:icon="@drawable/ic_error_outline"/>
+
+        <Preference
+            android:key="TextView_OBBNF"
+            android:title="OBB 파일이 존재하지 않습니다."
+            android:summary="앱 실행이 실패할수도 있습니다."
+            android:icon="@drawable/ic_error_outline"/>
     </PreferenceCategory>
 
     <PreferenceCategory android:title="Features">

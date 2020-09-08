@@ -1,43 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="5dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
-    android:layout_marginEnd="5dp">
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginEnd="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:gravity="center|bottom|end"
+            android:text="현재 상태 : "
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="5dp"
+            android:textSize="30sp"
+            android:layout_marginStart="15dp"
+            android:gravity="center"
+            android:text="데이터 없음"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/PkgInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textStyle="bold"
         android:text="@string/target" />
 
     <Button
-        android:id="@+id/centrue"
+        android:id="@+id/centask"
         style="@style/Widget.AppCompat.Button"
+        android:layout_marginTop="7dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/run_patch"
         android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/cenfalse"
-        style="@style/Widget.AppCompat.Button"
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/run_patch"
-        android:textAllCaps="false"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="TIP : 검열 해제 후에도 검열이 되어 있다면,\n데이터 파일을 다시 다운받아 보세요."
+        tools:ignore="HardcodedText" />
 
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/progressbarLayout"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@drawable/outline">
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/log"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </ScrollView>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center" />
+    </LinearLayout>
 </LinearLayout>
