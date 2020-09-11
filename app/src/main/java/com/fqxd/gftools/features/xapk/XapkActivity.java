@@ -3,6 +3,7 @@ package com.fqxd.gftools.features.xapk;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -39,10 +40,12 @@ public class XapkActivity extends AppCompatActivity {
 
     String apk;
     ProgressDialog progressDialog;
+    public static Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activity = this;
         if (checkPermissions()){
             Intent i = new Intent(this, FilePicker.class);
             i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,false);
@@ -92,17 +95,15 @@ public class XapkActivity extends AppCompatActivity {
             final File finalFile = file;
             b.setPositiveButton("Yes", (dialogInterface, i) -> new work(finalFile).execute());
             b.setNegativeButton("No", (dialogInterface, i) -> finish());
+            b.setOnCancelListener(dialog -> finish());
             AlertDialog d = b.create();
             d.show();
-        }
+        } else finish();
     }
-
-
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
         finish();
     }
 

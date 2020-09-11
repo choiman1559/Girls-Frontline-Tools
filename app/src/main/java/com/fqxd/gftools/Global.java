@@ -19,6 +19,7 @@ import com.github.megatronking.netbare.ssl.JKS;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +87,10 @@ public class Global extends Application {
         }
         process.waitFor();
         return value;
+    }
+
+    public static String CmdParse(String cmd) {
+        return "su -c \"" + cmd + "\"";
     }
 
     private void registerNotificationChannels(String ID, String DES) {

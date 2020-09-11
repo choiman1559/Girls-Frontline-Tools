@@ -33,7 +33,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                     .setAutoCancel(true)
                     .show();
 
-            SharedPreferences prefs = context.getSharedPreferences("MainActivity",Context.MODE_PRIVATE);
+            SharedPreferences prefs = context.getSharedPreferences("com.fqxd.gftools_preferences",Context.MODE_PRIVATE);
             JSONArray array = new JSONArray(prefs.getString("AlarmData","[ ]"));
             for(int i = 0;i < array.length();i++) {
                 if(array.getJSONObject(i).getLong("ID") == obj.parse().getLong("ID")) {

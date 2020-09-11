@@ -90,7 +90,7 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.ViewHo
                     }
                     pm.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED,PackageManager.DONT_KILL_APP);
 
-                    SharedPreferences prefs = context.getSharedPreferences("MainActivity",Context.MODE_PRIVATE);
+                    SharedPreferences prefs = context.getSharedPreferences("com.fqxd.gftools_preferences",Context.MODE_PRIVATE);
                     JSONArray array = new JSONArray(prefs.getString("AlarmData","[ ]"));
                     for(int i = 0;i < array.length();i++) {
                         if(array.getJSONObject(i).getLong("ID") == obj.getLong("ID")) {

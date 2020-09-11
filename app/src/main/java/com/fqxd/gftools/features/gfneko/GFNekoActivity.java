@@ -90,8 +90,7 @@ public class GFNekoActivity extends AppCompatActivity {
       int count = 1;
 
       if(new File(dir).exists()) {
-        File[] skinDir = new File(dir).listFiles();
-        for (File skinObj : skinDir) {
+        for (File skinObj : new File(dir).listFiles()) {
           if (skinObj.isDirectory()) {
             for (File files : skinObj.listFiles()) {
               if(files.isFile()) {

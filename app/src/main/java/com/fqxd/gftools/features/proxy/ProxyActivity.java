@@ -114,10 +114,11 @@ public class ProxyActivity extends AppCompatActivity {
                     }
                 } catch (IOException | InterruptedException e) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("Error!").setMessage("Can't get Root permission! Please check if su is installed on your device and try again!");
+                    builder.setTitle("Error!").setMessage("루트 권한을 인식할수 없습니다! 기기가 루팅이 되어있는지 확인 후 다시 시도하십시오!");
                     builder.setPositiveButton("OK", (dialog, id) -> { });
                     builder.create().show();
-                    e.printStackTrace();
+                    Enabled.setChecked(false);
+                    PAC_Enabled.setChecked(false);
                     e.printStackTrace();
                 }
             } else {

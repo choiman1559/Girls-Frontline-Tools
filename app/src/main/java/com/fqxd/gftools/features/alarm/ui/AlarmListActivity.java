@@ -45,7 +45,7 @@ public class AlarmListActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarmlist);
-        SharedPreferences prefs = getSharedPreferences("MainActivity", MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("com.fqxd.gftools_preferences", MODE_PRIVATE);
         Switch alarmOnOff = findViewById(R.id.OnOff);
         RadioButton adbRadio = findViewById(R.id.ADBRadio);
         RadioButton vpnRadio = findViewById(R.id.VPNRadio);
@@ -62,6 +62,8 @@ public class AlarmListActivity extends AppCompatActivity {
             adbRadio.setEnabled(false);
             vpnRadio.setEnabled(false);
         }
+
+        if(Build.VERSION.SDK_INT < 26) vpnRadio.setEnabled(false);
 
         RadioGroup group = findViewById(R.id.RadioGroup);
         group.setOnCheckedChangeListener((group1, checkedId) -> {
@@ -101,6 +103,10 @@ public class AlarmListActivity extends AppCompatActivity {
                             try {
                                 Runtime.getRuntime().exec("su -c pm grant com.fqxd.gftools android.permission.READ_LOGS && am force-stop com.fqxd.gftools");
                             } catch (IOException e) {
+                                AlertDialog.Builder b = new AlertDialog.Builder(this);
+                                b.setTitle("Error!").setMessage("루트 권한을 인식할수 없습니다! 기기가 루팅이 되어있는지 확인 후 다시 시도하십시오!");
+                                b.setPositiveButton("OK", (d, i) -> { });
+                                b.create().show();
                                 e.printStackTrace();
                             }
                         });

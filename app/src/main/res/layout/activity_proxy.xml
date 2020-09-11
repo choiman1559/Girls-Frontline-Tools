@@ -69,5 +69,6 @@
             android:hint="PAC 프록시 주소"
             android:autofillHints="PAC 프록시 주소"
             android:inputType="textWebEmailAddress" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

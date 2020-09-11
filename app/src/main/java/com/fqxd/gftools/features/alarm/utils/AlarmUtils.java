@@ -32,7 +32,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class AlarmUtils {
     public void setAlarm(JSONObject obj, Context context) throws JSONException {
-        SharedPreferences prefs = context.getSharedPreferences("MainActivity", MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences("com.fqxd.gftools_preferences", MODE_PRIVATE);
         JSONArray array = new JSONArray(prefs.getString("AlarmData", "[ ]"));
         array.put(obj);
         prefs.edit().putString("AlarmData", array.toString()).apply();
@@ -73,7 +73,7 @@ public class AlarmUtils {
         }
         pm.setComponentEnabledSetting(componentName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
 
-        SharedPreferences prefs = context.getSharedPreferences("MainActivity", MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences("com.fqxd.gftools_preferences", MODE_PRIVATE);
         JSONArray array = new JSONArray(prefs.getString("AlarmData", "[ ]"));
         for (int i = 0; i < array.length(); i++) {
             if (array.getJSONObject(i).getLong("ID") == obj.getLong("ID")) {
@@ -87,7 +87,7 @@ public class AlarmUtils {
     @Nullable
     public JSONObject checkOverlap(int Opid ,String Package,Context context) {
         try {
-            JSONArray array = new JSONArray(context.getSharedPreferences("MainActivity", MODE_PRIVATE).getString("AlarmData", "[ ]"));
+            JSONArray array = new JSONArray(context.getSharedPreferences("com.fqxd.gftools_preferences", MODE_PRIVATE).getString("AlarmData", "[ ]"));
             for (int i = 0; i < array.length(); i++) {
                 JSONObject o = array.getJSONObject(i);
                 if (o.getString("Package").equals(Package)) {

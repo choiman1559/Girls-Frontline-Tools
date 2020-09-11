@@ -138,7 +138,7 @@ public class GFXapkInstallActivity extends AppCompatActivity {
             boolean b = my.unZip(lol.toString(),file.toString());
             try {
                 copyDirectory(new File("/sdcard/GF_Tool/Android"),new File("/sdcard/Android/"));
-            } catch (IOException e) { }
+            } catch (IOException ignored) { }
 
             return String.valueOf(b);
         }

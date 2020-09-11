@@ -24,35 +24,36 @@ import java.util.ArrayList;
 
 public class DetectGFService extends AccessibilityService {
     public static String lastPackage = "";
+    private static String secondPackage = "";
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         Log.d("event", "" + event.getPackageName());
         lastPackage = "" + event.getPackageName();
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_SECURE_SETTINGS) == PackageManager.PERMISSION_GRANTED) {
-            try {
-                if (isGF(lastPackage)) {
-                    JSONObject obj = ProxyUtils.getProxyJsonFromPrefs(lastPackage, this);
-                    if (obj != null && obj.getBoolean("enabled")) {
-                        ProxyUtils.setProxy(ProxyConfig.getProxyConfigFromJson(obj));
-                    }
-
-                    JSONObject obj2 = ProxyUtils.getPacProxyJsonFromPrefs(lastPackage, this);
-                    if (obj2 != null && obj2.getBoolean("enabled")) {
-                        ProxyUtils.setPacProxy(PacProxyConfig.getProxyConfigFromJson(obj2));
-                    }
-                } else {
-                    ProxyUtils.undoProxy();
-                    ProxyUtils.undoPacProxy();
+        try {
+            if (isGF(lastPackage)) {
+                JSONObject obj = ProxyUtils.getProxyJsonFromPrefs(lastPackage, this);
+                if (obj != null && obj.getBoolean("enabled")) {
+                    ProxyUtils.setProxy(ProxyConfig.getProxyConfigFromJson(obj));
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+
+                JSONObject obj2 = ProxyUtils.getPacProxyJsonFromPrefs(lastPackage, this);
+                if (obj2 != null && obj2.getBoolean("enabled")) {
+                    ProxyUtils.setPacProxy(PacProxyConfig.getProxyConfigFromJson(obj2));
+                }
+            } else if(isGF(secondPackage)){
+                ProxyUtils.undoProxy();
+                ProxyUtils.undoPacProxy();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            secondPackage = lastPackage;
         }
 
         if (isGF(lastPackage)) {
-            Intent intent = new Intent(this, RotationService.class).putExtra("pkg",lastPackage);
+            Intent intent = new Intent(this, RotationService.class).putExtra("pkg", lastPackage);
             new Thread(() -> {
                 Looper.prepare();
                 SharedPreferences prefs = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);

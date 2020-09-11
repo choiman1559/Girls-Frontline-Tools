@@ -17,7 +17,7 @@ public class BootCompleteReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (Objects.equals(intent.getAction(), "android.intent.action.BOOT_COMPLETED")) {
-            SharedPreferences prefs = context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE);
+            SharedPreferences prefs = context.getSharedPreferences("com.fqxd.gftools_preferences", Context.MODE_PRIVATE);
             try {
                 JSONArray array = new JSONArray(prefs.getString("AlarmData","[ ]"));
                 for(int i = 0;i < array.length();i++) {

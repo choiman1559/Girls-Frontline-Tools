@@ -32,6 +32,7 @@ import com.nononsenseapps.filepicker.Utils;
 import com.xd.xdsdk.XDCallback;
 import com.xd.xdsdk.XDSDK;
 
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -112,7 +113,7 @@ public class HomeFragment extends PreferenceFragmentCompat {
                     }
                 } catch (IOException | InterruptedException e) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setTitle("Error!").setMessage("Can't get Root permission! Please check if su is installed on your device and try again!");
+                    builder.setTitle("Error!").setMessage("루트 권한을 인식할수 없습니다! 기기가 루팅이 되어있는지 확인 후 다시 시도하십시오!");
                     builder.setPositiveButton("OK", (dialog, id) -> { });
                     builder.create().show();
                     e.printStackTrace();
@@ -149,10 +150,17 @@ public class HomeFragment extends PreferenceFragmentCompat {
 
     private void mvCA(File file) {
         try {
-            Runtime.getRuntime().exec("su -c mount -o remount,rw /").waitFor();
-            Runtime.getRuntime().exec("su -c cp " + file.getAbsolutePath() + " /system/etc/security/cacerts").waitFor();
-            Runtime.getRuntime().exec("su -c chmod 644 /system/etc/security/cacerts/" + file.getName()).waitFor();
-            Runtime.getRuntime().exec("su -c mount -o remount,ro /").waitFor();
+            Process p = Runtime.getRuntime().exec("su");
+            DataOutputStream dos = new DataOutputStream(p.getOutputStream());
+            dos.writeBytes("mount -o remount,rw /\n");
+            dos.writeBytes("cp " + file.getAbsolutePath() + " /system/etc/security/cacerts\n");
+            dos.writeBytes("chmod 644 /system/etc/security/cacerts/" + file.getName() + "\n");
+            dos.writeBytes("mount -o remount,ro /\n");
+            dos.writeBytes("exit\n");
+            dos.flush();
+            dos.close();
+            p.waitFor();
+
             AlertDialog.Builder b = new AlertDialog.Builder(getContext());
             b.setTitle("Waring");
             b.setMessage("You Need Reboot to apply the CA.\nAre you want to reboot?");

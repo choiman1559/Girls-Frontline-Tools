@@ -1,5 +1,6 @@
 package com.fqxd.gftools.features.xapk;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Environment;
 
@@ -36,8 +37,6 @@ public class FilePicker extends FilePickerActivity {
         return fragment;
     }
 
-
-
     public static class CustomFilePickerFragment extends FilePickerFragment {
 
         // File extension to filter on
@@ -68,13 +67,12 @@ public class FilePicker extends FilePickerActivity {
             }
             return ret;
         }
-
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        XapkActivity.activity.finish();
         finish();
     }
 }

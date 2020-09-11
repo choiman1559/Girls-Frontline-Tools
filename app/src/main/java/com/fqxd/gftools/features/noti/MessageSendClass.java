@@ -24,7 +24,7 @@ public class MessageSendClass extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String TOPIC = "/topics/" + getSharedPreferences("NotiPrefs", MODE_PRIVATE).getString("uid", "");
+        String TOPIC = "/topics/" + getSharedPreferences("com.fqxd.gftools_preferences", MODE_PRIVATE).getString("uid", "");
         Intent intent = getIntent();
         String Package = intent.getStringExtra("package");
         String DEVICE_ID = intent.getStringExtra("device_id");

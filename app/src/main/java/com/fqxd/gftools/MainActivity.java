@@ -1,12 +1,13 @@
 package com.fqxd.gftools;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
 
-import com.fqxd.gftools.features.calculator.CalculatorActivity;
 import com.fqxd.gftools.fragment.HomeFragment;
 import com.fqxd.gftools.fragment.GFFragment;
 import com.github.javiersantos.appupdater.AppUpdater;
@@ -145,6 +146,15 @@ public class MainActivity extends AppCompatActivity {
                 .setUpdateFrom(UpdateFrom.GOOGLE_PLAY)
                 .showAppUpdated(true);
         appUpdater.start();
+
+        SharedPreferences p = getSharedPreferences("com.fqxd.gftools_preferences",MODE_PRIVATE);
+        if(p.getBoolean("isFirstRun",true)) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("안내").setMessage("이 앱은 다음 환경에 가장 최적화되어 있습니다 : \n - Android 10 (AOSP,GSI)\n - EAS Kernel (Linux 4.3+)\n - Ram 3GB 이상\n - 1080x2140 (403dpi)\n - ARMv8a, x86_64\n - Magisk 20.4\n");
+            builder.setPositiveButton("다시 보지 않기", (dialog, id) -> {
+                p.edit().putBoolean("isFirstRun",false).apply();
+            }).setNegativeButton("확인", (dialog, which) -> {}).show();
+        }
     }
 
     @Override

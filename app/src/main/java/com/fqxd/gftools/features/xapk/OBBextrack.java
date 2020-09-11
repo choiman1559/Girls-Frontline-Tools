@@ -70,11 +70,11 @@ public class OBBextrack {
             if (files == null) {
                 return true;
             }
-            for (int i = 0; i < files.length; i++) {
-                if (files[i].isDirectory()) {
-                    deleteDirectory(files[i].getAbsolutePath());
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    deleteDirectory(file.getAbsolutePath());
                 } else {
-                    files[i].delete();
+                    file.delete();
                 }
             }
         }

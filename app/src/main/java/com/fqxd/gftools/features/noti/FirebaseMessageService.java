@@ -17,7 +17,7 @@ public class FirebaseMessageService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
-        SharedPreferences prefs = getSharedPreferences("NotiPrefs", MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("com.fqxd.gftools_preferences", MODE_PRIVATE);
         Map<String, String> data = remoteMessage.getData();
 
         if (prefs.getBoolean("Enabled", false) && !prefs.getString("uid","").equals("") && data.get("type").equals("send"))
@@ -42,7 +42,7 @@ public class FirebaseMessageService extends FirebaseMessagingService {
     @Override
     public void onNewToken(@NonNull String token) {
         super.onNewToken(token);
-        if(!getSharedPreferences("NotiPrefs", MODE_PRIVATE).getString("uid", "").equals(""))
-            FirebaseMessaging.getInstance().subscribeToTopic(getSharedPreferences("NotiPrefs", MODE_PRIVATE).getString("uid", ""));
+        if(!getSharedPreferences("com.fqxd.gftools_preferences", MODE_PRIVATE).getString("uid", "").equals(""))
+            FirebaseMessaging.getInstance().subscribeToTopic(getSharedPreferences("com.fqxd.gftools_preferences", MODE_PRIVATE).getString("uid", ""));
     }
 }
