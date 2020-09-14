@@ -40,7 +40,6 @@ public class RotationActivity extends AppCompatActivity {
         } catch (Exception e) {
             Enabled.setChecked(false);
         }
-        Enabled.setChecked(Global.checkAccessibilityPermissions(this));
 
         Enabled.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(!isChecked) stopService(new Intent(this, RotationService.class));
@@ -79,5 +78,13 @@ public class RotationActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
+        Enabled.setChecked(checkPermission() && Enabled.isChecked());
+    }
+
+    boolean checkPermission() {
+        boolean a = Build.VERSION.SDK_INT > 22 && Settings.canDrawOverlays(RotationActivity.this);
+        boolean b = Build.VERSION.SDK_INT > 22 && Settings.System.canWrite(this.getApplicationContext());
+        boolean c = Global.checkAccessibilityPermissions(this);
+        return a && b && c;
     }
 }

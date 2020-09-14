@@ -2,6 +2,10 @@ package com.fqxd.gftools.features.proxy;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.provider.Settings;
+import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,49 +15,25 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 public class ProxyUtils {
-    public static void setProxy(ProxyConfig r0) throws IOException, InterruptedException {
-        String cmd = "settings put global http_proxy " + r0.getAddress() + ":" + r0.getPort();
-        Process process = Runtime.getRuntime().exec("su");
-        DataOutputStream dos = new DataOutputStream(process.getOutputStream());
-        dos.writeBytes(cmd + "\n");
-        dos.writeBytes("exit\n");
-        dos.flush();
-        dos.close();
-        process.waitFor();
+    public static void setProxy(ProxyConfig r0,Context ctx) {
+        Settings.Global.putString(ctx.getContentResolver(),"http_proxy",r0.getAddress() + ":" + r0.getPort());
+        Toast.makeText(ctx, "Http Proxy set to " + r0.getAddress() + ":" + r0.getPort(), Toast.LENGTH_SHORT).show();
     }
 
-    public static void setPacProxy(PacProxyConfig r0) throws IOException, InterruptedException {
-        String cmd = "settings put global global_proxy_pac_url " + r0.getAddress();
-        Process process = Runtime.getRuntime().exec("su");
-        DataOutputStream dos = new DataOutputStream(process.getOutputStream());
-        dos.writeBytes(cmd + "\n");
-        dos.writeBytes("exit\n");
-        dos.flush();
-        dos.close();
-        process.waitFor();
+    public static void setPacProxy(PacProxyConfig r0, Context ctx) {
+        Settings.Global.putString(ctx.getContentResolver(),"global_proxy_pac_url",r0.getAddress());
+        Toast.makeText(ctx, "Http PAC Proxy set to " + r0.getAddress(), Toast.LENGTH_SHORT).show();
     }
 
-    public static void undoProxy() throws IOException, InterruptedException {
-        Process process = Runtime.getRuntime().exec("su");
-        DataOutputStream dos = new DataOutputStream(process.getOutputStream());
-        dos.writeBytes("settings put global http_proxy :0\n");
-        dos.writeBytes("exit\n");
-        dos.flush();
-        dos.close();
-        process.waitFor();
+    public static void undoProxy(Context ctx) {
+        Settings.Global.putString(ctx.getContentResolver(),"http_proxy",":0");
     }
 
-    public static void undoPacProxy() throws IOException, InterruptedException {
-        String cmd = "settings put global global_proxy_pac_url :0";
-        Process process = Runtime.getRuntime().exec("su");
-        DataOutputStream dos = new DataOutputStream(process.getOutputStream());
-        dos.writeBytes(cmd + "\n");
-        dos.writeBytes("exit\n");
-        dos.flush();
-        dos.close();
-        process.waitFor();
+    public static void undoPacProxy(Context ctx) {
+        Settings.Global.putString(ctx.getContentResolver(),"global_proxy_pac_url","");
     }
 
+    @Nullable
     public static JSONObject getProxyJsonFromPrefs(String Package,Context context) throws JSONException {
         SharedPreferences prefs = context.getSharedPreferences("com.fqxd.gftools_preferences", Context.MODE_PRIVATE);
         JSONArray arr = new JSONArray(prefs.getString("proxy_data","[]"));
@@ -78,6 +58,7 @@ public class ProxyUtils {
         prefs.edit().putString("proxy_data",arr.toString()).apply();
     }
 
+    @Nullable
     public static JSONObject getPacProxyJsonFromPrefs(String Package,Context context) throws JSONException {
         SharedPreferences prefs = context.getSharedPreferences("com.fqxd.gftools_preferences", Context.MODE_PRIVATE);
         JSONArray arr = new JSONArray(prefs.getString("pac_proxy_data","[]"));

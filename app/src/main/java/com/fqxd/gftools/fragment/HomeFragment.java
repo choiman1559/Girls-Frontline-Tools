@@ -142,13 +142,13 @@ public class HomeFragment extends PreferenceFragmentCompat {
             b.setTitle("Notice");
             b.setMessage("Do you want to Install?");
             File finalFile = file;
-            b.setPositiveButton("Yes", (dialogInterface, i) -> mvCA(finalFile));
+            b.setPositiveButton("Yes", (dialogInterface, i) -> moveCA(finalFile));
             b.setNegativeButton("No", (dialogInterface, i) -> { });
             b.create().show();
         }
     }
 
-    private void mvCA(File file) {
+    private void moveCA(File file) {
         try {
             Process p = Runtime.getRuntime().exec("su");
             DataOutputStream dos = new DataOutputStream(p.getOutputStream());

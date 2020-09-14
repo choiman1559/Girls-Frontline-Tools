@@ -30,12 +30,17 @@ import java.io.IOException;
 
 public class GFFragment extends Fragment {
     int LayoutMode;
+    String Package;
+    static GFPrefsFragment fragment;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Intent intent = getContext().getPackageManager().getLaunchIntentForPackage(indexToPackage(FragmentPagerItem.getPosition(getArguments())));
-        LayoutMode = intent == null ? 0 : 1;
+        Package =  indexToPackage(FragmentPagerItem.getPosition(getArguments()));
+        Intent intent = getContext().getPackageManager().getLaunchIntentForPackage(Package);
+        LayoutMode = (intent == null ? 0 : 1);
+        fragment = new GFPrefsFragment(Package);
+        fragment.setArguments(new Bundle());
         return inflater.inflate(LayoutMode == 1 ? R.layout.fragment_gf : R.layout.fragment_gfnone, container, false);
     }
 
@@ -44,7 +49,6 @@ public class GFFragment extends Fragment {
         if (LayoutMode == 1) {
             try {
                 super.onViewCreated(view, savedInstanceState);
-                String pkg = indexToPackage(FragmentPagerItem.getPosition(getArguments()));
                 PackageManager pm = view.getContext().getApplicationContext().getPackageManager();
                 TextView name = view.findViewById(R.id.appname);
                 TextView ver = view.findViewById(R.id.version);
@@ -53,20 +57,21 @@ public class GFFragment extends Fragment {
 
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.prefs, newInstance(pkg))
+                        .replace(R.id.prefs,fragment)
                         .commit();
 
-                name.setText(pm.getApplicationLabel(pm.getApplicationInfo(pkg, PackageManager.GET_META_DATA)));
-                ver.setText("version : " + pm.getPackageInfo(pkg, 0).versionName);
-                pk.setText("package : " + pkg);
+                name.setText(pm.getApplicationLabel(pm.getApplicationInfo(Package, PackageManager.GET_META_DATA)));
+                ver.setText("version : " + pm.getPackageInfo(Package, 0).versionName);
+                pk.setText("package : " + Package);
 
-                icon.setImageDrawable(pm.getApplicationIcon(pkg));
+                icon.setImageDrawable(pm.getApplicationIcon(Package));
                 new GetVersionCode().execute();
             } catch (Exception e) {
+                e.printStackTrace();
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Error!").setMessage("Unexpected Exception catched!\nCause : " + e.toString());
-                builder.setPositiveButton("CLOSE APP", (dialog, id) -> { getActivity().finish(); });
-                builder.setNegativeButton("RESTART APP",((dialog, which) -> getActivity().recreate()));
+                builder.setTitle("예외 발생!").setMessage("원인 : " + e.toString());
+                builder.setPositiveButton("앱 종료", (dialog, id) -> { getActivity().finish(); });
+                builder.setNegativeButton("엡 재시작",((dialog, which) -> getActivity().recreate()));
                 builder.create().show();
             }
         } else {
@@ -126,16 +131,10 @@ public class GFFragment extends Fragment {
                     Snackbar.make(getView(), pm.getApplicationLabel(pm.getApplicationInfo(pkg, PackageManager.GET_META_DATA)) + "의 새 업데이트가 있습니다!", Snackbar.LENGTH_LONG)
                             .setAction("업데이트", v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + pkg)))).show();
                 }
-            } catch (PackageManager.NameNotFoundException ignore) {
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
         }
-    }
-
-    public static GFPrefsFragment newInstance(String pkg) {
-        GFPrefsFragment fragment = new GFPrefsFragment(pkg);
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
     }
 
     String indexToPackage(int index) {

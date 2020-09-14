@@ -22,7 +22,7 @@
 
         <Preference
             android:key="TextView_SIZE"
-            android:summary="데이터 크기 : 약"
+            android:summary="데이터 크기 : 계산중..."
             android:icon="@drawable/ic_error_outline"/>
 
         <Preference
@@ -79,7 +79,7 @@
 
         <Preference
             android:key="TextView_BSIZE"
-            android:summary="백업 크기 : 약"
+            android:summary="백업 크기 : 계산중..."
             android:icon="@drawable/ic_error_outline"/>
     </PreferenceCategory>
 </PreferenceScreen>

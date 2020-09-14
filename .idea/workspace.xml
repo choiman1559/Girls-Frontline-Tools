@@ -24,42 +24,28 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.2.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.2.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.2.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.2.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.2.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.2.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.2.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.2.1/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.2.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.2.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.2.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/netbare/netbare.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/netbare/netbare.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/release/output-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/output-metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/DetectGFService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/DetectGFService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/Global.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/Global.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/CenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/CenActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/alarm/receiver/AlarmReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/alarm/receiver/AlarmReceiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/alarm/receiver/BootCompleteReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/alarm/receiver/BootCompleteReceiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/alarm/ui/AlarmListActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/alarm/ui/AlarmListActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/alarm/ui/ListViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/alarm/ui/ListViewAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/alarm/utils/AlarmUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/alarm/utils/AlarmUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/gfneko/GFNekoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/gfneko/GFNekoActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/noti/FirebaseMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/noti/FirebaseMessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/noti/MessageSendClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/noti/MessageSendClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/noti/NotiActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/noti/NotiActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/proxy/ProxyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/proxy/ProxyActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/proxy/ProxyUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/proxy/ProxyUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/xapk/FilePicker.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/xapk/FilePicker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/xapk/OBBextrack.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/xapk/OBBextrack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/xapk/XapkActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/xapk/XapkActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/fragment/GFXapkInstallActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/fragment/GFXapkInstallActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/rotation/RotationActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/features/rotation/RotationActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/fragment/GFFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/fragment/GFFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/fragment/GFPrefsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/fragment/GFPrefsFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/fragment/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/fqxd/gftools/fragment/HomeFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_proxy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_proxy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_gf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_gf.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/gf_prefs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/xml/gf_prefs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xDSDKAndroid/xDSDKAndroid.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xDSDKAndroid/xDSDKAndroid.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +53,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="5.4_FWVGA_API_24" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="192.168.31.234:5555" />
   <component name="ExportToHTMLSettings">
     <option name="printScope" value="1" />
     <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/exportToHTML" />
@@ -602,10 +588,10 @@
     </state>
     <state x="692" y="301" key="#com.intellij.ide.util.TreeClassChooserDialog/0.25.1920.986@0.25.1920.986" timestamp="1599332208771" />
     <state x="692" y="302" width="525" height="429" key="#com.intellij.ide.util.TreeClassChooserDialog/0.25.1920.989@0.25.1920.989" timestamp="1596442685187" />
-    <state x="643" y="239" width="624" height="566" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1599545362003">
+    <state x="643" y="239" width="624" height="566" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1599977276546">
       <screen x="0" y="25" width="1920" height="986" />
     </state>
-    <state x="643" y="239" width="624" height="566" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.25.1920.986@0.25.1920.986" timestamp="1599545362003" />
+    <state x="643" y="239" width="624" height="566" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.25.1920.986@0.25.1920.986" timestamp="1599977276546" />
     <state x="643" y="240" width="624" height="566" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.25.1920.989@0.25.1920.989" timestamp="1598778823641" />
     <state x="463" y="440" width="970" height="158" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1596285018616">
       <screen x="0" y="25" width="1920" height="989" />
@@ -653,25 +639,25 @@
     </state>
     <state x="743" y="276" width="424" height="491" key="FileChooserDialogImpl/0.25.1920.986@0.25.1920.986" timestamp="1599500064068" />
     <state x="743" y="277" width="421" height="476" key="FileChooserDialogImpl/0.25.1920.989@0.25.1920.989" timestamp="1598697971905" />
-    <state width="1866" height="181" key="GridCell.Tab.0.bottom" timestamp="1599783294962">
+    <state width="1866" height="314" key="GridCell.Tab.0.bottom" timestamp="1600103790357">
       <screen x="0" y="25" width="1920" height="986" />
     </state>
-    <state width="1866" height="181" key="GridCell.Tab.0.bottom/0.25.1920.986@0.25.1920.986" timestamp="1599783294962" />
+    <state width="1866" height="314" key="GridCell.Tab.0.bottom/0.25.1920.986@0.25.1920.986" timestamp="1600103790357" />
     <state width="1866" height="231" key="GridCell.Tab.0.bottom/0.25.1920.989@0.25.1920.989" timestamp="1598964297422" />
-    <state width="1866" height="181" key="GridCell.Tab.0.center" timestamp="1599783294961">
+    <state width="1866" height="314" key="GridCell.Tab.0.center" timestamp="1600103790357">
       <screen x="0" y="25" width="1920" height="986" />
     </state>
-    <state width="1866" height="181" key="GridCell.Tab.0.center/0.25.1920.986@0.25.1920.986" timestamp="1599783294961" />
+    <state width="1866" height="314" key="GridCell.Tab.0.center/0.25.1920.986@0.25.1920.986" timestamp="1600103790357" />
     <state width="1866" height="231" key="GridCell.Tab.0.center/0.25.1920.989@0.25.1920.989" timestamp="1598964297422" />
-    <state width="1866" height="181" key="GridCell.Tab.0.left" timestamp="1599783294960">
+    <state width="1866" height="314" key="GridCell.Tab.0.left" timestamp="1600103790357">
       <screen x="0" y="25" width="1920" height="986" />
     </state>
-    <state width="1866" height="181" key="GridCell.Tab.0.left/0.25.1920.986@0.25.1920.986" timestamp="1599783294960" />
+    <state width="1866" height="314" key="GridCell.Tab.0.left/0.25.1920.986@0.25.1920.986" timestamp="1600103790357" />
     <state width="1866" height="231" key="GridCell.Tab.0.left/0.25.1920.989@0.25.1920.989" timestamp="1598964297421" />
-    <state width="1866" height="181" key="GridCell.Tab.0.right" timestamp="1599783294962">
+    <state width="1866" height="314" key="GridCell.Tab.0.right" timestamp="1600103790357">
       <screen x="0" y="25" width="1920" height="986" />
     </state>
-    <state width="1866" height="181" key="GridCell.Tab.0.right/0.25.1920.986@0.25.1920.986" timestamp="1599783294962" />
+    <state width="1866" height="314" key="GridCell.Tab.0.right/0.25.1920.986@0.25.1920.986" timestamp="1600103790357" />
     <state width="1866" height="231" key="GridCell.Tab.0.right/0.25.1920.989@0.25.1920.989" timestamp="1598964297422" />
     <state width="1866" height="307" key="GridCell.Tab.1.bottom" timestamp="1599500761091">
       <screen x="0" y="25" width="1920" height="986" />
@@ -724,10 +710,10 @@
       <screen x="0" y="25" width="1920" height="989" />
     </state>
     <state x="693" y="251" width="524" height="532" key="extract.method.dialog/0.25.1920.989@0.25.1920.989" timestamp="1594225015731" />
-    <state x="668" y="123" width="838" height="712" key="find.popup" timestamp="1599725718031">
+    <state x="715" y="114" width="838" height="712" key="find.popup" timestamp="1600009901319">
       <screen x="0" y="25" width="1920" height="986" />
     </state>
-    <state x="668" y="123" width="838" height="712" key="find.popup/0.25.1920.986@0.25.1920.986" timestamp="1599725718031" />
+    <state x="715" y="114" width="838" height="712" key="find.popup/0.25.1920.986@0.25.1920.986" timestamp="1600009901319" />
     <state x="688" y="177" width="838" height="712" key="find.popup/0.25.1920.989@0.25.1920.989" timestamp="1598972477357" />
     <state x="909" y="364" width="619" height="366" key="psd.add.jar.dependency.panel.dimension" timestamp="1596464668143">
       <screen x="0" y="25" width="1920" height="989" />
@@ -749,10 +735,10 @@
       <screen x="0" y="25" width="1920" height="989" />
     </state>
     <state x="624" y="237" key="run.anything.popup/0.25.1920.989@0.25.1920.989" timestamp="1596099904229" />
-    <state x="623" y="240" width="672" height="676" key="search.everywhere.popup" timestamp="1599624898765">
+    <state x="623" y="240" width="672" height="676" key="search.everywhere.popup" timestamp="1600103631476">
       <screen x="0" y="25" width="1920" height="986" />
     </state>
-    <state x="623" y="240" width="672" height="676" key="search.everywhere.popup/0.25.1920.986@0.25.1920.986" timestamp="1599624898765" />
+    <state x="623" y="240" width="672" height="676" key="search.everywhere.popup/0.25.1920.986@0.25.1920.986" timestamp="1600103631476" />
     <state x="623" y="241" width="672" height="678" key="search.everywhere.popup/0.25.1920.989@0.25.1920.989" timestamp="1598963597913" />
   </component>
   <component name="XDebuggerManager">

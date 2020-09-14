@@ -48,32 +48,48 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
         Preference SZE = findPreference("TextView_SIZE");
         Preference BSZ = findPreference("TextView_BSIZE");
 
-        File DATA = new File("/sdcard/Android/data/" + Package);
-        if(DATA.exists()) SZE.setSummary("데이터 크기 : 약 " + String.format(Locale.getDefault(), "%.2f", (float)(FileUtils.sizeOfDirectory(DATA)) / 1073741824)+ "GB");
-        else SZE.setSummary("데이터 크기 : 약 0GB");
+        new Thread(() -> {
+            File DATA = new File("/sdcard/Android/data/" + Package);
+            if(DATA.exists()) {
+                String text = "데이터 크기 : 약 " + String.format(Locale.getDefault(), "%.2f", (float)(FileUtils.sizeOfDirectory(DATA)) / 1073741824)+ "GB";
+                changeSummary(SZE,text);
+            }
+            else changeSummary(SZE,"데이터 크기 : 약 0GB");
 
-        if(new File("/sdcard/GF_Tool/backup/" + Package + "/").exists()) {
-            BAD.setVisible(false);
-            BRT.setVisible(true);
-            BDT.setVisible(true);
-            BSZ.setVisible(true);
-            BSZ.setSummary("백업 크기 : 약 " + String.format(Locale.getDefault(), "%.2f", (float)(FileUtils.sizeOfDirectory("/sdcard/GF_Tool/backup/" + Package + "/")) / 1073741824)+ "GB");
-        } else {
-            BAD.setVisible(true);
-            BRT.setVisible(false);
-            BDT.setVisible(false);
-            BSZ.setVisible(false);
-        }
+            if(new File("/sdcard/GF_Tool/backup/" + Package + "/").exists()) {
+                changeVisibility(BAD,false);
+                changeVisibility(BRT,true);
+                changeVisibility(BDT,true);
+                changeVisibility(BSZ,true);
 
-        try {
-            PackageInfo pm = getActivity().getPackageManager().getPackageInfo(Package, 0);
-            long ver = Build.VERSION.SDK_INT > 28 ? pm.getLongVersionCode() : pm.versionCode;
-            String obb = "main." + ver + "." + Package + ".obb";
-            findPreference("TextView_OBBNF").setVisible(!new File("/sdcard/Android/obb/" + Package + "/" + obb).exists());
-            getActivity().findViewById(R.id.progressbarLayout).setVisibility(View.GONE);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+                String text = "백업 크기 : 약 " + String.format(Locale.getDefault(), "%.2f", (float)(FileUtils.sizeOfDirectory("/sdcard/GF_Tool/backup/" + Package + "/")) / 1073741824)+ "GB";
+                changeSummary(BSZ,text);
+            } else {
+                changeVisibility(BAD,true);
+                changeVisibility(BRT,false);
+                changeVisibility(BDT,false);
+                changeVisibility(BSZ,false);
+            }
+
+            try {
+                PackageInfo pm = getActivity().getPackageManager().getPackageInfo(Package, 0);
+                long ver = Build.VERSION.SDK_INT > 28 ? pm.getLongVersionCode() : pm.versionCode;
+                String obb = "main." + ver + "." + Package + ".obb";
+                changeVisibility(findPreference("TextView_OBBNF"),!new File("/sdcard/Android/obb/" + Package + "/" + obb).exists());
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+               getActivity().runOnUiThread(() ->  getActivity().findViewById(R.id.progressbarLayout).setVisibility(View.GONE));
+            }
+        }).start();
+    }
+
+    public void changeSummary(Preference p,String s){
+        getActivity().runOnUiThread(() -> p.setSummary(s));
+    }
+
+    public void changeVisibility(Preference p,Boolean b){
+        getActivity().runOnUiThread(() -> p.setVisible(b));
     }
 
     @Override

@@ -16,9 +16,10 @@
                 android:id="@+id/MainImageView"
                 android:layout_width="85dp"
                 android:layout_height="85dp"
-                android:contentDescription="TODO"
                 android:layout_gravity="center"
-                app:srcCompat="@mipmap/ic_icon" />
+                android:scaleType="fitCenter"
+                app:srcCompat="@mipmap/ic_icon"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -56,7 +57,7 @@
                 app:stl_defaultTabTextHorizontalPadding="16dp"
                 app:stl_defaultTabTextMinWidth="0dp"
                 app:stl_distributeEvenly="false"
-                app:stl_clickable="false"
+                app:stl_clickable="true"
                 app:stl_titleOffset="24dp"
                 app:stl_drawDecorationAfterTab="false" />
 
