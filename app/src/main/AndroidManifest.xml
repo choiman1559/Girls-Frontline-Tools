@@ -46,6 +46,10 @@
         tools:replace="android:label,android:theme">
 
         <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3821258949225369~8788009796"/>
+
+        <meta-data
             android:name="firebase_crash_collection_enabled"
             android:value="@bool/FIREBASE_CRASH_ENABLED" />
 

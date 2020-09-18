@@ -7,6 +7,7 @@
     <include layout="@layout/content_main" />
 
         <LinearLayout
+            android:id="@+id/mainLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -14,10 +15,11 @@
 
             <ImageView
                 android:id="@+id/MainImageView"
-                android:layout_width="85dp"
-                android:layout_height="85dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:scaleType="fitCenter"
+                android:layout_marginTop="8dp"
                 app:srcCompat="@mipmap/ic_icon"
                 tools:ignore="ContentDescription" />
 

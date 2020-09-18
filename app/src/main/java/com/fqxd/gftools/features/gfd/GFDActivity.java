@@ -100,7 +100,6 @@ public class GFDActivity extends AppCompatActivity {
         button9.setOnClickListener(onClickListener);
         button10.setOnClickListener(onClickListener);
         button11.setOnClickListener(onClickListener);
-
     }
 
 
@@ -124,8 +123,8 @@ public class GFDActivity extends AppCompatActivity {
 
     public void SendIntent(int butnum) {
         Intent intent = new Intent(this, GFDViewer.class);
-        intent.putExtra("buttonnum",butnum);
-        startActivityForResult(intent,0x00);
+        intent.putExtra("ButtonNum",butnum);
+        startActivity(intent);
         finish();
     }
 }

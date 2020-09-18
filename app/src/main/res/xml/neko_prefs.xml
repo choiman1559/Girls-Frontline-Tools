@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/pref_cat_motion">
         <CheckBoxPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="motion.enable"
             android:summary="@string/pref_motion_enable_summary"
             android:title="@string/pref_motion_enable_title" />

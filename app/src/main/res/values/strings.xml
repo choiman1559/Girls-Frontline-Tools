@@ -3,6 +3,9 @@
     <string name="notify_channel_name">Notification Channel</string>
     <string name="notify_channel_description">default Notification Channel</string>
 
+    <string name="ad_id_test">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="ad_id_pub">ca-app-pub-3821258949225369/5891411384</string>
+
     <string name="run_patch" translatable="false">run patch</string>
     <string name="target_cn_uc" translatable="false">com.digitalsky.girlsfrontline.cn.uc</string>
     <string name="target_cn_bili" translatable="false">com.digitalsky.girlsfrontline.cn.bili</string>

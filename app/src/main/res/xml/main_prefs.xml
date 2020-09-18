@@ -27,7 +27,7 @@
     <Preference
         android:key="Button_NEKO"
         android:title="GF Neko Floating"
-        android:summary="떠다니는 아이따"
+        android:summary="떠다니는 아디따"
         android:icon="@mipmap/ic_main_cat_foreground"/>
 
     <Preference

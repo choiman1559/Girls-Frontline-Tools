@@ -527,7 +527,7 @@ class Logcat(initialCapacity: Int = INITIAL_LOG_CAPACITY) : Closeable {
             val result = mutableSetOf<String>()
 
             val stdoutList = mutableListOf<String>()
-            CommandUtils.runCmd(cmd = *arrayOf("logcat", "-g"), stdoutList = stdoutList)
+            CommandUtils.runCmd(cmd = arrayOf("logcat", "-g"), stdoutList = stdoutList)
 
             for (s in stdoutList) {
                 val colonIndex = s.indexOf(":")
@@ -583,7 +583,7 @@ class Logcat(initialCapacity: Int = INITIAL_LOG_CAPACITY) : Closeable {
             val result = mutableSetOf<String>()
 
             val stdoutList = mutableListOf<String>()
-            CommandUtils.runCmd(cmd = *arrayOf("logcat", "-h"),
+            CommandUtils.runCmd(cmd = arrayOf("logcat", "-h"),
                     stdoutList = stdoutList, redirectStderr = true)
 
             var bFound = false

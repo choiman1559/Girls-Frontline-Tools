@@ -38,7 +38,6 @@ public class GFNekoActivity extends AppCompatActivity {
       Preference Service_Enable = findPreference(AnimationService.PREF_KEY_ENABLE);
       ListPreference Skin = findPreference("motion.skin");
 
-      if(prefs.getBoolean(AnimationService.PREF_KEY_ENABLE,false)) startAnimationService();
       Service_Enable.setOnPreferenceChangeListener((preference, newValue) -> {
         if((Boolean)newValue) startAnimationService();
         return true;
@@ -46,12 +45,13 @@ public class GFNekoActivity extends AppCompatActivity {
 
       Skin.setEntries(getEntries("IDW the Many"));
       Skin.setEntryValues(getEntries(""));
+      if(Skin.getEntries().length < 2) Skin.setValueIndex(0);
+      if(prefs.getBoolean(Service_Enable.getKey(),false)) startAnimationService();
     }
 
     private void startAnimationService() {
       SharedPreferences.Editor edit = context.getSharedPreferences(context.getPackageName() + "_preferences",MODE_PRIVATE).edit();
-      edit.putBoolean(AnimationService.PREF_KEY_VISIBLE, true);
-      edit.apply();
+      edit.putBoolean(AnimationService.PREF_KEY_VISIBLE, true).apply();
       context.startService(new Intent(context, AnimationService.class).setAction(AnimationService.ACTION_START));
     }
 

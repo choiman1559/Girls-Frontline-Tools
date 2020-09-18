@@ -80,9 +80,10 @@ public class ProxyActivity extends AppCompatActivity {
                     Run_WRITE_SECURE_SEIINGS();
                 } else {
                     if (Global.checkAccessibilityPermissions(this)) {
-                        if(Address.getText().toString().equals("") || Port.getText().toString().equals("")) {
+                        if(Address.getText().toString().equals("") || Port.getText().toString().equals("") || Integer.parseInt(Port.getText().toString()) > 65535) {
                             if(Address.getText().toString().equals("")) Address.setError("Input Address");
                             if(Port.getText().toString().equals("")) Port.setError("Input Port");
+                            else if(Integer.parseInt(Port.getText().toString()) > 65535) Port.setError("Limit value is 65535");
                             Enabled.setChecked(false);
                         } else {
                             if (Patterns.IP_ADDRESS.matcher(Address.getText()).matches()) {

@@ -18,7 +18,7 @@ public class GFDViewer extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.imageView);
 
         Intent getnum = getIntent();
-        int btnum = getnum.getIntExtra("buttonnum",0x00);
+        int btnum = getnum.getIntExtra("ButtonNum",0x00);
 
         switch(btnum){
             case 1:
@@ -61,10 +61,10 @@ public class GFDViewer extends AppCompatActivity {
                 imageView.setImageResource(R.drawable.ko_recommendbreeding);
                 break;
 
-                default:
-                    imageView.setImageResource(R.drawable.splashimage);
-                    Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_SHORT).show();
-                    break;
+            default:
+                imageView.setImageResource(R.drawable.splashimage);
+                Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_SHORT).show();
+                break;
         }
 
     }
@@ -72,7 +72,6 @@ public class GFDViewer extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(getApplicationContext(),GFDActivity.class));
         finish();
     }
 }
