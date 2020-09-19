@@ -1,14 +1,19 @@
 package com.fqxd.gftools;
 
 import android.accessibilityservice.AccessibilityServiceInfo;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Build;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.accessibility.AccessibilityManager;
 
 import com.fqxd.gftools.features.alarm.vpn.PacketInjector;
@@ -20,6 +25,8 @@ import com.github.megatronking.netbare.ssl.JKS;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,5 +105,35 @@ public class Global extends Application {
             mChannel.enableLights(false);
             mNotificationManager.createNotificationChannel(mChannel);
         }
+    }
+
+    @SuppressLint("PackageManagerGetSignatures")
+    public static String getSHA1Hash(Context context) {
+        try {
+            final PackageInfo info = context.getPackageManager()
+                    .getPackageInfo(BuildConfig.APPLICATION_ID, PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                final MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+
+                final byte[] digest = md.digest();
+                final StringBuilder toRet = new StringBuilder();
+                for (int i = 0; i < digest.length; i++) {
+                    if (i != 0) toRet.append(":");
+                    int b = digest[i] & 0xff;
+                    String hex = Integer.toHexString(b);
+                    if (hex.length() == 1) toRet.append("0");
+                    toRet.append(hex);
+                }
+                return toRet.toString();
+            }
+        } catch (PackageManager.NameNotFoundException e1) {
+            Log.e("name not found", e1.toString());
+        } catch (NoSuchAlgorithmException e) {
+            Log.e("no such an algorithm", e.toString());
+        } catch (Exception e) {
+            Log.e("exception", e.toString());
+        }
+        return "";
     }
 }

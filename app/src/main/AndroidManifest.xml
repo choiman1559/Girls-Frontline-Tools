@@ -47,7 +47,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3821258949225369~8788009796"/>
+            android:value="@string/ad_id_app"/>
 
         <meta-data
             android:name="firebase_crash_collection_enabled"

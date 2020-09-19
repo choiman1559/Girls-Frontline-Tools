@@ -1,7 +1,9 @@
 package com.fqxd.gftools.features.noti;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fqxd.gftools.Global;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -38,6 +41,21 @@ public class NotiActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_noti);
+
+        switch (Global.getSHA1Hash(this)) {
+            case "cf:61:36:5e:71:42:fa:21:7c:b5:5f:52:6d:e3:d9:06:57:f5:5e:01":
+            case "d5:5c:2e:6a:58:4c:3d:4f:4a:3a:08:cd:1c:7e:6a:eb:ee:ea:46:10":
+            case "36:47:5f:49:ce:2d:bc:cb:b8:59:30:e3:86:17:85:6c:78:cf:86:53":
+                break;
+
+            default:
+                new AlertDialog.Builder(this)
+                        .setTitle("Error!")
+                        .setMessage("기술적 문제로, 이 앱에 사용된 서명키는 이 기능을 사용할 수 없습니다")
+                        .setPositiveButton("확인", (d, w) -> finish())
+                        .create().show();
+                break;
+        }
 
         TextView HTU = findViewById(R.id.HTU);
         Linkify.TransformFilter mTransform = (match, url) -> "";

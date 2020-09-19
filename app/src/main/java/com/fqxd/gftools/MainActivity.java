@@ -1,11 +1,8 @@
 package com.fqxd.gftools;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.Signature;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -54,8 +51,6 @@ import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 import com.xd.xdsdk.XDSDK;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -90,36 +85,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("PackageManagerGetSignatures")
-    static String getSHA1Hash(Context context) {
-        try {
-            final PackageInfo info = context.getPackageManager()
-                    .getPackageInfo(BuildConfig.APPLICATION_ID, PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                final MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-
-                final byte[] digest = md.digest();
-                final StringBuilder toRet = new StringBuilder();
-                for (int i = 0; i < digest.length; i++) {
-                    if (i != 0) toRet.append(":");
-                    int b = digest[i] & 0xff;
-                    String hex = Integer.toHexString(b);
-                    if (hex.length() == 1) toRet.append("0");
-                    toRet.append(hex);
-                }
-                return toRet.toString();
-            }
-        } catch (PackageManager.NameNotFoundException e1) {
-            Log.e("name not found", e1.toString());
-        } catch (NoSuchAlgorithmException e) {
-            Log.e("no such an algorithm", e.toString());
-        } catch (Exception e) {
-            Log.e("exception", e.toString());
-        }
-        return "";
-    }
-
     private void init() {
         ((ImageView) findViewById(R.id.MainImageView)).setImageResource(R.mipmap.ic_icon_round);
         adview = new AdView(this);
@@ -140,13 +105,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        switch(getSHA1Hash(this)) {
+        switch(Global.getSHA1Hash(this)) {
             case "cf:61:36:5e:71:42:fa:21:7c:b5:5f:52:6d:e3:d9:06:57:f5:5e:01":
             case "d5:5c:2e:6a:58:4c:3d:4f:4a:3a:08:cd:1c:7e:6a:eb:ee:ea:46:10":
                 if(!BuildConfig.DEBUG){
                     MobileAds.initialize(this, i -> { });
                     adview.setAdUnitId(getString(R.string.ad_id_pub));
                     adview.loadAd(new AdRequest.Builder().build());
+                    Log.d("ADInit","Ad Load Finished as Release Mode!");
                 }
                 break;
 
@@ -159,10 +125,12 @@ public class MainActivity extends AppCompatActivity {
                     RequestConfiguration configuration = new RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build();
                     MobileAds.setRequestConfiguration(configuration);
                     adview.loadAd(new AdRequest.Builder().build());
+                    Log.d("ADInit","Ad Load Finished as DEBUG Mode!");
                 }
                 break;
 
             default:
+                Log.d("ADInit","No specific detectable SHA1 hash, skipping load ad...");
                 adview.setVisibility(View.GONE);
                 break;
         }
@@ -186,8 +154,7 @@ public class MainActivity extends AppCompatActivity {
         viewPagerTab.setViewPager(viewPager);
         viewPagerTab.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
 
             @Override
             public void onPageSelected(int position) {
@@ -228,8 +195,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
-            }
+            public void onPageScrollStateChanged(int state) { }
         });
 
         findViewById(R.id.action_a).setOnClickListener(v -> {
