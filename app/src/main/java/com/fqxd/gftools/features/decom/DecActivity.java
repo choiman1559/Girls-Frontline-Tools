@@ -49,8 +49,7 @@ public final class DecActivity extends Activity {
         try {
             PackageManager pm = this.getPackageManager();
             packageinfo.setText("target : " + pm.getApplicationLabel(pm.getApplicationInfo(pkg, PackageManager.GET_META_DATA)) + " (" + pkg + ")");
-        } catch (PackageManager.NameNotFoundException e) {
-        }
+        } catch (PackageManager.NameNotFoundException ignored) { }
 
         final Button runPatch = findViewById(R.id.centrue);
         final TextView status = findViewById(R.id.status);
@@ -99,7 +98,6 @@ public final class DecActivity extends Activity {
             this.startActivity(this.getIntent());
         }
         ActivityCompat.requestPermissions(this, permissions, 0);
-
     }
 
     @Override

@@ -135,7 +135,7 @@
             </intent-filter>
         </activity>
 
-       <activity android:name=".features.CenActivity"
+       <activity android:name=".features.cen.CenActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog"/>
         <activity
             android:name=".features.alarm.ui.AlarmListActivity"

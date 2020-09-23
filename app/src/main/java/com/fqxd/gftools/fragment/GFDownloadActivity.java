@@ -2,19 +2,18 @@ package com.fqxd.gftools.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.DownloadManager;
-import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
 import android.os.Environment;
-import android.util.Log;
+import android.view.View;
 import android.webkit.CookieManager;
-import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -25,14 +24,15 @@ import com.fqxd.gftools.R;
 import org.apache.commons.io.FileUtils;
 
 public class GFDownloadActivity extends AppCompatActivity {
-    static ProgressDialog prog;
+    private ProgressBar bar;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jas);
-        prog = ProgressDialog.show(this, "Loading...", "Loading Page...", true, false);
+        bar = findViewById(R.id.progressBar);
+        bar.setVisibility(View.VISIBLE);
 
         CookieManager cm = CookieManager.getInstance();
         cm.removeAllCookies(value -> { });
@@ -70,21 +70,21 @@ public class GFDownloadActivity extends AppCompatActivity {
         });
     }
 
-    public static class myWebClient extends WebViewClient {
+    public class myWebClient extends WebViewClient {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
+            bar.setVisibility(View.VISIBLE);
         }
 
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
-            prog.dismiss();
+            bar.setVisibility(View.GONE);
         }
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            prog.show();
             view.loadUrl(url);
             return true;
         }

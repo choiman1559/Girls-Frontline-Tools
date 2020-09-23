@@ -10,16 +10,17 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.fqxd.gftools.R;
-import com.fqxd.gftools.features.CenActivity;
+import com.fqxd.gftools.features.cen.CenActivity;
 import com.fqxd.gftools.features.decom.DecActivity;
 import com.fqxd.gftools.features.proxy.ProxyActivity;
 import com.fqxd.gftools.features.rotation.RotationActivity;
@@ -40,7 +41,7 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        setPreferencesFromResource(R.xml.gf_prefs,rootKey);
+        setPreferencesFromResource(R.xml.gf_prefs, rootKey);
 
         Preference BAD = findPreference("Button_BAD");
         Preference BRT = findPreference("Button_BRT");
@@ -49,46 +50,45 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
         Preference BSZ = findPreference("TextView_BSIZE");
 
         new Thread(() -> {
-            File DATA = new File("/sdcard/Android/data/" + Package);
-            if(DATA.exists()) {
-                String text = "데이터 크기 : 약 " + String.format(Locale.getDefault(), "%.2f", (float)(FileUtils.sizeOfDirectory(DATA)) / 1073741824)+ "GB";
-                changeSummary(SZE,text);
-            }
-            else changeSummary(SZE,"데이터 크기 : 약 0GB");
-
-            if(new File("/sdcard/GF_Tool/backup/" + Package + "/").exists()) {
-                changeVisibility(BAD,false);
-                changeVisibility(BRT,true);
-                changeVisibility(BDT,true);
-                changeVisibility(BSZ,true);
-
-                String text = "백업 크기 : 약 " + String.format(Locale.getDefault(), "%.2f", (float)(FileUtils.sizeOfDirectory("/sdcard/GF_Tool/backup/" + Package + "/")) / 1073741824)+ "GB";
-                changeSummary(BSZ,text);
-            } else {
-                changeVisibility(BAD,true);
-                changeVisibility(BRT,false);
-                changeVisibility(BDT,false);
-                changeVisibility(BSZ,false);
-            }
-
             try {
                 PackageInfo pm = getActivity().getPackageManager().getPackageInfo(Package, 0);
                 long ver = Build.VERSION.SDK_INT > 28 ? pm.getLongVersionCode() : pm.versionCode;
                 String obb = "main." + ver + "." + Package + ".obb";
-                changeVisibility(findPreference("TextView_OBBNF"),!new File("/sdcard/Android/obb/" + Package + "/" + obb).exists());
+                changeVisibility(findPreference("TextView_OBBNF"), !new File("/sdcard/Android/obb/" + Package + "/" + obb).exists());
+
+                File DATA = new File("/sdcard/Android/data/" + Package);
+                if (DATA.exists()) {
+                    String text = "데이터 크기 : 약 " + String.format(Locale.getDefault(), "%.2f", (float) (FileUtils.sizeOfDirectory(DATA)) / 1073741824) + "GB";
+                    changeSummary(SZE, text);
+                } else changeSummary(SZE, "데이터 크기 : 약 0GB");
+
+                if (new File("/sdcard/GF_Tool/backup/" + Package + "/").exists()) {
+                    changeVisibility(BAD, false);
+                    changeVisibility(BRT, true);
+                    changeVisibility(BDT, true);
+                    changeVisibility(BSZ, true);
+
+                    String text = "백업 크기 : 약 " + String.format(Locale.getDefault(), "%.2f", (float) (FileUtils.sizeOfDirectory("/sdcard/GF_Tool/backup/" + Package + "/")) / 1073741824) + "GB";
+                    changeSummary(BSZ, text);
+                } else {
+                    changeVisibility(BAD, true);
+                    changeVisibility(BRT, false);
+                    changeVisibility(BDT, false);
+                    changeVisibility(BSZ, false);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
-               getActivity().runOnUiThread(() ->  getActivity().findViewById(R.id.progressbarLayout).setVisibility(View.GONE));
+                getActivity().runOnUiThread(() -> getActivity().findViewById(R.id.progressbarLayout).setVisibility(View.GONE));
             }
         }).start();
     }
 
-    public void changeSummary(Preference p,String s){
+    public void changeSummary(Preference p, String s) {
         getActivity().runOnUiThread(() -> p.setSummary(s));
     }
 
-    public void changeVisibility(Preference p,Boolean b){
+    public void changeVisibility(Preference p, Boolean b) {
         getActivity().runOnUiThread(() -> p.setVisible(b));
     }
 
@@ -102,7 +102,7 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
                 break;
 
             case "Button_DEL":
-                startActivity(new Intent(Intent.ACTION_DELETE).setData(Uri.parse("package:" + Package)));
+                startActivityForResult(new Intent(Intent.ACTION_DELETE).setData(Uri.parse("package:" + Package)), 5);
                 break;
 
             case "Button_DELD":
@@ -112,13 +112,14 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
                 b.setMessage("정말로 데이터를 전부 삭제하시겠습니까?");
                 b.setPositiveButton("삭제", (dialogInterface, i) -> {
                     if (!new File(path).exists())
-                        Toast.makeText(getContext().getApplicationContext(), "Can't Find Data!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext().getApplicationContext(), "데이터를 찾을수 없습니다!", Toast.LENGTH_SHORT).show();
                     else {
-                        FileUtil.deleteDir dd = new FileUtil.deleteDir(getActivity(), path);
+                        FileUtil.deleteDir dd = new FileUtil.deleteDir(getActivity(), path, Package);
                         dd.execute();
                     }
                 });
-                b.setNegativeButton("취소", (dialogInterface, i) -> {});
+                b.setNegativeButton("취소", (dialogInterface, i) -> {
+                });
                 b.create().show();
                 break;
 
@@ -151,11 +152,23 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
                 a.setTitle("삭제 확인");
                 a.setMessage("정말로 백업된 데이터를 전부 삭제하시겠습니까?");
                 a.setPositiveButton("삭제", (dialogInterface, i) -> delete(Package));
-                a.setNegativeButton("취소", (dialogInterface, i) -> {});
+                a.setNegativeButton("취소", (dialogInterface, i) -> {
+                });
                 a.create().show();
                 break;
         }
         return super.onPreferenceTreeClick(preference);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 5) {
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.prefs, new GFPrefsFragment(Package))
+                    .commit();
+        }
     }
 
     void startActivity(Class<?> cls) {
@@ -169,10 +182,11 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
         File dir = new File("/sdcard/GF_Tool/backup/" + pkg + "/");
         if (!dir.exists()) dir.mkdir();
         File data = new File("/sdcard/Android/data/" + pkg + "/");
-        if (!data.exists())
-            throw new NullPointerException("\"/sdcard/Android/data" + pkg + "/\" not found!");
-
-        FileUtil.copyDir cpd = new FileUtil.copyDir(getActivity(), data, dir);
+        if (!data.exists()) {
+            Toast.makeText(getContext().getApplicationContext(), "백업할 데이터를 찾을수 없습니다!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        FileUtil.copyDir cpd = new FileUtil.copyDir(getActivity(), data, dir, Package);
         cpd.execute();
     }
 
@@ -183,13 +197,13 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
         if (!dir.exists())
             throw new NullPointerException("\"/sdcard/GF_Tool/backup/" + pkg + "/\" not found!");
         if (!data.exists()) data.mkdir();
-        FileUtil.copyDir cd = new FileUtil.copyDir(getActivity(), dir, data);
+        FileUtil.copyDir cd = new FileUtil.copyDir(getActivity(), dir, data, Package);
         cd.execute();
         Log.i("Restore", "complete");
     }
 
     void delete(String pkg) {
-        FileUtil.deleteDir dd = new FileUtil.deleteDir(getActivity(), "/sdcard/GF_Tool/backup/" + pkg + "/");
+        FileUtil.deleteDir dd = new FileUtil.deleteDir(getActivity(), "/sdcard/GF_Tool/backup/" + pkg + "/", Package);
         dd.execute();
         Log.i("Delete", "complete");
     }
@@ -198,11 +212,13 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
         public static class deleteDir extends AsyncTask {
             Activity main;
             String dirname;
+            String Package;
             ProgressDialog progressDialog;
 
-            deleteDir(Activity main, String dirname) {
+            deleteDir(Activity main, String dirname, String Package) {
                 this.main = main;
                 this.dirname = dirname;
+                this.Package = Package;
                 progressDialog = new ProgressDialog(this.main);
             }
 
@@ -228,16 +244,10 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
                 progressDialog.dismiss();
                 Toast.makeText(main, "done", Toast.LENGTH_SHORT).show();
 
-                new Handler().post(() -> {
-                    Intent intent = main.getIntent();
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
-                            | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    main.overridePendingTransition(0, 0);
-                    main.finish();
-
-                    main.overridePendingTransition(0, 0);
-                    main.startActivity(intent);
-                });
+                ((FragmentActivity) main).getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.prefs, new GFPrefsFragment(Package))
+                        .commit();
             }
 
             static void setDirEmpty(String dirname) {
@@ -262,13 +272,15 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
             Activity main;
             File sourceF;
             File targetF;
+            String Package;
             ProgressDialog progressDialog;
 
-            copyDir(Activity main, File sourceF, File targetF) {
+            copyDir(Activity main, File sourceF, File targetF, String Package) {
                 this.main = main;
                 this.sourceF = sourceF;
                 this.targetF = targetF;
                 this.progressDialog = new ProgressDialog(this.main);
+                this.Package = Package;
             }
 
             @Override
@@ -292,16 +304,10 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
                 progressDialog.dismiss();
                 Toast.makeText(main, "done", Toast.LENGTH_SHORT).show();
 
-                new Handler().post(() -> {
-                    Intent intent = main.getIntent();
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
-                            | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    main.overridePendingTransition(0, 0);
-                    main.finish();
-
-                    main.overridePendingTransition(0, 0);
-                    main.startActivity(intent);
-                });
+                ((FragmentActivity) main).getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.prefs, new GFPrefsFragment(Package))
+                        .commit();
             }
 
             static void copy(File sourceF, File targetF) {

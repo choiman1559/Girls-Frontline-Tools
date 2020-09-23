@@ -87,29 +87,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void init() {
         ((ImageView) findViewById(R.id.MainImageView)).setImageResource(R.mipmap.ic_icon_round);
-        adview = new AdView(this);
-        adview.setAdSize(AdSize.BANNER);
-        adview.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                Log.d("AdService","ad Loaded successfully!");
-                adview.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onAdFailedToLoad(LoadAdError loadAdError) {
-                super.onAdFailedToLoad(loadAdError);
-                Log.d("AdService","Failed while loading ad!");
-                adview.setVisibility(View.GONE);
-            }
-        });
-
         switch(Global.getSHA1Hash(this)) {
             case "cf:61:36:5e:71:42:fa:21:7c:b5:5f:52:6d:e3:d9:06:57:f5:5e:01":
             case "d5:5c:2e:6a:58:4c:3d:4f:4a:3a:08:cd:1c:7e:6a:eb:ee:ea:46:10":
                 if(!BuildConfig.DEBUG){
-                    MobileAds.initialize(this, i -> { });
+                    initAD();
                     adview.setAdUnitId(getString(R.string.ad_id_pub));
                     adview.loadAd(new AdRequest.Builder().build());
                     Log.d("ADInit","Ad Load Finished as Release Mode!");
@@ -119,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             //Ad Config for Test : you can delete this case
             case "36:47:5f:49:ce:2d:bc:cb:b8:59:30:e3:86:17:85:6c:78:cf:86:53":
                 if(BuildConfig.DEBUG) {
-                    MobileAds.initialize(this, i -> { });
+                    initAD();
                     adview.setAdUnitId(getString(R.string.ad_id_test));
                     List<String> testDeviceIds = Arrays.asList("8F3F0D8FE070C4498B1C6B5B3C754B4E");
                     RequestConfiguration configuration = new RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build();
@@ -223,6 +205,27 @@ public class MainActivity extends AppCompatActivity {
             builder.setTitle("안내").setMessage("이 앱은 다음 환경에 가장 최적화되어 있습니다 : \n - Android 10 (AOSP, GSI)\n - EAS Kernel (Linux 4.3+)\n - Ram 3GB 이상\n - 1080x2140 (403dpi)\n - ARMv8a, x86_64\n - Magisk 20.4\n");
             builder.setPositiveButton("다시 보지 않기", (d, i) -> p.edit().putBoolean("isFirstRun", false).apply()).setNegativeButton("확인", (dialog, which) -> { }).show();
         }
+    }
+
+    private void initAD() {
+        adview = new AdView(this);
+        adview.setAdSize(AdSize.BANNER);
+        adview.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                Log.d("AdService","ad Loaded successfully!");
+                adview.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAdFailedToLoad(LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                Log.d("AdService","Failed while loading ad!");
+                adview.setVisibility(View.GONE);
+            }
+        });
+        MobileAds.initialize(this, i -> { });
     }
 
     private void checkUpdate() {
