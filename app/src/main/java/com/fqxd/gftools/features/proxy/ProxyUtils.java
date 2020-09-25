@@ -7,6 +7,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.fqxd.gftools.Global;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,7 +37,7 @@ public class ProxyUtils {
 
     @Nullable
     public static JSONObject getProxyJsonFromPrefs(String Package,Context context) throws JSONException {
-        SharedPreferences prefs = context.getSharedPreferences("com.fqxd.gftools_preferences", Context.MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences(Global.Prefs, Context.MODE_PRIVATE);
         JSONArray arr = new JSONArray(prefs.getString("proxy_data","[]"));
         for(int i = 0;i < arr.length();i++) {
             JSONObject obj = arr.getJSONObject(i);
@@ -45,7 +47,7 @@ public class ProxyUtils {
     }
 
     public static void saveProxyJsonInPrefs(JSONObject obj,Context context) throws JSONException {
-        SharedPreferences prefs = context.getSharedPreferences("com.fqxd.gftools_preferences", Context.MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences(Global.Prefs, Context.MODE_PRIVATE);
         JSONArray arr = new JSONArray(prefs.getString("proxy_data","[]"));
         for(int i = 0;i < arr.length();i++) {
             JSONObject o = arr.getJSONObject(i);
@@ -60,7 +62,7 @@ public class ProxyUtils {
 
     @Nullable
     public static JSONObject getPacProxyJsonFromPrefs(String Package,Context context) throws JSONException {
-        SharedPreferences prefs = context.getSharedPreferences("com.fqxd.gftools_preferences", Context.MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences(Global.Prefs, Context.MODE_PRIVATE);
         JSONArray arr = new JSONArray(prefs.getString("pac_proxy_data","[]"));
         for(int i = 0;i < arr.length();i++) {
             JSONObject obj = arr.getJSONObject(i);
@@ -70,7 +72,7 @@ public class ProxyUtils {
     }
 
     public static void savePacProxyJsonInPrefs(JSONObject obj,Context context) throws JSONException {
-        SharedPreferences prefs = context.getSharedPreferences("com.fqxd.gftools_preferences", Context.MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences(Global.Prefs, Context.MODE_PRIVATE);
         JSONArray arr = new JSONArray(prefs.getString("pac_proxy_data","[]"));
         for(int i = 0;i < arr.length();i++) {
             JSONObject o = arr.getJSONObject(i);

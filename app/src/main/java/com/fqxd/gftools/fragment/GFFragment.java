@@ -39,9 +39,16 @@ public class GFFragment extends Fragment {
         Package =  indexToPackage(FragmentPagerItem.getPosition(getArguments()));
         Intent intent = getContext().getPackageManager().getLaunchIntentForPackage(Package);
         LayoutMode = (intent == null ? 0 : 1);
-        fragment = new GFPrefsFragment(Package);
-        fragment.setArguments(new Bundle());
+        fragment = newInstance(Package);
         return inflater.inflate(LayoutMode == 1 ? R.layout.fragment_gf : R.layout.fragment_gfnone, container, false);
+    }
+
+    public static GFPrefsFragment newInstance(String Package) {
+        GFPrefsFragment gfPrefsFragment = new GFPrefsFragment();
+        Bundle bundle = new Bundle(1);
+        bundle.putString("Package",Package);
+        gfPrefsFragment.setArguments(bundle);
+        return gfPrefsFragment;
     }
 
     @Override

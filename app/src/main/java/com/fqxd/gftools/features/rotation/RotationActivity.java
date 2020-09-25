@@ -28,7 +28,7 @@ public class RotationActivity extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rotation);
-        SharedPreferences preferences = getSharedPreferences(getPackageName() + "_preferences", Context.MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences(Global.Prefs, Context.MODE_PRIVATE);
         String Package = getIntent().getStringExtra("pkg");
         Switch Enabled = findViewById(R.id.Enabled);
         TextView Target = findViewById(R.id.target);

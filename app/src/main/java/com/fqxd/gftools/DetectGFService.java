@@ -1,13 +1,17 @@
 package com.fqxd.gftools;
 
+import android.Manifest;
 import android.accessibilityservice.AccessibilityService;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Looper;
 import android.provider.Settings;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
 
 import com.fqxd.gftools.features.proxy.PacProxyConfig;
 import com.fqxd.gftools.features.proxy.ProxyConfig;
@@ -30,29 +34,31 @@ public class DetectGFService extends AccessibilityService {
         lastPackage = "" + event.getPackageName();
 
         try {
-            String a1  = Settings.Global.getString(getContentResolver(),"http_proxy");
-            String b1 = Settings.Global.getString(getContentResolver(),"global_proxy_pac_url");
+            if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_SECURE_SETTINGS) == PackageManager.PERMISSION_GRANTED) {
+                String a1 = Settings.Global.getString(getContentResolver(), "http_proxy");
+                String b1 = Settings.Global.getString(getContentResolver(), "global_proxy_pac_url");
 
-            if (isGF(lastPackage)) {
-                JSONObject obj = ProxyUtils.getProxyJsonFromPrefs(lastPackage, this);
-                if(obj != null) {
-                    ProxyConfig a2 = ProxyConfig.getProxyConfigFromJson(obj);
-                    if (obj.getBoolean("enabled") && !a1.contains(a2.getAddress() + ":" + a2.getPort())) {
-                        ProxyUtils.setProxy(a2, this);
+                if (isGF(lastPackage)) {
+                    JSONObject obj = ProxyUtils.getProxyJsonFromPrefs(lastPackage, this);
+                    if (obj != null) {
+                        ProxyConfig a2 = ProxyConfig.getProxyConfigFromJson(obj);
+                        if (obj.getBoolean("enabled") && !a1.contains(a2.getAddress() + ":" + a2.getPort())) {
+                            ProxyUtils.setProxy(a2, this);
+                        }
                     }
-                }
 
-                JSONObject obj2 = ProxyUtils.getPacProxyJsonFromPrefs(lastPackage, this);
-                if(obj2 != null) {
-                    PacProxyConfig b2 = PacProxyConfig.getProxyConfigFromJson(obj2);
-                    if (obj2.getBoolean("enabled") && !b1.contains(b2.getAddress())) {
-                        ProxyUtils.setPacProxy(b2, this);
+                    JSONObject obj2 = ProxyUtils.getPacProxyJsonFromPrefs(lastPackage, this);
+                    if (obj2 != null) {
+                        PacProxyConfig b2 = PacProxyConfig.getProxyConfigFromJson(obj2);
+                        if (obj2.getBoolean("enabled") && !b1.contains(b2.getAddress())) {
+                            ProxyUtils.setPacProxy(b2, this);
+                        }
                     }
+                } else if (isGF(secondPackage) && !lastPackage.equals(getPackageName())) {
+                    ProxyUtils.undoProxy(this);
+                    ProxyUtils.undoPacProxy(this);
+                    Toast.makeText(this, "Http Proxy had been Reset!", Toast.LENGTH_SHORT).show();
                 }
-            } else if(isGF(secondPackage) && !lastPackage.equals(getPackageName())){
-                ProxyUtils.undoProxy(this);
-                ProxyUtils.undoPacProxy(this);
-                Toast.makeText(this, "Http Proxy had been Reset!", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,7 +70,7 @@ public class DetectGFService extends AccessibilityService {
         if (isGF(lastPackage)) {
             new Thread(() -> {
                 Looper.prepare();
-                SharedPreferences prefs = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
+                SharedPreferences prefs = getSharedPreferences(Global.Prefs, MODE_PRIVATE);
                 try {
                     JSONObject obj = new JSONObject(prefs.getString("RotationData", ""));
                     if (obj.getBoolean(lastPackage)) {

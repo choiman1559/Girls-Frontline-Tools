@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
 import com.fqxd.gftools.features.alarm.receiver.AlarmReceiver;
 import com.fqxd.gftools.features.alarm.receiver.BootCompleteReceiver;
@@ -90,7 +91,7 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.ViewHo
                     }
                     pm.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED,PackageManager.DONT_KILL_APP);
 
-                    SharedPreferences prefs = context.getSharedPreferences("com.fqxd.gftools_preferences",Context.MODE_PRIVATE);
+                    SharedPreferences prefs = context.getSharedPreferences(Global.Prefs,Context.MODE_PRIVATE);
                     JSONArray array = new JSONArray(prefs.getString("AlarmData","[ ]"));
                     for(int i = 0;i < array.length();i++) {
                         if(array.getJSONObject(i).getLong("ID") == obj.getLong("ID")) {

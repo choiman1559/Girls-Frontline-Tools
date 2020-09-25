@@ -69,7 +69,7 @@ public class NotiActivity extends AppCompatActivity{
         mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
         mAuth = FirebaseAuth.getInstance();
 
-        final SharedPreferences prefs = getSharedPreferences("com.fqxd.gftools_preferences", MODE_PRIVATE);
+        final SharedPreferences prefs = getSharedPreferences(Global.Prefs, MODE_PRIVATE);
 
         final Switch onoff = findViewById(R.id.NotiOnoff);
         final Button glogin = findViewById(R.id.glogin);
@@ -81,8 +81,8 @@ public class NotiActivity extends AppCompatActivity{
 
         onoff.setChecked(prefs.getBoolean("Enabled", false));
         onoff.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if(!getSharedPreferences("com.fqxd.gftools_preferences", MODE_PRIVATE).getString("uid", "").equals(""))
-                FirebaseMessaging.getInstance().subscribeToTopic(getSharedPreferences("com.fqxd.gftools_preferences", MODE_PRIVATE).getString("uid", ""));
+            if(!getSharedPreferences(Global.Prefs, MODE_PRIVATE).getString("uid", "").equals(""))
+                FirebaseMessaging.getInstance().subscribeToTopic(getSharedPreferences(Global.Prefs, MODE_PRIVATE).getString("uid", ""));
             prefs.edit().putBoolean("Enabled",onoff.isChecked()).apply();
         });
 
@@ -137,7 +137,7 @@ public class NotiActivity extends AppCompatActivity{
                         Toast.makeText(NotiActivity.this, "구글 로그인 인증 성공", Toast.LENGTH_SHORT).show();
                         final TextView guid = findViewById(R.id.guid);
                         guid.setText("User Id : " + mAuth.getUid());
-                        getSharedPreferences("com.fqxd.gftools_preferences", MODE_PRIVATE).edit().putString("uid", mAuth.getUid()).apply();
+                        getSharedPreferences(Global.Prefs, MODE_PRIVATE).edit().putString("uid", mAuth.getUid()).apply();
                         NotiActivity.this.recreate();
                     }
                 });

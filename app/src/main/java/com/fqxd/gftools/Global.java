@@ -8,10 +8,12 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.accessibility.AccessibilityManager;
@@ -34,6 +36,8 @@ import kotlin.collections.CollectionsKt;
 
 public class Global extends Application {
     private static JKS jks;
+    public static String Storage;
+    public static String Prefs;
 
     public NetBareConfig getConfig() {
         NetBareConfig.Builder configBuilder = NetBareConfig.defaultHttpConfig(jks, CollectionsKt.listOf(HttpInjectInterceptor.createFactory(new PacketInjector(new com.gitlab.prototypeg.Session(), this)))).newBuilder();
@@ -51,6 +55,10 @@ public class Global extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        Storage = Environment.getExternalStorageDirectory().getPath();
+        Prefs = getPackageName() + "_preferences";
+
         Context context = this;
         String string = getString(R.string.app_name);
         String string2 = getString(R.string.app_name);
@@ -87,12 +95,11 @@ public class Global extends Application {
         Process process = Runtime.getRuntime().exec("su -c id");
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         String line;
-        boolean value = false;
         while ((line = reader.readLine()) != null) {
-            if(line.contains("uid=0") && line.contains("gid=0") && line.contains("root")) value = true;
+            if(line.contains("uid=0") && line.contains("gid=0") && line.contains("root")) return true;
         }
         process.waitFor();
-        return value;
+        return false;
     }
 
     private void registerNotificationChannels(String ID, String DES) {

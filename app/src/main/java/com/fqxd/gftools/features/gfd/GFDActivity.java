@@ -115,16 +115,9 @@ public class GFDActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
-
     public void SendIntent(int butnum) {
         Intent intent = new Intent(this, GFDViewer.class);
         intent.putExtra("ButtonNum",butnum);
         startActivity(intent);
-        finish();
     }
 }

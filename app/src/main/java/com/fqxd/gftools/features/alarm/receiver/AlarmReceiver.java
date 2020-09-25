@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.application.isradeleon.notify.Notify;
+import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
 import com.fqxd.gftools.features.alarm.utils.GFAlarmObjectClass;
 
@@ -33,7 +34,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                     .setAutoCancel(true)
                     .show();
 
-            SharedPreferences prefs = context.getSharedPreferences("com.fqxd.gftools_preferences",Context.MODE_PRIVATE);
+            SharedPreferences prefs = context.getSharedPreferences(Global.Prefs,Context.MODE_PRIVATE);
             JSONArray array = new JSONArray(prefs.getString("AlarmData","[ ]"));
             for(int i = 0;i < array.length();i++) {
                 if(array.getJSONObject(i).getLong("ID") == obj.parse().getLong("ID")) {

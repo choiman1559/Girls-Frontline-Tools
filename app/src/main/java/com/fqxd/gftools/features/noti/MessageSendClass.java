@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
 
 import org.json.JSONException;
@@ -24,7 +25,7 @@ public class MessageSendClass extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String TOPIC = "/topics/" + getSharedPreferences("com.fqxd.gftools_preferences", MODE_PRIVATE).getString("uid", "");
+        String TOPIC = "/topics/" + getSharedPreferences(Global.Prefs, MODE_PRIVATE).getString("uid", "");
         Intent intent = getIntent();
         String Package = intent.getStringExtra("package");
         String DEVICE_ID = intent.getStringExtra("device_id");

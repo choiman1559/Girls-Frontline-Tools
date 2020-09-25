@@ -45,7 +45,7 @@ public class AlarmListActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarmlist);
-        SharedPreferences prefs = getSharedPreferences("com.fqxd.gftools_preferences", MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(Global.Prefs, MODE_PRIVATE);
         Switch alarmOnOff = findViewById(R.id.OnOff);
         RadioButton adbRadio = findViewById(R.id.ADBRadio);
         RadioButton vpnRadio = findViewById(R.id.VPNRadio);
@@ -198,7 +198,7 @@ public class AlarmListActivity extends AppCompatActivity {
     void startService() {
         Set<String> set = new HashSet<>();
         for(int i = 0;i < 5;i++) set.add(Integer.toString(i));
-        getSharedPreferences("com.fqxd.gftools_preferences",MODE_PRIVATE).edit().putStringSet("pref_key_logcat_buffers",set).apply();
+        getSharedPreferences(Global.Prefs,MODE_PRIVATE).edit().putStringSet("pref_key_logcat_buffers",set).apply();
         Intent intent = new Intent(getApplicationContext(),LogCatReaderService.class);
         if(Build.VERSION.SDK_INT > 25) startForegroundService(intent);
         else startService(intent);

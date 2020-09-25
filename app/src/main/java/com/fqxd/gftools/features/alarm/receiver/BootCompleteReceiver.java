@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import com.fqxd.gftools.Global;
 import com.fqxd.gftools.features.alarm.utils.AlarmUtils;
 import com.fqxd.gftools.features.alarm.utils.GFAlarmObjectClass;
 
@@ -17,7 +18,7 @@ public class BootCompleteReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (Objects.equals(intent.getAction(), "android.intent.action.BOOT_COMPLETED")) {
-            SharedPreferences prefs = context.getSharedPreferences("com.fqxd.gftools_preferences", Context.MODE_PRIVATE);
+            SharedPreferences prefs = context.getSharedPreferences(Global.Prefs, Context.MODE_PRIVATE);
             try {
                 JSONArray array = new JSONArray(prefs.getString("AlarmData","[ ]"));
                 for(int i = 0;i < array.length();i++) {

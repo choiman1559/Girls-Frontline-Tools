@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 
 import com.application.isradeleon.notify.Notify;
+import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -17,7 +18,7 @@ public class FirebaseMessageService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
-        SharedPreferences prefs = getSharedPreferences("com.fqxd.gftools_preferences", MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(Global.Prefs, MODE_PRIVATE);
         Map<String, String> data = remoteMessage.getData();
 
         if (prefs.getBoolean("Enabled", false) && !prefs.getString("uid","").equals("") && data.get("type").equals("send"))
@@ -42,7 +43,7 @@ public class FirebaseMessageService extends FirebaseMessagingService {
     @Override
     public void onNewToken(@NonNull String token) {
         super.onNewToken(token);
-        if(!getSharedPreferences("com.fqxd.gftools_preferences", MODE_PRIVATE).getString("uid", "").equals(""))
-            FirebaseMessaging.getInstance().subscribeToTopic(getSharedPreferences("com.fqxd.gftools_preferences", MODE_PRIVATE).getString("uid", ""));
+        if(!getSharedPreferences(Global.Prefs, MODE_PRIVATE).getString("uid", "").equals(""))
+            FirebaseMessaging.getInstance().subscribeToTopic(getSharedPreferences(Global.Prefs, MODE_PRIVATE).getString("uid", ""));
     }
 }

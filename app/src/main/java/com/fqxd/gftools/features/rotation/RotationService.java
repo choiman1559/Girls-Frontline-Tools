@@ -48,7 +48,11 @@ public class RotationService extends Service {
         if (this.view != null) windowManager.removeView(view);
         windowManager = null;
         this.view = null;
-        stopForeground(true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            stopForeground(true);
+        } else {
+            stopSelf();
+        }
     }
 
     Notification createNotification(String pkg) {

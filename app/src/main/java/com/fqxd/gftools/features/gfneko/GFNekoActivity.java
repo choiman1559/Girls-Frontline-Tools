@@ -11,6 +11,7 @@ import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
+import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
 
 import java.io.File;
@@ -50,7 +51,7 @@ public class GFNekoActivity extends AppCompatActivity {
     }
 
     private void startAnimationService() {
-      SharedPreferences.Editor edit = context.getSharedPreferences(context.getPackageName() + "_preferences",MODE_PRIVATE).edit();
+      SharedPreferences.Editor edit = context.getSharedPreferences(Global.Prefs,MODE_PRIVATE).edit();
       edit.putBoolean(AnimationService.PREF_KEY_VISIBLE, true).apply();
       context.startService(new Intent(context, AnimationService.class).setAction(AnimationService.ACTION_START));
     }

@@ -20,6 +20,7 @@ import androidx.core.content.FileProvider;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fqxd.gftools.BuildConfig;
+import com.fqxd.gftools.Global;
 import com.fqxd.gftools.MainActivity;
 import com.fqxd.gftools.R;
 import com.nononsenseapps.filepicker.FilePickerActivity;
@@ -125,14 +126,14 @@ public class XapkActivity extends AppCompatActivity {
             progressDialog.dismiss();
             String btn = null;
             if (s.equals("true")){
-                String name = readTextFile("/sdcard/GF_Tool/manifest.json");
+                String name = readTextFile(Global.Storage + "/GF_Tool/manifest.json");
                 name = name.substring(name.indexOf("\"name\":"),name.lastIndexOf("\"locales_name\":"));
                 name = name.replace("\"name\":\"","");
                 name = name.replace("\",","");
                 s = "Now, you need to Install"+"\n"+name+" APK";
                 btn = "Install";
 
-                File n = new File("/sdcard/GF_Tool/");
+                File n = new File(Global.Storage + "/GF_Tool/");
                 File [] n1 = n.listFiles();
                 for (int ii=0;ii<n1.length;ii++){
                     if (n1[ii].toString().endsWith(".apk")){
@@ -166,9 +167,9 @@ public class XapkActivity extends AppCompatActivity {
                     }
 
                     OBBextrack my = new OBBextrack();
-                    my.deleteDirectory("/sdcard/GF_Tool/Android");
-                    my.deleteFile("/sdcard/GF_Tool/manifest.json");
-                    my.deleteFile("/sdcard/GF_Tool/icon.png");
+                    my.deleteDirectory(Global.Storage + "/GF_Tool/Android");
+                    my.deleteFile(Global.Storage + "/GF_Tool/manifest.json");
+                    my.deleteFile(Global.Storage + "/GF_Tool/icon.png");
                     finish();
                 }
                 else finish();
@@ -181,15 +182,15 @@ public class XapkActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             OBBextrack my = new OBBextrack();
-            my.deleteDirectory("/sdcard/GF_Tool");
+            my.deleteDirectory(Global.Storage + "/GF_Tool");
 
-            File file = new File("/sdcard/GF_Tool/");
+            File file = new File(Global.Storage + "/GF_Tool/");
             if (!file.exists()){
                 file.mkdir();
             }
             boolean b = my.unZip(lol.toString(),file.toString());
             try {
-                copyDirectory(new File("/sdcard/GF_Tool/Android"),new File("/sdcard/Android/"));
+                copyDirectory(new File(Global.Storage + "/GF_Tool/Android"),new File(Global.Storage + "/Android/"));
             } catch (IOException e) { }
 
             return String.valueOf(b);

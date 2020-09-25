@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.fqxd.gftools.Global;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -15,9 +17,9 @@ import java.io.InputStreamReader;
 
 public class CenUtils {
     protected static int checkDatabase(String Package) throws IOException, InterruptedException {
-        if (!new File("/sdcard/GF_Tool/").exists()) new File("/sdcard/GF_Tool/").mkdir();
-        else if (new File("/sdcard/GF_Tool/newXML.xml").exists())
-            new File("/sdcard/GF_Tool/newXML.xml").delete();
+        if (!new File(Global.Storage + "/GF_Tool/").exists()) new File(Global.Storage + "/GF_Tool/").mkdir();
+        else if (new File(Global.Storage + "/GF_Tool/newXML.xml").exists())
+            new File(Global.Storage + "/GF_Tool/newXML.xml").delete();
 
         Process p = Runtime.getRuntime().exec("su");
         DataOutputStream dos = new DataOutputStream(p.getOutputStream());
@@ -28,7 +30,7 @@ public class CenUtils {
         dos.close();
         p.waitFor();
 
-        File Xml = new File("/sdcard/GF_Tool/" + Package + ".v2.playerprefs.xml");
+        File Xml = new File(Global.Storage + "/GF_Tool/" + Package + ".v2.playerprefs.xml");
         while (true) {
             if (Xml.exists()) break;
         }
@@ -96,9 +98,9 @@ public class CenUtils {
 
     private static void editTask(boolean istrue,String Package,LinearLayout layout,Activity activity) {
         try {
-            if (!new File("/sdcard/GF_Tool/").exists()) new File("/sdcard/GF_Tool/").mkdir();
-            else if (new File("/sdcard/GF_Tool/newXML.xml").exists())
-                new File("/sdcard/GF_Tool/newXML.xml").delete();
+            if (!new File(Global.Storage + "/GF_Tool/").exists()) new File(Global.Storage + "/GF_Tool/").mkdir();
+            else if (new File(Global.Storage + "/GF_Tool/newXML.xml").exists())
+                new File(Global.Storage + "/GF_Tool/newXML.xml").delete();
 
             Process p = Runtime.getRuntime().exec("su");
             DataOutputStream dos = new DataOutputStream(p.getOutputStream());
@@ -126,7 +128,7 @@ public class CenUtils {
             dos.close();
             p.waitFor();
 
-            new File("/sdcard/GF_Tool/" + Package + ".v2.playerprefs.xml").delete();
+            new File(Global.Storage + "/GF_Tool/" + Package + ".v2.playerprefs.xml").delete();
             layout.setVisibility(View.GONE);
             activity.recreate();
         } catch (Exception e) {
@@ -137,8 +139,8 @@ public class CenUtils {
     private static void Xmledit(boolean istrue,String Package,LinearLayout layout,Activity activity) {
         final int cen = istrue ? 1 : 0;
 
-        File newXml = new File("/sdcard/GF_Tool/newXML.xml");
-        File Xml = new File("/sdcard/GF_Tool/" + Package + ".v2.playerprefs.xml");
+        File newXml = new File(Global.Storage + "/GF_Tool/newXML.xml");
+        File Xml = new File(Global.Storage + "/GF_Tool/" + Package + ".v2.playerprefs.xml");
 
         String line;
         try {
