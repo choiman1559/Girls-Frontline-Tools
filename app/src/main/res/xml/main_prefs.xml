@@ -3,7 +3,7 @@
     <Preference
         android:key="Button_XD"
         android:title="XD User Center"
-        android:summary="XD 고객센터 (중국어)"
+        android:summary="XD 고객센터"
         android:icon="@mipmap/ic_main_xdg_foreground"/>
 
     <Preference

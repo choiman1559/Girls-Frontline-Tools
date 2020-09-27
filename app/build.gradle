@@ -22,8 +22,8 @@ android {
         applicationId "com.fqxd.gftools"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 2010313
-        versionName "1.3.13"
+        versionCode 2010400
+        versionName "1.4.0"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk.abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'

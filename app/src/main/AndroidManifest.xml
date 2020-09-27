@@ -70,6 +70,8 @@
         <activity android:name=".features.proxy.ProxyActivity"/>
         <activity android:name=".features.calculator.CalculatorActivity"/>
         <activity android:name=".fragment.GFDownloadActivity"/>
+        <activity android:name=".features.xduc.UCWebViewActivity"/>
+        <activity android:name=".features.xduc.XDUCActivity"/>
 
         <uses-library
             android:name="org.apache.http.legacy"

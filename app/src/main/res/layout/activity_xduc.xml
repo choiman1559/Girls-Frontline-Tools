@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="HardcodedText" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp"
+            android:textSize="15sp"
+            android:text="XD 고객센터 (한국어)"
+            android:textColor="@color/black"
+            android:background="#DBDBDB"/>
+
+        <EditText
+            android:id="@+id/EditText_Nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp"
+            android:hint="Input Nickname"
+            android:autofillHints="Input Nickname"
+            android:inputType="text" />
+
+
+        <CheckBox
+            android:id="@+id/Checkbox_remember"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/transparent"
+            android:button="@null"
+            android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
+            android:gravity="start|center"
+            android:text="닉네임 기억하기" />
+
+        <Button
+            android:id="@+id/Button_kruc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="실행 (ROOT)" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp"
+            android:textSize="15sp"
+            android:text="XD 고객센터 (중국어)"
+            android:textColor="@color/black"
+            android:background="#DBDBDB"/>
+
+        <Button
+            android:id="@+id/Button_cnuc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="실행 " />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
