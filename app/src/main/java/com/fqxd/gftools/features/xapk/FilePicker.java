@@ -7,6 +7,7 @@ import android.os.Environment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.fqxd.gftools.Global;
 import com.fqxd.gftools.MainActivity;
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
 import com.nononsenseapps.filepicker.FilePickerActivity;
@@ -32,7 +33,7 @@ public class FilePicker extends FilePickerActivity {
             final boolean singleClick) {
         AbstractFilePickerFragment<File> fragment = new CustomFilePickerFragment();
         // startPath is allowed to be null. In that case, default folder should be SD-card and not "/"
-        fragment.setArgs(startPath != null ? startPath : Environment.getExternalStorageDirectory().getPath(),
+        fragment.setArgs(startPath != null ? startPath : Global.Storage,
                 mode, allowMultiple, allowCreateDir, allowExistingFile, singleClick);
         return fragment;
     }

@@ -1,0 +1,2 @@
+com/xd/sdklib/BuildConfig.java
+ com.xd.sdklib.BuildConfig

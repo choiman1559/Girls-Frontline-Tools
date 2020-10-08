@@ -7,7 +7,7 @@
     <string name="ad_id_test">ca-app-pub-3940256099942544/6300978111</string>
     <string name="ad_id_pub">ca-app-pub-3821258949225369/5891411384</string>
 
-    <string name="run_patch" translatable="false">run patch</string>
+    <string name="run_patch" translatable="false">패치 시작</string>
     <string name="target_cn_uc" translatable="false">com.digitalsky.girlsfrontline.cn.uc</string>
     <string name="target_cn_bili" translatable="false">com.digitalsky.girlsfrontline.cn.bili</string>
     <string name="target_en" translatable="false">com.sunborn.girlsfrontline.en</string>
@@ -15,6 +15,10 @@
     <string name="target_tw" translatable="false">tw.txwy.and.snqx</string>
     <string name="target_kr" translatable="false">kr.txwy.and.snqx</string>
     <string name="info_patch_started" translatable="false">Patch Started!</string>
+    <string name="level_info">압축 레벨 설정</string>
+    <string name="level_min">속도 빠름</string>
+    <string name="level_max">용량 작음</string>
+    <string name="checkbox_err">설치/실행이 불가한경우 선택</string>
     <string name="info_no_obb">there were no obb file found.\nobb file won\'t be patched.\nsome releases doesn\'t includes obb files.\nif  you\'re not sure about it, please check if girl\'s fronline does works and reinstall if it doesn\'t</string>
 
     <string name="skin_name_neko">IDW the Many</string>

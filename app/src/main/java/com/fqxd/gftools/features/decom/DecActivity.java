@@ -2,6 +2,7 @@ package com.fqxd.gftools.features.decom;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
@@ -14,18 +15,26 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
-import android.os.Environment;
 import android.provider.Settings;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.fqxd.gftools.Global;
 import com.fqxd.gftools.MainActivity;
 import com.fqxd.gftools.R;
 
+import net.lingala.zip4j.model.enums.CompressionLevel;
+
 import java.io.File;
 
-public final class DecActivity extends Activity {
+public final class DecActivity extends AppCompatActivity {
+    private static boolean isTaskRunning = false;
 
     @Override
     public void onCreate(Bundle saveInstanceState)
@@ -55,8 +64,13 @@ public final class DecActivity extends Activity {
         final TextView status = findViewById(R.id.status);
         final TextView log = findViewById(R.id.log);
         final ProgressBar progress = findViewById(R.id.progress);
+        final SeekBar level = findViewById(R.id.compressLevel);
+        final LinearLayout layout = findViewById(R.id.progressLayout);
+        final CheckBox IfErr = findViewById(R.id.checkBox_IfErr);
 
-        File obbDir = new File(Environment.getExternalStorageDirectory().getPath() + "/Android/obb/" + pkg + "/");
+        layout.setVisibility(View.GONE);
+        progress.setVisibility(View.GONE);
+        File obbDir = new File(Global.Storage + "/Android/obb/" + pkg + "/");
         File[] files = obbDir.listFiles((dir, name) -> name.substring(name.length() - 4).equals(".obb"));
         if (files == null || files.length == 0) {
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -66,15 +80,50 @@ public final class DecActivity extends Activity {
             alert.show();
         }
         runPatch.setOnClickListener(v -> {
-
             runPatch.setEnabled(false);
-            PatchTask patchTask = new PatchTask(this, status, log, progress, pkg);
-            patchTask.execute(new Object[]{(Runnable) () -> runPatch.post(() -> runPatch.setEnabled(true))});
+            level.setEnabled(false);
+            IfErr.setEnabled(false);
+            layout.setVisibility(View.VISIBLE);
+            progress.setVisibility(View.VISIBLE);
+            isTaskRunning = true;
+            PatchTask patchTask = new PatchTask(this, status, log, progress,IfErr.isChecked(), getLevel(level), pkg);
+            patchTask.execute(new Object[]{(Runnable) () -> runPatch.post(() -> {
+                runPatch.setEnabled(true);
+                level.setEnabled(true);
+                IfErr.setEnabled(true);
+                layout.setVisibility(View.GONE);
+                progress.setVisibility(View.GONE);
+                isTaskRunning = false;
+            })});
         });
+    }
+
+    @Nullable
+    private CompressionLevel getLevel(SeekBar bar) {
+        switch (bar.getProgress()) {
+            case 1:
+                return CompressionLevel.FASTEST;
+
+            case 2:
+                return CompressionLevel.FAST;
+
+            case 3:
+                return CompressionLevel.NORMAL;
+
+            case 4:
+                return CompressionLevel.MAXIMUM;
+
+            case 5:
+                return CompressionLevel.ULTRA;
+
+            default:
+                return null;
+        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PatchTask.REQUEST_INSTALL) {
             new File(this.getExternalFilesDir(null).getAbsolutePath() + "/base.apk").delete();
         }
@@ -93,6 +142,7 @@ public final class DecActivity extends Activity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             this.finish();
             this.startActivity(this.getIntent());
@@ -102,8 +152,11 @@ public final class DecActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-        finish();
+        if(!isTaskRunning) finish();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return !isTaskRunning && super.onTouchEvent(event);
     }
 }

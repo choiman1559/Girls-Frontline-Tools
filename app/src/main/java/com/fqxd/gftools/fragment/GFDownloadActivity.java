@@ -21,7 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.fqxd.gftools.R;
 
-import org.apache.commons.io.FileUtils;
+
+import org.apache.commons.io.FilenameUtils;
 
 public class GFDownloadActivity extends AppCompatActivity {
     private ProgressBar bar;
@@ -54,7 +55,7 @@ public class GFDownloadActivity extends AppCompatActivity {
         webView.loadUrl("https://apkpure.com/kr/" + getIntent().getStringExtra("pkg"));
         webView.setDownloadListener((url, userAgent, contentDisposition, mimetype, contentLength) -> {
             String fileName = URLUtil.guessFileName(url, contentDisposition, mimetype);
-            String Extension = FileUtils.getExtension(fileName);
+            String Extension = FilenameUtils.getExtension(fileName);
 
             if (Extension.equals("xapk") || Extension.equals("apk")) {
                 DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));

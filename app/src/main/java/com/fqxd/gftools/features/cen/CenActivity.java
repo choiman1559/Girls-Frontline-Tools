@@ -59,11 +59,11 @@ public class CenActivity extends AppCompatActivity {
                     ab.show();
                 }
             }
-            pkgInfo.setText("target : " + pm.getApplicationLabel(pm.getApplicationInfo(Package, PackageManager.GET_META_DATA)) + " (" + Package + ")");
+            pkgInfo.setText(String.format("target : %s (%s)", pm.getApplicationLabel(pm.getApplicationInfo(Package, PackageManager.GET_META_DATA)), Package));
         } catch (PackageManager.NameNotFoundException | InterruptedException | IOException e) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Error!").setMessage("루트 권한을 인식할수 없습니다! 기기가 루팅이 되어있는지 확인 후 다시 시도하십시오!");
-            builder.setPositiveButton("OK", (dialog, id) -> { finish(); });
+            builder.setPositiveButton("OK", (dialog, id) -> finish());
             builder.create().show();
             e.printStackTrace();
         }

@@ -86,7 +86,7 @@ public class XDUCActivity extends AppCompatActivity {
                                 String uId = "";
                                 String appId = "";
                                 String serverId = "";
-                                String sig = "";
+                                String sig;
                                 String nickName = UC_Nickname.getText().toString();
                                 long timestamp = Calendar.getInstance().getTimeInMillis();
 
@@ -112,7 +112,6 @@ public class XDUCActivity extends AppCompatActivity {
                                     } else {
                                         sig = getBugReportSig(serverId, nickName, timestamp, appId, uId);
                                         String uri = "http://csapp.playcomet.com/index.php?appid=" + appId + "&s=" + serverId + "&uid=" + uId + "&uname=g" + uId + "&nickname=" + nickName + "&sig=" + sig + "&time=" + timestamp +"&l=kr";
-                                        Log.d("uri",uri);
                                         this.startActivity(new Intent(this,UCWebViewActivity.class).putExtra("uri",uri));
                                     }
                                 }
@@ -131,12 +130,15 @@ public class XDUCActivity extends AppCompatActivity {
                         e.printStackTrace();
                     } finally {
                         progressBar.setVisibility(View.GONE);
+                        File xml = new File(Global.Storage + "/GF_Tool/file_name.xml");
+                        if(xml.exists()) xml.delete();
                     }
                 }
             }
         });
     }
 
+    @SuppressLint("SdCardPath")
     protected static boolean isDataAvailable() throws InterruptedException, IOException {
         String data = "/data/data/kr.txwy.and.snqx/shared_prefs/file_name.xml";
         Process process = Runtime.getRuntime().exec("su");
@@ -171,7 +173,7 @@ public class XDUCActivity extends AppCompatActivity {
 
     private String substringBetween(String str, String open, String close) {
         if (str == null || open == null || close == null) {
-            return null;
+            return "";
         }
         int start = str.indexOf(open);
         if (start != -1) {
@@ -180,7 +182,7 @@ public class XDUCActivity extends AppCompatActivity {
                 return str.substring(start + open.length(), end);
             }
         }
-        return null;
+        return "";
     }
 
     public static String getBugReportSig(String svrId, String nickname, long timestamp, String appid, String uid) {

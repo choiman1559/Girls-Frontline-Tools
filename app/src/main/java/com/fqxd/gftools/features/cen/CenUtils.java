@@ -1,5 +1,6 @@
 package com.fqxd.gftools.features.cen;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.view.View;
@@ -76,6 +77,7 @@ public class CenUtils {
         }
     }
 
+    @SuppressLint("SdCardPath")
     protected static boolean isDataAvailable(String Package) throws InterruptedException, IOException {
         Process process = Runtime.getRuntime().exec("su");
         DataOutputStream dos = new DataOutputStream(process.getOutputStream());

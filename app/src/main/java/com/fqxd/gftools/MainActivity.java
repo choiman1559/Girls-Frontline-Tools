@@ -1,14 +1,12 @@
 package com.fqxd.gftools;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-
-import com.crashlytics.android.Crashlytics;
-import com.crashlytics.android.core.CrashlyticsCore;
 
 import com.fqxd.gftools.fragment.HomeFragment;
 import com.fqxd.gftools.fragment.GFFragment;
@@ -57,8 +55,6 @@ import com.xd.xdsdk.XDSDK;
 import java.util.Arrays;
 import java.util.List;
 
-import io.fabric.sdk.android.Fabric;
-
 public class MainActivity extends AppCompatActivity {
     public static int REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES = 0x01;
     public AdView adview;
@@ -67,9 +63,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        CrashlyticsCore core = new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build();
-        Fabric.with(this, new Crashlytics.Builder().core(core).build());
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG);
 
         if (Build.VERSION.SDK_INT >= 23 && checkStoragePermission()) {
@@ -95,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("MissingPermission")
     private void init() {
         ((ImageView) findViewById(R.id.MainImageView)).setImageResource(R.mipmap.ic_icon_round);
         switch(Global.getSHA1Hash(this)) {

@@ -1,41 +1,50 @@
 package com.fqxd.gftools.features.decom;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 
 import com.fqxd.gftools.BuildConfig;
+import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
 
 import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.model.ZipParameters;
+import net.lingala.zip4j.model.enums.CompressionLevel;
 import net.lingala.zip4j.model.enums.CompressionMethod;
 
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 
+@SuppressLint("StaticFieldLeak")
 final class PatchTask extends AsyncTask {
     public static final int REQUEST_INSTALL = 0x00;
     private DecActivity main;
     private TextView status;
     private TextView log;
     private ProgressBar progress;
+    @Nullable private CompressionLevel level;
     private String target;
-    PatchTask(DecActivity main, TextView status, TextView log, ProgressBar progress, String target) {
+    private Boolean ifErr;
+
+    PatchTask(DecActivity main, TextView status, TextView log, ProgressBar progress, Boolean ifErr, @Nullable CompressionLevel level, String target) {
         this.main = main;
         this.status = status;
         this.log = log;
         this.progress = progress;
         this.target = target;
+        this.level = level;
+        this.ifErr = ifErr;
     }
 
     @Override
@@ -49,28 +58,40 @@ final class PatchTask extends AsyncTask {
         try {
             final ProgressBar p = this.main.findViewById(R.id.running);
             p.post(() -> p.setVisibility(View.VISIBLE));
+            status.post(() -> status.setVisibility(View.VISIBLE));
+
+            this.updateProgress(0);
             this.updateLog(this.main.getString(R.string.info_patch_started));
             this.updateLog("Target: " + this.target);
+
             File temp = this.main.getExternalFilesDir(null);
             FileUtils.deleteDirectory(temp);
             temp.mkdir();
+
             this.updateStatus("extracting obb");
             final File obb = new File(temp.getAbsolutePath() + "/obb");
             Log.d("obb",obb.toString());
             obb.mkdir();
-            File originalObb = (new File(Environment.getExternalStorageDirectory() + "/Android/obb/" + this.target)).listFiles()[0];
+
+            File originalObb = (new File(Global.Storage + "/Android/obb/" + this.target)).listFiles()[0];
             Log.d("origin",originalObb.toString());
             ZipFile zipFile = new ZipFile(originalObb);
             zipFile.extractAll(obb.getAbsolutePath());
             if (obb.listFiles() == null) {
                 this.updateLog("unknown error while extracting obb");
             }
+
             this.updateLog("obb extracted");
             this.updateProgress(25);
             this.updateStatus("patching obb");
+
             zipFile = new ZipFile(originalObb);
             ZipParameters parameters = new ZipParameters();
-            parameters.setCompressionMethod(CompressionMethod.STORE);
+            if(level != null) {
+                Log.e("level","compress level : " + level.getLevel());
+                parameters.setCompressionMethod(CompressionMethod.DEFLATE);
+                parameters.setCompressionLevel(level);
+            } else parameters.setCompressionMethod(CompressionMethod.STORE);
             parameters.setOverrideExistingFilesInZip(true);
             parameters.setEncryptFiles(false);
             originalObb.delete();
@@ -81,21 +102,24 @@ final class PatchTask extends AsyncTask {
                     zipFile.addFolder(f, parameters);
                 }
             }
+
             this.updateLog("patched obb");
             this.updateStatus("cleaning up...");
             FileUtils.deleteDirectory(obb);
             this.updateProgress(50);
             this.updateLog("replaced original obb");
             this.updateStatus("extracting apk");
+
             File originalApk = new File(temp.getAbsolutePath() + "/base.apk");
             FileUtils.copyFile(new File(this.main.getPackageManager().getPackageInfo(target, 0).applicationInfo.publicSourceDir), originalApk);
             File apk = new File(temp.getAbsolutePath() + "/apk");
             zipFile = new ZipFile(originalApk);
             zipFile.extractAll(apk.getAbsolutePath());
+
             this.updateLog("apk extracted");
             this.updateProgress(75);
             this.updateStatus("repackaging apk");
-            FileUtils.deleteDirectory(new File(apk.getAbsolutePath() + "/assets/bin/Data/Managed"));
+            if(!ifErr) FileUtils.deleteDirectory(new File(apk.getAbsolutePath() + "/assets/bin/Data/Managed"));
             for (File f : apk.listFiles()) {
                 if (f.getName().equals("res")) continue;
                 if (f.isFile()) {
@@ -104,6 +128,7 @@ final class PatchTask extends AsyncTask {
                     zipFile.addFolder(f, parameters);
                 }
             }
+
             this.updateLog("apk repackaged");
             this.updateStatus("finished");
             FileUtils.deleteDirectory(apk);
@@ -120,28 +145,31 @@ final class PatchTask extends AsyncTask {
             main.startActivityForResult(intent, REQUEST_INSTALL);
 
             FileUtils.deleteDirectory(apk);
-            p.post(() -> {
-                p.setVisibility(View.INVISIBLE);
-                status.setVisibility(View.INVISIBLE);
-            });
+            p.post(() -> p.setVisibility(View.INVISIBLE));
+            status.post(() -> status.setVisibility(View.INVISIBLE));
             ((Runnable)objects[0]).run();
             this.updateProgress(100);
+            updateStatus("\n");
 
         } catch (Exception e) {
             this.updateLog(e.getLocalizedMessage());
+            e.printStackTrace();
         }
         return null;
     }
+
     private void updateStatus(final String str) {
         this.status.post(() -> status.setText(str));
         this.updateLog(str);
     }
+
     private void updateLog(final String str) {
         this.log.post(() -> {
             log.append(str + "\r\n");
             Log.d("patch", str);
         });
     }
+
     private void updateProgress(final int percent) {
         this.progress.post(() -> progress.setProgress(percent));
     }

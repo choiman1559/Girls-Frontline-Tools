@@ -6,6 +6,7 @@ import android.os.Environment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.fqxd.gftools.Global;
 import com.fqxd.gftools.MainActivity;
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
 import com.nononsenseapps.filepicker.FilePickerActivity;
@@ -30,7 +31,7 @@ public class CAFilePicker extends FilePickerActivity {
             final boolean allowCreateDir, final boolean allowExistingFile,
             final boolean singleClick) {
         AbstractFilePickerFragment<File> fragment = new CustomFilePickerFragment();
-        fragment.setArgs(startPath != null ? startPath : Environment.getExternalStorageDirectory().getPath(),
+        fragment.setArgs(startPath != null ? startPath : Global.Storage,
                 mode, allowMultiple, allowCreateDir, allowExistingFile, singleClick);
         return fragment;
     }

@@ -111,13 +111,9 @@ public class UCWebViewActivity extends AppCompatActivity {
         if(requestCode == 10000 && resultCode == Activity.RESULT_OK){
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 mFilePathCallback.onReceiveValue(WebChromeClient.FileChooserParams.parseResult(resultCode, data));
-            }else{
-                mFilePathCallback.onReceiveValue(new Uri[]{data.getData()});
-            }
+            } else mFilePathCallback.onReceiveValue(new Uri[]{data.getData()});
             mFilePathCallback = null;
-        }else{
-            mFilePathCallback.onReceiveValue(null);
-        }
+        } else mFilePathCallback.onReceiveValue(null);
     }
 
     class myChromeClient extends WebChromeClient {

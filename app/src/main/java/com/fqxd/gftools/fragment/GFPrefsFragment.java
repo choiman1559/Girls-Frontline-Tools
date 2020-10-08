@@ -67,7 +67,7 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
                     changeVisibility(BDT, true);
                     changeVisibility(BSZ, true);
 
-                    String text = "백업 크기 : 약 " + String.format(Locale.getDefault(), "%.2f", (float) (FileUtils.sizeOfDirectory(Global.Storage + "/GF_Tool/backup/" + Package + "/")) / 1073741824) + "GB";
+                    String text = "백업 크기 : 약 " + String.format(Locale.getDefault(), "%.2f", (float) (FileUtils.sizeOfDirectory(new File(Global.Storage + "/GF_Tool/backup/" + Package + "/"))) / 1073741824) + "GB";
                     changeSummary(BSZ, text);
                 } else {
                     changeVisibility(BAD, true);
