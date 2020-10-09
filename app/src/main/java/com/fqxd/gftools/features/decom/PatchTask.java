@@ -3,7 +3,6 @@ package com.fqxd.gftools.features.decom;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +24,8 @@ import net.lingala.zip4j.model.enums.CompressionMethod;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
+
+import com.fqxd.gftools.implement.AsyncTask;
 
 @SuppressLint("StaticFieldLeak")
 final class PatchTask extends AsyncTask {
