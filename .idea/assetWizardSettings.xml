@@ -102,8 +102,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="$USER_HOME$/다운로드/iconfinder_Untitled-2-07_3253484.svg" />
-                                                <entry key="scalingPercent" value="60" />
+                                                <entry key="imagePath" value="$USER_HOME$/다운로드/icons/playstore/icon.png" />
+                                                <entry key="scalingPercent" value="73" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -139,7 +139,7 @@
                                       <entry key="generateLegacyIcon" value="false" />
                                       <entry key="generatePlayStoreIcon" value="false" />
                                       <entry key="generateRoundIcon" value="false" />
-                                      <entry key="outputName" value="ic_taiwan" />
+                                      <entry key="outputName" value="ic_gf_icn_changer" />
                                     </map>
                                   </option>
                                 </PersistentState>

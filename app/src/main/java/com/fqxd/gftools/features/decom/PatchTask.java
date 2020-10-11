@@ -122,6 +122,7 @@ final class PatchTask extends AsyncTask {
             this.updateStatus("repackaging apk");
             if(!ifErr) FileUtils.deleteDirectory(new File(apk.getAbsolutePath() + "/assets/bin/Data/Managed"));
             for (File f : apk.listFiles()) {
+                Log.d("list",f.getAbsolutePath());
                 if (f.getName().equals("res")) continue;
                 if (f.isFile()) {
                     zipFile.addFile(f, parameters);

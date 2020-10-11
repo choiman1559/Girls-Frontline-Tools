@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+
+import com.fqxd.gftools.features.icon.IconChangeActivity;
 import com.fqxd.gftools.implement.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -124,6 +126,10 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
 
             case "Button_DEC":
                 startActivity(DecActivity.class);
+                break;
+
+            case "Button_ICO":
+                startActivity(IconChangeActivity.class);
                 break;
 
             case "Button_ROT":

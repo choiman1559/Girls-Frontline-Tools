@@ -5,6 +5,7 @@
     package="com.fqxd.gftools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -147,6 +148,12 @@
         <activity
             android:name=".features.decom.DecActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".features.icon.IconChangeActivity"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"/>
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name=".features.xapk.XapkActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />

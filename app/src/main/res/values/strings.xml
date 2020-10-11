@@ -19,6 +19,7 @@
     <string name="level_min">속도 빠름</string>
     <string name="level_max">용량 작음</string>
     <string name="checkbox_err">설치/실행이 불가한경우 선택</string>
+    <string name="select_image">이미지 선택</string>
     <string name="info_no_obb">there were no obb file found.\nobb file won\'t be patched.\nsome releases doesn\'t includes obb files.\nif  you\'re not sure about it, please check if girl\'s fronline does works and reinstall if it doesn\'t</string>
 
     <string name="skin_name_neko">IDW the Many</string>

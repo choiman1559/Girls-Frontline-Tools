@@ -40,6 +40,12 @@
             android:icon="@mipmap/ic_gf_dec_foreground"/>
 
         <Preference
+            android:key="Button_ICO"
+            android:title="GF Icon Changer"
+            android:summary="클라이언트 아이콘 변경"
+            android:icon="@mipmap/ic_gf_icn_changer_foreground"/>
+
+        <Preference
             android:key="Button_ROT"
             android:summary="자동 화면 세로 고정"
             android:title="Auto Screen Rotation"

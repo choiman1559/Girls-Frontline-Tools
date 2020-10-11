@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="GF Tools/app" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/netbare/netbare.iml" filepath="$PROJECT_DIR$/.idea/modules/netbare/netbare.iml" group="GF Tools/netbare" />
       <module fileurl="file://$PROJECT_DIR$/xDSDKAndroid/xDSDKAndroid.iml" filepath="$PROJECT_DIR$/xDSDKAndroid/xDSDKAndroid.iml" group="GF Tools/xDSDKAndroid" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/zipsigner/zipsigner.iml" filepath="$PROJECT_DIR$/.idea/modules/zipsigner/zipsigner.iml" group="GF Tools/zipsigner" />
     </modules>
   </component>
 </project>

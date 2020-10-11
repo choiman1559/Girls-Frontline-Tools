@@ -1,2 +1,2 @@
-include ':app', ':xDSDKAndroid',':netbare'
+include ':app', ':xDSDKAndroid',':netbare',':zipsigner'
 rootProject.name='GF Tools'
