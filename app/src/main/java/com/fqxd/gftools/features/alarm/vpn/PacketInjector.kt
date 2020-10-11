@@ -18,14 +18,13 @@ import com.gitlab.prototypeg.network.request.RequestFactory
 import com.gitlab.prototypeg.network.response.ResponseFactory
 import org.apache.commons.httpclient.ChunkedInputStream
 import org.apache.commons.httpclient.ChunkedOutputStream
-import org.apache.commons.io.IOUtils
+import org.apache.commons.io.IOUtil
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.nio.ByteBuffer
 import java.util.zip.GZIPInputStream
 import java.util.zip.GZIPOutputStream
-
 
 class PacketInjector(private val session: Session, private val context: Context) : SimpleHttpInjector() {
     private var buffer: ByteArrayOutputStream? = null
@@ -88,7 +87,7 @@ class PacketInjector(private val session: Session, private val context: Context)
                                 ByteArrayInputStream(buffer!!.toByteArray())
                         )
                 )
-                val line = IOUtils.toByteArray(inputStream)
+                val line = IOUtil.toByteArray(inputStream)
                 inputStream.close()
                 val uri = header!!.uri().path
                 val newResponse: ByteArray

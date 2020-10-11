@@ -274,7 +274,6 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
         }
 
         public static class copyDir extends AsyncTask {
-
             Activity main;
             File sourceF;
             File targetF;
