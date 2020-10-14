@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GF_Tools.iml" filepath="$PROJECT_DIR$/.idea/modules/GF_Tools.iml" group="GF_Tools" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="GF Tools/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/netbare/netbare.iml" filepath="$PROJECT_DIR$/.idea/modules/netbare/netbare.iml" group="GF Tools/netbare" />
-      <module fileurl="file://$PROJECT_DIR$/xDSDKAndroid/xDSDKAndroid.iml" filepath="$PROJECT_DIR$/xDSDKAndroid/xDSDKAndroid.iml" group="GF Tools/xDSDKAndroid" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/zipsigner/zipsigner.iml" filepath="$PROJECT_DIR$/.idea/modules/zipsigner/zipsigner.iml" group="GF Tools/zipsigner" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GF_Tools.iml" filepath="$PROJECT_DIR$/.idea/modules/GF_Tools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GF_Tools.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GF_Tools.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/netbare/GF_Tools.netbare.iml" filepath="$PROJECT_DIR$/.idea/modules/netbare/GF_Tools.netbare.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/xDSDKAndroid/GF_Tools.xDSDKAndroid.iml" filepath="$PROJECT_DIR$/.idea/modules/xDSDKAndroid/GF_Tools.xDSDKAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/zipsigner/GF_Tools.zipsigner.iml" filepath="$PROJECT_DIR$/.idea/modules/zipsigner/GF_Tools.zipsigner.iml" />
     </modules>
   </component>
 </project>

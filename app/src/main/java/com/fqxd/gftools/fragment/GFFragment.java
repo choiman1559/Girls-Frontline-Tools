@@ -29,9 +29,9 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 
 public class GFFragment extends Fragment {
+    volatile static GFPrefsFragment fragment;
     int LayoutMode;
     String Package;
-    static GFPrefsFragment fragment;
 
     @Nullable
     @Override

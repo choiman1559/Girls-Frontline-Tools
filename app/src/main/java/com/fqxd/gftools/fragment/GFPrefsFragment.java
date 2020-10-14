@@ -37,7 +37,14 @@ import java.io.FileOutputStream;
 import java.util.Locale;
 
 public class GFPrefsFragment extends PreferenceFragmentCompat {
+    volatile static GFPrefsFragment thisFragment;
     String Package;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        thisFragment = GFPrefsFragment.this;
+    }
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -52,7 +59,7 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
 
         new Thread(() -> {
             try {
-                PackageInfo pm = getActivity().getPackageManager().getPackageInfo(Package, 0);
+                PackageInfo pm = thisFragment.getActivity().getPackageManager().getPackageInfo(Package, 0);
                 long ver = Build.VERSION.SDK_INT > 28 ? pm.getLongVersionCode() : pm.versionCode;
                 String obb = "main." + ver + "." + Package + ".obb";
                 changeVisibility(findPreference("TextView_OBBNF"), !new File(Global.Storage + "/Android/obb/" + Package + "/" + obb).exists());
@@ -80,23 +87,22 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
-                getActivity().runOnUiThread(() -> getActivity().findViewById(R.id.progressbarLayout).setVisibility(View.GONE));
+                thisFragment.getActivity().runOnUiThread(() -> thisFragment.getActivity().findViewById(R.id.progressbarLayout).setVisibility(View.GONE));
             }
         }).start();
     }
 
     public void changeSummary(Preference p, String s) {
-        getActivity().runOnUiThread(() -> p.setSummary(s));
+       thisFragment.getActivity().runOnUiThread(() -> p.setSummary(s));
     }
 
     public void changeVisibility(Preference p, Boolean b) {
-        getActivity().runOnUiThread(() -> p.setVisible(b));
+        thisFragment.getActivity().runOnUiThread(() -> p.setVisible(b));
     }
 
     @Override
     public boolean onPreferenceTreeClick(Preference preference) {
-
-        PackageManager pm = getContext().getPackageManager();
+        PackageManager pm = thisFragment.getActivity().getPackageManager();
         switch (preference.getKey()) {
             case "Button_RUN":
                 startActivity(pm.getLaunchIntentForPackage(Package));
@@ -113,9 +119,9 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
                 b.setMessage("정말로 데이터를 전부 삭제하시겠습니까?");
                 b.setPositiveButton("삭제", (dialogInterface, i) -> {
                     if (!new File(path).exists())
-                        Toast.makeText(getContext().getApplicationContext(), "데이터를 찾을수 없습니다!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(thisFragment.getContext(), "데이터를 찾을수 없습니다!", Toast.LENGTH_SHORT).show();
                     else {
-                        FileUtil.deleteDir dd = new FileUtil.deleteDir(getActivity(), path, Package);
+                        FileUtil.deleteDir dd = new FileUtil.deleteDir(thisFragment.getActivity(), path, Package);
                         dd.execute();
                     }
                 });
@@ -157,8 +163,7 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
                 a.setTitle("삭제 확인");
                 a.setMessage("정말로 백업된 데이터를 전부 삭제하시겠습니까?");
                 a.setPositiveButton("삭제", (dialogInterface, i) -> delete(Package));
-                a.setNegativeButton("취소", (dialogInterface, i) -> {
-                });
+                a.setNegativeButton("취소", (dialogInterface, i) -> { });
                 a.create().show();
                 break;
         }
@@ -169,7 +174,7 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 5) {
-            getActivity().getSupportFragmentManager()
+            thisFragment.getActivity().getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.prefs, GFFragment.newInstance(Package))
                     .commit();
@@ -188,7 +193,7 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
         if (!dir.exists()) dir.mkdir();
         File data = new File(Global.Storage + "/Android/data/" + pkg + "/");
         if (!data.exists()) {
-            Toast.makeText(getContext().getApplicationContext(), "백업할 데이터를 찾을수 없습니다!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(thisFragment.getContext(), "백업할 데이터를 찾을수 없습니다!", Toast.LENGTH_SHORT).show();
             return;
         }
         FileUtil.copyDir cpd = new FileUtil.copyDir(getActivity(), data, dir, Package);
@@ -202,13 +207,13 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
         if (!dir.exists())
             throw new NullPointerException(Global.Storage + "/GF_Tool/backup/" + pkg + "/\" not found!");
         if (!data.exists()) data.mkdir();
-        FileUtil.copyDir cd = new FileUtil.copyDir(getActivity(), dir, data, Package);
+        FileUtil.copyDir cd = new FileUtil.copyDir(thisFragment.getActivity(), dir, data, Package);
         cd.execute();
         Log.i("Restore", "complete");
     }
 
     void delete(String pkg) {
-        FileUtil.deleteDir dd = new FileUtil.deleteDir(getActivity(), Global.Storage + "/GF_Tool/backup/" + pkg + "/", Package);
+        FileUtil.deleteDir dd = new FileUtil.deleteDir(thisFragment.getActivity(), Global.Storage + "/GF_Tool/backup/" + pkg + "/", Package);
         dd.execute();
         Log.i("Delete", "complete");
     }
