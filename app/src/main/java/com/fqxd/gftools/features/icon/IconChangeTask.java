@@ -33,10 +33,10 @@ import com.kellinwood.security.zipsigner.ZipSigner;
 
 @SuppressLint("StaticFieldLeak")
 final class IconChangeTask extends AsyncTask {
-    private AppCompatActivity main;
-    private TextView status;
-    private TextView log;
-    private ProgressBar progress;
+    private final AppCompatActivity main;
+    private final TextView status;
+    private final TextView log;
+    private final ProgressBar progress;
     private String target;
     private File imageFile;
 

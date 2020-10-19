@@ -27,7 +27,7 @@ import org.json.JSONObject;
 
 public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.ViewHolder> {
 
-    private JSONArray data;
+    private final JSONArray data;
     private Context context;
     OnDataChangedListener Listener;
 

@@ -20,7 +20,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="@string/PacAlarmService" />
+                android:text="@string/PacAlarmService"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             <Button
                 android:id="@+id/add"

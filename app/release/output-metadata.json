@@ -1,19 +1,17 @@
 {
-  "version": 1,
+  "version": 2,
   "artifactType": {
     "type": "APK",
     "kind": "Directory"
   },
   "applicationId": "com.fqxd.gftools",
-  "variantName": "release",
+  "variantName": "processReleaseResources",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
-      "properties": [],
-      "versionCode": 2010501,
-      "versionName": "1.5.1",
-      "enabled": true,
+      "versionCode": 2010502,
+      "versionName": "1.5.2",
       "outputFile": "app-release.apk"
     }
   ]

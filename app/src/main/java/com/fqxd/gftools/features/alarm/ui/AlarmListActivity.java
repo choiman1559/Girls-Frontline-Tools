@@ -11,8 +11,10 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -28,6 +30,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
+import com.fqxd.gftools.features.alarm.floating.AlarmFloatingView;
 import com.fqxd.gftools.features.alarm.logcat.LogCatReaderService;
 import com.github.megatronking.netbare.NetBare;
 

@@ -17,6 +17,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.accessibility.AccessibilityManager;
 
+import com.fqxd.gftools.features.alarm.floating.AlarmFloatingView;
 import com.fqxd.gftools.features.alarm.vpn.PacketInjector;
 import com.github.megatronking.netbare.NetBare;
 import com.github.megatronking.netbare.NetBareConfig;
@@ -37,6 +38,7 @@ public class Global extends Application {
     private static JKS jks;
     public static String Storage;
     public static String Prefs;
+    public static AlarmFloatingView floatingView;
 
     public NetBareConfig getConfig() {
         NetBareConfig.Builder configBuilder = NetBareConfig.defaultHttpConfig(jks, CollectionsKt.listOf(HttpInjectInterceptor.createFactory(new PacketInjector(new com.gitlab.prototypeg.Session(), this)))).newBuilder();
@@ -55,6 +57,7 @@ public class Global extends Application {
     public void onCreate() {
         super.onCreate();
 
+        floatingView = new AlarmFloatingView(this);
         Storage = Environment.getExternalStorageDirectory().getPath();
         Prefs = getPackageName() + "_preferences";
 

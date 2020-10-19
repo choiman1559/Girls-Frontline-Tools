@@ -21,8 +21,10 @@ import android.widget.Toast;
 import com.fqxd.gftools.DetectGFService;
 import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
+import com.fqxd.gftools.features.alarm.floating.AlarmFloatingView;
 import com.fqxd.gftools.features.alarm.receiver.AlarmReceiver;
 import com.fqxd.gftools.features.alarm.receiver.BootCompleteReceiver;
+import com.fqxd.gftools.features.alarm.vpn.netBareService;
 
 import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
@@ -83,6 +85,7 @@ public class AlarmUtils {
             }
         }
         prefs.edit().putString("AlarmData", array.toString()).apply();
+        Global.floatingView.initListView();
     }
 
     @Nullable
@@ -135,6 +138,7 @@ public class AlarmUtils {
                 obj.setSquadNumber(selS.getValue());
                 obj.setPackage(DetectGFService.lastPackage);
                 setAlarm(obj.parse(),context);
+                Global.floatingView.initListView();
             } catch (JSONException e) {
                 e.printStackTrace();
             }

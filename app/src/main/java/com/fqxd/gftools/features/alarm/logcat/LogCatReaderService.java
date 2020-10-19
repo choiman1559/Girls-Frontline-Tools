@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.fqxd.gftools.features.alarm.floating.AlarmFloatingView;
 import com.fqxd.gftools.features.alarm.ui.AlarmListActivity;
 import com.fqxd.gftools.features.alarm.utils.AlarmUtils;
 import com.fqxd.gftools.DetectGFService;
@@ -27,6 +28,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.fqxd.gftools.Global.floatingView;
 
 public class LogCatReaderService extends Service {
     public static Logcat logcat;
@@ -41,6 +44,9 @@ public class LogCatReaderService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         startForeground(1, createNotification());
+        floatingView = new AlarmFloatingView(this);
+        floatingView.CreateView();
+
         logcat.bind(AlarmListActivity.appCompatActivity);
         logcat.addEventListener(this::onReceivedLogs);
         logcat.start();
@@ -90,11 +96,11 @@ public class LogCatReaderService extends Service {
                             objectClass.setPackage(DetectGFService.lastPackage);
                             objectClass.setSquadNumber(obj.getInt("team_id"));
                             new AlarmUtils().setAlarm(objectClass.parse(), this);
+                            floatingView.initListView();
                         } else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
                             builder.setTitle("중복된 군수알람이 있습니다!").setMessage("덮어 씌우시겠습니까?");
-                            builder.setNegativeButton("취소", (dialog, id) -> {
-                            });
+                            builder.setNegativeButton("취소", (dialog, id) -> { });
                             builder.setPositiveButton("덮어쓰기", (dialog, id) -> {
                                 try {
                                     new AlarmUtils().cancel(o, getApplicationContext());
@@ -104,6 +110,7 @@ public class LogCatReaderService extends Service {
                                     objectClass.setPackage(DetectGFService.lastPackage);
                                     objectClass.setSquadNumber(obj.getInt("team_id"));
                                     new AlarmUtils().setAlarm(objectClass.parse(), this);
+                                    floatingView.initListView();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -171,6 +178,7 @@ public class LogCatReaderService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        floatingView.destroy();
         logcat.stop();
     }
 }

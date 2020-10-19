@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -41,9 +42,9 @@ import gun0912.tedbottompicker.TedBottomPicker;
 
 public class IconChangeActivity extends AppCompatActivity {
     static String Package = null;
-    static Uri ImageUri = null;
     static Boolean isTaskRunning = false;
 
+    Uri ImageUri = null;
     ImageView imagePreview;
     Button patchButton;
 

@@ -246,6 +246,7 @@
             android:name=".features.alarm.receiver.AlarmReceiver"
             android:enabled="true">
         </receiver>
+        <service android:name="io.hamed.floatinglayout.service.FloatingService"/>
         <service android:name=".features.gfneko.AnimationService"/>
         <service
             android:name=".DetectGFService"

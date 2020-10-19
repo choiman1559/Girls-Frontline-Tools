@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fqxd.gftools.Global;
 import com.fqxd.gftools.MainActivity;
@@ -67,6 +68,12 @@ public final class DecActivity extends AppCompatActivity {
         final SeekBar level = findViewById(R.id.compressLevel);
         final LinearLayout layout = findViewById(R.id.progressLayout);
         final CheckBox IfErr = findViewById(R.id.checkBox_IfErr);
+
+        if(Build.VERSION.SDK_INT < 26) {
+            level.setProgress(0);
+            level.setEnabled(false);
+            level.setOnClickListener(v -> Toast.makeText(this,"안드로이드 7 이하에서는 레벨 설정이 불가능합니다!",Toast.LENGTH_SHORT));
+        }
 
         layout.setVisibility(View.GONE);
         progress.setVisibility(View.GONE);
