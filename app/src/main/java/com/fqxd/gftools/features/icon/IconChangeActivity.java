@@ -33,6 +33,8 @@ import com.fqxd.gftools.R;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import org.apache.commons.io.FileUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -151,9 +153,8 @@ public class IconChangeActivity extends AppCompatActivity {
 
         if(requestCode == 5555) {
             File temp = getExternalFilesDir(null);
-            File originalObb = (new File(Global.Storage + "/Android/obb/" + Package));
             File obb = new File(temp.getAbsolutePath() + "/obb");
-            copyDirectory(obb,originalObb);
+            copyObbDirectory(Package,obb);
 
             Intent intent = new Intent(Intent.ACTION_VIEW);
             File originalApk = new File(temp.getAbsolutePath() + "/signed.apk");
@@ -184,35 +185,18 @@ public class IconChangeActivity extends AppCompatActivity {
         }
     }
 
-    public static void copyDirectory(File sourceF, File targetF){
-        File[] target_file = sourceF.listFiles();
-        for (File file : target_file) {
-            File temp = new File(targetF.getAbsolutePath() + File.separator + file.getName());
-            if(file.isDirectory()){
-                temp.mkdir();
-                copyDirectory(file, temp);
-            } else {
-                FileInputStream fis = null;
-                FileOutputStream fos = null;
-                try {
-                    fis = new FileInputStream(file);
-                    fos = new FileOutputStream(temp) ;
-                    byte[] b = new byte[4096];
-                    int cnt = 0;
-                    while((cnt=fis.read(b)) != -1){
-                        fos.write(b, 0, cnt);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally{
-                    try {
-                        fis.close();
-                        fos.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+    public static void copyObbDirectory(String target,File from) {
+        try {
+            File originalOBB = new File(Global.Storage + "/Android/obb/" + target);
+            if (from.exists() && from.isDirectory()) {
+                if (!originalOBB.exists()) originalOBB.mkdirs();
+                File[] list = from.listFiles();
+                for (File file : list) {
+                    FileUtils.copyFile(file, new File(originalOBB.getAbsolutePath() + "/" + file.getName()));
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

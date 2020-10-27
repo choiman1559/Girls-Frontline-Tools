@@ -314,7 +314,7 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
                 progressDialog.dismiss();
                 Toast.makeText(main, "done", Toast.LENGTH_SHORT).show();
 
-                ((FragmentActivity) main).getSupportFragmentManager()
+                thisFragment.getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.prefs, GFFragment.newInstance(Package))
                         .commit();

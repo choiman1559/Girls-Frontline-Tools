@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import com.fqxd.gftools.features.alarm.ui.AlarmListActivity;
 import com.github.megatronking.netbare.NetBareService;
 
-import static com.fqxd.gftools.Global.floatingView;
-
 public class netBareService extends NetBareService {
 
     @Override
@@ -21,14 +19,12 @@ public class netBareService extends NetBareService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        floatingView.CreateView();
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        floatingView.destroy();
     }
 
     @NonNull

@@ -38,7 +38,6 @@ public class Global extends Application {
     private static JKS jks;
     public static String Storage;
     public static String Prefs;
-    public static AlarmFloatingView floatingView;
 
     public NetBareConfig getConfig() {
         NetBareConfig.Builder configBuilder = NetBareConfig.defaultHttpConfig(jks, CollectionsKt.listOf(HttpInjectInterceptor.createFactory(new PacketInjector(new com.gitlab.prototypeg.Session(), this)))).newBuilder();
@@ -56,8 +55,6 @@ public class Global extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        floatingView = new AlarmFloatingView(this);
         Storage = Environment.getExternalStorageDirectory().getPath();
         Prefs = getPackageName() + "_preferences";
 

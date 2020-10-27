@@ -1,17 +1,8 @@
 package com.fqxd.gftools.features.xapk;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Enumeration;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
+import net.lingala.zip4j.ZipFile;
 
-/**
- * Created by HtetzNaing on 12/5/2017.
- */
+import java.io.File;
 
 public class OBBextrack {
     public boolean unZip(String zipFile, String targetPath)
@@ -25,50 +16,26 @@ public class OBBextrack {
     }
 
     private static boolean unzip(String zipFile, String targetPath){
-        try
-        {
-            File fSourceZip = new File(zipFile);
+        try {
             File temp = new File(targetPath);
-            temp.mkdir();
-            System.out.println(targetPath + " created");
-            ZipFile zFile = new ZipFile(fSourceZip);
-            Enumeration e = zFile.entries();
-            while (e.hasMoreElements()) {
-                ZipEntry entry = (ZipEntry)e.nextElement();
-                File destinationFilePath = new File(targetPath, entry.getName());
-                destinationFilePath.getParentFile().mkdirs();
-                if (!entry.isDirectory())
-                {
-                    System.out.println("Extracting " + destinationFilePath);
-                    BufferedInputStream bis = new BufferedInputStream(zFile.getInputStream(entry));
-
-                    byte[] buffer = new byte['Ѐ'];
-                    FileOutputStream fos = new FileOutputStream(destinationFilePath);
-                    BufferedOutputStream bos = new BufferedOutputStream(fos, 1024);
-                    int b;
-                    while ((b = bis.read(buffer, 0, 1024)) != -1) {
-                        bos.write(buffer, 0, b);
-                    }
-                    bos.flush();
-                    bos.close();
-                    bis.close();
-                }
-            }
+            if(!temp.exists()) temp.mkdirs();
+            ZipFile zip = new ZipFile(zipFile);
+            zip.extractAll(targetPath);
         }
-        catch (IOException ioe) {
-            System.out.println("IOError :" + ioe);
+        catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
         return true;
     }
 
-    public boolean deleteDirectory(String path) {
+    public void deleteDirectory(String path) {
         File directory = new File(path);
 
         if (directory.exists()) {
             File[] files = directory.listFiles();
             if (files == null) {
-                return true;
+                return;
             }
             for (File file : files) {
                 if (file.isDirectory()) {
@@ -78,11 +45,11 @@ public class OBBextrack {
                 }
             }
         }
-        return directory.delete();
+        directory.delete();
     }
 
-    public boolean deleteFile(String path) {
+    public void deleteFile(String path) {
         File file = new File(path);
-        return file.delete();
+        file.delete();
     }
 }

@@ -29,7 +29,8 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 
 public class GFFragment extends Fragment {
-    volatile static GFPrefsFragment fragment;
+    volatile static GFPrefsFragment prefsFragment;
+    volatile static GFFragment thisFragment;
     int LayoutMode;
     String Package;
 
@@ -39,7 +40,7 @@ public class GFFragment extends Fragment {
         Package =  indexToPackage(FragmentPagerItem.getPosition(getArguments()));
         Intent intent = getContext().getPackageManager().getLaunchIntentForPackage(Package);
         LayoutMode = (intent == null ? 0 : 1);
-        fragment = newInstance(Package);
+        prefsFragment = newInstance(Package);
         return inflater.inflate(LayoutMode == 1 ? R.layout.fragment_gf : R.layout.fragment_gfnone, container, false);
     }
 
@@ -53,10 +54,11 @@ public class GFFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        thisFragment = this;
         if (LayoutMode == 1) {
             try {
                 super.onViewCreated(view, savedInstanceState);
-                PackageManager pm = view.getContext().getApplicationContext().getPackageManager();
+                PackageManager pm = thisFragment.getContext().getPackageManager();
                 TextView name = view.findViewById(R.id.appname);
                 TextView ver = view.findViewById(R.id.version);
                 TextView pk = view.findViewById(R.id.packagename);
@@ -64,7 +66,7 @@ public class GFFragment extends Fragment {
 
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.prefs,fragment)
+                        .replace(R.id.prefs,prefsFragment)
                         .commit();
 
                 name.setText(pm.getApplicationLabel(pm.getApplicationInfo(Package, PackageManager.GET_META_DATA)));
@@ -75,7 +77,7 @@ public class GFFragment extends Fragment {
                 new GetVersionCode().execute();
             } catch (Exception e) {
                 e.printStackTrace();
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(thisFragment.getContext());
                 builder.setTitle("예외 발생!").setMessage("원인 : " + e.toString());
                 builder.setPositiveButton("앱 종료", (dialog, id) -> { getActivity().finish(); });
                 builder.setNegativeButton("엡 재시작",((dialog, which) -> getActivity().recreate()));
@@ -85,7 +87,7 @@ public class GFFragment extends Fragment {
             String pkg = indexToPackage(FragmentPagerItem.getPosition(getArguments()));
             ((TextView) view.findViewById(R.id.NoneMessage)).setText("Can't find package \"" + pkg + "\"");
             view.findViewById(R.id.Button_Download).setOnClickListener(v -> {
-                startActivity(new Intent(getContext(), GFDownloadActivity.class).putExtra("pkg", pkg));
+                startActivity(new Intent(thisFragment.getContext(), GFDownloadActivity.class).putExtra("pkg", pkg));
             });
         }
     }
@@ -126,7 +128,7 @@ public class GFFragment extends Fragment {
             String pkg = indexToPackage(FragmentPagerItem.getPosition(getArguments()));
             try {
                 if (newV.equals("")) return;
-                PackageManager pm = getContext().getPackageManager();
+                PackageManager pm = thisFragment.getContext().getPackageManager();
                 String nowV = pm.getPackageInfo(pkg, 0).versionName;
 
                 String[] i = nowV.split("_");

@@ -85,7 +85,6 @@ public class AlarmUtils {
             }
         }
         prefs.edit().putString("AlarmData", array.toString()).apply();
-        Global.floatingView.initListView();
     }
 
     @Nullable
@@ -138,7 +137,6 @@ public class AlarmUtils {
                 obj.setSquadNumber(selS.getValue());
                 obj.setPackage(DetectGFService.lastPackage);
                 setAlarm(obj.parse(),context);
-                Global.floatingView.initListView();
             } catch (JSONException e) {
                 e.printStackTrace();
             }

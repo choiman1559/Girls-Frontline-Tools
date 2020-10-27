@@ -48,7 +48,6 @@ public class AlarmFloatingView extends FloatingService {
                         dataEmpty = view.findViewById(R.id.dataEmpty);
                         initListView();
                     }
-
                     @Override
                     public void onCloseListener() {
                     }

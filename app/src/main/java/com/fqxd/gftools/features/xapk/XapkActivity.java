@@ -24,6 +24,8 @@ import com.fqxd.gftools.R;
 import com.nononsenseapps.filepicker.FilePickerActivity;
 import com.nononsenseapps.filepicker.Utils;
 
+import org.apache.commons.io.FileUtils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -65,10 +67,10 @@ public class XapkActivity extends AppCompatActivity {
         if (!listPermissionsNeeded.isEmpty()) {
             ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray
                     (new String[listPermissionsNeeded.size()]), REQUEST_ID_MULTIPLE_PERMISSIONS);
-            Log.d("TAG","Permission"+"\n"+String.valueOf(false));
+            Log.d("TAG","Permission "+""+ false);
             return false;
         }
-        Log.d("Permission","Permission"+"\n"+String.valueOf(true));
+        Log.d("Permission","Permission "+"\n"+ true);
         return true;
     }
 
@@ -97,6 +99,19 @@ public class XapkActivity extends AppCompatActivity {
             b.setOnCancelListener(dialog -> finish());
             AlertDialog d = b.create();
             d.show();
+        } else if(requestCode == 5554) {
+
+            if(resultCode == Activity.RESULT_OK) {
+                try {
+                    copyDirectory(new File(Global.Storage + "/GF_Tool/xapk/Android/obb"), new File(Global.Storage + "/Android/obb"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            OBBextrack my = new OBBextrack();
+            my.deleteDirectory(Global.Storage + "/GF_Tool/xapk/");
+            finish();
         } else finish();
     }
 
@@ -124,14 +139,14 @@ public class XapkActivity extends AppCompatActivity {
             progressDialog.dismiss();
             String btn = null;
             if (s.equals("true")){
-                String name = readTextFile(Global.Storage + "/GF_Tool/manifest.json");
+                String name = readTextFile(Global.Storage + "/GF_Tool/xapk/manifest.json");
                 name = name.substring(name.indexOf("\"name\":"),name.lastIndexOf("\"locales_name\":"));
                 name = name.replace("\"name\":\"","");
                 name = name.replace("\",","");
                 s = "Now, you need to Install"+"\n"+name+" APK";
                 btn = "Install";
 
-                File n = new File(Global.Storage + "/GF_Tool/");
+                File n = new File(Global.Storage + "/GF_Tool/xapk/");
                 File [] n1 = n.listFiles();
                 for (int ii=0;ii<n1.length;ii++){
                     if (n1[ii].toString().endsWith(".apk")){
@@ -149,26 +164,23 @@ public class XapkActivity extends AppCompatActivity {
             final String finalBtn = btn;
             builder.setPositiveButton(btn, (dialogInterface, i) -> {
                 if (finalBtn.equals("Install")){
-                    File toInstall = new File(apk);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        Uri apkUri = FileProvider.getUriForFile(XapkActivity.this, BuildConfig.APPLICATION_ID + ".provider", toInstall);
-                        Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
-                        intent.setData(apkUri);
-                        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        XapkActivity.this.startActivity(intent);
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    File originalApk = new File(apk);
+                    Uri uri = Build.VERSION.SDK_INT <= 23 ? Uri.fromFile(originalApk) : FileProvider.getUriForFile(XapkActivity.this, BuildConfig.APPLICATION_ID + ".provider", originalApk);
+                    if (Build.VERSION.SDK_INT <= 23) {
+                        intent.setDataAndType(uri, "application/vnd.android.package-archive");
                     } else {
-                        Uri apkUri = Uri.fromFile(toInstall);
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        XapkActivity.this.startActivity(intent);
+                        intent.setData(uri);
                     }
+                    intent.putExtra(Intent.EXTRA_RETURN_RESULT,true);
+                    intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    XapkActivity.this.startActivityForResult(intent,5554);
 
-                    OBBextrack my = new OBBextrack();
-                    my.deleteDirectory(Global.Storage + "/GF_Tool/Android");
-                    my.deleteFile(Global.Storage + "/GF_Tool/manifest.json");
-                    my.deleteFile(Global.Storage + "/GF_Tool/icon.png");
-                    finish();
+                    AlertDialog.Builder builders = new AlertDialog.Builder(XapkActivity.this);
+                    builders.setTitle("Cleaning up...");
+                    builders.setMessage("Please wait until the task is finished...");
+                    builders.setCancelable(false);
+                    builders.show();
                 }
                 else finish();
             });
@@ -182,48 +194,24 @@ public class XapkActivity extends AppCompatActivity {
             OBBextrack my = new OBBextrack();
             my.deleteDirectory(Global.Storage + "/GF_Tool");
 
-            File file = new File(Global.Storage + "/GF_Tool/");
+            File file = new File(Global.Storage + "/GF_Tool/xapk/");
             if (!file.exists()){
                 file.mkdir();
             }
             boolean b = my.unZip(lol.toString(),file.toString());
-            try {
-                copyDirectory(new File(Global.Storage + "/GF_Tool/Android"),new File(Global.Storage + "/Android/"));
-            } catch (IOException e) { }
-
             return String.valueOf(b);
         }
     }
 
-    public static void copyDirectory(File sourceLocation, File targetLocation)
-            throws IOException {
-
+    public static void copyDirectory(File sourceLocation, File targetLocation) throws IOException {
         if (sourceLocation.isDirectory()) {
-            if (!targetLocation.exists()) {
-                targetLocation.mkdir();
-            }
-
+            if (!targetLocation.exists()) targetLocation.mkdir();
             String[] children = sourceLocation.list();
             for (int i = 0; i < sourceLocation.listFiles().length; i++) {
-
-                copyDirectory(new File(sourceLocation, children[i]),
-                        new File(targetLocation, children[i]));
+                copyDirectory(new File(sourceLocation, children[i]), new File(targetLocation, children[i]));
             }
-        } else {
-            InputStream in = new FileInputStream(sourceLocation);
-            OutputStream out = new FileOutputStream(targetLocation);
-
-            byte[] buf = new byte[1024];
-            int len;
-            while ((len = in.read(buf)) > 0) {
-                out.write(buf, 0, len);
-            }
-            in.close();
-            out.close();
-        }
-
+        } else FileUtils.copyFile(sourceLocation, targetLocation);
     }
-
 
     public String readTextFile(String path) {
         File file = new File(path);
@@ -238,7 +226,9 @@ public class XapkActivity extends AppCompatActivity {
             }
             br.close();
         }
-        catch (IOException ignored) { }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
         return text.toString();
     }
 
