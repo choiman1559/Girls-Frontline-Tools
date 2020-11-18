@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.isradeleon:Notify-Android:1.0.3@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6966c0967c5d1e2a3e419de78e37c527/jetified-Notify-Android-1.0.3/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6966c0967c5d1e2a3e419de78e37c527/jetified-Notify-Android-1.0.3/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6966c0967c5d1e2a3e419de78e37c527/jetified-Notify-Android-1.0.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1aebd213fa4d84d03aab2b0036ab1d7c/jetified-Notify-Android-1.0.3/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1aebd213fa4d84d03aab2b0036ab1d7c/jetified-Notify-Android-1.0.3/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1aebd213fa4d84d03aab2b0036ab1d7c/jetified-Notify-Android-1.0.3/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

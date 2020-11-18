@@ -39,7 +39,7 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.ViewHo
         TextView Package;
 
         ViewHolder(View itemView) {
-            super(itemView) ;
+            super(itemView);
             sector = itemView.findViewById(R.id.sectorInfo);
             squad = itemView.findViewById(R.id.squadInfo);
             delete = itemView.findViewById(R.id.deleteAlarm);
@@ -65,7 +65,6 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ListViewAdapter.ViewHolder holder, int position) {
         try {
-            new GFAlarmObjectClass();
             GFAlarmObjectClass object = GFAlarmObjectClass.getGFAlarmObjectClassFromJson(new JSONObject(data.get(position).toString()));
             PackageManager pm = context.getPackageManager();
             holder.sector.setText(object.getSector().getH() + "-" + object.getSector().getM() + " 구역");

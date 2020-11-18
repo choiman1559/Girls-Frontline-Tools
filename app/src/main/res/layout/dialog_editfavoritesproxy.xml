@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="HardcodedText"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/proxy_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="즐겨찾기 이름 입력"
+        android:inputType="text"
+        android:maxLength="12"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/proxy_address"/>
+
+    <EditText
+        android:id="@+id/proxy_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="프록시 주소 입력"
+        android:digits="0123456789."
+        android:inputType="numberDecimal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/proxy_name"
+        app:layout_constraintBottom_toTopOf="@id/proxy_port"/>
+
+    <EditText
+        android:id="@+id/proxy_port"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="프록시 포트 입력"
+        android:inputType="numberDecimal"
+        android:maxLength="5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/proxy_address"
+        app:layout_constraintBottom_toTopOf="@id/proxy_submit"/>
+
+    <Button
+        android:id="@+id/proxy_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="수정"
+        app:layout_constraintLeft_toLeftOf="@id/proxy_cancel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/proxy_port" />
+
+    <Button
+        android:id="@+id/proxy_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="취소"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/proxy_submit"
+        app:layout_constraintTop_toBottomOf="@+id/proxy_port" />
+</androidx.constraintlayout.widget.ConstraintLayout>

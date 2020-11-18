@@ -28,6 +28,17 @@
         android:layout_marginTop="10dp"
         app:srcCompat="@drawable/ic_broken_image" />
 
+    <EditText
+        android:id="@+id/editname"
+        android:hint="input app name"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLength="20"
+        tools:ignore="HardcodedText"
+        android:autofillHints=""
+        android:inputType="text" />
+
     <LinearLayout
         android:id="@+id/progressLayout"
         android:layout_width="match_parent"

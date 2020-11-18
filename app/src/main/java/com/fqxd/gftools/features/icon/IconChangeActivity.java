@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -49,6 +50,8 @@ public class IconChangeActivity extends AppCompatActivity {
     Uri ImageUri = null;
     ImageView imagePreview;
     Button patchButton;
+    EditText editName;
+    String AppName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,7 +78,8 @@ public class IconChangeActivity extends AppCompatActivity {
         TextView packageinfo = this.findViewById(R.id.packageinfo);
         try {
             PackageManager pm = this.getPackageManager();
-            packageinfo.setText(String.format("target : %s (%s)", pm.getApplicationLabel(pm.getApplicationInfo(Package, PackageManager.GET_META_DATA)), Package));
+            AppName = pm.getApplicationLabel(pm.getApplicationInfo(Package, PackageManager.GET_META_DATA)) + "";
+            packageinfo.setText(String.format("target : %s (%s)", AppName, Package));
         } catch (PackageManager.NameNotFoundException ignored) { }
 
         final TextView status = findViewById(R.id.status);
@@ -83,25 +87,31 @@ public class IconChangeActivity extends AppCompatActivity {
         final ProgressBar progress = findViewById(R.id.progress);
         final LinearLayout layout = findViewById(R.id.progressLayout);
 
-        layout.setVisibility(View.GONE);
-        progress.setVisibility(View.GONE);
         imagePreview = findViewById(R.id.iconPreview);
         patchButton = findViewById(R.id.centrue);
+        editName = findViewById(R.id.editname);
+
+        layout.setVisibility(View.GONE);
+        progress.setVisibility(View.GONE);
+        editName.setVisibility(View.GONE);
+
         patchButton.setOnClickListener(v -> {
-            if(ImageUri == null) selectImage();
-            else {
-                patchButton.setEnabled(false);
-                layout.setVisibility(View.VISIBLE);
-                progress.setVisibility(View.VISIBLE);
-                isTaskRunning = true;
-                IconChangeTask patchTask = new IconChangeTask(this, status, log, progress,Package,new File(ImageUri.getPath()));
-                patchTask.execute(new Object[]{(Runnable) () -> patchButton.post(() -> {
-                    patchButton.setEnabled(true);
-                    layout.setVisibility(View.GONE);
-                    progress.setVisibility(View.GONE);
-                    isTaskRunning = false;
-                })});
-            }
+            if (ImageUri == null) selectImage();
+            else if(!editName.getText().toString().equals("")) {
+                    editName.setEnabled(false);
+                    patchButton.setEnabled(false);
+                    layout.setVisibility(View.VISIBLE);
+                    progress.setVisibility(View.VISIBLE);
+                    isTaskRunning = true;
+                    IconChangeTask patchTask = new IconChangeTask(this, status, log, progress, Package, new File(ImageUri.getPath()),editName.getText().toString());
+                    patchTask.execute(new Object[]{(Runnable) () -> patchButton.post(() -> {
+                        editName.setEnabled(true);
+                        patchButton.setEnabled(true);
+                        layout.setVisibility(View.GONE);
+                        progress.setVisibility(View.GONE);
+                        isTaskRunning = false;
+                    })});
+            } //else editName.setError("input app name");
         });
     }
 
@@ -136,6 +146,8 @@ public class IconChangeActivity extends AppCompatActivity {
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
+                //editName.setVisibility(View.VISIBLE);
+                editName.setText(AppName);
                 ImageUri = result.getUri();
                 imagePreview.setImageURI(ImageUri);
                 patchButton.setText(getString(R.string.run_patch));
@@ -169,8 +181,11 @@ public class IconChangeActivity extends AppCompatActivity {
         }
 
         if (requestCode == 0x00) {
-            new File(this.getExternalFilesDir(null).getAbsolutePath() + "/signed.apk").delete();
-            new File(this.getExternalFilesDir(null).getAbsolutePath() + "/base.apk").delete();
+            try {
+                FileUtils.deleteDirectory(this.getExternalFilesDir(null));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         if (requestCode == MainActivity.REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES) {
             if (Build.VERSION.SDK_INT < 26 || resultCode == Activity.RESULT_OK) {

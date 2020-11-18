@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.nononsenseapps:filepicker:4.1.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dda8014992cefc6a532629b6e777beb2/jetified-filepicker-4.1.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dda8014992cefc6a532629b6e777beb2/jetified-filepicker-4.1.0/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dda8014992cefc6a532629b6e777beb2/jetified-filepicker-4.1.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/27ded45574d4e1fa2b1440c3b91a039d/jetified-filepicker-4.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/27ded45574d4e1fa2b1440c3b91a039d/jetified-filepicker-4.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/27ded45574d4e1fa2b1440c3b91a039d/jetified-filepicker-4.1.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.nononsenseapps/filepicker/4.1.0/4e9f3b6965b215c2f836cb9358c6d783a1ff6788/filepicker-4.1.0-javadoc.jar!/" />

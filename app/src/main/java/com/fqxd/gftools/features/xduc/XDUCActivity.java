@@ -97,10 +97,10 @@ public class XDUCActivity extends AppCompatActivity {
                                     while ((line = bufferedReader.readLine()) != null) {
                                         if (line.contains("UID"))
                                             uId = substringBetween(line, "\"UID\" value=\"", "\"");
-                                        if (line.contains("APPID"))
+                                        else if (line.contains("APPID"))
                                             appId = substringBetween(line, "\"APPID\">", "</");
-                                        if (line.contains("SERVER_ID"))
-                                            serverId = substringBetween(line, "\"SERVER_ID\">", "</");
+                                        else if (line.contains("SID"))
+                                            serverId = substringBetween(line, "\"SID\">", "</");
                                     }
 
                                     prefs.edit().putString("UC_Nickname",nickName).apply();

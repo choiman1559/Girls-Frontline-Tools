@@ -64,12 +64,6 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
                 String obb = "main." + ver + "." + Package + ".obb";
                 changeVisibility(findPreference("TextView_OBBNF"), !new File(Global.Storage + "/Android/obb/" + Package + "/" + obb).exists());
 
-                File DATA = new File(Global.Storage + "/Android/data/" + Package);
-                if (DATA.exists()) {
-                    String text = "데이터 크기 : 약 " + String.format(Locale.getDefault(), "%.2f", (float) (FileUtils.sizeOfDirectory(DATA)) / 1073741824) + "GB";
-                    changeSummary(SZE, text);
-                } else changeSummary(SZE, "데이터 크기 : 약 0GB");
-
                 if (new File(Global.Storage + "/GF_Tool/backup/" + Package + "/").exists()) {
                     changeVisibility(BAD, false);
                     changeVisibility(BRT, true);
@@ -84,6 +78,18 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
                     changeVisibility(BDT, false);
                     changeVisibility(BSZ, false);
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        new Thread(() -> {
+            try {
+                File DATA = new File(Global.Storage + "/Android/data/" + Package);
+                if (DATA.exists()) {
+                    String text = "데이터 크기 : 약 " + String.format(Locale.getDefault(), "%.2f", (float) (FileUtils.sizeOfDirectory(DATA)) / 1073741824) + "GB";
+                    changeSummary(SZE, text);
+                } else changeSummary(SZE, "데이터 크기 : 약 0GB");
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -125,8 +131,7 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
                         dd.execute();
                     }
                 });
-                b.setNegativeButton("취소", (dialogInterface, i) -> {
-                });
+                b.setNegativeButton("취소", (dialogInterface, i) -> { });
                 b.create().show();
                 break;
 
@@ -328,24 +333,16 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
                         temp.mkdir();
                         copy(file, temp);
                     } else {
-                        FileInputStream fis = null;
-                        FileOutputStream fos = null;
                         try {
-                            fis = new FileInputStream(file);
-                            fos = new FileOutputStream(temp);
+                            FileInputStream fis = new FileInputStream(file);
+                            FileOutputStream fos = new FileOutputStream(temp);
                             byte[] b = new byte[4096];
-                            int cnt = 0;
+                            int cnt;
                             while ((cnt = fis.read(b)) != -1) {
                                 fos.write(b, 0, cnt);
                             }
-                        } catch (Exception ignored) { }
-                        finally {
-                            try {
-                                fis.close();
-                                fos.close();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
                 }
