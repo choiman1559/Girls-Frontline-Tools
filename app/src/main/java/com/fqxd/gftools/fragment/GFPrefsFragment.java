@@ -57,7 +57,7 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
         Preference SZE = findPreference("TextView_SIZE");
         Preference BSZ = findPreference("TextView_BSIZE");
 
-        new Thread(() -> {
+        Thread T1 = new Thread(() -> {
             try {
                 PackageInfo pm = thisFragment.getActivity().getPackageManager().getPackageInfo(Package, 0);
                 long ver = Build.VERSION.SDK_INT > 28 ? pm.getLongVersionCode() : pm.versionCode;
@@ -81,9 +81,9 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }).start();
+        });
 
-        new Thread(() -> {
+        Thread T2 = new Thread(() -> {
             try {
                 File DATA = new File(Global.Storage + "/Android/data/" + Package);
                 if (DATA.exists()) {
@@ -95,7 +95,21 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
             } finally {
                 thisFragment.getActivity().runOnUiThread(() -> thisFragment.getActivity().findViewById(R.id.progressbarLayout).setVisibility(View.GONE));
             }
-        }).start();
+        });
+
+        Thread mainTask = new Thread(() -> {
+            while (true) {
+                if(thisFragment.getActivity() == null) continue;
+                T1.start();
+                break;
+            }
+            while (true) {
+                if(T1.isAlive()) continue;
+                T2.start();
+                break;
+            }
+        });
+        mainTask.start();
     }
 
     public void changeSummary(Preference p, String s) {

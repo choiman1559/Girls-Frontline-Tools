@@ -77,10 +77,7 @@ public class FavoriteViewAdapter extends RecyclerView.Adapter<FavoriteViewAdapte
                 notifyItemChanged(position);
             });
 
-            holder.Number.setOnClickListener(v -> {
-                clickListener.onClick(address,port,name);
-            });
-
+            holder.Number.setOnClickListener(v -> clickListener.onClick(address,port,name));
             holder.Edit.setOnClickListener(v -> {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 View view = LayoutInflater.from(context).inflate(R.layout.dialog_editfavoritesproxy, null, false);
