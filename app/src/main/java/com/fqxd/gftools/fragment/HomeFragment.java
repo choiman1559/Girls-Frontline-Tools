@@ -1,5 +1,6 @@
 package com.fqxd.gftools.fragment;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -39,10 +41,21 @@ import java.util.Random;
 import static android.app.Activity.RESULT_OK;
 
 public class HomeFragment extends PreferenceFragmentCompat {
+    Activity context;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if(context instanceof Activity) this.context = (Activity) context;
+        else throw new RuntimeException("Can't instanceof context to activity!");
+    }
+
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.main_prefs, rootKey);
-        findPreference("Button_RATE").setVisible(new Random().nextInt(100) < 30);
+        Preference Rate = findPreference("Button_RATE");
+        assert Rate != null;
+        Rate.setVisible(new Random().nextInt(100) < 30);
     }
 
     @Override
@@ -70,16 +83,16 @@ public class HomeFragment extends PreferenceFragmentCompat {
                     if (Settings.canDrawOverlays(getContext())) {
                         startActivity(new Intent(getContext(), GFNekoActivity.class));
                     } else {
-                        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getContext().getPackageName()));
+                        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + context.getPackageName()));
                         Toast.makeText(getContext(), "이 기능을 사용하려면 다른 앱 위에 그리기 기능이 필요합니다!", Toast.LENGTH_SHORT).show();
-                        getContext().startActivity(intent);
+                        context.startActivity(intent);
                     }
                 }
                 break;
 
             case "Button_NOTI":
-                if (isOffline(getContext())) {
-                    Snackbar.make(getView(), "Check Internet and Try Again", Snackbar.LENGTH_LONG)
+                if (isOffline(context)) {
+                    Snackbar.make(context.findViewById(android.R.id.content), "Check Internet and Try Again", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
                     Intent intent = new Intent(getContext(), NotiActivity.class);
@@ -119,7 +132,7 @@ public class HomeFragment extends PreferenceFragmentCompat {
                 break;
 
             case "Button_RATE":
-                startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=" + getContext().getPackageName())));
+                startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=" + context.getPackageName())));
                 preference.setVisible(false);
                 break;
         }
@@ -129,7 +142,7 @@ public class HomeFragment extends PreferenceFragmentCompat {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 5217 && resultCode == RESULT_OK) {
+        if(requestCode == 5217 && resultCode == RESULT_OK && data != null) {
             List<Uri> files = Utils.getSelectedFilesFromResult(data);
             File file = null;
             for (Uri uri: files) {

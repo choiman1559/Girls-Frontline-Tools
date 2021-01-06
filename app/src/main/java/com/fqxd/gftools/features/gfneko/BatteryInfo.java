@@ -102,7 +102,7 @@ class BatteryInfo {
 //    editor.putInt(EXTRA_VOLTAGE, voltage);
 //    editor.putInt(EXTRA_TEMPERATURE, temperature);
 //    editor.putString(EXTRA_TECHNOLOGY, technology);
-//    editor.commit();
+//    editor.commitNowAllowingStateLoss();
 //  }
 
 //  public int getStatus() {

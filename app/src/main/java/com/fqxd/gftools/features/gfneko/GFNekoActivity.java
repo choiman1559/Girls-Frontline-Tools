@@ -24,7 +24,7 @@ public class GFNekoActivity extends AppCompatActivity {
     getSupportFragmentManager()
             .beginTransaction()
             .replace(R.id.neko_prefs, new SettingsFragment(GFNekoActivity.this))
-            .commit();
+            .commitNowAllowingStateLoss();
   }
 
   public static class SettingsFragment extends PreferenceFragmentCompat {

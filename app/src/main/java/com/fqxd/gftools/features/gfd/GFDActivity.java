@@ -108,7 +108,6 @@ public class GFDActivity extends AppCompatActivity {
             getPackageManager().getPackageInfo("com.gfl.dic", PackageManager.GET_ACTIVITIES);
             Intent intent = getPackageManager().getLaunchIntentForPackage("com.gfl.dic");
             startActivity(intent);
-
         } catch(PackageManager.NameNotFoundException e) {
             Intent intend = new Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=com.gfl.dic"));
             startActivity(intend);

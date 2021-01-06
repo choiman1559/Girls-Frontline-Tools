@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sector {
-    private int H;
-    private int M;
+    private final int H;
+    private final int M;
 
     public Sector(int H, int M) {
         this.H = H;

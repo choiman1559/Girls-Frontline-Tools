@@ -533,6 +533,7 @@ public abstract class AsyncTask<Params, Progress, Result> {
      *
      * @see #execute(Object[])
      */
+    @SafeVarargs
     @MainThread
     public final AsyncTask<Params, Progress, Result> executeOnExecutor(Executor exec,
                                                                        Params... params) {
@@ -585,6 +586,7 @@ public abstract class AsyncTask<Params, Progress, Result> {
      * @see #onProgressUpdate
      * @see #doInBackground
      */
+    @SafeVarargs
     @WorkerThread
     protected final void publishProgress(Progress... values) {
         if (!isCancelled()) {
@@ -632,6 +634,7 @@ public abstract class AsyncTask<Params, Progress, Result> {
         final AsyncTask mTask;
         final Data[] mData;
 
+        @SafeVarargs
         AsyncTaskResult(AsyncTask task, Data... data) {
             mTask = task;
             mData = data;

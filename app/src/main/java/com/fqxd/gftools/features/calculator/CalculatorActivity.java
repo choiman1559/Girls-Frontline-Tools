@@ -19,7 +19,7 @@ public class CalculatorActivity extends AppCompatActivity {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.prefs, new SettingFragment())
-                .commit();
+                .commitNowAllowingStateLoss();
     }
 
     public static class SettingFragment extends PreferenceFragmentCompat {

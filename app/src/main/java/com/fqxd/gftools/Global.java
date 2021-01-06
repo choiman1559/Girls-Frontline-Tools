@@ -60,8 +60,7 @@ public class Global extends Application {
 
         Context context = this;
         String string = getString(R.string.app_name);
-        String string2 = getString(R.string.app_name);
-        char[] charArray = string2.toCharArray();
+        char[] charArray = string.toCharArray();
         jks = new JKS(context, string, charArray, getString(R.string.app_name), getString(R.string.app_name), getString(R.string.app_name), getString(R.string.app_name), getString(R.string.app_name));
         NetBare.get().attachApplication(this, BuildConfig.DEBUG);
 

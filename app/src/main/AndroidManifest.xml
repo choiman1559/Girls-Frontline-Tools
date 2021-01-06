@@ -283,6 +283,6 @@
             android:permission="android.permission.READ_LOGS">
     </service>
     <service android:name=".features.rotation.RotationService"
-        android:exported="true"/>
+        android:exported="false"/>
     </application>
 </manifest>

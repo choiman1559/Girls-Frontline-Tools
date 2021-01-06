@@ -12,7 +12,6 @@ import android.os.Bundle;
 
 import android.util.Patterns;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +20,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -281,7 +279,7 @@ public class ProxyActivity extends AppCompatActivity {
         return false;
     }
 
-    public class LinearLayoutManagerWrapper extends LinearLayoutManager {
+    public static class LinearLayoutManagerWrapper extends LinearLayoutManager {
         public LinearLayoutManagerWrapper(Context context) {
             super(context);
         }
