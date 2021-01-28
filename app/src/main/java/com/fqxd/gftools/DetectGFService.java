@@ -9,11 +9,9 @@ import android.os.Build;
 import android.os.Looper;
 import android.provider.Settings;
 import android.view.accessibility.AccessibilityEvent;
-import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
-import com.fqxd.gftools.features.proxy.PacProxyConfig;
 import com.fqxd.gftools.features.proxy.ProxyConfig;
 import com.fqxd.gftools.features.proxy.ProxyUtils;
 
@@ -34,30 +32,19 @@ public class DetectGFService extends AccessibilityService {
         lastPackage = "" + event.getPackageName();
 
         try {
-            if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_SECURE_SETTINGS) == PackageManager.PERMISSION_GRANTED) {
-                String a1 = Settings.Global.getString(getContentResolver(), "http_proxy");
-                String b1 = Settings.Global.getString(getContentResolver(), "global_proxy_pac_url");
-
-                if (isGF(lastPackage)) {
-                    JSONObject obj = ProxyUtils.getProxyJsonFromPrefs(lastPackage, this);
-                    if (obj != null) {
-                        ProxyConfig a2 = ProxyConfig.getProxyConfigFromJson(obj);
-                        if (obj.getBoolean("enabled") && !a1.contains(a2.getAddress() + ":" + a2.getPort())) {
-                            ProxyUtils.setProxy(a2, this);
-                        }
-                    }
-
-                    JSONObject obj2 = ProxyUtils.getPacProxyJsonFromPrefs(lastPackage, this);
-                    if (obj2 != null) {
-                        PacProxyConfig b2 = PacProxyConfig.getProxyConfigFromJson(obj2);
-                        if (obj2.getBoolean("enabled") && !b1.contains(b2.getAddress())) {
-                            ProxyUtils.setPacProxy(b2, this);
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_SECURE_SETTINGS) == PackageManager.PERMISSION_GRANTED) {
+                JSONObject obj = ProxyUtils.getProxyJsonFromPrefs(lastPackage, this);
+                if (isGF(lastPackage) && obj != null) {
+                    ProxyConfig config = ProxyConfig.getProxyConfigFromJson(obj);
+                    if(!config.getContinuing()) {
+                        String now_proxy = Settings.Global.getString(getContentResolver(), "http_proxy");
+                        if (obj.getBoolean("enabled") && !now_proxy.contains(config.getAddress() + ":" + config.getPort())) {
+                            ProxyUtils.setProxy(config, this);
                         }
                     }
                 } else if (isGF(secondPackage) && !lastPackage.equals(getPackageName())) {
-                    ProxyUtils.undoProxy(this);
-                    ProxyUtils.undoPacProxy(this);
-                    Toast.makeText(this, "Http Proxy had been Reset!", Toast.LENGTH_SHORT).show();
+                    JSONObject Obj = ProxyUtils.getProxyJsonFromPrefs(secondPackage, this);
+                    if(Obj == null || !Obj.getBoolean("continuing")) ProxyUtils.undoProxy(this);
                 }
             }
         } catch (Exception e) {
@@ -72,19 +59,25 @@ public class DetectGFService extends AccessibilityService {
                 Looper.prepare();
                 SharedPreferences prefs = getSharedPreferences(Global.Prefs, MODE_PRIVATE);
                 try {
-                    JSONObject obj = new JSONObject(prefs.getString("RotationData", ""));
-                    if (obj.getBoolean(lastPackage)) {
-                        if (Build.VERSION.SDK_INT > 25)
-                            startForegroundService(intent);
-                        else startService(intent);
+                    String raw = prefs.getString("RotationData", "");
+                    if (!raw.equals("")) {
+                        JSONObject obj = new JSONObject(raw);
+                        if (obj.getBoolean(lastPackage)) {
+                            if (Build.VERSION.SDK_INT > 25)
+                                startForegroundService(intent);
+                            else startService(intent);
+                        }
                     }
-                } catch (Exception ignored) { }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 Looper.loop();
             }).start();
         } else if (!(lastPackage.equals("com.android.systemui") || lastPackage.equals(getPackageName()))) {
             stopService(intent);
         }
     }
+
     public boolean isGF(String Package) {
         ArrayList<String> PackageNames = new ArrayList<>();
         PackageNames.add(getString(R.string.target_cn_uc));
@@ -101,5 +94,6 @@ public class DetectGFService extends AccessibilityService {
     }
 
     @Override
-    public void onInterrupt() { }
+    public void onInterrupt() {
+    }
 }

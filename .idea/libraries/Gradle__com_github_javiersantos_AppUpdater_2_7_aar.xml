@@ -10,6 +10,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bf3b8f772ba80f6d57ae2c0490cd6475/jetified-AppUpdater-2.7/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bf3b8f772ba80f6d57ae2c0490cd6475/jetified-AppUpdater-2.7/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bf3b8f772ba80f6d57ae2c0490cd6475/jetified-AppUpdater-2.7/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3c40f443b7d84a27a27032418f154026/jetified-AppUpdater-2.7/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3c40f443b7d84a27a27032418f154026/jetified-AppUpdater-2.7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3c40f443b7d84a27a27032418f154026/jetified-AppUpdater-2.7/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

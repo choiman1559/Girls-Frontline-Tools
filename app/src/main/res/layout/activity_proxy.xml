@@ -53,29 +53,19 @@
             android:hint="프록시 포트"
             android:autofillHints="프록시 포트" />
 
-        <Switch
-            android:id="@+id/pac_proxy_toggle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="자동 PAC 프록시 On/Off (베타)"
-            android:background="#DBDBDB"
-            android:textSize="16sp"/>
 
-        <EditText
-            android:layout_marginTop="15dp"
-            android:id="@+id/pac_proxy_address"
+        <CheckBox
+            android:id="@+id/proxy_continuing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="PAC 프록시 주소"
-            android:autofillHints="PAC 프록시 주소"
-            android:inputType="textWebEmailAddress" />
+            android:gravity="center"
+            android:text="프록시 지속" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:textStyle="bold"
             android:text="프록시 즐겨찾기"
             android:textSize="16sp" />
@@ -90,6 +80,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/favorites"
             android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

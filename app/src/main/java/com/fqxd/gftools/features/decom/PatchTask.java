@@ -28,15 +28,17 @@ import java.io.File;
 import com.fqxd.gftools.implement.AsyncTask;
 
 @SuppressLint("StaticFieldLeak")
-final class PatchTask extends AsyncTask {
+final class PatchTask extends AsyncTask<Runnable, Void, Void> {
+
     public static final int REQUEST_INSTALL = 0x00;
-    private DecActivity main;
-    private TextView status;
-    private TextView log;
-    private ProgressBar progress;
-    @Nullable private CompressionLevel level;
-    private String target;
-    private Boolean ifErr;
+    private final DecActivity main;
+    private final TextView status;
+    private final TextView log;
+    private final ProgressBar progress;
+    @Nullable
+    private final CompressionLevel level;
+    private final String target;
+    private final Boolean ifErr;
 
     PatchTask(DecActivity main, TextView status, TextView log, ProgressBar progress, Boolean ifErr, @Nullable CompressionLevel level, String target) {
         this.main = main;
@@ -55,7 +57,7 @@ final class PatchTask extends AsyncTask {
     }
 
     @Override
-    protected Object doInBackground(Object[] objects) {
+    protected Void doInBackground(Runnable[] runnable) {
         try {
             final ProgressBar p = this.main.findViewById(R.id.running);
             p.post(() -> p.setVisibility(View.VISIBLE));
@@ -71,11 +73,11 @@ final class PatchTask extends AsyncTask {
 
             this.updateStatus("extracting obb");
             final File obb = new File(temp.getAbsolutePath() + "/obb");
-            Log.d("obb",obb.toString());
+            Log.d("obb", obb.toString());
             obb.mkdir();
 
             File originalObb = (new File(Global.Storage + "/Android/obb/" + this.target)).listFiles()[0];
-            Log.d("origin",originalObb.toString());
+            Log.d("origin", originalObb.toString());
             ZipFile zipFile = new ZipFile(originalObb);
             zipFile.extractAll(obb.getAbsolutePath());
             if (obb.listFiles() == null) {
@@ -88,8 +90,8 @@ final class PatchTask extends AsyncTask {
 
             zipFile = new ZipFile(originalObb);
             ZipParameters parameters = new ZipParameters();
-            if(level != null) {
-                Log.e("level","compress level : " + level.getLevel());
+            if (level != null) {
+                Log.e("level", "compress level : " + level.getLevel());
                 parameters.setCompressionMethod(CompressionMethod.DEFLATE);
                 parameters.setCompressionLevel(level);
             } else parameters.setCompressionMethod(CompressionMethod.STORE);
@@ -120,9 +122,10 @@ final class PatchTask extends AsyncTask {
             this.updateLog("apk extracted");
             this.updateProgress(75);
             this.updateStatus("repackaging apk");
-            if(!ifErr) FileUtils.deleteDirectory(new File(apk.getAbsolutePath() + "/assets/bin/Data/Managed"));
+            if (!ifErr)
+                FileUtils.deleteDirectory(new File(apk.getAbsolutePath() + "/assets/bin/Data/Managed"));
             for (File f : apk.listFiles()) {
-                Log.d("list",f.getAbsolutePath());
+                Log.d("list", f.getAbsolutePath());
                 if (f.getName().equals("res")) continue;
                 if (f.isFile()) {
                     zipFile.addFile(f, parameters);
@@ -149,7 +152,7 @@ final class PatchTask extends AsyncTask {
             FileUtils.deleteDirectory(apk);
             p.post(() -> p.setVisibility(View.INVISIBLE));
             status.post(() -> status.setVisibility(View.INVISIBLE));
-            ((Runnable)objects[0]).run();
+            ((Runnable) runnable[0]).run();
             this.updateProgress(100);
             updateStatus("\n");
 

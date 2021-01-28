@@ -33,13 +33,14 @@ import com.fqxd.gftools.R;
 import net.lingala.zip4j.model.enums.CompressionLevel;
 
 import java.io.File;
+import java.text.MessageFormat;
 
+@SuppressWarnings("deprecation")
 public final class DecActivity extends AppCompatActivity {
     private static boolean isTaskRunning = false;
 
     @Override
-    public void onCreate(Bundle saveInstanceState)
-    {
+    public void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_dec);
         String pkg = getIntent().getStringExtra("pkg");
@@ -48,18 +49,20 @@ public final class DecActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
             return;
         }
+
         if (Build.VERSION.SDK_INT >= 26 && !this.getPackageManager().canRequestPackageInstalls()) {
-            this.startActivityForResult(
-                    new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).setData(Uri.parse("package:" + this.getPackageName())),
-                    MainActivity.REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES
-            );
+            this.startActivityForResult(new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).setData(Uri.parse("package:" + this.getPackageName())),
+                    MainActivity.REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES);
             finish();
         }
-        TextView packageinfo = this.findViewById(R.id.packageinfo);
+
+        TextView PackageInfo = this.findViewById(R.id.packageinfo);
         try {
             PackageManager pm = this.getPackageManager();
-            packageinfo.setText("target : " + pm.getApplicationLabel(pm.getApplicationInfo(pkg, PackageManager.GET_META_DATA)) + " (" + pkg + ")");
-        } catch (PackageManager.NameNotFoundException ignored) { }
+            PackageInfo.setText(MessageFormat.format("target : {0} ({1})", pm.getApplicationLabel(pm.getApplicationInfo(pkg, PackageManager.GET_META_DATA)), pkg));
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
         final Button runPatch = findViewById(R.id.centrue);
         final TextView status = findViewById(R.id.status);
@@ -69,16 +72,16 @@ public final class DecActivity extends AppCompatActivity {
         final LinearLayout layout = findViewById(R.id.progressLayout);
         final CheckBox IfErr = findViewById(R.id.checkBox_IfErr);
 
-        if(Build.VERSION.SDK_INT < 26) {
+        if (Build.VERSION.SDK_INT < 26) {
             level.setProgress(0);
             level.setEnabled(false);
-            level.setOnClickListener(v -> Toast.makeText(this,"안드로이드 7 이하에서는 레벨 설정이 불가능합니다!",Toast.LENGTH_SHORT));
+            level.setOnClickListener(v -> Toast.makeText(this, "안드로이드 7 이하에서는 레벨 설정이 불가능합니다!", Toast.LENGTH_SHORT));
         }
 
         layout.setVisibility(View.GONE);
         progress.setVisibility(View.GONE);
         File obbDir = new File(Global.Storage + "/Android/obb/" + pkg + "/");
-        File[] files = obbDir.listFiles((dir, name) -> name.substring(name.length() - 4).equals(".obb"));
+        File[] files = obbDir.listFiles((dir, name) -> name.endsWith(".obb"));
         if (files == null || files.length == 0) {
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.setMessage(R.string.info_no_obb);
@@ -86,6 +89,7 @@ public final class DecActivity extends AppCompatActivity {
             alert.setCancelable(false);
             alert.show();
         }
+
         runPatch.setOnClickListener(v -> {
             runPatch.setEnabled(false);
             level.setEnabled(false);
@@ -93,8 +97,8 @@ public final class DecActivity extends AppCompatActivity {
             layout.setVisibility(View.VISIBLE);
             progress.setVisibility(View.VISIBLE);
             isTaskRunning = true;
-            PatchTask patchTask = new PatchTask(this, status, log, progress,IfErr.isChecked(), getLevel(level), pkg);
-            patchTask.execute(new Object[]{(Runnable) () -> runPatch.post(() -> {
+            PatchTask patchTask = new PatchTask(this, status, log, progress, IfErr.isChecked(), getLevel(level), pkg);
+            patchTask.execute(new Runnable[]{(Runnable) () -> runPatch.post(() -> {
                 runPatch.setEnabled(true);
                 level.setEnabled(true);
                 IfErr.setEnabled(true);
@@ -159,7 +163,7 @@ public final class DecActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(!isTaskRunning) finish();
+        if (!isTaskRunning) finish();
     }
 
     @Override

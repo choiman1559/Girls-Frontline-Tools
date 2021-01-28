@@ -8,16 +8,19 @@ public class ProxyConfig {
     private String Address;
     private String Port;
     private Boolean Enabled;
+    private Boolean Continuing;
 
     public void setPackage(String r0) { this.Package = r0; }
     public void  setAddress(String r1) { this.Address = r1; }
     public void setPort(String r2) { this.Port = r2; }
     public void setEnabled(Boolean r3) { this.Enabled = r3; }
+    public void setContinuing(Boolean r4) { this.Continuing = r4; }
 
     public String getPackage() { return this.Package; }
     public String getAddress() { return this.Address; }
     public String getPort() { return this.Port; }
     public Boolean getEnabled() { return this.Enabled; }
+    public Boolean getContinuing() { return this.Continuing; }
 
     public static ProxyConfig getProxyConfigFromJson(JSONObject r4) throws JSONException {
         ProxyConfig r5 = new ProxyConfig();
@@ -25,6 +28,7 @@ public class ProxyConfig {
         r5.setAddress(r4.getString("address"));
         r5.setPort(r4.getString("port"));
         r5.setEnabled(r4.getBoolean("enabled"));
+        r5.setContinuing(r4.getBoolean("continuing"));
         return r5;
     }
 
@@ -34,6 +38,7 @@ public class ProxyConfig {
         r7.put("address",r6.getAddress());
         r7.put("port",r6.getPort());
         r7.put("enabled",r6.getEnabled());
+        r7.put("continuing",r6.getContinuing());
         return r7;
     }
 }
