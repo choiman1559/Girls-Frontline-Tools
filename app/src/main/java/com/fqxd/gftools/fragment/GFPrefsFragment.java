@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 
 import com.fqxd.gftools.features.icon.IconChangeActivity;
+import com.fqxd.gftools.features.txtkr.TxtKrPatchActivity;
 import com.fqxd.gftools.implement.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -57,9 +58,11 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
         Preference BAD = findPreference("Button_BAD");
         Preference BRT = findPreference("Button_BRT");
         Preference BDT = findPreference("Button_BDT");
+        Preference TXT = findPreference("Button_TXT");
         Preference SZE = findPreference("TextView_SIZE");
         Preference BSZ = findPreference("TextView_BSIZE");
 
+        TXT.setVisible(Package.equals(getString(R.string.target_cn_bili)));
         Thread T1 = new Thread(() -> {
             if (new File(Global.Storage + "/GF_Tool/backup/" + Package + "/").exists()) {
                 changeVisibility(BAD, false);
@@ -170,6 +173,10 @@ public class GFPrefsFragment extends PreferenceFragmentCompat {
 
             case "Button_PXY":
                 startActivity(ProxyActivity.class);
+                break;
+
+            case "Button_TXT":
+                startActivity(TxtKrPatchActivity.class);
                 break;
 
             case "Button_BAD":

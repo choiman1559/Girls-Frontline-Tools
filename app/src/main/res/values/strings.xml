@@ -87,6 +87,11 @@
     <string name="b11">소전사전 v2 설치/실행</string>
     <string name="thx">special thanks to. URK96</string>
 
+    <string name="TXTKR_Download">TextKR 설치</string>
+    <string name="TXTKR_Update">TextKR 업데이트</string>
+    <string name="TXTKR_Backup">순정 텍스트로 돌아가기</string>
+    <string name="TXTKR_Article">TextKR 체인지 로그</string>
+
     <string name="description">소전의 시작을 인식하는 기능(vpn 등) 을 사용하려면 필수적인 기능입니다.</string>
     <string name="rotation_switch">자동 화면 세로 고정 On/Off</string>
 

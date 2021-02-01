@@ -41,18 +41,24 @@ public class GFDownloadActivity extends AppCompatActivity {
 
         WebView webView = findViewById(R.id.webView);
         webView.clearCache(true);
+        webView.clearFormData();
+        webView.clearHistory();
+        webView.clearMatches();
+        webView.clearSslPreferences();
 
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         webView.getSettings().setDomStorageEnabled(true);
-        webView.getSettings().setUserAgentString("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0");
         webView.getSettings().setBuiltInZoomControls(true);
         webView.getSettings().setUseWideViewPort(true);
+
+        String uri = getUri(getIntent().getStringExtra("pkg"));
+        if(uri.contains("apkpure")) webView.getSettings().setUserAgentString("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0");
 
         webView.setWebViewClient(new myWebClient());
         webView.setWebChromeClient(new WebChromeClient());
         webView.setNetworkAvailable(false);
-        webView.loadUrl("https://apkpure.com/kr/" + getIntent().getStringExtra("pkg"));
+        webView.loadUrl(uri);
         webView.setDownloadListener((url, userAgent, contentDisposition, mimetype, contentLength) -> {
             String fileName = URLUtil.guessFileName(url, contentDisposition, mimetype);
             String Extension = FileUtils.getExtension(fileName);
@@ -69,6 +75,26 @@ public class GFDownloadActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Downloading File", Toast.LENGTH_LONG).show();
             } else Toast.makeText(getApplicationContext(), "Not APK or XAPK File!", Toast.LENGTH_LONG).show();
         });
+    }
+
+    private String getUri(String Package) {
+        switch (Package) {
+            case "com.digitalsky.girlsfrontline.cn.uc":
+                return "https://apps.qoo-app.com/ko/app/7629";
+
+            case "com.sunborn.girlsfrontline.jp":
+                return "https://apps.qoo-app.com/ko/app/6742";
+
+            case "com.sunborn.girlsfrontline.en":
+                return "https://apps.qoo-app.com/ko/app/6647";
+
+            case "com.digitalsky.girlsfrontline.cn.bili":
+                return "https://app.biligame.com/page/detail_game.html?id=73";
+
+            default:
+                return "https://apkpure.com/kr/" + Package;
+
+        }
     }
 
     public class myWebClient extends WebViewClient {

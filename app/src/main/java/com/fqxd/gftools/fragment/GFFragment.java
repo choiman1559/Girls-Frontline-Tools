@@ -100,28 +100,17 @@ public class GFFragment extends Fragment {
     class GetVersionCode extends AsyncTask<Void, String, String> {
         @Override
         protected String doInBackground(Void... voids) {
-
             String pkg = indexToPackage(FragmentPagerItem.getPosition(getArguments()));
-            String newVersion = null;
             try {
-                Document document = Jsoup.connect("https://play.google.com/store/apps/details?id=" + pkg + "&hl=en")
+                return Jsoup.connect("https://play.google.com/store/apps/details?id=" + pkg + "&hl=en")
                         .timeout(30000)
                         .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
                         .referrer("http://www.google.com")
-                        .get();
-                if (document != null) {
-                    Elements element = document.getElementsContainingOwnText("Current Version");
-                    for (Element ele : element) {
-                        if (ele.siblingElements() != null) {
-                            Elements sibElemets = ele.siblingElements();
-                            for (Element sibElemet : sibElemets) {
-                                newVersion = sibElemet.text();
-                            }
-                        }
-                    }
-                }
-                return newVersion;
-            } catch (IOException e) {
+                        .get()
+                        .select("div.hAyfc:nth-child(4) > span:nth-child(2) > div:nth-child(1) > span:nth-child(1)")
+                        .first()
+                        .ownText();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return "";
