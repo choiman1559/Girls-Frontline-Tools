@@ -3,7 +3,6 @@ package com.fqxd.gftools.features.noti;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -29,6 +28,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.fqxd.gftools.R;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.text.MessageFormat;
 import java.util.regex.Pattern;
 
 public class NotiActivity extends AppCompatActivity{
@@ -76,7 +76,7 @@ public class NotiActivity extends AppCompatActivity{
         final TextView guid = findViewById(R.id.guid);
 
         if (!prefs.getString("uid", "").equals(""))
-            guid.setText("Logined as " + mAuth.getCurrentUser().getEmail());
+            guid.setText(MessageFormat.format("Logined as {0}", mAuth.getCurrentUser().getEmail()));
         else guid.setVisibility(View.GONE);
 
         onoff.setChecked(prefs.getBoolean("Enabled", false));
@@ -136,7 +136,7 @@ public class NotiActivity extends AppCompatActivity{
                     } else {
                         Toast.makeText(NotiActivity.this, "구글 로그인 인증 성공", Toast.LENGTH_SHORT).show();
                         final TextView guid = findViewById(R.id.guid);
-                        guid.setText("User Id : " + mAuth.getUid());
+                        guid.setText(MessageFormat.format("User Id : {0}", mAuth.getUid()));
                         getSharedPreferences(Global.Prefs, MODE_PRIVATE).edit().putString("uid", mAuth.getUid()).apply();
                         NotiActivity.this.recreate();
                     }

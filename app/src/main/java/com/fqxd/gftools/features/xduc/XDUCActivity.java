@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
-import com.fqxd.gftools.fragment.HomeFragment;
+import com.fqxd.gftools.ui.HomeFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.xd.xdsdk.XDCallback;
 import com.xd.xdsdk.XDSDK;

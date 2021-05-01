@@ -3,112 +3,74 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FAFAFA">
+
     <include layout="@layout/content_main" />
 
-        <LinearLayout
-            android:id="@+id/mainLayout"
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:orientation="vertical">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center|top">
+            android:layout_height="72dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="10dp"
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
             <ImageView
-                android:id="@+id/MainImageView"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"
-                android:layout_marginTop="8dp"
-                app:srcCompat="@mipmap/ic_icon"
-                tools:ignore="ContentDescription" />
+                android:id="@+id/app_icon"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:contentDescription="@string/app_name"
+                app:srcCompat="@mipmap/ic_icon_round" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/Title"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="@color/colorPrimary"
-                android:textSize="50sp" />
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/app_icon"
+                android:contentDescription="@string/app_name"
+                android:text="@string/app_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textSize="20sp"
+                tools:ignore="RelativeOverlap" />
+        </RelativeLayout>
 
-            <com.ogaclejapan.smarttablayout.SmartTabLayout
-                android:id="@+id/viewpagertab"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                app:stl_indicatorAlwaysInCenter="false"
-                app:stl_indicatorWithoutPadding="false"
-                app:stl_indicatorInFront="false"
-                app:stl_indicatorInterpolation="smart"
-                app:stl_indicatorGravity="bottom"
-                app:stl_indicatorColor="#40C4FF"
-                app:stl_indicatorThickness="4dp"
-                app:stl_indicatorWidth="auto"
-                app:stl_indicatorCornerRadius="2dp"
-                app:stl_overlineColor="#4D000000"
-                app:stl_overlineThickness="0dp"
-                app:stl_underlineColor="#4D000000"
-                app:stl_underlineThickness="1dp"
-                app:stl_dividerColor="#4D000000"
-                app:stl_dividerThickness="1dp"
-                app:stl_defaultTabBackground="?attr/selectableItemBackground"
-                app:stl_defaultTabTextAllCaps="true"
-                app:stl_defaultTabTextColor="#FC000000"
-                app:stl_defaultTabTextSize="12sp"
-                app:stl_defaultTabTextHorizontalPadding="16dp"
-                app:stl_defaultTabTextMinWidth="0dp"
-                app:stl_distributeEvenly="false"
-                app:stl_clickable="true"
-                app:stl_titleOffset="24dp"
-                app:stl_drawDecorationAfterTab="false" />
+        <FrameLayout
+            android:id="@+id/fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp" />
+    </LinearLayout>
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-            </androidx.viewpager.widget.ViewPager>
-        </LinearLayout>
-
-    <com.getbase.floatingactionbutton.FloatingActionsMenu
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:fab_addButtonSize="normal"
-        app:backgroundTint="@color/colorPrimary"
-        app:fab_colorNormal="@color/pink"
-        app:fab_labelStyle="@style/menu_labels_style"
-        app:fab_colorPressed="@color/pink_pressed">
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/action_a"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_size="mini"
-            app:fab_icon="@drawable/ic_update"
-            app:fab_colorNormal="@color/white"
-            app:fab_colorPressed="@color/white_pressed"
-            app:fab_title="Check Update" />
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/action_b"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_size="mini"
-            app:fab_icon="@drawable/ic_github"
-            app:fab_colorNormal="@color/white"
-            app:fab_colorPressed="@color/white_pressed"
-            app:fab_title="Go to Git repo" />
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/action_c"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_size="mini"
-            app:fab_icon="@drawable/ic_open_source"
-            app:fab_colorNormal="@color/white"
-            app:fab_colorPressed="@color/white_pressed"
-            app:fab_title="Open Source License" />
-    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+        android:layout_gravity="bottom|center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bottom_navigation_background"
+        android:elevation="4dp"
+        android:fitsSystemWindows="false"
+        android:foreground="?attr/selectableItemBackground"
+        app:itemIconTint="@color/color_menu_tint"
+        app:itemRippleColor="@color/color_menu_tint"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/menu_bottom_navbar" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

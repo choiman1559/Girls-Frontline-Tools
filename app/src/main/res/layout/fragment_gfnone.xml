@@ -1,31 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/NoneMessage"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/target"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp">
+
+        <TextView
+            android:id="@+id/XDUC_Button_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="false"
+            android:textStyle="bold"
+            android:textSize="60sp"
+            android:text=":("/>
+
+        <TextView
+            android:id="@+id/XDUC_Button_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_toEndOf="@id/XDUC_Button_icon"
+            android:text="Oops!"
+            android:textSize="30sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/NoneMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/XDUC_Button_title"
+            android:layout_alignStart="@id/XDUC_Button_title"
+            android:layout_marginTop="2dp"
+            android:textSize="18sp"
+            android:text="Can't find package: xxx.xxx.xxx"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/darker_gray" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="100dp"
-        android:gravity="center">
+        android:gravity="bottom|end"
+        android:orientation="vertical">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/Button_Download"
+            style="@style/Widget.MaterialComponents.Button.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Download From ApkPure"
-            tools:ignore="HardcodedText" />
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Download From Mirror"
+            android:textColor="@color/white"
+            app:cornerRadius="17dp"
+            app:icon="@drawable/ic_download_md2"
+            app:rippleColor="@color/white" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

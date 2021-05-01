@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Button_DEC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="17dp"
+                app:cardPreventCornerOverlap="false">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="18dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="16dp">
+
+                    <ImageView
+                        android:id="@+id/Button_DEC_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="GF Decompresser"
+                        app:srcCompat="@mipmap/ic_gf_dec_foreground" />
+
+                    <TextView
+                        android:id="@+id/Button_DEC_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_toEndOf="@id/Button_DEC_icon"
+                        android:text="GF Decompresser"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/Button_DEC_summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Button_DEC_title"
+                        android:layout_alignStart="@id/Button_DEC_title"
+                        android:layout_marginTop="2dp"
+                        android:text="클라이언트 압축해제"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@android:color/darker_gray" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Button_ICO"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="17dp"
+                app:cardPreventCornerOverlap="false">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="18dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="16dp">
+
+                    <ImageView
+                        android:id="@+id/Button_ICO_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="GF Icon Changer"
+                        app:srcCompat="@mipmap/ic_gf_icn_changer_foreground" />
+
+                    <TextView
+                        android:id="@+id/Button_ICO_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_toEndOf="@id/Button_ICO_icon"
+                        android:text="GF Icon Changer"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/Button_ICO_summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Button_ICO_title"
+                        android:layout_alignStart="@id/Button_ICO_title"
+                        android:layout_marginTop="2dp"
+                        android:text="클라이언트 아이콘 변경"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@android:color/darker_gray" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Button_CEN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="17dp"
+                app:cardPreventCornerOverlap="false">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="18dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="16dp">
+
+                    <ImageView
+                        android:id="@+id/Button_CEN_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="GF Censorship"
+                        app:srcCompat="@mipmap/ic_gf_cen_foreground" />
+
+                    <TextView
+                        android:id="@+id/Button_CEN_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_toEndOf="@id/Button_CEN_icon"
+                        android:text="GF Censorship"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/Button_CEN_summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Button_CEN_title"
+                        android:layout_alignStart="@id/Button_CEN_title"
+                        android:layout_marginTop="2dp"
+                        android:text="검열 설정/해제"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@android:color/darker_gray" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Button_PXY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="17dp"
+                app:cardPreventCornerOverlap="false">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="18dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="16dp">
+
+                    <ImageView
+                        android:id="@+id/Button_PXY_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="Auto Proxy Configer"
+                        app:srcCompat="@mipmap/ic_gf_pxy_foreground" />
+
+                    <TextView
+                        android:id="@+id/Button_PXY_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_toEndOf="@id/Button_PXY_icon"
+                        android:text="Auto Proxy Configer"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/Button_PXY_summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Button_PXY_title"
+                        android:layout_alignStart="@id/Button_PXY_title"
+                        android:layout_marginTop="2dp"
+                        android:text="자동 프록시 설정"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@android:color/darker_gray" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Button_TXT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="17dp"
+                app:cardPreventCornerOverlap="false">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="18dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="16dp">
+
+                    <ImageView
+                        android:id="@+id/Button_TXT_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="Auto TextKR Patcher"
+                        app:srcCompat="@mipmap/ic_gf_txtkr_patcher_foreground" />
+
+                    <TextView
+                        android:id="@+id/Button_TXT_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_toEndOf="@id/Button_TXT_icon"
+                        android:text="Auto TextKR Patcher"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/Button_TXT_summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Button_TXT_title"
+                        android:layout_alignStart="@id/Button_TXT_title"
+                        android:layout_marginTop="2dp"
+                        android:text="자동 한글패치 적용"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@android:color/darker_gray" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Button_ROT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="17dp"
+                app:cardPreventCornerOverlap="false">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="18dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="16dp">
+
+                    <ImageView
+                        android:id="@+id/Button_ROT_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="Auto Screen Rotation"
+                        app:srcCompat="@mipmap/ic_gf_rot_foreground" />
+
+                    <TextView
+                        android:id="@+id/Button_ROT_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_toEndOf="@id/Button_ROT_icon"
+                        android:text="Auto Screen Rotation"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/Button_ROT_summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Button_ROT_title"
+                        android:layout_alignStart="@id/Button_ROT_title"
+                        android:layout_marginTop="2dp"
+                        android:text="자동 화면 세로 고정"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@android:color/darker_gray" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

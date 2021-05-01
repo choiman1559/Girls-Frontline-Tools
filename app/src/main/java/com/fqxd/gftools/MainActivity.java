@@ -4,26 +4,25 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 
-import com.fqxd.gftools.fragment.HomeFragment;
-import com.fqxd.gftools.fragment.GFFragment;
+import com.fqxd.gftools.ui.HomeFragment;
+import com.fqxd.gftools.ui.GFFragment;
 
+import com.fqxd.gftools.ui.PackageFragment;
 import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
 
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.Fragment;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -32,15 +31,12 @@ import android.os.Build;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.Context;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
-import com.ogaclejapan.smarttablayout.SmartTabLayout;
-import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
-import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 import com.xd.xdsdk.XDSDK;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 public class MainActivity extends AppCompatActivity {
     public static int REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES = 0x01;
@@ -74,94 +70,66 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("MissingPermission")
+    @SuppressLint({"MissingPermission", "NonConstantResourceId"})
     private void init() {
-        ((ImageView) findViewById(R.id.MainImageView)).setImageResource(R.mipmap.ic_icon_round);
-        FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
-                getSupportFragmentManager(), FragmentPagerItems.with(this)
-                .add("메인", HomeFragment.class)
-                .add("한섭", GFFragment.class)
-                .add("대만섭", GFFragment.class)
-                .add("중섭", GFFragment.class)
-                .add("일섭", GFFragment.class)
-                .add("글섭", GFFragment.class)
-                .add("비리섭", GFFragment.class)
-                .create());
-
-        ViewPager viewPager = findViewById(R.id.viewpager);
-        viewPager.setAdapter(adapter);
-
-        SmartTabLayout viewPagerTab = findViewById(R.id.viewpagertab);
-        viewPagerTab.setViewPager(viewPager);
-        viewPagerTab.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
-
-            @Override
-            public void onPageSelected(int position) {
-                viewPager.setCurrentItem(position);
-                adapter.notifyDataSetChanged();
-                switch (position) {
-                    case 1:
-                        changeImg(R.drawable.ic_south_korea);
+        AtomicReference<String> itemTitle = new AtomicReference<>("");
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            String itemId = item.getTitle().toString();
+            if(!itemTitle.get().equals(itemId)) {
+                Fragment fragment;
+                switch (itemId) {
+                    case "Features":
+                        fragment = new GFFragment();
                         break;
 
-                    case 2:
-                        changeImg(R.drawable.ic_taiwan_foreground);
-                        break;
-
-                    case 3:
-                        changeImg(R.drawable.ic_china);
-                        break;
-
-                    case 4:
-                        changeImg(R.drawable.ic_japan);
-                        break;
-
-                    case 5:
-                        changeImg(R.drawable.ic_global);
-                        break;
-
-                    case 6:
-                        changeImg(R.mipmap.ic_bilbil);
+                    case "Packages":
+                        fragment = new PackageFragment();
                         break;
 
                     default:
-                        changeImg(R.mipmap.ic_icon_round);
+                        fragment = new HomeFragment();
+                        break;
                 }
-            }
 
-            void changeImg(int resId) {
-                ((ImageView) findViewById(R.id.MainImageView)).setImageResource(resId);
+                fragment.setRetainInstance(true);
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment, fragment)
+                        .commitNowAllowingStateLoss();
             }
-
-            @Override
-            public void onPageScrollStateChanged(int state) { }
+            itemTitle.set(itemId);
+            return true;
         });
 
-        findViewById(R.id.action_a).setOnClickListener(v -> {
-            if (!isOnline()) {
-                Snackbar.make(v, "Check Internet and Try Again", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            } else {
-                AppUpdater appUpdater = new AppUpdater(MainActivity.this)
-                        .showAppUpdated(true)
-                        .setDisplay(Display.DIALOG)
-                        .setUpdateFrom(UpdateFrom.GOOGLE_PLAY)
-                        .setButtonDoNotShowAgain(null);
-                appUpdater.start();
-            }
-        });
+        Fragment fragment;
+        switch (bottomNavigationView.getSelectedItemId()) {
+            case R.id.packageManagerFragment:
+                fragment = new GFFragment();
+                break;
+
+            case R.id.modulesFragment:
+                fragment = new GFFragment();
+                break;
+
+            default:
+                fragment = new HomeFragment();
+                break;
+        }
+
+        fragment.setRetainInstance(true);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment, fragment)
+                .commitNowAllowingStateLoss();
 
         OssLicensesMenuActivity.setActivityTitle("OSS License Notice");
-        findViewById(R.id.action_b).setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/choiman1559/Girls-Frontline-Tools"))));
-        findViewById(R.id.action_c).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, OssLicensesMenuActivity.class)));
         checkUpdate();
 
         SharedPreferences p = getSharedPreferences(Global.Prefs, MODE_PRIVATE);
         if (p.getBoolean("isFirstRun", true)) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("안내").setMessage("이 앱은 다음 환경에 가장 최적화되어 있습니다 : \n - Android 10 (AOSP, GSI)\n - EAS Kernel (Linux 4.3+)\n - Ram 3GB 이상\n - 1080x2140 (403dpi)\n - ARMv8a, x86_64\n - Magisk 20.4\n");
+            builder.setTitle("안내").setMessage("이 앱은 다음 환경에 가장 최적화되어 있습니다 : \n - Android 10 (AOSP, GSI)\n - EAS Kernel (Linux 4.3+)\n - Ram 3GB 이상\n - 1080x2140 (403dpi)\n - ARMv8a, x86_64\n - Magisk 20.4+\n");
             builder.setPositiveButton("다시 보지 않기", (d, i) -> p.edit().putBoolean("isFirstRun", false).apply()).setNegativeButton("확인", (dialog, which) -> { }).show();
         }
     }
@@ -223,15 +191,5 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
         this.finishAffinity();
         System.exit(0);
-    }
-
-    public boolean isOnline() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        assert cm != null;
-        if (cm.getActiveNetworkInfo() != null) {
-            NetworkInfo ni = cm.getActiveNetworkInfo();
-            return ni != null && ni.isConnected();
-        }
-        return false;
     }
 }

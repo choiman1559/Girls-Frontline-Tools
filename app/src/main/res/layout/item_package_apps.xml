@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/baseLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:backgroundTint="#E8E8E8"
+            app:cardCornerRadius="17dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/app_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginStart="16dp"
+                        android:contentDescription="APP ICON"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0"
+                        app:srcCompat="@drawable/gf_icon" />
+
+                    <TextView
+                        android:id="@+id/app_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="Test App Name"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/app_icon"
+                        app:layout_constraintTop_toTopOf="@+id/app_icon" />
+
+                    <TextView
+                        android:id="@+id/app_des"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:textSize="12sp"
+                        android:gravity="start"
+                        android:text="kr.txwy.and.snqx (v.2.0700_292)"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/app_name"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@id/app_name"
+                        app:layout_constraintTop_toBottomOf="@id/app_name"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <ImageButton
+                        android:id="@+id/PlayGame"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:srcCompat="@drawable/ic_baseline_play_arrow_24"
+                        android:layout_marginEnd="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:contentDescription="Start Game" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:id="@+id/extraMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/AppInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/none"
+                        android:textColor="#60B1ED"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:text="INFO"
+                        app:icon="@drawable/ic_baseline_info_24"
+                        app:iconTint="#60B1ED" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="#F9F9F9"
+                        android:baselineAligned="false" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/DeleteData"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/none"
+                        android:textColor="#60B1ED"
+                        android:text="D.Data"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:icon="@drawable/ic_baseline_delete_outline_24"
+                        app:iconTint="#60B1ED"/>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="#F9F9F9"
+                        android:baselineAligned="false" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/DeleteApp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/none"
+                        android:textColor="#CC0047"
+                        android:text="D.APP"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:icon="@drawable/ic_baseline_delete_forever"
+                        app:iconTint="#CC0047"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

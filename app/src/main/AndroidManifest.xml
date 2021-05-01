@@ -41,7 +41,8 @@
         android:roundIcon="@mipmap/ic_icon_round"
         android:usesCleartextTraffic="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:forceDarkAllowed="true"
+        android:theme="@style/Theme.MaterialComponents.Light"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
         android:requestLegacyExternalStorage="true"
         tools:replace="android:label,android:theme">
@@ -57,7 +58,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -70,7 +71,7 @@
         <activity android:name=".features.gfneko.GFNekoActivity"/>
         <activity android:name=".features.proxy.ProxyActivity"/>
         <activity android:name=".features.calculator.CalculatorActivity"/>
-        <activity android:name=".fragment.GFDownloadActivity"/>
+        <activity android:name=".ui.GFDownloadActivity"/>
         <activity android:name=".features.xduc.UCWebViewActivity"/>
         <activity android:name=".features.xduc.XDUCActivity"/>
         <activity android:name=".features.txtkr.TxtKrPatchActivity"/>
@@ -100,7 +101,7 @@
         <activity
             android:exported="true"
             android:enabled="true"
-            android:name=".fragment.GFXapkInstallActivity"
+            android:name=".ui.GFXapkInstallActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog">
 
             <intent-filter android:label="@string/app_name">

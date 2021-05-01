@@ -1,10 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.core:core-ktx:1.3.2@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b706699b16d5cd08abd69bbcd60bb0e9/jetified-core-ktx-1.3.2/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/187df67dae42c22c0314d37e435b725d/jetified-core-ktx-1.3.2/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/187df67dae42c22c0314d37e435b725d/jetified-core-ktx-1.3.2/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/187df67dae42c22c0314d37e435b725d/jetified-core-ktx-1.3.2/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e8c7d86ce10681566aa4f596bfbe3bb5/jetified-core-ktx-1.3.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e8c7d86ce10681566aa4f596bfbe3bb5/jetified-core-ktx-1.3.2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e8c7d86ce10681566aa4f596bfbe3bb5/jetified-core-ktx-1.3.2/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/XDUC_Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="17dp"
+                app:cardPreventCornerOverlap="false">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="18dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="16dp">
+
+                    <ImageView
+                        android:id="@+id/XDUC_Button_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="XD User Center"
+                        app:srcCompat="@mipmap/ic_main_xdg_foreground" />
+
+                    <TextView
+                        android:id="@+id/XDUC_Button_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_toEndOf="@id/XDUC_Button_icon"
+                        android:text="XD User Center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/XDUC_Button_summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/XDUC_Button_title"
+                        android:layout_alignStart="@id/XDUC_Button_title"
+                        android:layout_marginTop="2dp"
+                        android:text="XD 고객센터"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@android:color/darker_gray" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/XAPK_Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="17dp"
+                app:cardPreventCornerOverlap="false">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="18dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="16dp">
+
+                    <ImageView
+                        android:id="@+id/XAPK_Button_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="XD User Center"
+                        app:srcCompat="@mipmap/ic_main_apk_foreground" />
+
+                    <TextView
+                        android:id="@+id/XAPK_Button_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_toEndOf="@id/XAPK_Button_icon"
+                        android:text="XAPK Installer"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/XAPK_Button_summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/XAPK_Button_title"
+                        android:layout_alignStart="@id/XAPK_Button_title"
+                        android:layout_marginTop="2dp"
+                        android:text="XAPK 자동 설치"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@android:color/darker_gray" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/LSC_Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="17dp"
+                app:cardPreventCornerOverlap="false">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="18dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="16dp">
+
+                    <ImageView
+                        android:id="@+id/LSC_Button_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="LS Calculator"
+                        app:srcCompat="@mipmap/ic_main_calculator_foreground" />
+
+                    <TextView
+                        android:id="@+id/LSC_Button_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_toEndOf="@id/LSC_Button_icon"
+                        android:text="LS Calculator"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/LSC_Button_summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/LSC_Button_title"
+                        android:layout_alignStart="@id/LSC_Button_title"
+                        android:layout_marginTop="2dp"
+                        android:text="군수 효율 계산기"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@android:color/darker_gray" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/GFDIC_Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="17dp"
+                app:cardPreventCornerOverlap="false">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="18dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="16dp">
+
+                    <ImageView
+                        android:id="@+id/GFDIC_Button_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="GF Dic Portable"
+                        app:srcCompat="@mipmap/ic_main_book_foreground" />
+
+                    <TextView
+                        android:id="@+id/GFDIC_Button_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_toEndOf="@id/GFDIC_Button_icon"
+                        android:text="GF Dic Portable"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/GFDIC_Button_summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/GFDIC_Button_title"
+                        android:layout_alignStart="@id/GFDIC_Button_title"
+                        android:layout_marginTop="2dp"
+                        android:text="소전사전 포터블"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@android:color/darker_gray" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/GFNEKO_Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="17dp"
+                app:cardPreventCornerOverlap="false">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="18dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="16dp">
+
+                    <ImageView
+                        android:id="@+id/GFNEKO_Button_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="GF Neko Floating"
+                        app:srcCompat="@mipmap/ic_main_cat_foreground" />
+
+                    <TextView
+                        android:id="@+id/GFNEKO_Button_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_toEndOf="@id/GFNEKO_Button_icon"
+                        android:text="GF Neko Floating"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/GFNEKO_Button_summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/GFNEKO_Button_title"
+                        android:layout_alignStart="@id/GFNEKO_Button_title"
+                        android:layout_marginTop="2dp"
+                        android:text="떠다니는 아디따"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@android:color/darker_gray" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/GFNOTI_Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="17dp"
+                app:cardPreventCornerOverlap="false">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="18dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="16dp">
+
+                    <ImageView
+                        android:id="@+id/GFNOTI_Button_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="GF Noti Plugin"
+                        app:srcCompat="@mipmap/ic_main_noti_foreground" />
+
+                    <TextView
+                        android:id="@+id/GFNOTI_Button_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_toEndOf="@id/GFNOTI_Button_icon"
+                        android:text="GF Noti Plugin"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/GFNOTI_Button_summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/GFNOTI_Button_title"
+                        android:layout_alignStart="@id/GFNOTI_Button_title"
+                        android:layout_marginTop="2dp"
+                        android:text="소전 알람 전송"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@android:color/darker_gray" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/CA_Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="17dp"
+                app:cardPreventCornerOverlap="false">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="18dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="16dp">
+
+                    <ImageView
+                        android:id="@+id/CA_Button_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="Install Trusted CA"
+                        app:srcCompat="@mipmap/ic_main_key_foreground" />
+
+                    <TextView
+                        android:id="@+id/CA_Button_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_toEndOf="@id/CA_Button_icon"
+                        android:text="Install Trusted CA"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/CA_Button_summary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/CA_Button_title"
+                        android:layout_alignStart="@id/CA_Button_title"
+                        android:layout_marginTop="2dp"
+                        android:text="CA 인증서 설치"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@android:color/darker_gray" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

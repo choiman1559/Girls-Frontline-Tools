@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" tools:ignore="HardcodedText">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home_md2"
+        android:title="Home"
+        tools:showAsAction="always" />
+
+    <item
+        android:id="@+id/packageManagerFragment"
+        android:icon="@drawable/ic_superuser_md2"
+        android:title="Packages"
+        tools:showAsAction="always" />
+
+    <item
+        android:id="@+id/modulesFragment"
+        android:icon="@drawable/ic_module_md2"
+        android:title="Features"
+        tools:showAsAction="ifRoom" />
+</menu>
