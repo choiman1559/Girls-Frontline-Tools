@@ -62,9 +62,7 @@ public class CenUtils {
                 AlertDialog.Builder ab = new AlertDialog.Builder(activity);
                 ab.setTitle("데이터 복사 에러!");
                 ab.setMessage("소전의 데이터를 다운로드 받은 후 다시 시도하세요.");
-                ab.setPositiveButton("OK", ((dialog, which) -> {
-                    activity.finish();
-                }));
+                ab.setPositiveButton("OK", ((dialog, which) -> activity.finish()));
                 ab.show();
             }
         } catch (Exception e) {

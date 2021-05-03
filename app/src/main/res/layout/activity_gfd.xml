@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <ScrollView
+        android:layout_marginHorizontal="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,73 +18,74 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:text="@string/Title_GFD"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/colorPrimary"
                 android:textSize="40sp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/b1" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/b2" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/b3" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/b4" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/b5" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/b6" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/b7" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/b8" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/b9" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/b10" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

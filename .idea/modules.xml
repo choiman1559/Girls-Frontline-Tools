@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/GF_Tools.iml" filepath="$PROJECT_DIR$/.idea/modules/GF_Tools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/XDSdkLib/GF_Tools.XDSdkLib.iml" filepath="$PROJECT_DIR$/.idea/modules/XDSdkLib/GF_Tools.XDSdkLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GF_Tools.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GF_Tools.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/netbare/GF_Tools.netbare.iml" filepath="$PROJECT_DIR$/.idea/modules/netbare/GF_Tools.netbare.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/xDSDKAndroid/GF_Tools.xDSDKAndroid.iml" filepath="$PROJECT_DIR$/.idea/modules/xDSDKAndroid/GF_Tools.xDSDKAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/zipsigner/GF_Tools.zipsigner.iml" filepath="$PROJECT_DIR$/.idea/modules/zipsigner/GF_Tools.zipsigner.iml" />
     </modules>

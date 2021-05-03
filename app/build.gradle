@@ -23,8 +23,8 @@ android {
         minSdkVersion 21
         //noinspection OldTargetApi
         targetSdkVersion 29
-        versionCode 2020001
-        versionName "2.0.1"
+        versionCode 2020100
+        versionName "2.1.0"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk.abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
@@ -47,7 +47,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation project(':xDSDKAndroid')
-    implementation project(':netbare')
+    implementation project(':XDSdkLib')
     implementation project(':zipsigner')
 
     testImplementation 'junit:junit:4.13.2'
@@ -65,7 +65,6 @@ dependencies {
 
     implementation 'net.lingala.zip4j:zip4j:2.6.4'
     implementation 'org.jsoup:jsoup:1.13.1'
-    implementation 'commons-httpclient:commons-httpclient:3.1'
     implementation 'commons-io:commons-io:20030203.000550'
 
     implementation 'com.google.firebase:firebase-firestore:22.1.2'
@@ -80,16 +79,12 @@ dependencies {
     implementation 'com.android.volley:volley:1.2.0'
 
     implementation 'com.nononsenseapps:filepicker:4.1.0'
-    implementation 'com.getbase:floatingactionbutton:1.10.1'
-
     implementation 'com.github.javiersantos:AppUpdater:2.7'
     implementation 'com.github.isradeleon:Notify-Android:1.0.3'
     implementation 'com.gitlab.prototypeg:prototypeg:24aa53bb'
 
     implementation 'gun0912.ted:tedbottompicker:2.0.1'
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
-
-    implementation 'com.github.HamedTaherpour:floating-layout-android:1.1.4'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"

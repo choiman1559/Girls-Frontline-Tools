@@ -122,8 +122,7 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
             this.updateLog("apk extracted");
             this.updateProgress(75);
             this.updateStatus("repackaging apk");
-            if (!ifErr)
-                FileUtils.deleteDirectory(new File(apk.getAbsolutePath() + "/assets/bin/Data/Managed"));
+            if (!ifErr) FileUtils.deleteDirectory(new File(apk.getAbsolutePath() + "/assets/bin/Data/Managed"));
             for (File f : apk.listFiles()) {
                 Log.d("list", f.getAbsolutePath());
                 if (f.getName().equals("res")) continue;

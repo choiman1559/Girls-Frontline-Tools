@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.text.util.Linkify;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +20,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -51,6 +51,7 @@ public class NotiActivity extends AppCompatActivity{
             default:
                 new AlertDialog.Builder(this)
                         .setTitle("Error!")
+                        .setCancelable(false)
                         .setMessage("기술적 문제로, 이 앱에 사용된 서명키는 이 기능을 사용할 수 없습니다")
                         .setPositiveButton("확인", (d, w) -> finish())
                         .create().show();
@@ -71,7 +72,7 @@ public class NotiActivity extends AppCompatActivity{
 
         final SharedPreferences prefs = getSharedPreferences(Global.Prefs, MODE_PRIVATE);
 
-        final Switch onoff = findViewById(R.id.NotiOnoff);
+        final SwitchMaterial onoff = findViewById(R.id.NotiOnoff);
         final Button glogin = findViewById(R.id.glogin);
         final TextView guid = findViewById(R.id.guid);
 
@@ -104,7 +105,7 @@ public class NotiActivity extends AppCompatActivity{
         });
     }
 
-    public void signOut(Switch onoff,SharedPreferences prefs) {
+    public void signOut(SwitchMaterial onoff,SharedPreferences prefs) {
         mAuth.signOut();
         mGoogleSignInClient.signOut();
         NotiActivity.this.recreate();

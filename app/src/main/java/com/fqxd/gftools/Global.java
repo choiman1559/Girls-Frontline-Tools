@@ -17,54 +17,22 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.accessibility.AccessibilityManager;
 
-import com.fqxd.gftools.features.alarm.floating.AlarmFloatingView;
-import com.fqxd.gftools.features.alarm.vpn.PacketInjector;
-import com.github.megatronking.netbare.NetBare;
-import com.github.megatronking.netbare.NetBareConfig;
-import com.github.megatronking.netbare.http.HttpInjectInterceptor;
-import com.github.megatronking.netbare.ssl.JKS;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.List;
 
-import kotlin.collections.CollectionsKt;
-
 public class Global extends Application {
-    private static JKS jks;
     public static String Storage;
     public static String Prefs;
-
-    public NetBareConfig getConfig() {
-        NetBareConfig.Builder configBuilder = NetBareConfig.defaultHttpConfig(jks, CollectionsKt.listOf(HttpInjectInterceptor.createFactory(new PacketInjector(new com.gitlab.prototypeg.Session(), this)))).newBuilder();
-        ArrayList<String> array = new ArrayList<>();
-        array.add("com.digitalsky.girlsfrontline.cn.uc");
-        array.add("com.digitalsky.girlsfrontline.cn.bili");
-        array.add("com.sunborn.girlsfrontline.en");
-        array.add("com.sunborn.girlsfrontline.jp");
-        array.add("tw.txwy.and.snqx");
-        array.add("kr.txwy.and.snqx");
-        for (String str : array) configBuilder.addAllowedApplication(str);
-        return configBuilder.build();
-    }
 
     @Override
     public void onCreate() {
         super.onCreate();
         Storage = Environment.getExternalStorageDirectory().getPath();
         Prefs = getPackageName() + "_preferences";
-
-        Context context = this;
-        String string = getString(R.string.app_name);
-        char[] charArray = string.toCharArray();
-        jks = new JKS(context, string, charArray, getString(R.string.app_name), getString(R.string.app_name), getString(R.string.app_name), getString(R.string.app_name), getString(R.string.app_name));
-        NetBare.get().attachApplication(this, BuildConfig.DEBUG);
-
-        registerNotificationChannels("GFPacketService", "GF Packet Notification Channel");
         registerNotificationChannels("GFRotationService", "GF Screen Rotation service notification");
     }
 

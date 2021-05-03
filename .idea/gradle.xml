@@ -11,8 +11,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/XDSdkLib" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/netbare" />
             <option value="$PROJECT_DIR$/xDSDKAndroid" />
             <option value="$PROJECT_DIR$/zipsigner" />
           </set>

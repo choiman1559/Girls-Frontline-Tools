@@ -71,10 +71,11 @@
         <activity android:name=".features.gfneko.GFNekoActivity"/>
         <activity android:name=".features.proxy.ProxyActivity"/>
         <activity android:name=".features.calculator.CalculatorActivity"/>
-        <activity android:name=".ui.GFDownloadActivity"/>
+        <activity android:name=".features.gfd.GFDActivity" />
         <activity android:name=".features.xduc.UCWebViewActivity"/>
         <activity android:name=".features.xduc.XDUCActivity"/>
         <activity android:name=".features.txtkr.TxtKrPatchActivity"/>
+        <activity android:name=".ui.GFDownloadActivity"/>
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -142,12 +143,6 @@
        <activity android:name=".features.cen.CenActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog"/>
         <activity
-            android:name=".features.alarm.ui.AlarmListActivity"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".features.alarm.ui.AddAlarmManuallyClass"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".features.decom.DecActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
@@ -182,9 +177,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".features.gfd.GFDActivity"
-            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+
         <activity
             android:name="com.xd.sdklib.helper.XDStartView"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -237,18 +230,7 @@
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <receiver
-            android:name=".features.alarm.receiver.BootCompleteReceiver"
-            android:enabled="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name=".features.alarm.receiver.AlarmReceiver"
-            android:enabled="true">
-        </receiver>
-        <service android:name="io.hamed.floatinglayout.service.FloatingService"/>
+
         <service android:name=".features.gfneko.AnimationService"/>
         <service
             android:name=".DetectGFService"
@@ -272,18 +254,6 @@
             </intent-filter>
         </service>
 
-        <service android:name=".features.alarm.vpn.netBareService"
-            android:permission="android.permission.BIND_VPN_SERVICE">
-            <intent-filter>
-                <action android:name="android.net.VpnService" />
-                <action android:name="com.github.megatronking.netbare.action.Start"/>
-                <action android:name="com.github.megatronking.netbare.action.Stop"/>
-            </intent-filter>
-        </service>
-
-        <service android:name=".features.alarm.logcat.LogCatReaderService"
-            android:permission="android.permission.READ_LOGS">
-    </service>
     <service android:name=".features.rotation.RotationService"
         android:exported="false"/>
     </application>

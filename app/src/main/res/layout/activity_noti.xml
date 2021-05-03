@@ -7,18 +7,20 @@
     tools:context=".features.noti.NotiActivity">
 
     <LinearLayout
+        android:layout_marginHorizontal="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
         <TextView
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/noit_des" />
 
-        <Switch
+        <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/NotiOnoff"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/noti_onoff" />
@@ -29,11 +31,24 @@
             android:layout_height="wrap_content"
             android:text="@string/guid" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/glogin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/glogin" />
+            android:text="@string/glogin"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="@color/white"
+            app:cornerRadius="17dp"
+            app:icon="@drawable/googleg_standard_color_18"
+            app:iconSize="20dp"
+            app:rippleColor="@color/white" />
 
         <ScrollView
             android:layout_width="match_parent"

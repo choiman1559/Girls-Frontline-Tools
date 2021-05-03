@@ -2,27 +2,28 @@ package com.fqxd.gftools.features.gfd;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.Button;
 
 import com.fqxd.gftools.R;
+import com.google.android.material.button.MaterialButton;
 
 public class GFDActivity extends AppCompatActivity {
 
-    Button button1;
-    Button button2;
-    Button button3;
-    Button button4;
-    Button button5;
-    Button button6;
-    Button button7;
-    Button button8;
-    Button button9;
-    Button button10;
-    Button button11;
+    MaterialButton button1;
+    MaterialButton button2;
+    MaterialButton button3;
+    MaterialButton button4;
+    MaterialButton button5;
+    MaterialButton button6;
+    MaterialButton button7;
+    MaterialButton button8;
+    MaterialButton button9;
+    MaterialButton button10;
+    MaterialButton button11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,8 @@ public class GFDActivity extends AppCompatActivity {
         button10 = findViewById(R.id.button10);
         button11 = findViewById(R.id.button11);
 
-        Button.OnClickListener onClickListener = v -> {
+        @SuppressLint("NonConstantResourceId")
+        MaterialButton.OnClickListener onClickListener = v -> {
             switch (v.getId()) {
                 case R.id.button1:
                     SendIntent(1);
@@ -101,7 +103,6 @@ public class GFDActivity extends AppCompatActivity {
         button10.setOnClickListener(onClickListener);
         button11.setOnClickListener(onClickListener);
     }
-
 
     public void RunGFDv2(){
         try{

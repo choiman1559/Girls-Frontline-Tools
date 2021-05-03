@@ -1,85 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/layout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="HardcodedText" >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingEnd="0dp"
-            android:textSize="15sp"
-            android:text="XD 고객센터 (한국어)"
-            android:textColor="@color/black"
-            android:background="#DBDBDB"/>
-
-        <EditText
-            android:id="@+id/EditText_Nickname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingEnd="0dp"
-            android:hint="Input Nickname"
-            android:autofillHints="Input Nickname"
-            android:inputType="text" />
-
-
-        <CheckBox
-            android:id="@+id/Checkbox_remember"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:background="@android:color/transparent"
-            android:button="@null"
-            android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
-            android:gravity="start|center"
-            android:text="닉네임 기억하기" />
-
-        <Button
-            android:id="@+id/Button_kruc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="실행 (ROOT)" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="0dp"
-            android:textSize="15sp"
-            android:text="XD 고객센터 (중국어)"
-            android:textColor="@color/black"
-            android:background="#DBDBDB"/>
-
-        <Button
-            android:id="@+id/Button_cnuc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="실행 " />
-    </LinearLayout>
+    tools:ignore="HardcodedText">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
+
+        <LinearLayout
+            android:id="@+id/layout1"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:visibility="gone"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="180dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="Icon"
+                app:srcCompat="@drawable/xd_logo_landscape" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="XD User Center"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|bottom"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/layout1"
+            app:layout_constraintTop_toBottomOf="@+id/layout1">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/Button_Google"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/color_menu_tint"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Login via Google"
+                android:textColor="@color/white"
+                app:cornerRadius="17dp"
+                app:icon="@drawable/googleg_standard_color_18"
+                app:iconSize="20dp"
+                app:rippleColor="@color/white" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/Button_FaceBook"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Login via Google"
+                android:textColor="@color/white"
+                app:cornerRadius="17dp"
+                app:icon="@drawable/ic_facebook"
+                app:rippleColor="@color/white" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/Button_XDSDK"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/pay_submit_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Login via Xd Account (Chinese)"
+                android:textColor="@color/white"
+                app:cornerRadius="17dp"
+                app:icon="@drawable/start_xd"
+                app:rippleColor="@color/white" />
+        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
