@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.javiersantos:AppUpdater:2.7@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a40ae697d91df4094f2de46eaae17bbe/jetified-AppUpdater-2.7/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a40ae697d91df4094f2de46eaae17bbe/jetified-AppUpdater-2.7/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a40ae697d91df4094f2de46eaae17bbe/jetified-AppUpdater-2.7/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a5057ea3d0d92674fd192384df11cc29/jetified-AppUpdater-2.7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a5057ea3d0d92674fd192384df11cc29/jetified-AppUpdater-2.7/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a5057ea3d0d92674fd192384df11cc29/jetified-AppUpdater-2.7/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -3,6 +3,7 @@ package com.fqxd.gftools.ui;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,7 +62,7 @@ public class FeatureFragment extends Fragment {
             MaterialCardView TXT = view.findViewById(R.id.Button_TXT);
             MaterialCardView ROT = view.findViewById(R.id.Button_ROT);
 
-            if (Package.equals("kr.txwy.and.snqx")) {
+            if (Package.contains("txwy.and.snqx")) {
                 TXT.setVisibility(View.GONE);
             }
 

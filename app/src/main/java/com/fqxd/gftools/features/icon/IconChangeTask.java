@@ -2,6 +2,7 @@ package com.fqxd.gftools.features.icon;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bigzhao.xml2axml.AxmlUtils;
+import com.fqxd.gftools.BuildConfig;
 import com.fqxd.gftools.Global;
 import com.fqxd.gftools.R;
 
@@ -21,18 +24,22 @@ import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.model.enums.CompressionMethod;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtil;
 import org.jetbrains.annotations.TestOnly;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import com.fqxd.gftools.implement.AsyncTask;
 import com.kellinwood.security.zipsigner.ZipSigner;
@@ -66,6 +73,35 @@ final class IconChangeTask extends AsyncTask {
     @Override
     protected Object doInBackground(Object[] objects) {
         try {
+            if (BuildConfig.DEBUG) {
+                //Codes for change girls frontline's app_name
+                //stopping development cause Permission denied error when executing aapt
+                File aaptFolder = new File(main.getFilesDir().getAbsolutePath() + "/aapt/");
+                if (!aaptFolder.exists()) aaptFolder.mkdirs();
+                File aapt = new File(aaptFolder.getPath() + "/aapt6-arm32");
+                if (!aapt.exists()) {
+                    AssetManager assetManager = main.getResources().getAssets();
+                    for (String f : assetManager.list("aapt")) {
+                        InputStream is = assetManager.open("aapt/" + f);
+                        String[] sl = f.split("/");
+                        OutputStream os = new FileOutputStream(aaptFolder + "/" + sl[sl.length - 1]);
+                        IOUtil.copy(is, os);
+                        is.close();
+                        os.close();
+                    }
+                }
+                aapt.setWritable(true);
+                aapt.setReadable(true);
+                aapt.setExecutable(true);
+                Process process = Runtime.getRuntime().exec("sh -c shell " + aapt.getAbsolutePath());
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    Log.d("EXECLog", line);
+                }
+                process.waitFor();
+            }
+
             final ProgressBar p = this.main.findViewById(R.id.running);
             p.post(() -> p.setVisibility(View.VISIBLE));
             status.post(() -> status.setVisibility(View.VISIBLE));
@@ -95,15 +131,14 @@ final class IconChangeTask extends AsyncTask {
             this.updateStatus("adding icon file");
             this.updateProgress(50);
 
-            //Codes for change girls frontline's app_name
-            //stopping development cause lack of technology for encoding android binary xml in android runtime
-            /*
-            File base_xml = new File(apk.getAbsolutePath() + "/AndroidManifest.xml");
-            File edit_xml = new File(temp.getAbsolutePath() + "/AndroidManifest.xml");
-            File decode_xml = new File(temp.getAbsolutePath() + "/AndroidManifest_decoded.xml");
-
-            FileUtils.copyFile(base_xml,edit_xml);
-            */
+            if (BuildConfig.DEBUG) {
+                //Codes for change girls frontline's app_name
+                //stopping development cause lack of technology for encoding android binary xml in android runtime
+                File base_xml = new File(apk.getAbsolutePath() + "/AndroidManifest.xml");
+                File edit_xml = new File(temp.getAbsolutePath() + "/AndroidManifest.xml");
+                File decode_xml = new File(temp.getAbsolutePath() + "/AndroidManifest_decoded.xml");
+                FileUtils.copyFile(base_xml, edit_xml);
+            }
 
             FileUtils.deleteDirectory(new File(apk.getAbsolutePath() + "/res/"));
             List<File> originalImages = new ArrayList<>();
@@ -135,18 +170,24 @@ final class IconChangeTask extends AsyncTask {
             }
             convertedImage.delete();
 
-            //Codes for change girls frontline's app_name
-            //stopping development cause lack of technology for encoding android binary xml in android runtime
-            /*
-            this.updateProgress(55);
-            this.updateStatus("editing app name");
+            if(BuildConfig.DEBUG) {
+                //Codes for change girls frontline's app_name
+                //stopping development cause lack of technology for encoding android binary xml in android runtime
+                /*
+                this.updateProgress(55);
+                this.updateStatus("editing app name");
 
-            XmlTools.decode(edit_xml.getAbsolutePath(),decode_xml.getAbsolutePath());
-            editFileXmlTo(decode_xml,CName);
-            edit_xml.delete();
-            XmlTools.encode(decode_xml.getAbsolutePath(),edit_xml.getAbsolutePath(),main.getApplicationContext());
-            FileUtils.copyFile(edit_xml,base_xml);
-            */
+                String decoded = AxmlUtils.decode(edit_xml);
+                editFileXmlTo(decoded, decode_xml, CName);
+                byte[] encoded = AxmlUtils.encode(decoded);
+                edit_xml.delete();
+                try (FileOutputStream fos = new FileOutputStream(edit_xml)) {
+                    fos.write(encoded);
+                }
+                decode_xml.delete();
+                FileUtils.copyFile(edit_xml, base_xml);
+                */
+            }
 
             this.updateProgress(60);
             this.updateStatus("repacking apk file");
@@ -204,19 +245,20 @@ final class IconChangeTask extends AsyncTask {
     @TestOnly
     //Codes for change girls frontline's app_name
     //stopping development cause lack of technology for encoding android binary xml in android runtime
-    private void editFileXmlTo(File file, String ChangeLineTo) throws IOException {
+    private void editFileXmlTo(String string,File output, String ChangeLineTo) throws IOException {
+        String[] lines = string.split(System.getProperty("line.separator"));
         StringBuilder Lines = new StringBuilder();
-        if (file.exists()) {
-            Scanner myReader = new Scanner(file);
-            while (myReader.hasNextLine()) {
-                String sLine = myReader.nextLine();
-                if (!sLine.contains("label=\"")) Lines.append(sLine);
-                else Lines.append(sLine.replace(substringBetween(sLine,"label=\"","\""), ChangeLineTo));
-                Lines.append("\r\n");
-                Log.d("line",sLine);
+        for(String line : lines) {
+            if (!line.contains("label=\"")) {
+                Lines.append(line);
+                continue;
             }
+            Lines.append(line.replace(substringBetween(line,"label=\"","\""), ChangeLineTo));
+            Lines.append("\r\n");
+            Log.d("line",line);
         }
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, false), StandardCharsets.UTF_8));
+
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(output, false), StandardCharsets.UTF_8));
         bw.write(Lines.toString());
         bw.close();
     }

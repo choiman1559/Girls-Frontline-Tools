@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -18,32 +20,38 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fqxd.gftools.BuildConfig;
 import com.fqxd.gftools.Global;
 import com.fqxd.gftools.MainActivity;
 import com.fqxd.gftools.R;
+import com.fqxd.gftools.implement.AsyncTask;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.checkbox.MaterialCheckBox;
 
 import net.lingala.zip4j.model.enums.CompressionLevel;
 
+import org.apache.commons.io.FileUtils;
+
 import java.io.File;
+import java.io.IOException;
 import java.text.MessageFormat;
 
 @SuppressWarnings("deprecation")
 public final class DecActivity extends AppCompatActivity {
     private static boolean isTaskRunning = false;
+    String pkg;
 
     @Override
     public void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_dec);
-        String pkg = getIntent().getStringExtra("pkg");
+        pkg = getIntent().getStringExtra("pkg");
 
         if (Build.VERSION.SDK_INT >= 23 && this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
@@ -64,13 +72,24 @@ public final class DecActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        final Button runPatch = findViewById(R.id.centrue);
+        final MaterialButton runPatch = findViewById(R.id.centrue);
         final TextView status = findViewById(R.id.status);
         final TextView log = findViewById(R.id.log);
         final ProgressBar progress = findViewById(R.id.progress);
         final SeekBar level = findViewById(R.id.compressLevel);
         final LinearLayout layout = findViewById(R.id.progressLayout);
-        final CheckBox IfErr = findViewById(R.id.checkBox_IfErr);
+        final MaterialCheckBox IfErr = findViewById(R.id.checkBox_IfErr);
+
+        IfErr.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(isChecked) {
+                new AlertDialog.Builder(this)
+                        .setTitle("경고!")
+                        .setMessage("이 기능을 사용하면 다시 공식 클라이언트로 재설치하기 이전까지 결재 등의 Play Service 를 요하는 기능은 작동하지 않을것이며,\"계속\" 버튼을 눌러 이 기능을 사용할경우 이 기능을 사용하다 발생한 불이익은 순전히 이 기능을 사용한 본인에게 있음을 인지하고 동의한것으로 간주합니다.")
+                        .setPositiveButton("계속", (dialog, which) -> {})
+                        .setNegativeButton("취소",((dialog, which) -> IfErr.setChecked(false)))
+                        .setCancelable(false).show();
+            }
+        });
 
         if (Build.VERSION.SDK_INT < 26) {
             level.setProgress(0);
@@ -132,11 +151,37 @@ public final class DecActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PatchTask.REQUEST_INSTALL) {
-            new File(this.getExternalFilesDir(null).getAbsolutePath() + "/base.apk").delete();
+        if(requestCode == 5555) {
+            File temp = getExternalFilesDir(null);
+            File obb = new File(temp.getAbsolutePath() + "/obb");
+            copyObbDirectory(pkg, obb);
+
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            File originalApk = new File(temp.getAbsolutePath() + "/signed.apk");
+            Uri uri = Build.VERSION.SDK_INT <= 23 ? Uri.fromFile(originalApk) : FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider", originalApk);
+            if (Build.VERSION.SDK_INT <= 23) {
+                intent.setDataAndType(uri, "application/vnd.android.package-archive");
+            } else {
+                intent.setData(uri);
+            }
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivityForResult(intent, 0x00);
+        }
+
+        if (requestCode == 0x00) {
+            try {
+                FileUtils.deleteDirectory(this.getExternalFilesDir(null));
+                TextView status = findViewById(R.id.status);
+                ProgressBar progress = findViewById(R.id.progress);
+                status.setText("finished");
+                progress.setProgress(100);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         if (requestCode == MainActivity.REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES) {
             if (Build.VERSION.SDK_INT < 26 || resultCode == Activity.RESULT_OK) {
@@ -148,6 +193,21 @@ public final class DecActivity extends AppCompatActivity {
                         MainActivity.REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES
                 );
             }
+        }
+    }
+
+    public static void copyObbDirectory(String target,File from) {
+        try {
+            File originalOBB = new File(Global.Storage + "/Android/obb/" + target);
+            if (from.exists() && from.isDirectory()) {
+                if (!originalOBB.exists()) originalOBB.mkdirs();
+                File[] list = from.listFiles();
+                for (File file : list) {
+                    FileUtils.copyFile(file, new File(originalOBB.getAbsolutePath() + "/" + file.getName()));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

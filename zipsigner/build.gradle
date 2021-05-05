@@ -6,6 +6,7 @@ android {
 
     defaultConfig {
         minSdkVersion 21
+        //noinspection OldTargetApi
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -20,7 +21,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation 'junit:junit:4.13.1'
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.0'
-    annotationProcessor group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.0'
+    testImplementation 'junit:junit:4.13.2'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
+    annotationProcessor group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
 }

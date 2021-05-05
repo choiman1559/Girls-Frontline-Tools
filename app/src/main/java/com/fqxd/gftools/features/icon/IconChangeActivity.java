@@ -93,7 +93,7 @@ public class IconChangeActivity extends AppCompatActivity {
 
         layout.setVisibility(View.GONE);
         progress.setVisibility(View.GONE);
-        editName.setVisibility(View.GONE);
+        if(!BuildConfig.DEBUG) editName.setVisibility(View.GONE);
 
         patchButton.setOnClickListener(v -> {
             if (ImageUri == null) selectImage();
@@ -111,7 +111,7 @@ public class IconChangeActivity extends AppCompatActivity {
                         progress.setVisibility(View.GONE);
                         isTaskRunning = false;
                     })});
-            } //else editName.setError("input app name");
+            } else editName.setError("input app name");
         });
     }
 

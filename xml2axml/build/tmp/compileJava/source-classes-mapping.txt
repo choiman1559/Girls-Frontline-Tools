@@ -1,0 +1,81 @@
+com/bigzhao/xml2axml/test/AXMLPrinter.java
+ com.bigzhao.xml2axml.test.AXMLPrinter
+androidstub/content/res/ChunkUtil.java
+ androidstub.content.res.ChunkUtil
+androidstub/content/res/IntReader.java
+ androidstub.content.res.IntReader
+com/bigzhao/xml2axml/chunks/ChunkType.java
+ com.bigzhao.xml2axml.chunks.ChunkType
+androidstub/util/AttributeSet.java
+ androidstub.util.AttributeSet
+com/bigzhao/xml2axml/chunks/StartTagChunk.java
+ com.bigzhao.xml2axml.chunks.StartTagChunk
+ com.bigzhao.xml2axml.chunks.StartTagChunk$H
+com/bigzhao/xml2axml/NotImplementedException.java
+ com.bigzhao.xml2axml.NotImplementedException
+com/bigzhao/xml2axml/AxmlUtils.java
+ com.bigzhao.xml2axml.AxmlUtils
+androidstub/content/res/XmlResourceParser.java
+ androidstub.content.res.XmlResourceParser
+com/bigzhao/xml2axml/chunks/XmlChunk.java
+ com.bigzhao.xml2axml.chunks.XmlChunk
+ com.bigzhao.xml2axml.chunks.XmlChunk$H
+androidstub/util/TypedValue.java
+ androidstub.util.TypedValue
+com/bigzhao/xml2axml/chunks/ValueChunk.java
+ com.bigzhao.xml2axml.chunks.ValueChunk
+ com.bigzhao.xml2axml.chunks.ValueChunk$ValPair
+com/bigzhao/xml2axml/chunks/Chunk.java
+ com.bigzhao.xml2axml.chunks.Chunk
+ com.bigzhao.xml2axml.chunks.Chunk$EmptyHeader
+ com.bigzhao.xml2axml.chunks.Chunk$Header
+ com.bigzhao.xml2axml.chunks.Chunk$NodeHeader
+com/bigzhao/xml2axml/ComplexConsts.java
+ com.bigzhao.xml2axml.ComplexConsts
+androidstub/content/res/Resources.java
+ androidstub.content.res.Resources
+androidstub/graphics/Color.java
+ androidstub.graphics.Color
+com/bigzhao/xml2axml/chunks/ResourceMapChunk.java
+ com.bigzhao.xml2axml.chunks.ResourceMapChunk
+ com.bigzhao.xml2axml.chunks.ResourceMapChunk$H
+com/bigzhao/xml2axml/chunks/StringPoolChunk.java
+ com.bigzhao.xml2axml.chunks.StringPoolChunk
+ com.bigzhao.xml2axml.chunks.StringPoolChunk$1
+ com.bigzhao.xml2axml.chunks.StringPoolChunk$Encoding
+ com.bigzhao.xml2axml.chunks.StringPoolChunk$H
+ com.bigzhao.xml2axml.chunks.StringPoolChunk$RawString
+ com.bigzhao.xml2axml.chunks.StringPoolChunk$StringItem
+com/bigzhao/xml2axml/Encoder.java
+ com.bigzhao.xml2axml.Encoder
+ com.bigzhao.xml2axml.Encoder$Config
+com/bigzhao/xml2axml/IntWriter.java
+ com.bigzhao.xml2axml.IntWriter
+com/bigzhao/xml2axml/chunks/EndTagChunk.java
+ com.bigzhao.xml2axml.chunks.EndTagChunk
+ com.bigzhao.xml2axml.chunks.EndTagChunk$H
+com/bigzhao/xml2axml/chunks/AttrChunk.java
+ com.bigzhao.xml2axml.chunks.AttrChunk
+androidstub/content/Context.java
+ androidstub.content.Context
+com/bigzhao/xml2axml/DefaultReferenceResolver.java
+ com.bigzhao.xml2axml.DefaultReferenceResolver
+com/bigzhao/xml2axml/ValueType.java
+ com.bigzhao.xml2axml.ValueType
+com/bigzhao/xml2axml/ReferenceResolver.java
+ com.bigzhao.xml2axml.ReferenceResolver
+com/bigzhao/xml2axml/chunks/StartNameSpaceChunk.java
+ com.bigzhao.xml2axml.chunks.StartNameSpaceChunk
+ com.bigzhao.xml2axml.chunks.StartNameSpaceChunk$H
+com/bigzhao/xml2axml/chunks/TagChunk.java
+ com.bigzhao.xml2axml.chunks.TagChunk
+com/bigzhao/xml2axml/chunks/EndNameSpaceChunk.java
+ com.bigzhao.xml2axml.chunks.EndNameSpaceChunk
+ com.bigzhao.xml2axml.chunks.EndNameSpaceChunk$H
+androidstub/text/TextUtils.java
+ androidstub.text.TextUtils
+androidstub/content/res/AXmlResourceParser.java
+ androidstub.content.res.AXmlResourceParser
+ androidstub.content.res.AXmlResourceParser$NamespaceStack
+androidstub/content/res/StringBlock.java
+ androidstub.content.res.StringBlock

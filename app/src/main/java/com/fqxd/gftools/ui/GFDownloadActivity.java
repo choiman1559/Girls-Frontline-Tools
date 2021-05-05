@@ -95,12 +95,14 @@ public class GFDownloadActivity extends AppCompatActivity {
             case "com.sunborn.girlsfrontline.en":
                 return "https://apps.qoo-app.com/ko/app/6647";
 
+            case "com.sunborn.girlsfrontline.cn":
+                return "https://gf-cn.sunborngame.com/";
+
             case "com.digitalsky.girlsfrontline.cn.bili":
                 return "https://app.biligame.com/page/detail_game.html?id=73";
 
             default:
                 return "https://apkpure.com/kr/" + Package;
-
         }
     }
 

@@ -61,6 +61,7 @@ public class PackageFragment extends Fragment {
         array.add("com.digitalsky.girlsfrontline.cn.bili");
         array.add("com.sunborn.girlsfrontline.en");
         array.add("com.sunborn.girlsfrontline.jp");
+        array.add("com.sunborn.girlsfrontline.cn");
         array.add("tw.txwy.and.snqx");
         array.add("kr.txwy.and.snqx");
 

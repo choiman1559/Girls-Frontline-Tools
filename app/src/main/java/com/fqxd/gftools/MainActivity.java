@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.fqxd.gftools.ui.HomeFragment;
@@ -14,7 +15,6 @@ import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
 
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -40,6 +40,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class MainActivity extends AppCompatActivity {
     public static int REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES = 0x01;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint({"MissingPermission", "NonConstantResourceId"})
     private void init() {
         AtomicReference<String> itemTitle = new AtomicReference<>("");
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             String itemId = item.getTitle().toString();
             if(!itemTitle.get().equals(itemId)) {
@@ -117,13 +118,11 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
-        fragment.setRetainInstance(true);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment, fragment)
                 .commitNowAllowingStateLoss();
 
-        OssLicensesMenuActivity.setActivityTitle("OSS License Notice");
         checkUpdate();
 
         SharedPreferences p = getSharedPreferences(Global.Prefs, MODE_PRIVATE);
@@ -171,6 +170,12 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if(bottomNavigationView != null) bottomNavigationView.setSelectedItemId(R.id.homeFragment);
     }
 
     @Override

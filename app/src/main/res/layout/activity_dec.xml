@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="5dp"
-    android:layout_marginEnd="5dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/packageinfo"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textStyle="bold"
@@ -56,25 +56,25 @@
         android:id="@+id/textView7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:gravity="center"
         android:text="@string/level_info" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center|start"
             android:layout_weight="1"
             android:text="@string/level_min" />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center|end"
             android:layout_weight="1"
             android:text="@string/level_max" />
@@ -87,7 +87,7 @@
         android:max="5"
         android:progress="2" />
 
-    <CheckBox
+    <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/checkBox_IfErr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -96,14 +96,16 @@
         android:layout_marginEnd="5dp"
         android:text="@string/checkbox_err" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/centrue"
-        style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="@string/run_patch"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        app:cornerRadius="17dp"
+        app:rippleColor="@color/white"
+        app:icon="@drawable/ic_download_md2"/>
 
     <ScrollView
         android:layout_width="match_parent"

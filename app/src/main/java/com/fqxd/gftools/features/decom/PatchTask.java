@@ -26,6 +26,9 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 
 import com.fqxd.gftools.implement.AsyncTask;
+import com.kellinwood.security.zipsigner.ZipSigner;
+
+import static com.fqxd.gftools.features.icon.IconChangeActivity.copyObbDirectory;
 
 @SuppressLint("StaticFieldLeak")
 final class PatchTask extends AsyncTask<Runnable, Void, Void> {
@@ -122,7 +125,7 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
             this.updateLog("apk extracted");
             this.updateProgress(75);
             this.updateStatus("repackaging apk");
-            if (!ifErr) FileUtils.deleteDirectory(new File(apk.getAbsolutePath() + "/assets/bin/Data/Managed"));
+            if(!ifErr) FileUtils.deleteDirectory(new File(apk.getAbsolutePath() + "/assets/bin/Data/Managed"));
             for (File f : apk.listFiles()) {
                 Log.d("list", f.getAbsolutePath());
                 if (f.getName().equals("res")) continue;
@@ -133,20 +136,37 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
                 }
             }
 
-            this.updateLog("apk repackaged");
-            this.updateStatus("finished");
-            FileUtils.deleteDirectory(apk);
-            this.updateLog("installing apk");
+            if(ifErr) {
+                this.updateProgress(90);
+                this.updateStatus("resigning apk");
+                File SignedApk = new File(temp.getAbsolutePath() + "/signed.apk");
+                ZipSigner zipSigner = new ZipSigner();
+                zipSigner.setKeymode(ZipSigner.KEY_TESTKEY);
+                zipSigner.signZip(originalApk.getAbsolutePath(), SignedApk.getAbsolutePath());
 
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            Uri uri = Build.VERSION.SDK_INT <= 23 ? Uri.fromFile(originalApk) : FileProvider.getUriForFile(main, BuildConfig.APPLICATION_ID + ".provider", originalApk);
-            if (Build.VERSION.SDK_INT <= 23) {
-                intent.setDataAndType(uri, "application/vnd.android.package-archive");
+                this.updateLog("apk repackaged");
+                this.updateProgress(95);
+                this.updateLog("installing apk");
+
+                copyObbDirectory(this.target, obb);
+                main.startActivityForResult(new Intent(Intent.ACTION_UNINSTALL_PACKAGE).setData(Uri.parse("package:" + target)), 5555);
             } else {
-                intent.setData(uri);
+                this.updateLog("apk repackaged");
+                this.updateStatus("finished");
+                FileUtils.deleteDirectory(apk);
+                this.updateProgress(100);
+                this.updateLog("installing apk");
+
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Uri uri = Build.VERSION.SDK_INT <= 23 ? Uri.fromFile(originalApk) : FileProvider.getUriForFile(main, BuildConfig.APPLICATION_ID + ".provider", originalApk);
+                if (Build.VERSION.SDK_INT <= 23) {
+                    intent.setDataAndType(uri, "application/vnd.android.package-archive");
+                } else {
+                    intent.setData(uri);
+                }
+                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                main.startActivityForResult(intent, REQUEST_INSTALL);
             }
-            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            main.startActivityForResult(intent, REQUEST_INSTALL);
 
             FileUtils.deleteDirectory(apk);
             p.post(() -> p.setVisibility(View.INVISIBLE));
@@ -162,19 +182,19 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
         return null;
     }
 
-    private void updateStatus(final String str) {
+   public void updateStatus(final String str) {
         this.status.post(() -> status.setText(str));
         this.updateLog(str);
     }
 
-    private void updateLog(final String str) {
+    public void updateLog(final String str) {
         this.log.post(() -> {
             log.append(str + "\r\n");
             Log.d("patch", str);
         });
     }
 
-    private void updateProgress(final int percent) {
+    public void updateProgress(final int percent) {
         this.progress.post(() -> progress.setProgress(percent));
     }
 }

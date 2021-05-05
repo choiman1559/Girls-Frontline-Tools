@@ -60,6 +60,7 @@ public class GFFragment extends Fragment {
         array.add("com.digitalsky.girlsfrontline.cn.bili (비리섭)");
         array.add("com.sunborn.girlsfrontline.en (글섭)");
         array.add("com.sunborn.girlsfrontline.jp (일섭)");
+        array.add("com.sunborn.girlsfrontline.cn (영사섭)");
         array.add("tw.txwy.and.snqx (대만섭)");
         array.add("kr.txwy.and.snqx (한섭)");
 
@@ -73,8 +74,6 @@ public class GFFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String Package = s.toString().split(" ")[0];
                 FeatureFragment fragment =  new FeatureFragment(Package);
-                fragment.setRetainInstance(true);
-
                 mContext.getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.FeatureFragment, fragment)
