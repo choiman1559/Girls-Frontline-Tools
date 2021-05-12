@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -94,6 +95,7 @@ public class IconChangeActivity extends AppCompatActivity {
         layout.setVisibility(View.GONE);
         progress.setVisibility(View.GONE);
         if(!BuildConfig.DEBUG) editName.setVisibility(View.GONE);
+        editName.setText(AppName);
 
         patchButton.setOnClickListener(v -> {
             if (ImageUri == null) selectImage();
@@ -146,8 +148,6 @@ public class IconChangeActivity extends AppCompatActivity {
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
-                //editName.setVisibility(View.VISIBLE);
-                editName.setText(AppName);
                 ImageUri = result.getUri();
                 imagePreview.setImageURI(ImageUri);
                 patchButton.setText(getString(R.string.run_patch));

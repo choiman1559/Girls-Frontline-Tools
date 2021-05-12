@@ -74,24 +74,7 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
             FileUtils.deleteDirectory(temp);
             temp.mkdir();
 
-            this.updateStatus("extracting obb");
-            final File obb = new File(temp.getAbsolutePath() + "/obb");
-            Log.d("obb", obb.toString());
-            obb.mkdir();
-
-            File originalObb = (new File(Global.Storage + "/Android/obb/" + this.target)).listFiles()[0];
-            Log.d("origin", originalObb.toString());
-            ZipFile zipFile = new ZipFile(originalObb);
-            zipFile.extractAll(obb.getAbsolutePath());
-            if (obb.listFiles() == null) {
-                this.updateLog("unknown error while extracting obb");
-            }
-
-            this.updateLog("obb extracted");
-            this.updateProgress(25);
-            this.updateStatus("patching obb");
-
-            zipFile = new ZipFile(originalObb);
+            ZipFile zipFile;
             ZipParameters parameters = new ZipParameters();
             if (level != null) {
                 Log.e("level", "compress level : " + level.getLevel());
@@ -100,20 +83,44 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
             } else parameters.setCompressionMethod(CompressionMethod.STORE);
             parameters.setOverrideExistingFilesInZip(true);
             parameters.setEncryptFiles(false);
-            originalObb.delete();
-            for (File f : obb.listFiles()) {
-                if (f.isFile()) {
-                    zipFile.addFile(f, parameters);
-                } else {
-                    zipFile.addFolder(f, parameters);
-                }
-            }
 
-            this.updateLog("patched obb");
-            this.updateStatus("cleaning up...");
-            FileUtils.deleteDirectory(obb);
-            this.updateProgress(50);
-            this.updateLog("replaced original obb");
+            final File obb = new File(temp.getAbsolutePath() + "/obb");
+            if(DecActivity.isOBBExists) {
+                this.updateStatus("extracting obb");
+                Log.d("obb", obb.toString());
+                obb.mkdir();
+
+                File originalObb = (new File(Global.Storage + "/Android/obb/" + this.target)).listFiles()[0];
+                Log.d("origin", originalObb.toString());
+                zipFile = new ZipFile(originalObb);
+                zipFile.extractAll(obb.getAbsolutePath());
+                if (obb.listFiles() == null) {
+                    this.updateLog("unknown error while extracting obb");
+                }
+
+                this.updateLog("obb extracted");
+                this.updateProgress(25);
+                this.updateStatus("patching obb");
+
+                zipFile = new ZipFile(originalObb);
+                originalObb.delete();
+                for (File f : obb.listFiles()) {
+                    if (f.isFile()) {
+                        zipFile.addFile(f, parameters);
+                    } else {
+                        zipFile.addFolder(f, parameters);
+                    }
+                }
+
+                this.updateLog("patched obb");
+                this.updateStatus("cleaning up...");
+                FileUtils.deleteDirectory(obb);
+                this.updateProgress(50);
+                this.updateLog("replaced original obb");
+            } else {
+                this.updateProgress(50);
+                this.updateLog("obb file not exists. skipping patching obb file.");
+            }
             this.updateStatus("extracting apk");
 
             File originalApk = new File(temp.getAbsolutePath() + "/base.apk");
@@ -148,7 +155,7 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
                 this.updateProgress(95);
                 this.updateLog("installing apk");
 
-                copyObbDirectory(this.target, obb);
+                if(DecActivity.isOBBExists) copyObbDirectory(this.target, obb);
                 main.startActivityForResult(new Intent(Intent.ACTION_UNINSTALL_PACKAGE).setData(Uri.parse("package:" + target)), 5555);
             } else {
                 this.updateLog("apk repackaged");

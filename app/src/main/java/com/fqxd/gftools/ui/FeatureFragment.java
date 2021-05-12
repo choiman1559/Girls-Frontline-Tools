@@ -3,7 +3,7 @@ package com.fqxd.gftools.ui;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +23,7 @@ import com.fqxd.gftools.features.icon.IconChangeActivity;
 import com.fqxd.gftools.features.proxy.ProxyActivity;
 import com.fqxd.gftools.features.rotation.RotationActivity;
 import com.fqxd.gftools.features.txtkr.TxtKrPatchActivity;
+import com.fqxd.gftools.features.txtkr.TxtKrPatchActivityLegecy;
 import com.google.android.material.card.MaterialCardView;
 
 public class FeatureFragment extends Fragment {
@@ -62,7 +63,7 @@ public class FeatureFragment extends Fragment {
             MaterialCardView TXT = view.findViewById(R.id.Button_TXT);
             MaterialCardView ROT = view.findViewById(R.id.Button_ROT);
 
-            if (Package.contains("txwy.and.snqx")) {
+            if (Package.contains("txwy.and.snqx") || Package.contains("cn.uc")) {
                 TXT.setVisibility(View.GONE);
             }
 
@@ -102,7 +103,8 @@ public class FeatureFragment extends Fragment {
                     break;
 
                 case R.id.Button_TXT:
-                    startActivity(TxtKrPatchActivity.class);
+                    if(Build.VERSION.SDK_INT > 29) startActivity(TxtKrPatchActivity.class);
+                    else startActivity(TxtKrPatchActivityLegecy.class);
             }
         }
     }

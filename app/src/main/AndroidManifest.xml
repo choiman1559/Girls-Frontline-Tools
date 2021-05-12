@@ -43,8 +43,8 @@
         android:supportsRtl="true"
         android:forceDarkAllowed="true"
         android:theme="@style/Theme.MaterialComponents.Light"
-        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
         android:requestLegacyExternalStorage="true"
+        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
         tools:replace="android:label,android:theme">
 
         <meta-data
@@ -75,6 +75,7 @@
         <activity android:name=".features.gfd.GFDActivity" />
         <activity android:name=".features.xduc.UCWebViewActivity"/>
         <activity android:name=".features.xduc.XDUCActivity"/>
+        <activity android:name=".features.txtkr.TxtKrPatchActivityLegecy"/>
         <activity android:name=".features.txtkr.TxtKrPatchActivity"/>
         <activity android:name=".ui.GFDownloadActivity"/>
 
@@ -146,12 +147,15 @@
             android:theme="@style/Theme.MaterialComponents.Light" />
         <activity
             android:name=".features.icon.IconChangeActivity"
-            android:theme="@style/Theme.AppCompat.Light.Dialog"/>
+            android:theme="@style/Theme.MaterialComponents.Light"/>
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name=".features.xapk.XapkActivity"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".features.cen.CenActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
             android:name=".features.noti.MessageSendClass"

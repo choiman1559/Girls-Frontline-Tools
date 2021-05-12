@@ -45,6 +45,7 @@ import java.text.MessageFormat;
 @SuppressWarnings("deprecation")
 public final class DecActivity extends AppCompatActivity {
     private static boolean isTaskRunning = false;
+    public static boolean isOBBExists = true;
     String pkg;
 
     @Override
@@ -102,6 +103,7 @@ public final class DecActivity extends AppCompatActivity {
         File obbDir = new File(Global.Storage + "/Android/obb/" + pkg + "/");
         File[] files = obbDir.listFiles((dir, name) -> name.endsWith(".obb"));
         if (files == null || files.length == 0) {
+            isOBBExists = false;
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.setMessage(R.string.info_no_obb);
             alert.setPositiveButton(Resources.getSystem().getText(android.R.string.ok), null);
@@ -157,8 +159,10 @@ public final class DecActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 5555) {
             File temp = getExternalFilesDir(null);
-            File obb = new File(temp.getAbsolutePath() + "/obb");
-            copyObbDirectory(pkg, obb);
+            if(isOBBExists) {
+                File obb = new File(temp.getAbsolutePath() + "/obb");
+                copyObbDirectory(pkg, obb);
+            }
 
             Intent intent = new Intent(Intent.ACTION_VIEW);
             File originalApk = new File(temp.getAbsolutePath() + "/signed.apk");

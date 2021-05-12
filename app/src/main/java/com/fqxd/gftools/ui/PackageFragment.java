@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,12 +23,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fqxd.gftools.Global;
+import com.fqxd.gftools.MainActivity;
 import com.fqxd.gftools.R;
 import com.fqxd.gftools.implement.AsyncTask;
 import com.google.android.material.button.MaterialButton;
@@ -185,15 +188,20 @@ public class PackageFragment extends Fragment {
 
                     case R.id.DeleteData:
                         AlertDialog.Builder b = new AlertDialog.Builder(mContext);
-                        String path = Global.Storage + "/Android/data/" + Package;
                         b.setTitle("삭제 확인");
                         b.setMessage("정말로 데이터를 전부 삭제하시겠습니까?");
                         b.setPositiveButton("삭제", (dialogInterface, i) -> {
-                            if (!new File(path).exists())
-                                Toast.makeText(mContext, "데이터를 찾을수 없습니다!", Toast.LENGTH_SHORT).show();
-                            else {
-                                deleteDir dd = new deleteDir(mContext, path, Package);
+                            if(Build.VERSION.SDK_INT > 29) {
+                                deleteDirAndroid11 dd = new deleteDirAndroid11(mContext, Package);
                                 dd.execute();
+                            } else {
+                                String path = Global.Storage + "/Android/data/" + Package;
+                                if (!new File(path).exists())
+                                    Toast.makeText(mContext, "데이터를 찾을수 없습니다!", Toast.LENGTH_SHORT).show();
+                                else {
+                                    deleteDirLegacy dd = new deleteDirLegacy(mContext, path, Package);
+                                    dd.execute();
+                                }
                             }
                         });
                         b.setNegativeButton("취소", (dialogInterface, i) -> { });
@@ -223,13 +231,62 @@ public class PackageFragment extends Fragment {
             }
         }
 
-        public class deleteDir extends AsyncTask<Void,Void,String> {
+        public class deleteDirAndroid11 extends AsyncTask<Void,Void,Integer> {
+            Activity main;
+            DocumentFile dirname = null;
+            String Package;
+            ProgressDialog progressDialog;
+
+            deleteDirAndroid11(Activity main, String Package) {
+                this.main = main;
+                this.Package = Package;
+                progressDialog = new ProgressDialog(this.main);
+            }
+
+            @Override
+            protected Integer doInBackground(Void... voids) {
+                for(DocumentFile file: MainActivity.DataFolder.listFiles()) {
+                    if(file.isDirectory() && file.getName().equals(Package)) {
+                        dirname = file;
+                        break;
+                    }
+                }
+
+                if (dirname == null || !dirname.exists()) {
+                    return -1;
+                } else {
+                    dirname.delete();
+                }
+                return 0;
+            }
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                progressDialog.setProgressStyle(R.style.Widget_AppCompat_ProgressBar_Horizontal);
+                progressDialog.setCancelable(false);
+                progressDialog.setMessage("Working...");
+                progressDialog.show();
+            }
+
+            @Override
+            protected void onPostExecute(Integer s) {
+                super.onPostExecute(s);
+                if(s == -1) Toast.makeText(mContext, "데이터를 찾을수 없습니다!", Toast.LENGTH_SHORT).show();
+                else {
+                    progressDialog.dismiss();
+                    Toast.makeText(main, "done", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+
+        public class deleteDirLegacy extends AsyncTask<Void,Void,String> {
             Activity main;
             String dirname;
             String Package;
             ProgressDialog progressDialog;
 
-            deleteDir(Activity main, String dirname, String Package) {
+            deleteDirLegacy(Activity main, String dirname, String Package) {
                 this.main = main;
                 this.dirname = dirname;
                 this.Package = Package;

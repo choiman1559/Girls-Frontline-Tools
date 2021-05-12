@@ -73,12 +73,14 @@ final class IconChangeTask extends AsyncTask {
     @Override
     protected Object doInBackground(Object[] objects) {
         try {
+            //TODO: implement Manifest edit code
+            /*
             if (BuildConfig.DEBUG) {
                 //Codes for change girls frontline's app_name
                 //stopping development cause Permission denied error when executing aapt
-                File aaptFolder = new File(main.getFilesDir().getAbsolutePath() + "/aapt/");
+                File aaptFolder = new File(main.getApplicationInfo().nativeLibraryDir);
                 if (!aaptFolder.exists()) aaptFolder.mkdirs();
-                File aapt = new File(aaptFolder.getPath() + "/aapt6-arm32");
+                File aapt = new File(aaptFolder.getPath() + "/aapt7.1");
                 if (!aapt.exists()) {
                     AssetManager assetManager = main.getResources().getAssets();
                     for (String f : assetManager.list("aapt")) {
@@ -90,10 +92,9 @@ final class IconChangeTask extends AsyncTask {
                         os.close();
                     }
                 }
-                aapt.setWritable(true);
-                aapt.setReadable(true);
                 aapt.setExecutable(true);
-                Process process = Runtime.getRuntime().exec("sh -c shell " + aapt.getAbsolutePath());
+                //Runtime.getRuntime().exec("chmod 777 " + aapt.getAbsolutePath()).waitFor();
+                Process process = Runtime.getRuntime().exec(aapt.getAbsolutePath() + " -?");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 String line;
                 while ((line = reader.readLine()) != null) {
@@ -101,6 +102,7 @@ final class IconChangeTask extends AsyncTask {
                 }
                 process.waitFor();
             }
+            */
 
             final ProgressBar p = this.main.findViewById(R.id.running);
             p.post(() -> p.setVisibility(View.VISIBLE));
@@ -131,12 +133,13 @@ final class IconChangeTask extends AsyncTask {
             this.updateStatus("adding icon file");
             this.updateProgress(50);
 
+            //TODO: implement Manifest edit code
+            //Codes for change girls frontline's app_name
+            //stopping development cause lack of technology for encoding android binary xml in android runtime
+            File base_xml = new File(apk.getAbsolutePath() + "/AndroidManifest.xml");
+            File edit_xml = new File(temp.getAbsolutePath() + "/AndroidManifest.xml");
+            File decode_xml = new File(temp.getAbsolutePath() + "/AndroidManifest_decoded.xml");
             if (BuildConfig.DEBUG) {
-                //Codes for change girls frontline's app_name
-                //stopping development cause lack of technology for encoding android binary xml in android runtime
-                File base_xml = new File(apk.getAbsolutePath() + "/AndroidManifest.xml");
-                File edit_xml = new File(temp.getAbsolutePath() + "/AndroidManifest.xml");
-                File decode_xml = new File(temp.getAbsolutePath() + "/AndroidManifest_decoded.xml");
                 FileUtils.copyFile(base_xml, edit_xml);
             }
 
@@ -171,9 +174,10 @@ final class IconChangeTask extends AsyncTask {
             convertedImage.delete();
 
             if(BuildConfig.DEBUG) {
+                //TODO: implement Manifest edit code
                 //Codes for change girls frontline's app_name
                 //stopping development cause lack of technology for encoding android binary xml in android runtime
-                /*
+                ///*
                 this.updateProgress(55);
                 this.updateStatus("editing app name");
 
@@ -186,7 +190,7 @@ final class IconChangeTask extends AsyncTask {
                 }
                 decode_xml.delete();
                 FileUtils.copyFile(edit_xml, base_xml);
-                */
+                //*/
             }
 
             this.updateProgress(60);
@@ -243,6 +247,7 @@ final class IconChangeTask extends AsyncTask {
     }
 
     @TestOnly
+    //TODO: implement Manifest edit code
     //Codes for change girls frontline's app_name
     //stopping development cause lack of technology for encoding android binary xml in android runtime
     private void editFileXmlTo(String string,File output, String ChangeLineTo) throws IOException {

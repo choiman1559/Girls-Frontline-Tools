@@ -22,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.Fragment;
 
 import android.Manifest;
@@ -40,17 +41,37 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class MainActivity extends AppCompatActivity {
     public static int REQUEST_ACTION_MANAGE_UNKNOWN_APP_SOURCES = 0x01;
+    public static DocumentFile DataFolder = null;
     BottomNavigationView bottomNavigationView;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG);
+        prefs = getSharedPreferences(Global.Prefs, MODE_PRIVATE);
+
+        if(!prefs.getString("DataUri", "").equals("")){
+            DataFolder = DocumentFile.fromTreeUri(this, Uri.parse(prefs.getString("DataUri", "")));
+        }
 
         if (Build.VERSION.SDK_INT >= 23 && checkStoragePermission()) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
-        } else init();
+        } else {
+            if(Build.VERSION.SDK_INT > 29 && (DataFolder == null || !DataFolder.exists())) {
+                new AlertDialog.Builder(this)
+                        .setTitle("툭수 접근 권한 안내")
+                        .setMessage("Android 11 이상에서 /Android/data 의 접근 권한을 설정해야 합니다.")
+                        .setNegativeButton("Cancel", (dialog, which) -> this.finish())
+                        .setPositiveButton("Grant", (dialog, which) -> {
+                            Intent intent = new Intent("android.intent.action.OPEN_DOCUMENT_TREE");
+                            intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+                            intent.putExtra("android.provider.extra.INITIAL_URI", Uri.parse("content://com.android.externalstorage.documents/tree/primary%3AAndroid%2Fdata/document/primary%3AAndroid%2Fdata"));
+                            startActivityForResult(intent, 42);
+                        }).setCancelable(false).show();
+            } else init();
+        }
     }
 
     @RequiresApi(23)
@@ -67,7 +88,18 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "저장용량 접근 권한이 없습니다!", Toast.LENGTH_SHORT).show();
             this.finish();
         } else {
-            init();
+            if(Build.VERSION.SDK_INT > 29 && (DataFolder == null || !DataFolder.exists())){
+                new AlertDialog.Builder(this)
+                        .setTitle("툭수 접근 권한 안내")
+                        .setMessage("Android 11 이상에서 /Android/data 의 접근 권한을 설정해야 합니다.")
+                        .setNegativeButton("Cancel", (dialog, which) -> this.finish())
+                        .setPositiveButton("Grant", (dialog, which) -> {
+                            Intent intent = new Intent("android.intent.action.OPEN_DOCUMENT_TREE");
+                            intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+                            intent.putExtra("android.provider.extra.INITIAL_URI", Uri.parse("content://com.android.externalstorage.documents/tree/primary%3AAndroid%2Fdata/document/primary%3AAndroid%2Fdata"));
+                            startActivityForResult(intent, 42);
+                        }).setCancelable(false).show();
+            } else init();
         }
     }
 
@@ -106,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment;
         switch (bottomNavigationView.getSelectedItemId()) {
             case R.id.packageManagerFragment:
-                fragment = new GFFragment();
+                fragment = new PackageFragment();
                 break;
 
             case R.id.modulesFragment:
@@ -154,6 +186,28 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1) {
            checkUpdate();
+        } else if(requestCode == 42) {
+            if(data.getData() != null) {
+                DataFolder = DocumentFile.fromTreeUri(this, data.getData());
+                if (Build.VERSION.SDK_INT > 29 && DataFolder.listFiles().length <= 0) {
+                    Toast.makeText(this, "Can't get /Android/data access permission!", Toast.LENGTH_SHORT).show();
+                    this.finish();
+                } else {
+                    String[] var = DataFolder.getUri().getPath().split("/");
+                    String foo = var[var.length - 1];
+                    if (foo.contains("data")) {
+                        prefs.edit().putString("DataUri", data.getData().toString()).apply();
+                        getContentResolver().takePersistableUriPermission(data.getData(), 0);
+                        init();
+                    } else {
+                        Toast.makeText(this, "Not valid path!", Toast.LENGTH_SHORT).show();
+                        this.finish();
+                    }
+                }
+            } else {
+                Toast.makeText(this, "Can't get /Android/data access permission!", Toast.LENGTH_SHORT).show();
+                this.finish();
+            }
         }
     }
 
