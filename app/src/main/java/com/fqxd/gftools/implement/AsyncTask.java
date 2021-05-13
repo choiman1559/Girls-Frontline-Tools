@@ -99,7 +99,7 @@ public abstract class AsyncTask<Params, Progress, Result> {
     static {
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
                 CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE_SECONDS, TimeUnit.SECONDS,
-                new SynchronousQueue<Runnable>(), sThreadFactory);
+                new SynchronousQueue<>(), sThreadFactory);
         threadPoolExecutor.setRejectedExecutionHandler(sRunOnSerialPolicy);
         THREAD_POOL_EXECUTOR = threadPoolExecutor;
     }
@@ -219,7 +219,6 @@ public abstract class AsyncTask<Params, Progress, Result> {
                 Result result = null;
                 try {
                     Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
-                    //noinspection unchecked
                     result = doInBackground(mParams);
                     Binder.flushPendingCommands();
                 } catch (Throwable tr) {
@@ -257,9 +256,8 @@ public abstract class AsyncTask<Params, Progress, Result> {
     }
 
     private Result postResult(Result result) {
-        @SuppressWarnings("unchecked")
         Message message = getHandler().obtainMessage(MESSAGE_POST_RESULT,
-                new AsyncTaskResult<Result>(this, result));
+                new AsyncTaskResult<>(this, result));
         message.sendToTarget();
         return result;
     }
@@ -495,6 +493,7 @@ public abstract class AsyncTask<Params, Progress, Result> {
      * @see #executeOnExecutor(java.util.concurrent.Executor, Object[])
      * @see #execute(Runnable)
      */
+    @SafeVarargs
     @MainThread
     public final AsyncTask<Params, Progress, Result> execute(Params... params) {
         return executeOnExecutor(sDefaultExecutor, params);

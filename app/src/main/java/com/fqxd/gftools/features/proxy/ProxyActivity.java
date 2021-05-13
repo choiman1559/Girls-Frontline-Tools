@@ -15,10 +15,7 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +27,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.R;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.checkbox.MaterialCheckBox;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,11 +61,11 @@ public class ProxyActivity extends AppCompatActivity {
         }
 
         @SuppressLint("UseSwitchCompatOrMaterialCode")
-        Switch Enabled = findViewById(R.id.proxy_toggle);
-        CheckBox Continuing = findViewById(R.id.proxy_continuing);
+        SwitchMaterial Enabled = findViewById(R.id.proxy_toggle);
+        MaterialCheckBox Continuing = findViewById(R.id.proxy_continuing);
         EditText Address = findViewById(R.id.proxy_address);
         EditText Port = findViewById(R.id.proxy_port);
-        ImageButton Add_Favorites = findViewById(R.id.add_favorites);
+        MaterialButton Add_Favorites = findViewById(R.id.add_favorites);
         RecyclerView Favorites = findViewById(R.id.favorites);
         FavoriteViewAdapter adapter = new FavoriteViewAdapter(list, this);
 

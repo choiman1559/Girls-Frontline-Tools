@@ -25,7 +25,7 @@
             android:textStyle="bold"
             android:textSize="16sp" />
 
-        <Switch
+        <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/proxy_toggle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             android:autofillHints="프록시 포트" />
 
 
-        <CheckBox
+        <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/proxy_continuing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,12 +70,14 @@
             android:text="프록시 즐겨찾기"
             android:textSize="16sp" />
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:layout_marginTop="10dp"
             android:id="@+id/add_favorites"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_baseline_add_24" />
+            app:iconGravity="textStart"
+            app:cornerRadius="17dp"
+            app:icon="@drawable/ic_baseline_add_24" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/favorites"

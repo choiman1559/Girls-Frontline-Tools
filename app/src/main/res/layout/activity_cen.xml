@@ -1,66 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="10dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp"
-    android:layout_marginEnd="10dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/PkgInfo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:gravity="center|bottom|end"
-            android:text="현재 상태 : "
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginTop="5dp"
-            android:textSize="30sp"
-            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="데이터 없음"
+            android:text="@string/target"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:hint="현재 상태 : "
+                android:text="데이터 없음"
+                android:editable="false"
+                android:focusable="false"
+                tools:ignore="Deprecated,HardcodedText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/centask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/run_patch"
+            android:textAllCaps="false"
+            app:cornerRadius="17dp"
+            app:rippleColor="@color/white"
+            app:icon="@drawable/ic_download_md2"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="TIP : 검열 해제 후에도 검열이 되어 있다면,\n데이터 파일을 다시 다운받아 보세요."
             tools:ignore="HardcodedText" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/PkgInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:text="@string/target" />
-
-    <Button
-        android:id="@+id/centask"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_marginTop="7dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/run_patch"
-        android:textAllCaps="false" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:text="TIP : 검열 해제 후에도 검열이 되어 있다면,\n데이터 파일을 다시 다운받아 보세요."
-        tools:ignore="HardcodedText" />
 
     <LinearLayout
         android:id="@+id/progressbarLayout"
@@ -68,6 +69,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
+        android:visibility="gone"
+        android:background="#FAFAFA"
         android:orientation="vertical">
 
         <ProgressBar
@@ -77,4 +80,4 @@
             android:layout_height="60dp"
             android:layout_gravity="center" />
     </LinearLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

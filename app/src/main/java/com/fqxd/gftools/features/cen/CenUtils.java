@@ -1,10 +1,6 @@
 package com.fqxd.gftools.features.cen;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.view.View;
-import android.widget.LinearLayout;
 
 import com.fqxd.gftools.global.Global;
 
@@ -53,26 +49,18 @@ public class CenUtils {
         return -1;
     }
 
-    protected static void checkRootAndRunTask(boolean istrue, String Package,LinearLayout layout,Activity activity) {
+    protected static int checkRootAndRunTask(boolean istrue, String Package) {
         try {
             if (isDataAvailable(Package)) {
-                layout.setVisibility(View.VISIBLE);
-                editTask(istrue,Package,layout,activity);
+                editTask(istrue, Package);
             } else {
-                AlertDialog.Builder ab = new AlertDialog.Builder(activity);
-                ab.setTitle("데이터 복사 에러!");
-                ab.setMessage("소전의 데이터를 다운로드 받은 후 다시 시도하세요.");
-                ab.setPositiveButton("OK", ((dialog, which) -> activity.finish()));
-                ab.show();
+                return -1;
             }
         } catch (Exception e) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setTitle("Error!").setMessage("Can't get Root permission! Please check if su is installed on your device and try again!");
-            builder.setPositiveButton("OK", (dialog, id) -> {
-            });
-            builder.create().show();
             e.printStackTrace();
+            return -2;
         }
+        return 0;
     }
 
     @SuppressLint("SdCardPath")
@@ -96,7 +84,7 @@ public class CenUtils {
         return value;
     }
 
-    private static void editTask(boolean istrue,String Package,LinearLayout layout,Activity activity) {
+    private static void editTask(boolean istrue, String Package) {
         try {
             if (!new File(Global.Storage + "/GF_Tool/").exists()) new File(Global.Storage + "/GF_Tool/").mkdir();
             else if (new File(Global.Storage + "/GF_Tool/newXML.xml").exists())
@@ -111,13 +99,13 @@ public class CenUtils {
             dos.close();
             p.waitFor();
 
-            Xmledit(istrue,Package,layout,activity);
+            Xmledit(istrue, Package);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private static void copyXml(String Package, LinearLayout layout, Activity activity) {
+    private static void copyXml(String Package) {
         try {
             Process p = Runtime.getRuntime().exec("su");
             DataOutputStream dos = new DataOutputStream(p.getOutputStream());
@@ -129,14 +117,12 @@ public class CenUtils {
             p.waitFor();
 
             new File(Global.Storage + "/GF_Tool/" + Package + ".v2.playerprefs.xml").delete();
-            layout.setVisibility(View.GONE);
-            activity.recreate();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private static void Xmledit(boolean istrue,String Package,LinearLayout layout,Activity activity) {
+    private static void Xmledit(boolean istrue, String Package) {
         final int cen = istrue ? 1 : 0;
 
         File newXml = new File(Global.Storage + "/GF_Tool/newXML.xml");
@@ -165,7 +151,7 @@ public class CenUtils {
 
             Xml.delete();
             newXml.renameTo(Xml);
-            copyXml(Package,layout,activity);
+            copyXml(Package);
 
         } catch (IOException e) {
             e.printStackTrace();

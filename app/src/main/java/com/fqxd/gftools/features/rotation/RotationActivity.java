@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +19,7 @@ import androidx.core.content.ContextCompat;
 
 import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.R;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import org.json.JSONObject;
 
@@ -28,15 +28,15 @@ public class RotationActivity extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rotation);
-        SharedPreferences preferences = getSharedPreferences(Global.Prefs, Context.MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(Global.Prefs, Context.MODE_PRIVATE);
         String Package = getIntent().getStringExtra("pkg");
-        Switch Enabled = findViewById(R.id.Enabled);
+        SwitchMaterial Enabled = findViewById(R.id.Enabled);
         TextView Target = findViewById(R.id.target);
 
         try {
             PackageManager pm = getPackageManager();
-            Target.setText("target : " + pm.getApplicationLabel(pm.getApplicationInfo(Package, PackageManager.GET_META_DATA)) + "\n(" + Package + ")");
-            Enabled.setChecked(new JSONObject(preferences.getString("RotationData","")).getBoolean(Package));
+            Target.setText(String.format("target : %s\n(%s)", pm.getApplicationLabel(pm.getApplicationInfo(Package, PackageManager.GET_META_DATA)), Package));
+            Enabled.setChecked(new JSONObject(prefs.getString("RotationData","")).getBoolean(Package));
         } catch (Exception e) {
             Enabled.setChecked(false);
         }
@@ -67,10 +67,10 @@ public class RotationActivity extends AppCompatActivity {
                             Enabled.setChecked(false);
                         }
                         else {
-                            String str = preferences.getString("RotationData","");
+                            String str = prefs.getString("RotationData","");
                             obj = str.equals("") ? new JSONObject() : new JSONObject(str);
                             obj.put(Package,isChecked);
-                            preferences.edit().putString("RotationData",obj.toString()).apply();
+                            prefs.edit().putString("RotationData",obj.toString()).apply();
                         }
                     }
                 }
