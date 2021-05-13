@@ -11,7 +11,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.fqxd.gftools.Global;
+import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.R;
 
 import org.json.JSONException;

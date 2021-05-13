@@ -5,13 +5,13 @@
     "kind": "Directory"
   },
   "applicationId": "com.fqxd.gftools",
-  "variantName": "release",
+  "variantName": "processReleaseResources",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 2020101,
-      "versionName": "2.1.1",
+      "versionCode": 2020200,
+      "versionName": "2.2.0",
       "outputFile": "app-release.apk"
     }
   ]

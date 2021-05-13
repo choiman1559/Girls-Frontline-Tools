@@ -5,12 +5,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -29,8 +27,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.fqxd.gftools.BuildConfig;
-import com.fqxd.gftools.Global;
-import com.fqxd.gftools.MainActivity;
+import com.fqxd.gftools.global.Global;
+import com.fqxd.gftools.ui.MainActivity;
 import com.fqxd.gftools.R;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
@@ -38,8 +36,6 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 import gun0912.tedbottompicker.TedBottomPicker;

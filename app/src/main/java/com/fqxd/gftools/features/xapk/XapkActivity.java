@@ -19,7 +19,7 @@ import androidx.core.content.FileProvider;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fqxd.gftools.BuildConfig;
-import com.fqxd.gftools.Global;
+import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.R;
 import com.nononsenseapps.filepicker.FilePickerActivity;
 import com.nononsenseapps.filepicker.Utils;
@@ -28,12 +28,8 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 

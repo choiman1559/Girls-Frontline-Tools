@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 
 import com.fqxd.gftools.BuildConfig;
-import com.fqxd.gftools.Global;
+import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.R;
 
 import net.lingala.zip4j.ZipFile;

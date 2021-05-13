@@ -28,7 +28,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fqxd.gftools.Global;
+import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.R;
 
 import org.json.JSONArray;

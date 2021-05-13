@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.fqxd.gftools.Global;
+import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.R;
 
 import java.io.IOException;

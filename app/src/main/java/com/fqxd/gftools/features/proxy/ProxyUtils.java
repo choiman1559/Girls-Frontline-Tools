@@ -7,14 +7,11 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.fqxd.gftools.Global;
+import com.fqxd.gftools.global.Global;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.DataOutputStream;
-import java.io.IOException;
 
 public class ProxyUtils {
     public static void setProxy(ProxyConfig r0,Context ctx) {

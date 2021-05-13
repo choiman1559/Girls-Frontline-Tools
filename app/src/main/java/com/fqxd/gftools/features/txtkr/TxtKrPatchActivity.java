@@ -10,7 +10,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.FileUtils;
 import android.provider.DocumentsContract;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +21,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.documentfile.provider.DocumentFile;
 
-import com.fqxd.gftools.MainActivity;
+import com.fqxd.gftools.ui.MainActivity;
 import com.fqxd.gftools.R;
 import com.fqxd.gftools.implement.AsyncTask;
 import com.google.android.material.textfield.TextInputEditText;
@@ -245,11 +244,20 @@ public class TxtKrPatchActivity extends AppCompatActivity {
 
         private DocumentFile findDocumentDir(String s, DocumentFile files, boolean isDirectory) {
             if(files != null) {
-                if(isDirectory) publishProgress(s);
-                for (DocumentFile file : files.listFiles()) {
-                    if(!isDirectory) publishProgress(s, file.getName());
-                    if ((isDirectory ? file.isDirectory() : file.isFile()) && file.getName().equals(s)) {
-                        return file;
+                DocumentFile[] list = files.listFiles();
+                if(isDirectory) {
+                    publishProgress(s);
+                    for (DocumentFile file : list) {
+                        if (file.isDirectory() && file.getName().equals(s)) {
+                            return file;
+                        }
+                    }
+                } else {
+                    for (int i = list.length - 1; i >= 0; i--) {
+                        publishProgress(s, list[i].getName());
+                        if (list[i].isFile() && list[i].getName().equals(s)) {
+                            return list[i];
+                        }
                     }
                 }
             }

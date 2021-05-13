@@ -1,14 +1,9 @@
 package com.fqxd.gftools.features.xapk;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Environment;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.fqxd.gftools.Global;
-import com.fqxd.gftools.MainActivity;
+import com.fqxd.gftools.global.Global;
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
 import com.nononsenseapps.filepicker.FilePickerActivity;
 import com.nononsenseapps.filepicker.FilePickerFragment;

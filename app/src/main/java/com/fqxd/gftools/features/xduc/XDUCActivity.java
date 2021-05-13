@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fqxd.gftools.R;
-import com.fqxd.gftools.ui.HomeFragment;
+import com.fqxd.gftools.ui.fragment.HomeFragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.xd.xdsdk.XDCallback;
@@ -189,5 +189,17 @@ public class XDUCActivity extends AppCompatActivity {
             XDSDK.initSDK(this, "a4d6xky5gt4c80s", 1, "AndroidChannel", "AndroidVersion", true);
             XDSDK.login();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        XDSDK.onResume(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        XDSDK.onStop(this);
     }
 }

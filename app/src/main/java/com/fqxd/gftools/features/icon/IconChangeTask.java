@@ -2,7 +2,6 @@ package com.fqxd.gftools.features.icon;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -16,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bigzhao.xml2axml.AxmlUtils;
 import com.fqxd.gftools.BuildConfig;
-import com.fqxd.gftools.Global;
+import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.R;
 
 import net.lingala.zip4j.ZipFile;
@@ -24,18 +23,13 @@ import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.model.enums.CompressionMethod;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtil;
 import org.jetbrains.annotations.TestOnly;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;

@@ -14,7 +14,7 @@ import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 
-import com.fqxd.gftools.DetectGFService;
+import com.fqxd.gftools.global.DetectGFService;
 
 public class RotationService extends Service {
     public static WindowManager windowManager;

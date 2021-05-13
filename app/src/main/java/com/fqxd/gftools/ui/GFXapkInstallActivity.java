@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import com.fqxd.gftools.BuildConfig;
-import com.fqxd.gftools.Global;
+import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.features.xapk.OBBextrack;
 import com.nononsenseapps.filepicker.Utils;
 

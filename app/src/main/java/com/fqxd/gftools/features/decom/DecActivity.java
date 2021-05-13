@@ -27,10 +27,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fqxd.gftools.BuildConfig;
-import com.fqxd.gftools.Global;
-import com.fqxd.gftools.MainActivity;
+import com.fqxd.gftools.global.Global;
+import com.fqxd.gftools.ui.MainActivity;
 import com.fqxd.gftools.R;
-import com.fqxd.gftools.implement.AsyncTask;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.checkbox.MaterialCheckBox;
 

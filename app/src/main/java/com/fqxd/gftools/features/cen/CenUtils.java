@@ -6,7 +6,7 @@ import android.app.AlertDialog;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.fqxd.gftools.Global;
+import com.fqxd.gftools.global.Global;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
