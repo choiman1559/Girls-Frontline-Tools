@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fqxd.gftools.R;
+import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.implement.AsyncTask;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -54,7 +55,7 @@ public class TxtKrPatchActivityLegecy extends AppCompatActivity {
         setContentView(R.layout.activity_txtkr);
         findViewById(R.id.Progress_Layout).setVisibility(View.VISIBLE);
         Package = getIntent().getStringExtra("pkg");
-        OriginalData = new File("Android/data/" + Package + "/files/Android/New");
+        OriginalData = new File(Global.Storage + "/Android/data/" + Package + "/files/Android/New/");
 
         if (isOnline()) {
             if (OriginalData.exists() && Objects.requireNonNull(OriginalData.list()).length > 0) {
@@ -62,7 +63,6 @@ public class TxtKrPatchActivityLegecy extends AppCompatActivity {
             } else {
                 showInternetDialog(this, "데이터 에셋 파일 없음", "소녀전선에서 데이터를 다운받은 후 재시도 바랍니다");
             }
-
         } else showInternetDialog(this, "인터넷 연결 없음", "인터넷 연결 확인후 재시도 바랍니다");
     }
 
@@ -83,7 +83,7 @@ public class TxtKrPatchActivityLegecy extends AppCompatActivity {
             Button download = context.findViewById(R.id.Button_RunTask);
             Button article = context.findViewById(R.id.Button_OpenArticle);
 
-            File OriginalJSONFile = new File(OriginalData.getAbsolutePath() + "files.json");
+            File OriginalJSONFile = new File(OriginalData.getAbsolutePath() + "/files.json");
             if (OriginalJSONFile.exists()) {
                 JSONObject OriginalJSON = new JSONObject(IOUtil.toString(new FileInputStream(OriginalJSONFile), "UTF-8"));
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault());
