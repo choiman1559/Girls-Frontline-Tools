@@ -40,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="input app name"
+            android:cursorVisible="false"
             android:maxLength="20"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>

@@ -1,5 +1,6 @@
 package com.fqxd.gftools.features.xapk;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -32,7 +33,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+@SuppressLint("StaticFieldLeak")
 public class XapkActivity extends AppCompatActivity {
 
     String apk;
@@ -69,7 +72,6 @@ public class XapkActivity extends AppCompatActivity {
         Log.d("Permission","Permission "+"\n"+ true);
         return true;
     }
-
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         progressDialog = new ProgressDialog(this);
@@ -203,7 +205,7 @@ public class XapkActivity extends AppCompatActivity {
         if (sourceLocation.isDirectory()) {
             if (!targetLocation.exists()) targetLocation.mkdir();
             String[] children = sourceLocation.list();
-            for (int i = 0; i < sourceLocation.listFiles().length; i++) {
+            for (int i = 0; i < Objects.requireNonNull(sourceLocation.listFiles()).length; i++) {
                 copyDirectory(new File(sourceLocation, children[i]), new File(targetLocation, children[i]));
             }
         } else FileUtils.copyFile(sourceLocation, targetLocation);

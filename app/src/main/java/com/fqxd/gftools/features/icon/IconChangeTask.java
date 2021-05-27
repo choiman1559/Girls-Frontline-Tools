@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bigzhao.xml2axml.AxmlUtils;
 import com.fqxd.gftools.BuildConfig;
 import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.R;
@@ -167,11 +166,11 @@ final class IconChangeTask extends AsyncTask {
             }
             convertedImage.delete();
 
+            /*
             if(BuildConfig.DEBUG) {
                 //TODO: implement Manifest edit code
                 //Codes for change girls frontline's app_name
                 //stopping development cause lack of technology for encoding android binary xml in android runtime
-                ///*
                 this.updateProgress(55);
                 this.updateStatus("editing app name");
 
@@ -184,8 +183,7 @@ final class IconChangeTask extends AsyncTask {
                 }
                 decode_xml.delete();
                 FileUtils.copyFile(edit_xml, base_xml);
-                //*/
-            }
+            }*/
 
             this.updateProgress(60);
             this.updateStatus("repacking apk file");

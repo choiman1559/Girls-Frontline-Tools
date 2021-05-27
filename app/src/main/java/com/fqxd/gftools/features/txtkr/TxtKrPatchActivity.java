@@ -1,5 +1,6 @@
 package com.fqxd.gftools.features.txtkr;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -63,6 +64,7 @@ public class TxtKrPatchActivity extends AppCompatActivity {
         new initDocumentFile( Package + "/files/Android/New", this).execute();
     }
 
+    @SuppressLint("SetTextI18n")
     private static void init(Activity context) {
         try {
             TextInputEditText LatestVersion = context.findViewById(R.id.latest_Version);
@@ -75,12 +77,10 @@ public class TxtKrPatchActivity extends AppCompatActivity {
                 if(!value.equals("")) {
                     JSONObject OriginalJSON = new JSONObject(value);
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault());
-
                     Date OriginalDate = dateFormat.parse(OriginalJSON.getString("update_time"));
                     Date LastUpdatedDate = dateFormat.parse(TranslatedDataJSON.getString("update_time"));
-
-                    if (OriginalDate != null && OriginalDate.compareTo(LastUpdatedDate) >= 0) {
-                        download.setEnabled(false);
+                    if(OriginalDate != null && OriginalDate.compareTo(LastUpdatedDate) >= 0) {
+                        download.setText("TEXTKR 재설치");
                     }
 
                     LatestVersion.setText(TranslatedDataJSON.getString("update_time"));

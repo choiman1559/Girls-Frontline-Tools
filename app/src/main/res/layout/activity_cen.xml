@@ -37,9 +37,9 @@
                 android:textSize="20sp"
                 android:hint="현재 상태 : "
                 android:text="데이터 없음"
-                android:editable="false"
+                android:inputType="none"
                 android:focusable="false"
-                tools:ignore="Deprecated,HardcodedText" />
+                tools:ignore="HardcodedText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton

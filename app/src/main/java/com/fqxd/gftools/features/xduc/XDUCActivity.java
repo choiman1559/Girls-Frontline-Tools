@@ -74,7 +74,7 @@ public class XDUCActivity extends AppCompatActivity {
                 String nickName = "Example1234";
                 long timestamp = object.getLong("time");
 
-                String sig = getBugReportSig(serverId, nickName, timestamp, appId, uId);
+                String sig = getBugReportSig(serverId, nickName, timestamp, appId, uId, uName);
                 String uri = "http://csapp.playcomet.com/index.php?appid=" + appId + "&s=" + serverId + "&uid=" + uId + "&uname=" + uName + "&nickname=" + nickName + "&sig=" + sig + "&time=" + timestamp + "&l=kr";
                 this.startActivity(new Intent(this, UCWebViewActivity.class).putExtra("uri", uri));
             } catch (Exception e) {
@@ -90,8 +90,8 @@ public class XDUCActivity extends AppCompatActivity {
                 .setTitle("Error!").setMessage(message).show();
     }
 
-    public static String getBugReportSig(String svrId, String nickname, long timestamp, String appid, String uid) {
-        String key = appid + '|' + svrId + '|' + uid + '|' + "g" + uid + '|' + nickname + "|sHtsFhdssDF";
+    public static String getBugReportSig(String svrId, String nickname, long timestamp, String appid, String uid, String uname) {
+        String key = appid + '|' + svrId + '|' + uid + '|' + uname + '|' + nickname + "|sHtsFhdssDF";
         return md5(md5(key) + timestamp);
     }
 

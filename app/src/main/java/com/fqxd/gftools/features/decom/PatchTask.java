@@ -1,6 +1,8 @@
 package com.fqxd.gftools.features.decom;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -24,6 +26,7 @@ import net.lingala.zip4j.model.enums.CompressionMethod;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
+import java.util.Objects;
 
 import com.fqxd.gftools.implement.AsyncTask;
 import com.kellinwood.security.zipsigner.ZipSigner;
@@ -34,7 +37,7 @@ import static com.fqxd.gftools.features.icon.IconChangeActivity.copyObbDirectory
 final class PatchTask extends AsyncTask<Runnable, Void, Void> {
 
     public static final int REQUEST_INSTALL = 0x00;
-    private final DecActivity main;
+    private final DecActivity context;
     private final TextView status;
     private final TextView log;
     private final ProgressBar progress;
@@ -43,8 +46,8 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
     private final String target;
     private final Boolean ifErr;
 
-    PatchTask(DecActivity main, TextView status, TextView log, ProgressBar progress, Boolean ifErr, @Nullable CompressionLevel level, String target) {
-        this.main = main;
+    PatchTask(DecActivity context, TextView status, TextView log, ProgressBar progress, Boolean ifErr, @Nullable CompressionLevel level, String target) {
+        this.context = context;
         this.status = status;
         this.log = log;
         this.progress = progress;
@@ -62,15 +65,15 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
     @Override
     protected Void doInBackground(Runnable[] runnable) {
         try {
-            final ProgressBar p = this.main.findViewById(R.id.running);
+            final ProgressBar p = this.context.findViewById(R.id.running);
             p.post(() -> p.setVisibility(View.VISIBLE));
             status.post(() -> status.setVisibility(View.VISIBLE));
 
             this.updateProgress(0);
-            this.updateLog(this.main.getString(R.string.info_patch_started));
+            this.updateLog(this.context.getString(R.string.info_patch_started));
             this.updateLog("Target: " + this.target);
 
-            File temp = this.main.getExternalFilesDir(null);
+            File temp = this.context.getExternalFilesDir(null);
             FileUtils.deleteDirectory(temp);
             temp.mkdir();
 
@@ -90,7 +93,7 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
                 Log.d("obb", obb.toString());
                 obb.mkdir();
 
-                File originalObb = (new File(Global.Storage + "/Android/obb/" + this.target)).listFiles()[0];
+                File originalObb = Objects.requireNonNull((new File(Global.Storage + "/Android/obb/" + this.target)).listFiles())[0];
                 Log.d("origin", originalObb.toString());
                 zipFile = new ZipFile(originalObb);
                 zipFile.extractAll(obb.getAbsolutePath());
@@ -124,7 +127,7 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
             this.updateStatus("extracting apk");
 
             File originalApk = new File(temp.getAbsolutePath() + "/base.apk");
-            FileUtils.copyFile(new File(this.main.getPackageManager().getPackageInfo(target, 0).applicationInfo.publicSourceDir), originalApk);
+            FileUtils.copyFile(new File(this.context.getPackageManager().getPackageInfo(target, 0).applicationInfo.publicSourceDir), originalApk);
             File apk = new File(temp.getAbsolutePath() + "/apk");
             zipFile = new ZipFile(originalApk);
             zipFile.extractAll(apk.getAbsolutePath());
@@ -132,7 +135,20 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
             this.updateLog("apk extracted");
             this.updateProgress(75);
             this.updateStatus("repackaging apk");
-            if(!ifErr) FileUtils.deleteDirectory(new File(apk.getAbsolutePath() + "/assets/bin/Data/Managed"));
+
+            if(!ifErr) {
+                File managedDir = new File(apk.getAbsolutePath() + "/assets/bin/Data/Managed");
+                if(managedDir.exists()) {
+                    FileUtils.deleteDirectory(managedDir);
+                } else {
+                    String message = "이미 압축해제가 적용된 APK 입니다!\n해당 클라이언트를 재설치후 다시 시도해 주십시오!";
+                    new AlertDialog.Builder(context)
+                            .setPositiveButton("OK", (dialog, which) -> {
+                                throw new RuntimeException(message);
+                            }).setTitle("Error!").setMessage(message).show();
+                }
+            }
+            
             for (File f : apk.listFiles()) {
                 Log.d("list", f.getAbsolutePath());
                 if (f.getName().equals("res")) continue;
@@ -156,7 +172,7 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
                 this.updateLog("installing apk");
 
                 if(DecActivity.isOBBExists) copyObbDirectory(this.target, obb);
-                main.startActivityForResult(new Intent(Intent.ACTION_UNINSTALL_PACKAGE).setData(Uri.parse("package:" + target)), 5555);
+                context.startActivityForResult(new Intent(Intent.ACTION_UNINSTALL_PACKAGE).setData(Uri.parse("package:" + target)), 5555);
             } else {
                 this.updateLog("apk repackaged");
                 this.updateStatus("finished");
@@ -165,20 +181,20 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
                 this.updateLog("installing apk");
 
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                Uri uri = Build.VERSION.SDK_INT <= 23 ? Uri.fromFile(originalApk) : FileProvider.getUriForFile(main, BuildConfig.APPLICATION_ID + ".provider", originalApk);
+                Uri uri = Build.VERSION.SDK_INT <= 23 ? Uri.fromFile(originalApk) : FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", originalApk);
                 if (Build.VERSION.SDK_INT <= 23) {
                     intent.setDataAndType(uri, "application/vnd.android.package-archive");
                 } else {
                     intent.setData(uri);
                 }
                 intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                main.startActivityForResult(intent, REQUEST_INSTALL);
+                context.startActivityForResult(intent, REQUEST_INSTALL);
             }
 
             FileUtils.deleteDirectory(apk);
             p.post(() -> p.setVisibility(View.INVISIBLE));
             status.post(() -> status.setVisibility(View.INVISIBLE));
-            ((Runnable) runnable[0]).run();
+            runnable[0].run();
             this.updateProgress(100);
             updateStatus("\n");
 

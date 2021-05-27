@@ -3,14 +3,19 @@
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8e67dd78f7e574fd77ab35fa7bf6deda/jetified-facebook-core-9.1.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e6972f63e1ee6508a76a59f3f26810b9/jetified-facebook-core-9.1.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8e67dd78f7e574fd77ab35fa7bf6deda/jetified-facebook-core-9.1.1/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8e67dd78f7e574fd77ab35fa7bf6deda/jetified-facebook-core-9.1.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-2/files-2.1/8e67dd78f7e574fd77ab35fa7bf6deda/jetified-facebook-core-9.1.1/res" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-2/files-2.1/efa3675c955141a5e31516cb42d71172/jetified-facebook-core-9.1.1/res" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/4aa5cdaa9187774e53132e30def5c94f/transformed/jetified-facebook-core-9.1.1/res" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/1095a68dae4f49b18465b554c9af0a06/transformed/jetified-facebook-core-9.1.1/res" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/a3e1c58f053bd950b83f3ad5af404da9/transformed/jetified-facebook-core-9.1.1/res" />
+      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/a3e1c58f053bd950b83f3ad5af404da9/transformed/jetified-facebook-core-9.1.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/a3e1c58f053bd950b83f3ad5af404da9/transformed/jetified-facebook-core-9.1.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-core/9.1.1/71bd0476c7d9b3e22dab444507c13fba1b6fc3f0/facebook-core-9.1.1-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-core/9.1.1/71bd0476c7d9b3e22dab444507c13fba1b6fc3f0/facebook-core-9.1.1-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-core/9.1.1/7bb21cc01baab9757480ab1f1cd9aec70c764dd3/facebook-core-9.1.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-core/9.1.1/7bb21cc01baab9757480ab1f1cd9aec70c764dd3/facebook-core-9.1.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

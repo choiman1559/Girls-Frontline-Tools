@@ -6,7 +6,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/XDSdkLib/GF_Tools.XDSdkLib.iml" filepath="$PROJECT_DIR$/.idea/modules/XDSdkLib/GF_Tools.XDSdkLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GF_Tools.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GF_Tools.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/xDSDKAndroid/GF_Tools.xDSDKAndroid.iml" filepath="$PROJECT_DIR$/.idea/modules/xDSDKAndroid/GF_Tools.xDSDKAndroid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/xml2axml/GF_Tools.xml2axml.iml" filepath="$PROJECT_DIR$/.idea/modules/xml2axml/GF_Tools.xml2axml.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/zipsigner/GF_Tools.zipsigner.iml" filepath="$PROJECT_DIR$/.idea/modules/zipsigner/GF_Tools.zipsigner.iml" />
     </modules>
   </component>

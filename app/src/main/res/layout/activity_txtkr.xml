@@ -30,9 +30,9 @@
                         android:gravity="center"
                         android:textSize="15sp"
                         android:hint="최신 TxtKR 버전"
-                        android:editable="false"
-                        android:focusable="false"
-                        tools:ignore="Deprecated" />
+                        android:cursorVisible="false"
+                        android:inputType="none"
+                        android:focusable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -47,10 +47,10 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:textSize="15sp"
+                        android:cursorVisible="false"
                         android:hint="현재 TxtKR 버전"
-                        android:editable="false"
-                        android:focusable="false"
-                        tools:ignore="Deprecated" />
+                        android:inputType="none"
+                        android:focusable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
