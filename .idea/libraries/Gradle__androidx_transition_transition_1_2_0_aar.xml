@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.transition:transition:1.2.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/d25824671c6ec8aca5ab0a6e5b911ff1/transformed/transition-1.2.0/annotations.zip!/" />
+      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/cc34926d3b226f7c98fd9dbabb6f6874/transformed/transition-1.2.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/d25824671c6ec8aca5ab0a6e5b911ff1/transformed/transition-1.2.0/res" />
-      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/d25824671c6ec8aca5ab0a6e5b911ff1/transformed/transition-1.2.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/d25824671c6ec8aca5ab0a6e5b911ff1/transformed/transition-1.2.0/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/cc34926d3b226f7c98fd9dbabb6f6874/transformed/transition-1.2.0/res" />
+      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/cc34926d3b226f7c98fd9dbabb6f6874/transformed/transition-1.2.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/cc34926d3b226f7c98fd9dbabb6f6874/transformed/transition-1.2.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.cardview:cardview:1.0.0@aar">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/14b2280a6656ec24b6fce41c026151c5/transformed/cardview-1.0.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/14b2280a6656ec24b6fce41c026151c5/transformed/cardview-1.0.0/AndroidManifest.xml" />
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/14b2280a6656ec24b6fce41c026151c5/transformed/cardview-1.0.0/res" />
+      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/2994984638ec9439b57cf474e5b5ab26/transformed/cardview-1.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/2994984638ec9439b57cf474e5b5ab26/transformed/cardview-1.0.0/res" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/2994984638ec9439b57cf474e5b5ab26/transformed/cardview-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

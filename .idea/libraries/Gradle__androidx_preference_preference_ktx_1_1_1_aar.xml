@@ -8,8 +8,9 @@
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/2a15a3e97ec1656f52fa8b26953ed957/transformed/jetified-preference-ktx-1.1.1/res" />
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/8ffa0cb64d233ea1cc35d61ad23fbcd3/transformed/jetified-preference-ktx-1.1.1/res" />
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/c47d5a2aea0a490897fc78d896b7365e/transformed/jetified-preference-ktx-1.1.1/res" />
-      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/c47d5a2aea0a490897fc78d896b7365e/transformed/jetified-preference-ktx-1.1.1/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/c47d5a2aea0a490897fc78d896b7365e/transformed/jetified-preference-ktx-1.1.1/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/11887a1c0cf90220bd6250d5ae760ecf/transformed/jetified-preference-ktx-1.1.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/11887a1c0cf90220bd6250d5ae760ecf/transformed/jetified-preference-ktx-1.1.1/res" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/11887a1c0cf90220bd6250d5ae760ecf/transformed/jetified-preference-ktx-1.1.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

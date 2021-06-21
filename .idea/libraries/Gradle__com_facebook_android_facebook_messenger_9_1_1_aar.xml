@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.facebook.android:facebook-messenger:9.1.1@aar">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/f650d151a126250851e3053d27d723d9/transformed/jetified-facebook-messenger-9.1.1/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/f650d151a126250851e3053d27d723d9/transformed/jetified-facebook-messenger-9.1.1/AndroidManifest.xml" />
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/f650d151a126250851e3053d27d723d9/transformed/jetified-facebook-messenger-9.1.1/res" />
+      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/4087ce9dca0fcd0a1f578c8d5b22005d/transformed/jetified-facebook-messenger-9.1.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/4087ce9dca0fcd0a1f578c8d5b22005d/transformed/jetified-facebook-messenger-9.1.1/res" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/4087ce9dca0fcd0a1f578c8d5b22005d/transformed/jetified-facebook-messenger-9.1.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-messenger/9.1.1/b0ad2bca4090182db3e99aa65f16ff2f9edf7eb3/facebook-messenger-9.1.1-javadoc.jar!/" />

@@ -8,8 +8,9 @@
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/669cc58f572f07b8db1d0afe685afa93/transformed/dynamicanimation-1.0.0/res" />
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/bca3f2f97f3be9ebad5af0b857d71ade/transformed/dynamicanimation-1.0.0/res" />
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/4f8799de27b834ec8c5482c9c762a497/transformed/dynamicanimation-1.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/4f8799de27b834ec8c5482c9c762a497/transformed/dynamicanimation-1.0.0/AndroidManifest.xml" />
-      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/4f8799de27b834ec8c5482c9c762a497/transformed/dynamicanimation-1.0.0/jars/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/948219c3d7e7ab34fe08997855e03b7c/transformed/dynamicanimation-1.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/948219c3d7e7ab34fe08997855e03b7c/transformed/dynamicanimation-1.0.0/res" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/948219c3d7e7ab34fe08997855e03b7c/transformed/dynamicanimation-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

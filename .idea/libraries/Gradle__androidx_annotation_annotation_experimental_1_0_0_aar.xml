@@ -8,8 +8,9 @@
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/10acbe0d9d834582def9a69ff933cd62/transformed/jetified-annotation-experimental-1.0.0/res" />
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/d27d84daf2aaba00b7f09201bb29ad45/transformed/jetified-annotation-experimental-1.0.0/res" />
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/66b598b1eae94177c5cf8100a0cc9886/transformed/jetified-annotation-experimental-1.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/66b598b1eae94177c5cf8100a0cc9886/transformed/jetified-annotation-experimental-1.0.0/AndroidManifest.xml" />
-      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/66b598b1eae94177c5cf8100a0cc9886/transformed/jetified-annotation-experimental-1.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/f2246fa0483da887c2713fa98b8784bc/transformed/jetified-annotation-experimental-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/f2246fa0483da887c2713fa98b8784bc/transformed/jetified-annotation-experimental-1.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/f2246fa0483da887c2713fa98b8784bc/transformed/jetified-annotation-experimental-1.0.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

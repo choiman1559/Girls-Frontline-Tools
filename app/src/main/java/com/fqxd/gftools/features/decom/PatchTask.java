@@ -2,7 +2,6 @@ package com.fqxd.gftools.features.decom;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -74,6 +73,8 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
             this.updateLog("Target: " + this.target);
 
             File temp = this.context.getExternalFilesDir(null);
+
+            assert temp != null;
             FileUtils.deleteDirectory(temp);
             temp.mkdir();
 
@@ -107,7 +108,7 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
 
                 zipFile = new ZipFile(originalObb);
                 originalObb.delete();
-                for (File f : obb.listFiles()) {
+                for (File f : Objects.requireNonNull(obb.listFiles())) {
                     if (f.isFile()) {
                         zipFile.addFile(f, parameters);
                     } else {
@@ -137,19 +138,26 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
             this.updateStatus("repackaging apk");
 
             if(!ifErr) {
-                File managedDir = new File(apk.getAbsolutePath() + "/assets/bin/Data/Managed");
+                File managedDir = new File(apk.getAbsolutePath() + "/assets/bin/Data/Managed/");
                 if(managedDir.exists()) {
-                    FileUtils.deleteDirectory(managedDir);
+                    //FileUtils.deleteDirectory(managedDir);
                 } else {
                     String message = "이미 압축해제가 적용된 APK 입니다!\n해당 클라이언트를 재설치후 다시 시도해 주십시오!";
                     new AlertDialog.Builder(context)
                             .setPositiveButton("OK", (dialog, which) -> {
                                 throw new RuntimeException(message);
                             }).setTitle("Error!").setMessage(message).show();
+                    p.post(() -> p.setVisibility(View.INVISIBLE));
+                    status.post(() -> status.setVisibility(View.INVISIBLE));
+
+                    runnable[0].run();
+                    this.updateProgress(100);
+                    updateStatus("\n");
+                    return null;
                 }
             }
             
-            for (File f : apk.listFiles()) {
+            for (File f : Objects.requireNonNull(apk.listFiles())) {
                 Log.d("list", f.getAbsolutePath());
                 if (f.getName().equals("res")) continue;
                 if (f.isFile()) {

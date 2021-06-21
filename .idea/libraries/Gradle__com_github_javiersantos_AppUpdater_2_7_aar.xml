@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.javiersantos:AppUpdater:2.7@aar">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/8a2847d690c130149a1a59d4cc6818e5/transformed/jetified-AppUpdater-2.7/res" />
-      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/8a2847d690c130149a1a59d4cc6818e5/transformed/jetified-AppUpdater-2.7/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/8a2847d690c130149a1a59d4cc6818e5/transformed/jetified-AppUpdater-2.7/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/60415704d959e52ef1c6839431c042cc/transformed/jetified-AppUpdater-2.7/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/60415704d959e52ef1c6839431c042cc/transformed/jetified-AppUpdater-2.7/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/60415704d959e52ef1c6839431c042cc/transformed/jetified-AppUpdater-2.7/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

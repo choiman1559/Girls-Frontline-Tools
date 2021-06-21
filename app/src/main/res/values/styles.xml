@@ -13,14 +13,6 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="FilePickerTheme" parent="NNF_BaseTheme">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">#24CD77</item>
-        <item name="nnf_list_item_divider">?android:attr/listDivider</item>
-        <item name="alertDialogTheme">@style/FilePickerAlertDialogTheme</item>
-    </style>
-
     <style name="FilePickerAlertDialogTheme" parent="Theme.AppCompat.Dialog.Alert">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

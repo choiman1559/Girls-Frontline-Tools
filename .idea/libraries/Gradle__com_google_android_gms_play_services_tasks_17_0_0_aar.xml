@@ -8,8 +8,9 @@
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/2d20d82fd2e7b30d3eb2d246ad188372/transformed/jetified-play-services-tasks-17.0.0/res" />
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/b0f292266bc1bd5fb012cfc45a186692/transformed/jetified-play-services-tasks-17.0.0/res" />
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/6d35f7b1764f72ecbdc476aae430a4de/transformed/jetified-play-services-tasks-17.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/6d35f7b1764f72ecbdc476aae430a4de/transformed/jetified-play-services-tasks-17.0.0/AndroidManifest.xml" />
-      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/6d35f7b1764f72ecbdc476aae430a4de/transformed/jetified-play-services-tasks-17.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/f581538fd1dd6a71d6fc8ad876fe4075/transformed/jetified-play-services-tasks-17.0.0/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/f581538fd1dd6a71d6fc8ad876fe4075/transformed/jetified-play-services-tasks-17.0.0/res" />
+      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/f581538fd1dd6a71d6fc8ad876fe4075/transformed/jetified-play-services-tasks-17.0.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -8,8 +8,9 @@
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/51d055ed22bbca946ad9cd9fd46e0a40/transformed/jetified-play-services-cloud-messaging-16.0.0/res" />
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/45e89647838e339d6249adfc8d6863e8/transformed/jetified-play-services-cloud-messaging-16.0.0/res" />
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/1651d664369a1e8f4b978e64a87fa073/transformed/jetified-play-services-cloud-messaging-16.0.0/res" />
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/1651d664369a1e8f4b978e64a87fa073/transformed/jetified-play-services-cloud-messaging-16.0.0/AndroidManifest.xml" />
-      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/1651d664369a1e8f4b978e64a87fa073/transformed/jetified-play-services-cloud-messaging-16.0.0/jars/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/a9bb174bb28bc95e11f07249bed3937b/transformed/jetified-play-services-cloud-messaging-16.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/a9bb174bb28bc95e11f07249bed3937b/transformed/jetified-play-services-cloud-messaging-16.0.0/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/a9bb174bb28bc95e11f07249bed3937b/transformed/jetified-play-services-cloud-messaging-16.0.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-cloud-messaging/16.0.0/66bcaa7ea2458690135561b6053cc71210dbd9dd/play-services-cloud-messaging-16.0.0-javadoc.jar!/" />

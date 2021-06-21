@@ -1,17 +1,26 @@
 package com.fqxd.gftools.features.noti;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.util.Linkify;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.application.isradeleon.notify.Notify;
+import com.fqxd.gftools.BuildConfig;
 import com.fqxd.gftools.global.Global;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -20,6 +29,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,18 +40,51 @@ import com.fqxd.gftools.R;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.text.MessageFormat;
+import java.util.Objects;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 public class NotiActivity extends AppCompatActivity{
 
-    private static final int RC_SIGN_IN = 100;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
+    private SharedPreferences prefs;
+    ActivityResultLauncher<Intent> startLoginComplete;
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_noti);
+        prefs = getSharedPreferences(Global.Prefs, MODE_PRIVATE);
+
+        ChipGroup select_Group = findViewById(R.id.select_group);
+        Chip select_Send = findViewById(R.id.select_send);
+        Chip select_Receive = findViewById(R.id.select_receive);
+
+        select_Send.setChecked(prefs.getString("notiMode", "").equals("send"));
+        select_Receive.setChecked(prefs.getString("notiMode", "").equals("receive"));
+
+        select_Group.setOnCheckedChangeListener((group, checkedId) -> {
+            switch(checkedId) {
+                case R.id.select_send:
+                    prefs.edit().putString("notiMode", "send").apply();
+                    break;
+
+                case R.id.select_receive:
+                    prefs.edit().putString("notiMode", "receive").apply();
+                    break;
+            }
+        });
+
+        startLoginComplete = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            GoogleSignInResult loginResult = Auth.GoogleSignInApi.getSignInResultFromIntent(result.getData());
+            if (loginResult != null && loginResult.isSuccess()) {
+                GoogleSignInAccount account = loginResult.getSignInAccount();
+                assert account != null;
+                firebaseAuthWithGoogle(account);
+            }
+        });
 
         switch (Global.getSHA1Hash(this)) {
             case "cf:61:36:5e:71:42:fa:21:7c:b5:5f:52:6d:e3:d9:06:57:f5:5e:01":
@@ -58,11 +102,6 @@ public class NotiActivity extends AppCompatActivity{
                 break;
         }
 
-        TextView HTU = findViewById(R.id.HTU);
-        Linkify.TransformFilter mTransform = (match, url) -> "";
-        Pattern pattern1 = Pattern.compile("플러그인");
-        Linkify.addLinks(HTU, pattern1, "https://github.com/choiman1559/GF-Tools-Noti-Plugin/releases",null,mTransform);
-
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -75,16 +114,54 @@ public class NotiActivity extends AppCompatActivity{
         final SwitchMaterial onoff = findViewById(R.id.NotiOnoff);
         final Button glogin = findViewById(R.id.glogin);
         final TextView guid = findViewById(R.id.guid);
+        final Button test = findViewById(R.id.testrun);
+
+        test.setVisibility(BuildConfig.DEBUG ? View.VISIBLE : View.GONE);
+        test.setOnClickListener(v -> Notify.create(this)
+                .setTitle("TestRun")
+                .setContent("Test Notification")
+                .setLargeIcon(R.drawable.gf_icon)
+                .circleLargeIcon()
+                .setImportance(Notify.NotificationImportance.MAX)
+                .setSmallIcon(R.drawable.start_xd)
+                .enableVibration(true)
+                .setAutoCancel(true)
+                .show());
 
         if (!prefs.getString("uid", "").equals(""))
             guid.setText(MessageFormat.format("Logined as {0}", mAuth.getCurrentUser().getEmail()));
         else guid.setVisibility(View.GONE);
 
+        TextView HTU = findViewById(R.id.HTU);
+        Linkify.TransformFilter mTransform = (match, url) -> "";
+        Pattern pattern1 = Pattern.compile("Noti Sender");
+        Linkify.addLinks(HTU, pattern1, "https://play.google.com/store/apps/details?id=com.noti.main",null,mTransform);
+
         onoff.setChecked(prefs.getBoolean("Enabled", false));
         onoff.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if(!getSharedPreferences(Global.Prefs, MODE_PRIVATE).getString("uid", "").equals(""))
-                FirebaseMessaging.getInstance().subscribeToTopic(getSharedPreferences(Global.Prefs, MODE_PRIVATE).getString("uid", ""));
-            prefs.edit().putBoolean("Enabled",onoff.isChecked()).apply();
+            if(!getSharedPreferences(Global.Prefs, MODE_PRIVATE).getString("uid", "").equals("")) {
+                if(select_Send.isChecked()) {
+                    if(onoff.isChecked() && Build.VERSION.SDK_INT > 28 && !Settings.canDrawOverlays(NotiActivity.this)) {
+                        Toast.makeText(NotiActivity.this, "이 기능을 사용하기 위해 다른 앱 위에 그리기 권한이 필요합니다!", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName())).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        onoff.setChecked(false);
+                    } else {
+                        Set<String> sets = NotificationManagerCompat.getEnabledListenerPackages(NotiActivity.this);
+                        if (sets.contains(getPackageName())) {
+                            FirebaseMessaging.getInstance().subscribeToTopic(Objects.requireNonNull(prefs.getString("uid", "")));
+                            prefs.edit().putBoolean("Enabled", onoff.isChecked()).apply();
+                        } else {
+                            Toast.makeText(NotiActivity.this, "이 기능을 사용하기 위해 알람 엑세스 권한이 필요합니다!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"));
+                            prefs.edit().putBoolean("Enabled", false).apply();
+                            onoff.setChecked(false);
+                        }
+                    }
+                } else if(select_Receive.isChecked()) {
+                    FirebaseMessaging.getInstance().subscribeToTopic(Objects.requireNonNull(prefs.getString("uid", "")));
+                    prefs.edit().putBoolean("Enabled", onoff.isChecked()).apply();
+                } else Toast.makeText(NotiActivity.this, "모드를 선택해 주세요", Toast.LENGTH_SHORT).show();
+            }
         });
 
         if (!prefs.getString("uid", "").equals("")) {
@@ -100,12 +177,12 @@ public class NotiActivity extends AppCompatActivity{
         glogin.setOnClickListener(v -> {
             if (prefs.getString("uid", "").equals("")) {
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-                startActivityForResult(signInIntent, RC_SIGN_IN);
-            } else signOut(onoff,prefs);
+                startLoginComplete.launch(signInIntent);
+            } else signOut(onoff);
         });
     }
 
-    public void signOut(SwitchMaterial onoff,SharedPreferences prefs) {
+    public void signOut(SwitchMaterial onoff) {
         mAuth.signOut();
         mGoogleSignInClient.signOut();
         NotiActivity.this.recreate();
@@ -114,18 +191,6 @@ public class NotiActivity extends AppCompatActivity{
         onoff.setChecked(false);
         onoff.setEnabled(false);
         prefs.edit().putBoolean("Enabled", false).apply();
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_SIGN_IN) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if (result.isSuccess()) {
-                GoogleSignInAccount account = result.getSignInAccount();
-                firebaseAuthWithGoogle(account);
-            }
-        }
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {

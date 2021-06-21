@@ -8,8 +8,9 @@
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/b037326220a0ea0fb37896f558c87a8e/transformed/jetified-facebook-gamingservices-9.1.1/res" />
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/347bfff11c2af8c07a1d97e6bf7f2415/transformed/jetified-facebook-gamingservices-9.1.1/res" />
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/30dfd532c15ccf6d0aab59fa46967721/transformed/jetified-facebook-gamingservices-9.1.1/res" />
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/30dfd532c15ccf6d0aab59fa46967721/transformed/jetified-facebook-gamingservices-9.1.1/AndroidManifest.xml" />
-      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/30dfd532c15ccf6d0aab59fa46967721/transformed/jetified-facebook-gamingservices-9.1.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/61c0ce89636318393b530cadc16a39ce/transformed/jetified-facebook-gamingservices-9.1.1/res" />
+      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/61c0ce89636318393b530cadc16a39ce/transformed/jetified-facebook-gamingservices-9.1.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/61c0ce89636318393b530cadc16a39ce/transformed/jetified-facebook-gamingservices-9.1.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-gamingservices/9.1.1/220642f0c7dc79c2faf3fbccc2d8a25236eace35/facebook-gamingservices-9.1.1-javadoc.jar!/" />

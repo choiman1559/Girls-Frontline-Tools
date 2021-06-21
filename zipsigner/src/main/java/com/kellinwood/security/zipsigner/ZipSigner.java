@@ -66,7 +66,7 @@ public class ZipSigner
 
     private boolean canceled = false;
 
-    private ProgressHelper progressHelper = new ProgressHelper();
+    private final ProgressHelper progressHelper = new ProgressHelper();
     private ResourceAdapter resourceAdapter = new DefaultResourceAdapter();
     
     static LoggerInterface log = null;
@@ -75,7 +75,7 @@ public class ZipSigner
     private static final String CERT_RSA_NAME = "META-INF/CERT.RSA";
 
     // Files matching this pattern are not copied to the output.
-    private static Pattern stripPattern =
+    private static final Pattern stripPattern =
         Pattern.compile("^META-INF/(.*)[.](SF|RSA|DSA)$");
 
     Map<String,KeySet> loadedKeys = new HashMap<String,KeySet>();

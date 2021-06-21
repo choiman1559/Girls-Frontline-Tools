@@ -17,39 +17,60 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.fqxd.gftools.features.xapk.FilePathUtil;
 import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.R;
 import com.fqxd.gftools.features.calculator.CalculatorActivity;
 import com.fqxd.gftools.features.gfd.GFDActivity;
 import com.fqxd.gftools.features.gfneko.GFNekoActivity;
 import com.fqxd.gftools.features.noti.NotiActivity;
-import com.fqxd.gftools.features.proxy.CAFilePicker;
 import com.fqxd.gftools.features.xapk.XapkActivity;
 import com.fqxd.gftools.features.xduc.XDUCActivity;
 import com.google.android.material.snackbar.Snackbar;
 
-import com.nononsenseapps.filepicker.FilePickerActivity;
-import com.nononsenseapps.filepicker.Utils;
-
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.util.Objects;
 
 import static android.app.Activity.RESULT_OK;
 
 public class HomeFragment extends Fragment {
+
     Activity context;
+    ActivityResultLauncher<Intent> startFileSelectedAction;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if(context instanceof Activity) this.context = (Activity) context;
         else throw new RuntimeException("Can't instanceof context to activity!");
+
+        startFileSelectedAction = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if(result.getResultCode() == RESULT_OK && result.getData().getData() != null && Objects.requireNonNull(result.getData().getData().getPath()).contains(".0")) {
+                Uri data = result.getData().getData();
+                File file = new File(Objects.requireNonNull(FilePathUtil.getPath(context, data)));
+                AlertDialog.Builder b = new AlertDialog.Builder(getContext());
+                b.setTitle("Notice");
+                b.setMessage("Do you want to Install?");
+                b.setPositiveButton("Yes", (dialogInterface, i) -> moveCA(file));
+                b.setNegativeButton("No", (dialogInterface, i) -> { });
+                b.create().show();
+            } else {
+                AlertDialog.Builder b = new AlertDialog.Builder(context);
+                b.setTitle("Error!");
+                b.setMessage("File not selected or file is not *.0 file!");
+                b.setPositiveButton("close", (dialog, which) -> {});
+                AlertDialog d = b.create();
+                d.show();
+            }
+        });
     }
 
     @Nullable
@@ -124,10 +145,10 @@ public class HomeFragment extends Fragment {
                                 }
                             }).setNegativeButton("취소", (dialog, which) -> { }).show();
                         } else {
-                            Intent i = new Intent(getContext(), CAFilePicker.class);
-                            i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,false);
-                            i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR,false);
-                            startActivityForResult(i, 5217);
+                            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                            intent.addCategory(Intent.CATEGORY_OPENABLE);
+                            intent.setType("application/octet-stream");
+                            startFileSelectedAction.launch(intent);
                         }
                     } catch (IOException | InterruptedException e) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -138,26 +159,6 @@ public class HomeFragment extends Fragment {
                     }
                     break;
             }
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 5217 && resultCode == RESULT_OK && data != null) {
-            List<Uri> files = Utils.getSelectedFilesFromResult(data);
-            File file = null;
-            for (Uri uri: files) {
-                file = Utils.getFileForUri(uri);
-            }
-
-            AlertDialog.Builder b = new AlertDialog.Builder(getContext());
-            b.setTitle("Notice");
-            b.setMessage("Do you want to Install?");
-            File finalFile = file;
-            b.setPositiveButton("Yes", (dialogInterface, i) -> moveCA(finalFile));
-            b.setNegativeButton("No", (dialogInterface, i) -> { });
-            b.create().show();
         }
     }
 

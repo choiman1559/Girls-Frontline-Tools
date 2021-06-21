@@ -8,8 +8,9 @@
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/6922c6d20cfb780b4d56007bf28eccbe/transformed/espresso-idling-resource-3.3.0/res" />
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/e7b2b6e6be6d008656aac4e96b4a649b/transformed/espresso-idling-resource-3.3.0/res" />
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/284decd67de8c2f9e6152308a558c79b/transformed/espresso-idling-resource-3.3.0/res" />
-      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/284decd67de8c2f9e6152308a558c79b/transformed/espresso-idling-resource-3.3.0/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/284decd67de8c2f9e6152308a558c79b/transformed/espresso-idling-resource-3.3.0/AndroidManifest.xml" />
+      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/f778c13cdbc5fabf2545396dcb1278e9/transformed/espresso-idling-resource-3.3.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/f778c13cdbc5fabf2545396dcb1278e9/transformed/espresso-idling-resource-3.3.0/res" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/f778c13cdbc5fabf2545396dcb1278e9/transformed/espresso-idling-resource-3.3.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/modules-2/files-2.1/androidx.test.espresso/espresso-idling-resource/3.3.0/ac774bb29e6171578dc7508bf390a4a3ccbedfea/espresso-idling-resource-3.3.0-javadoc.jar!/" />

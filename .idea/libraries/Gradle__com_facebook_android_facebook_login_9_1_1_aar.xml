@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.facebook.android:facebook-login:9.1.1@aar">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/ca6318865e4b93a49a09c4775ff918a5/transformed/jetified-facebook-login-9.1.1/res" />
-      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/ca6318865e4b93a49a09c4775ff918a5/transformed/jetified-facebook-login-9.1.1/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/ca6318865e4b93a49a09c4775ff918a5/transformed/jetified-facebook-login-9.1.1/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/bea51e440f77435395044ef898c9294d/transformed/jetified-facebook-login-9.1.1/res" />
+      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/bea51e440f77435395044ef898c9294d/transformed/jetified-facebook-login-9.1.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/bea51e440f77435395044ef898c9294d/transformed/jetified-facebook-login-9.1.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-login/9.1.1/7cea3cd3145d7bbe67e0d3e987c61dfc9532a1a4/facebook-login-9.1.1-javadoc.jar!/" />

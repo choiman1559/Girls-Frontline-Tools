@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
+        fragment.setRetainInstance(true);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment, fragment)

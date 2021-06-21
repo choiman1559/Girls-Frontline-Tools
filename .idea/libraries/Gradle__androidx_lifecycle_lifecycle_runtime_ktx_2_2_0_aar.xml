@@ -8,8 +8,9 @@
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/ab5e9c37ceb56246d244e5cfb7aec151/transformed/jetified-lifecycle-runtime-ktx-2.2.0/res" />
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/fe11cf3d7c69488d96805bc5bf3df1f6/transformed/jetified-lifecycle-runtime-ktx-2.2.0/res" />
       <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/895fd3fec28a4dd0a9e9f08c9ab2e47e/transformed/jetified-lifecycle-runtime-ktx-2.2.0/res" />
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/895fd3fec28a4dd0a9e9f08c9ab2e47e/transformed/jetified-lifecycle-runtime-ktx-2.2.0/AndroidManifest.xml" />
-      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/895fd3fec28a4dd0a9e9f08c9ab2e47e/transformed/jetified-lifecycle-runtime-ktx-2.2.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/8ed7e2fe5138b9c58a57acd2f5cc8ffd/transformed/jetified-lifecycle-runtime-ktx-2.2.0/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/8ed7e2fe5138b9c58a57acd2f5cc8ffd/transformed/jetified-lifecycle-runtime-ktx-2.2.0/res" />
+      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/8ed7e2fe5138b9c58a57acd2f5cc8ffd/transformed/jetified-lifecycle-runtime-ktx-2.2.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

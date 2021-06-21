@@ -78,7 +78,7 @@
                 android:gravity="center"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:text="Login via Google"
+                android:text="Login via Facebook"
                 android:textColor="@color/white"
                 app:cornerRadius="17dp"
                 app:icon="@drawable/ic_facebook"

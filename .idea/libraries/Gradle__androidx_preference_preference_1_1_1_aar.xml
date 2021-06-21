@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.preference:preference:1.1.1@aar">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/6583345c6e96df1f95a0c209be9b7709/transformed/preference-1.1.1/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/6583345c6e96df1f95a0c209be9b7709/transformed/preference-1.1.1/AndroidManifest.xml" />
-      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/6583345c6e96df1f95a0c209be9b7709/transformed/preference-1.1.1/res" />
+      <root url="jar://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/9dc61fa4213d8843f405b08ffff9dbe9/transformed/preference-1.1.1/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/9dc61fa4213d8843f405b08ffff9dbe9/transformed/preference-1.1.1/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../girlsfrontline-resources-extract-android/gradle/caches/transforms-3/9dc61fa4213d8843f405b08ffff9dbe9/transformed/preference-1.1.1/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

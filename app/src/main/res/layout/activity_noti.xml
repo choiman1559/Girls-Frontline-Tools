@@ -31,6 +31,43 @@
             android:layout_height="wrap_content"
             android:text="@string/guid" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/select_service"
+            android:textColor="@color/colorPrimary" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/select_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:chipSpacing="16dp"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:id="@+id/select_receive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:clickable="true"
+                android:text="@string/select_receive"
+                android:focusable="true" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:id="@+id/select_send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:clickable="true"
+                android:text="@string/select_send"
+                android:focusable="true" />
+
+        </com.google.android.material.chip.ChipGroup>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/glogin"
             android:layout_width="match_parent"
@@ -49,6 +86,24 @@
             app:icon="@drawable/googleg_standard_color_18"
             app:iconSize="20dp"
             app:rippleColor="@color/white" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/testrun"
+            android:layout_width="match_parent"
+            android:text="Test Run"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_height="50dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="@color/white"
+            app:cornerRadius="17dp"
+            app:iconSize="20dp"
+            app:rippleColor="@color/white"
+            tools:ignore="HardcodedText" />
 
         <ScrollView
             android:layout_width="match_parent"
