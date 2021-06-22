@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="globalBackground">#424242</color>
+    <color name="bottomNavBarBackground">#292929</color>
+    <color name="packageFragmentItemBackground">#757575</color>
+    <color name="bottomNavBarIcon">#e0e0e0</color>
+</resources>
