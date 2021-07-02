@@ -160,7 +160,10 @@ public class NotiActivity extends AppCompatActivity{
                 } else if(select_Receive.isChecked()) {
                     FirebaseMessaging.getInstance().subscribeToTopic(Objects.requireNonNull(prefs.getString("uid", "")));
                     prefs.edit().putBoolean("Enabled", onoff.isChecked()).apply();
-                } else Toast.makeText(NotiActivity.this, "모드를 선택해 주세요", Toast.LENGTH_SHORT).show();
+                } else {
+                    onoff.setChecked(false);
+                    Toast.makeText(NotiActivity.this, "모드를 선택해 주세요", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

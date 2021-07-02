@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="HardcodedText"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginStart="5dp"
-    android:layout_marginEnd="5dp"
     android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp">
+    android:layout_marginEnd="5dp"
+    android:layout_marginBottom="5dp"
+    tools:ignore="HardcodedText">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,38 +19,44 @@
             android:id="@+id/target"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginTop="15dp"
-            android:textStyle="bold"
-            android:textSize="16sp" />
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/proxy_toggle"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="자동 프록시 On/Off"
-            android:layout_marginTop="20dp"
-            android:background="#DBDBDB"
-            android:textSize="16sp"/>
+            android:background="@color/globalBackground"
+            android:layout_marginTop="20dp">
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/proxy_toggle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:text="자동 프록시 On/Off"
+                android:textSize="16sp" />
+        </LinearLayout>
 
         <EditText
-            android:layout_marginTop="15dp"
             android:id="@+id/proxy_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:autofillHints="프록시 주소"
             android:digits="0123456789."
-            android:inputType="numberDecimal"
             android:hint="프록시 주소"
-            android:autofillHints="프록시 주소" />
+            android:inputType="numberDecimal" />
 
         <EditText
             android:id="@+id/proxy_port"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:maxLength="5"
+            android:autofillHints="프록시 포트"
             android:hint="프록시 포트"
-            android:autofillHints="프록시 포트" />
+            android:inputType="numberDecimal"
+            android:maxLength="5" />
 
 
         <com.google.android.material.checkbox.MaterialCheckBox
@@ -64,27 +69,27 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginTop="25dp"
-            android:textStyle="bold"
+            android:gravity="center"
             android:text="프록시 즐겨찾기"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <com.google.android.material.button.MaterialButton
-            android:layout_marginTop="10dp"
             android:id="@+id/add_favorites"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:iconGravity="textStart"
+            android:layout_marginTop="10dp"
             app:cornerRadius="17dp"
-            app:icon="@drawable/ic_baseline_add_24" />
+            app:icon="@drawable/ic_baseline_add_24"
+            app:iconGravity="textStart" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/favorites"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

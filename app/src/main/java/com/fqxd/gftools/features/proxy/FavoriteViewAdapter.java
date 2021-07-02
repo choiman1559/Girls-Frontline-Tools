@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.R;
+import com.google.android.material.card.MaterialCardView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +30,7 @@ public class FavoriteViewAdapter extends RecyclerView.Adapter<FavoriteViewAdapte
     OnClickListener clickListener;
 
     public static class FavoriteViewHolder extends RecyclerView.ViewHolder {
+        protected MaterialCardView Layout;
         protected TextView Number;
         protected TextView Address;
         protected TextView Name;
@@ -38,6 +40,7 @@ public class FavoriteViewAdapter extends RecyclerView.Adapter<FavoriteViewAdapte
         public FavoriteViewHolder(View view) {
             super(view);
             this.Name = view.findViewById(R.id.proxy_name);
+            this.Layout = view.findViewById(R.id.layout);
             this.Number = view.findViewById(R.id.Number);
             this.Address = view.findViewById(R.id.proxy_address);
             this.Delete = view.findViewById(R.id.proxy_delete);
@@ -45,7 +48,7 @@ public class FavoriteViewAdapter extends RecyclerView.Adapter<FavoriteViewAdapte
         }
     }
 
-    public FavoriteViewAdapter(JSONArray list,Context context) {
+    public FavoriteViewAdapter(JSONArray list, Context context) {
         this.context = context;
         this.prefs = context.getSharedPreferences(Global.Prefs, Context.MODE_PRIVATE);
         this.list = list;
@@ -73,11 +76,11 @@ public class FavoriteViewAdapter extends RecyclerView.Adapter<FavoriteViewAdapte
 
             holder.Delete.setOnClickListener(v -> {
                 list.remove(position);
-                prefs.edit().putString("Favorite_proxy",list.toString()).apply();
+                prefs.edit().putString("Favorite_proxy", list.toString()).apply();
                 notifyItemChanged(position);
             });
 
-            holder.Number.setOnClickListener(v -> clickListener.onClick(address,port,name));
+            holder.Layout.setOnClickListener(v -> clickListener.onClick(address, port, name));
             holder.Edit.setOnClickListener(v -> {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 View view = LayoutInflater.from(context).inflate(R.layout.dialog_editfavoritesproxy, null, false);
@@ -96,8 +99,8 @@ public class FavoriteViewAdapter extends RecyclerView.Adapter<FavoriteViewAdapte
 
                 final AlertDialog dialog = builder.create();
                 submit.setOnClickListener(v2 -> {
-                    boolean Duplicate = ProxyActivity.isNameDuplicate(name_edit.getText().toString(),list);
-                    if(address_edit.getText().toString().equals("") ||
+                    boolean Duplicate = ProxyActivity.isNameDuplicate(name_edit.getText().toString(), list);
+                    if (address_edit.getText().toString().equals("") ||
                             port_edit.getText().toString().equals("") ||
                             Integer.parseInt(port_edit.getText().toString()) > 65535 ||
                             name_edit.getText().toString().equals("") ||
@@ -118,9 +121,9 @@ public class FavoriteViewAdapter extends RecyclerView.Adapter<FavoriteViewAdapte
                         try {
                             obj.put("name", name_edit.getText().toString());
                             obj.put("address", address_edit.getText().toString());
-                            obj.put("port",port_edit.getText().toString());
-                            list.put(position,obj);
-                            prefs.edit().putString("Favorite_proxy",list.toString()).apply();
+                            obj.put("port", port_edit.getText().toString());
+                            list.put(position, obj);
+                            prefs.edit().putString("Favorite_proxy", list.toString()).apply();
                             notifyItemChanged(position);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -130,7 +133,7 @@ public class FavoriteViewAdapter extends RecyclerView.Adapter<FavoriteViewAdapte
                     }
                 });
 
-                cancel.setOnClickListener( v2 -> dialog.dismiss());
+                cancel.setOnClickListener(v2 -> dialog.dismiss());
                 dialog.show();
             });
         } catch (JSONException e) {
@@ -138,12 +141,12 @@ public class FavoriteViewAdapter extends RecyclerView.Adapter<FavoriteViewAdapte
         }
     }
 
-    public interface OnClickListener{
-        void onClick(String Address,String Port,String Name);
+    public interface OnClickListener {
+        void onClick(String Address, String Port, String Name);
     }
 
-    public void setOnClickListener(OnClickListener listener){
-       clickListener = listener;
+    public void setOnClickListener(OnClickListener listener) {
+        clickListener = listener;
     }
 
     @Override
