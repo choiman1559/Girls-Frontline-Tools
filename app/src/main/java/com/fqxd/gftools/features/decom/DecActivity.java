@@ -40,6 +40,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.Objects;
 
 @SuppressWarnings("deprecation")
 public final class DecActivity extends AppCompatActivity {
@@ -177,7 +178,7 @@ public final class DecActivity extends AppCompatActivity {
 
         if (requestCode == 0x00) {
             try {
-                FileUtils.deleteDirectory(this.getExternalFilesDir(null));
+                FileUtils.deleteDirectory(Objects.requireNonNull(this.getExternalFilesDir(null)));
                 TextView status = findViewById(R.id.status);
                 ProgressBar progress = findViewById(R.id.progress);
                 status.setText("finished");

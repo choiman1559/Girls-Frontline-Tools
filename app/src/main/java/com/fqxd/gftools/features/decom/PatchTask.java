@@ -140,7 +140,7 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
             if(!ifErr) {
                 File managedDir = new File(apk.getAbsolutePath() + "/assets/bin/Data/Managed/");
                 if(managedDir.exists()) {
-                    //FileUtils.deleteDirectory(managedDir);
+                    FileUtils.deleteDirectory(managedDir);
                 } else {
                     String message = "이미 압축해제가 적용된 APK 입니다!\n해당 클라이언트를 재설치후 다시 시도해 주십시오!";
                     new AlertDialog.Builder(context)
