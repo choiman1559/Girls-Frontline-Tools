@@ -23,5 +23,5 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:textSize="20sp"
-        android:text="작업할 서버를 선택하세요." />
+        android:text="@string/SelectServer_Description" />
 </LinearLayout>

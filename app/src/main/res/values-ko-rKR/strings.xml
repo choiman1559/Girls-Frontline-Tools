@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="TXTKR_Download">TextKR 설치</string>
+    <string name="TXTKR_Update">TextKR 업데이트</string>
+    <string name="TXTKR_Article">TextKR 체인지 로그</string>
+
+    <string name="run_patch">패치 시작</string>
+    <string name="level_info">압축 레벨 설정</string>
+    <string name="level_min">속도 빠름</string>
+    <string name="level_max">용량 작음</string>
+    <string name="checkbox_err">설치/실행이 불가한경우 선택\n(패키지 서명, 재설치 필요)</string>
+    <string name="select_image">이미지 선택</string>
+    <string name="info_no_obb">obb 파일이 발견되지 않았습니다. obb 파일이 패치되지 않습니다. 일부 릴리스에는 obb 파일이 포함되어 있지 않습니다. 확실하지 않은 경우 소녀전선이 작동하는지 확인하고 작동하지 않으면 다시 설치하십시오.</string>
+
+    <string name="notification_enable">neko 실행중</string>
+    <string name="notification_disable">neko가 자고 있습니다.</string>
+    <string name="pref_cat_motion">설정</string>
+    <string name="pref_motion_enable_title">Neko 활성화</string>
+    <string name="pref_motion_enable_summary">Neko 하던지, 말던지.</string>
+    <string name="pref_motion_transparency_title">투명도</string>
+    <string name="pref_motion_transparency_summary">Neko 투명도 설정</string>
+    <string name="pref_motion_size_title">크기</string>
+    <string name="pref_motion_size_summary">Neko의 크기</string>
+    <string name="pref_motion_skin_title">스킨</string>
+    <string name="pref_motion_skin_summary">Neko의 스킨</string>
+    <string name="pref_skin_dialog_title">스킨</string>
+    <string name="msg_skin_load_failed">스킨을 불러오는데 실패함.</string>
+
+    <string name="Title_GFD">소전사전 Portable</string>
+    <string name="target">타겟</string>
+
+    <string name="b1">인형 제조 시간표</string>
+    <string name="b2">장비 제조 시간표</string>
+    <string name="b3">요정 제조 시간표 &amp; 제조식</string>
+    <string name="b4">군수지원 목록표</string>
+    <string name="b5">요정 특성표</string>
+    <string name="b6">인형 추천 제조식</string>
+    <string name="b7">장비 추천 제조식</string>
+    <string name="b8">군수지원 효율표</string>
+    <string name="b9">추천 레벨링 루트</string>
+    <string name="b10">초반 인형 육성 추천</string>
+    <string name="b11">소전사전 v2 설치/실행</string>
+    <string name="thx">special thanks to. URK96</string>
+
+    <string name="description">소전의 시작을 인식하는 기능(vpn 등) 을 사용하려면 필수적인 기능입니다.</string>
+    <string name="rotation_switch">자동 화면 세로 고정 On/Off</string>
+
+    <string name="noit_des">GF Tools Noti Plugin 으로부터 저장된 FireBase DB 정보를 불러와 실시간으로 알람을 표시합니다.</string>
+    <string name="noti_onoff">Service On/Off</string>
+    <string name="glogin">Google 에 로그아웃</string>
+    <string name="glogout">Google 에 로그인</string>
+    <string name="select_service">모드 선택</string>
+    <string name="select_send">서버 모드</string>
+    <string name="select_receive">클라이언트 모드</string>
+    <string name="guid">User Id : Unknown</string>
+    <string name="noti_HowToUse">
+        How-To-Use\n
+        \n\n1. 알람을 받고싶은 기기(클라이언트)와 소전 알람을 내보내는 기기(서버)에 소전툴즈를 설치한다.
+        \n\n2. 클라이언트와 서버 모두에서 소전툴즈를 실행해, "NOTI PLUGIN" 메뉴에 들어간 후, 구글에 로그인한다.
+        \n\n3. "모드 선택" 옵션에서 각 기기에 맞는 모드를 선택한다
+        \n\n4. 클라이언트와 서버 모두에서 "구글에 로그인/로그아웃" 버튼 위에 있는 이메일이 서로 동일한지 확인한다.
+        \n\n5. 클라이언트와 서버 모두에서 Service On/Off 스위치를 켠다.
+        \n\n6. 이제부터 서버에서 소전 알람이 올때마다 클라이언트에도 알람이 동일하게 올것이다. 이제 즐겨주자.
+        \n\n\n\n
+        모든 앱에 대해 알림을 미러링하고 싶나요?
+        \n그렇다면 Noti Sender 을 사용해 보세요.
+    </string>
+
+    <string name="setAccessibilityPermissionTitle">접근성 권한 설정</string>
+    <string name="setAccessibilityPermissionMessage">이 기능을 사용하려면 접근성 권한이 필요합니다</string>
+    <string name="Global_OK">확인</string>
+    <string name="Global_Cancel">취소</string>
+
+    <string name="Amazon_Info_Title">아마존 스토어 관련 안내</string>
+    <string name="Amazon_Info_Description">아마존 스토어에서 앱 다운시 일부 기능이 직동되지 않으며, 만약 해당 기능이 필요한 경우 Github 에서 다운로드 바랍니다.</string>
+
+    <string name="Permission_Xapk_Error">저장용량 접근 권한이 부여되었는지 확인 후 다시 시도하십시오!</string>
+    <string name="Permission_Special_Toast">저장용량 접근 권한이 없습니다!</string>
+    <string name="Permission_Special_Title">툭수 접근 권한 안내</string>
+    <string name="Permission_Special_Description">Android 11 이상에서 /Android/data 의 접근 권한을 설정해야 합니다.</string>
+
+    <string name="Update_Info_Title">업데이트 발견!</string>
+    <string name="Update_Info_Description">업데이트 후 앱 사용이 가능합니다!</string>
+    <string name="Update_Info_Button_OK">업데이트</string>
+    <string name="Update_Info_Button_NO">앱 종료</string>
+
+    <string name="Recommended_Spec_Title">안내</string>
+    <string name="Recommended_Spec_Description">이 앱은 다음 환경에 가장 최적화되어 있습니다 :\n
+ - Android 10 (AOSP, GSI)\n
+ - EAS Kernel (Linux 4.3+)\n
+ - Ram 3GB 이상\n
+ - 1080x2140 (403dpi)\n
+ - ARMv8a, x86_64\n
+ - Magisk 20.4+\n
+</string>
+    <string name="Recommended_Spec_OK">확인</string>
+    <string name="Recommended_Spec_Not_Remind">다시 보지 않기</string>
+
+    <string name="SelectServer">서버 선택</string>
+    <string name="SelectServer_Description">작업할 서버를 선택하세요.</string>
+</resources>

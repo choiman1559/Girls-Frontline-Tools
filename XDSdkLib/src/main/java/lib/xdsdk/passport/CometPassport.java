@@ -88,14 +88,14 @@ public class CometPassport {
     public void signWithGuest(final Activity activity) {
         int r6 = SPTools.getInt(activity, Constants.UID, 0);
         HashMap<String, Object> r8 = new HashMap<>();
-        r8.put("appid", urlencode("158714"));
+        r8.put("appid", urlEncode("158714"));
         r8.put("ver", 8);
         r8.put("time", System.currentTimeMillis() / 1000);
-        r8.put("fuid", urlencode("android_kr_snqx"));
-        r8.put("device_id", urlencode(getAndroidID(activity)));
+        r8.put("fuid", urlEncode("android_kr_snqx"));
+        r8.put("device_id", urlEncode(getAndroidID(activity)));
         r8.put("uid", r6);
         r8.put("autologin", "");
-        r8.put("device_token", urlencode(""));
+        r8.put("device_token", urlEncode(""));
 
         try {
             HttpUrlConnectionHelper.doPost(activity, String.format(Locale.CHINESE, "https://%s/%s/guest", "p.txwy.tw", "api2"), new HttpCallbackModelListener<Object>() {
@@ -131,12 +131,12 @@ public class CometPassport {
                 r6.put("appid", "158714");
                 r6.put("ver", 8);
                 r6.put("time", System.currentTimeMillis() / 1000);
-                r6.put("fbid", urlencode(FacebookUid));
-                r6.put("fuid", urlencode("android_kr_snqx"));
-                r6.put("device_id", urlencode(getAndroidID(activity)));
+                r6.put("fbid", urlEncode(FacebookUid));
+                r6.put("fuid", urlEncode("android_kr_snqx"));
+                r6.put("device_id", urlEncode(getAndroidID(activity)));
                 r6.put("binding", 1);
                 r6.put("accesstoken", "");
-                r6.put("fbappid", urlencode("1889637967990346"));
+                r6.put("fbappid", urlEncode("1889637967990346"));
                 r6.put("device_token", "");
                 HttpUrlConnectionHelper.doPost(activity, String.format(Locale.CHINESE, "https://%s/%s/fb", "p.17996api.com", "api2"), new HttpCallbackModelListener<Object>() {
                     @Override
@@ -158,18 +158,18 @@ public class CometPassport {
         }).start();
     }
 
-    public void guestbindingwithFacebook(final Activity activity) {
+    public void guestBindingWithFacebook(final Activity activity) {
         new Thread(() -> {
             try {
                 String r1 = SPTools.getString(activity, Constants.FACEBOOK_ID, "");
                 HashMap<String, Object> r9 = new HashMap<>();
-                r9.put("appid", urlencode("158714"));
+                r9.put("appid", urlEncode("158714"));
                 r9.put("ver",8);
                 r9.put("time", System.currentTimeMillis() / 1000);
-                r9.put("fuid", urlencode("android_kr_snqx"));
+                r9.put("fuid", urlEncode("android_kr_snqx"));
                 r9.put("uid", "");
-                r9.put("fid",urlencode(r1));
-                r9.put("device_id", urlencode(getAndroidID(activity)));
+                r9.put("fid", urlEncode(r1));
+                r9.put("device_id", urlEncode(getAndroidID(activity)));
                 HttpUrlConnectionHelper.doPost(activity, String.format(Locale.CHINESE, "https://%s/%s/guestbinding", "p.17996api.com", "api2"), new HttpCallbackModelListener<Object>() {
                     @Override
                     public void onFinish(Object obj) {
@@ -194,20 +194,20 @@ public class CometPassport {
         new Thread(() -> {
             try {
                 HashMap<String, Object> r8 = new HashMap<>();
-                r8.put("appid", urlencode("158714"));
+                r8.put("appid", urlEncode("158714"));
                 r8.put("ver", 8);
                 r8.put("time", System.currentTimeMillis() / 1000);
                 String r9 = id;
                 if (id.indexOf("@") == 0) {
                     r9 = id.substring(1);
                 }
-                r8.put("username", urlencode(r9));
-                r8.put("password", urlencode(pw));
-                r8.put("fuid", urlencode("android_kr_snqx"));
-                r8.put("device_id", urlencode(getAndroidID(activity)));
+                r8.put("username", urlEncode(r9));
+                r8.put("password", urlEncode(pw));
+                r8.put("fuid", urlEncode("android_kr_snqx"));
+                r8.put("device_id", urlEncode(getAndroidID(activity)));
                 r8.put("binding", 1);
-                r8.put("autologin", urlencode(""));
-                r8.put("device_token", urlencode(""));
+                r8.put("autologin", urlEncode(""));
+                r8.put("device_token", urlEncode(""));
                 HttpUrlConnectionHelper.doPost(activity, String.format(Locale.CHINESE, "https://%s/%s/signin", "p.17996api.com", "api2"), new HttpCallbackModelListener<Object>() {
                     @Override
                     public void onFinish(Object obj) {
@@ -237,19 +237,19 @@ public class CometPassport {
             String r3 = SPTools.getString(activity, Constants.GOOGLE_OPENID, "");
             String r9 = SPTools.getString(activity, Constants.GOOGLE_ID_TOKEN, "");
             HashMap<String, Object> r0 = new HashMap<>();
-            r0.put("id", urlencode(r3));
-            r0.put("appid", urlencode("158714"));
+            r0.put("id", urlEncode(r3));
+            r0.put("appid", urlEncode("158714"));
             r0.put("ver", 8);
             r0.put("time", System.currentTimeMillis() / 1000);
-            r0.put("email", urlencode(email));
-            r0.put("fuid", urlencode("android_kr_snqx"));
-            r0.put("device_id", urlencode(getAndroidID(activity)));
+            r0.put("email", urlEncode(email));
+            r0.put("fuid", urlEncode("android_kr_snqx"));
+            r0.put("device_id", urlEncode(getAndroidID(activity)));
             r0.put("binding", 1);
-            r0.put("isguest", urlencode("google"));
-            r0.put("device_token", urlencode(""));
-            r0.put("idToken", urlencode(r9));
+            r0.put("isguest", urlEncode("google"));
+            r0.put("device_token", urlEncode(""));
+            r0.put("idToken", urlEncode(r9));
             try {
-                HttpUrlConnectionHelper.doPost(activity, String.format(Locale.CHINESE, "http://%s/%s/google?", "p.17996api.com", "api2"), new HttpCallbackModelListener<Object>() {
+                HttpUrlConnectionHelper.doPost(activity, String.format(Locale.CHINESE, "https://%s/%s/google?", "p.17996api.com", "api2"), new HttpCallbackModelListener<Object>() {
                     @Override
                     public void onFinish(Object obj) {
                         if ((obj instanceof JSONObject)) {
@@ -269,22 +269,22 @@ public class CometPassport {
         }).start();
     }
 
-    protected void guestbindingwithGoogle(final Activity activity, String email) {
+    protected void guestBindingWithGoogle(final Activity activity, String email) {
         new Thread(() -> {
             try {
                 String r3 = SPTools.getString(activity, Constants.GOOGLE_OPENID, "");
                 String r4 = SPTools.getString(activity, Constants.GOOGLE_ID_TOKEN, "");
                 int r6 = SPTools.getInt(activity, Constants.UID, 0);
                 HashMap<String, Object> r9 = new HashMap<>();
-                r9.put("appid", urlencode("158714"));
+                r9.put("appid", urlEncode("158714"));
                 r9.put("ver", 8);
                 r9.put("time", System.currentTimeMillis() / 1000);
-                r9.put(Scopes.OPEN_ID, urlencode(r3) + "");
+                r9.put(Scopes.OPEN_ID, urlEncode(r3) + "");
                 r9.put("uid", r6);
-                r9.put("fuid", urlencode("android_kr_snqx"));
-                r9.put("device_id", urlencode(getAndroidID(activity)));
-                r9.put("email", urlencode(email));
-                r9.put("idToken", urlencode(r4));
+                r9.put("fuid", urlEncode("android_kr_snqx"));
+                r9.put("device_id", urlEncode(getAndroidID(activity)));
+                r9.put("email", urlEncode(email));
+                r9.put("idToken", urlEncode(r4));
                 HttpUrlConnectionHelper.doPost(activity, String.format(Locale.CHINESE, "https://%s/%s/guestbindgoogle2", "p.17996api.com", "api2"), new HttpCallbackModelListener<Object>() {
 
                     @Override
@@ -349,7 +349,7 @@ public class CometPassport {
         activity.getSharedPreferences(SPTools.FILE_NAME, Context.MODE_PRIVATE).edit().clear().apply();
     }
 
-    public static String urlencode(String str) {
+    public static String urlEncode(String str) {
         if (str == null) {
             return "";
         }
@@ -362,7 +362,7 @@ public class CometPassport {
         }
     }
 
-    public static String urldecode(String str) {
+    public static String urlDecode(String str) {
         if (str == null) {
             return "";
         }

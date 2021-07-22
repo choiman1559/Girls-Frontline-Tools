@@ -43,9 +43,9 @@ final class IconChangeTask extends AsyncTask {
     private final TextView status;
     private final TextView log;
     private final ProgressBar progress;
-    private String target;
-    private String CName;
-    private File imageFile;
+    private final String target;
+    private final String CName;
+    private final File imageFile;
 
     IconChangeTask(AppCompatActivity main, TextView status, TextView log, ProgressBar progress, String target, File imageFile, String CName) {
         this.main = main;

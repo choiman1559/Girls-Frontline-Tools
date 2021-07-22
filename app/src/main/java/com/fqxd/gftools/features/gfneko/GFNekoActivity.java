@@ -15,6 +15,8 @@ import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.R;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class GFNekoActivity extends AppCompatActivity {
   @Override
@@ -22,7 +24,7 @@ public class GFNekoActivity extends AppCompatActivity {
     super.onCreate(savedState);
     setContentView(R.layout.activity_neko);
     getSupportFragmentManager()
-            .beginTransaction()
+            .beginTransaction()  
             .replace(R.id.neko_prefs, new SettingsFragment(GFNekoActivity.this))
             .commitNowAllowingStateLoss();
   }
@@ -30,7 +32,9 @@ public class GFNekoActivity extends AppCompatActivity {
   public static class SettingsFragment extends PreferenceFragmentCompat {
     Context context;
 
-    SettingsFragment(Context context) { this.context = context; }
+    SettingsFragment(Context context) {
+      this.context = context;
+    }
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -39,65 +43,38 @@ public class GFNekoActivity extends AppCompatActivity {
       Preference Service_Enable = findPreference(AnimationService.PREF_KEY_ENABLE);
       ListPreference Skin = findPreference("motion.skin");
 
+      assert Service_Enable != null;
       Service_Enable.setOnPreferenceChangeListener((preference, newValue) -> {
-        if((Boolean)newValue) startAnimationService();
+        if ((Boolean) newValue) startAnimationService();
         return true;
       });
 
+      assert Skin != null;
       Skin.setEntries(getEntries("IDW the Many"));
       Skin.setEntryValues(getEntries(""));
-      if(Skin.getEntries().length < 2) Skin.setValueIndex(0);
-      if(prefs.getBoolean(Service_Enable.getKey(),false)) startAnimationService();
+      if (Skin.getEntries().length < 2) Skin.setValueIndex(0);
+      if (prefs.getBoolean(Service_Enable.getKey(), false)) startAnimationService();
     }
 
     private void startAnimationService() {
-      SharedPreferences.Editor edit = context.getSharedPreferences(Global.Prefs,MODE_PRIVATE).edit();
+      SharedPreferences.Editor edit = context.getSharedPreferences(Global.Prefs, MODE_PRIVATE).edit();
       edit.putBoolean(AnimationService.PREF_KEY_VISIBLE, true).apply();
       context.startService(new Intent(context, AnimationService.class).setAction(AnimationService.ACTION_START));
     }
 
-    private boolean isXMLContain(File dir) {
-      if(dir.isDirectory()) {
-        for(File file : dir.listFiles()) {
-          String name = file.getName();
-          if (name.substring(name.lastIndexOf(".") + 1).equals("xml")) {
-                return true;
-          }
-        }
-      }
-      return false;
-    }
-
-    private int checkFiles(){
-      String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/GF_Tool/skins/";
-      int count = 1;
-
-      if(new File(dir).exists()) {
-        for(File skinDir : new File(dir).listFiles()) {
-          if(!skinDir.isDirectory()) {
-            count -= 1;
-            continue;
-          }
-          if(!isXMLContain(skinDir)) count -= 1;
-        }
-      }
-      return count;
-    }
-
     private CharSequence[] getEntries(String PreValue) {
-      String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/GF_Tool/skins/";
-      CharSequence[] list = new CharSequence[new File(dir).exists() ? new File(dir).listFiles().length + checkFiles(): 1];
-      list[0] = PreValue;
-      int count = 1;
+      String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/GFNeko/skins/";
+      ArrayList<String> list = new ArrayList<>();
+      list.add(PreValue);
 
-      if(new File(dir).exists()) {
-        for (File skinObj : new File(dir).listFiles()) {
+      if (new File(dir).exists()) {
+        for (File skinObj : Objects.requireNonNull(new File(dir).listFiles())) {
           if (skinObj.isDirectory()) {
-            for (File files : skinObj.listFiles()) {
-              if(files.isFile()) {
+            for (File files : Objects.requireNonNull(skinObj.listFiles())) {
+              if (files.isFile()) {
                 String name = files.getName();
                 if (name.substring(name.lastIndexOf(".") + 1).equals("xml")) {
-                  list[count++] = files.getAbsolutePath().replace(dir, "");
+                  list.add(files.getAbsolutePath().replace(dir, ""));
                   break;
                 }
               }
@@ -105,7 +82,12 @@ public class GFNekoActivity extends AppCompatActivity {
           }
         }
       }
-      return list;
+
+      CharSequence[] listChar = new CharSequence[list.size()];
+      for (int i = 0; i < list.size(); i++) {
+        listChar[i] = list.get(i);
+      }
+      return listChar;
     }
   }
 }

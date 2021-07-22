@@ -83,6 +83,7 @@ public class DetectGFService extends AccessibilityService {
         ArrayList<String> PackageNames = new ArrayList<>();
         PackageNames.add(getString(R.string.target_cn_uc));
         PackageNames.add(getString(R.string.target_cn_bili));
+        PackageNames.add(getString(R.string.target_cn));
         PackageNames.add(getString(R.string.target_en));
         PackageNames.add(getString(R.string.target_jp));
         PackageNames.add(getString(R.string.target_tw));

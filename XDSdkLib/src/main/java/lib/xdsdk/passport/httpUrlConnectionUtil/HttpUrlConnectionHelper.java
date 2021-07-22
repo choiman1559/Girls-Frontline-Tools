@@ -39,8 +39,8 @@ import lib.xdsdk.passport.CustomDeviceIdHelper;
 import lib.xdsdk.passport.SPTools;
 import lib.xdsdk.passport.httpUrlConnectionUtil.callback.HttpCallbackModelListener;
 
-import static lib.xdsdk.passport.CometPassport.urldecode;
-import static lib.xdsdk.passport.CometPassport.urlencode;
+import static lib.xdsdk.passport.CometPassport.urlDecode;
+import static lib.xdsdk.passport.CometPassport.urlEncode;
 import static lib.xdsdk.passport.httpUrlConnectionUtil.Key.STRING_CHARSET_NAME;
 
 public class HttpUrlConnectionHelper {
@@ -83,7 +83,7 @@ public class HttpUrlConnectionHelper {
         DisplayMetrics r1 = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(r1);
         CustomDeviceIdHelper.saveCustomDeviceId(activity);
-        return String.format(Locale.CHINESE, "%s&fbl=%s&os=%s&dev=%s&cpu=%s&men=%s&appver=%s&buildnumber=%s&sys=%s&adid=%s&platform=%s&l=%s&guid=%s", str, urlencode(String.format(Locale.CHINESE, "%d_%d", r1.widthPixels, r1.heightPixels)), urlencode(String.format(Locale.CHINESE, "%s(%s)", Build.VERSION.RELEASE, Build.VERSION.CODENAME)), urlencode(String.format(Locale.CHINESE, "%s", Build.MODEL)), urlencode(String.format(Locale.CHINESE, "%s", Build.CPU_ABI)), 0, urlencode(String.format(Locale.CHINESE, "%s", "2.0700_292")), urlencode(String.format(Locale.CHINESE, "%s", Integer.valueOf("292"))), urlencode("android"), urlencode(AdvertisingIdClient.getAdvertisingIdInfo(activity.getApplicationContext()).getId()), urlencode("txwy"), urldecode(urlencode("kr")), urlencode(SPTools.getString(activity, Constants.CUSTOM_DEVICE_ID, "")));
+        return String.format(Locale.CHINESE, "%s&fbl=%s&os=%s&dev=%s&cpu=%s&men=%s&appver=%s&buildnumber=%s&sys=%s&adid=%s&platform=%s&l=%s&guid=%s", str, urlEncode(String.format(Locale.CHINESE, "%d_%d", r1.widthPixels, r1.heightPixels)), urlEncode(String.format(Locale.CHINESE, "%s(%s)", Build.VERSION.RELEASE, Build.VERSION.CODENAME)), urlEncode(String.format(Locale.CHINESE, "%s", Build.MODEL)), urlEncode(String.format(Locale.CHINESE, "%s", Build.CPU_ABI)), 0, urlEncode(String.format(Locale.CHINESE, "%s", "2.0700_292")), urlEncode(String.format(Locale.CHINESE, "%s", Integer.valueOf("292"))), urlEncode("android"), urlEncode(AdvertisingIdClient.getAdvertisingIdInfo(activity.getApplicationContext()).getId()), urlEncode("txwy"), urlDecode(urlEncode("kr")), urlEncode(SPTools.getString(activity, Constants.CUSTOM_DEVICE_ID, "")));
     }
 
     public static void doPost(final Activity activity, final String str, final HttpCallbackModelListener<Object> httpCallbackModelListener, Map<String, Object> map) throws GooglePlayServicesNotAvailableException, IOException, GooglePlayServicesRepairableException {

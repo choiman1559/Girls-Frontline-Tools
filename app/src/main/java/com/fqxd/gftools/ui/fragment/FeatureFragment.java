@@ -3,6 +3,7 @@ package com.fqxd.gftools.ui.fragment;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
@@ -24,6 +26,7 @@ import com.fqxd.gftools.features.proxy.ProxyActivity;
 import com.fqxd.gftools.features.rotation.RotationActivity;
 import com.fqxd.gftools.features.txtkr.TxtKrPatchActivity;
 import com.fqxd.gftools.features.txtkr.TxtKrPatchActivityLegecy;
+import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.ui.GFDownloadActivity;
 import com.google.android.material.card.MaterialCardView;
 
@@ -84,11 +87,29 @@ public class FeatureFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.Button_DEC:
-                    startActivity(DecActivity.class);
+                    if(Global.isAmazonBuild) {
+                        new AlertDialog.Builder(mContext)
+                                .setTitle("아마존 스토어 관련 안내")
+                                .setMessage("아마존 스토어에서 앱 다운시 이 기능이 직동되지 않으며, 만약 해당 기능이 필요한 경우 Github 에서 다운로드 바랍니다.")
+                                .setNegativeButton("Cancel", (dialog, which) -> {})
+                                .setPositiveButton("GO TO GITHUB", (dialog, which) -> {
+                                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/choiman1559/Girls-Frontline-Tools/releases/latest"));
+                                    startActivity(browserIntent);
+                                }).show();
+                    } else startActivity(DecActivity.class);
                     break;
 
                 case R.id.Button_ICO:
-                    startActivity(IconChangeActivity.class);
+                    if(Global.isAmazonBuild) {
+                        new AlertDialog.Builder(mContext)
+                                .setTitle("아마존 스토어 관련 안내")
+                                .setMessage("아마존 스토어에서 앱 다운시 이 기능이 직동되지 않으며, 만약 해당 기능이 필요한 경우 Github 에서 다운로드 바랍니다.")
+                                .setNegativeButton("Cancel", (dialog, which) -> {})
+                                .setPositiveButton("GO TO GITHUB", (dialog, which) -> {
+                                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/choiman1559/Girls-Frontline-Tools/releases/latest"));
+                                    startActivity(browserIntent);
+                                }).show();
+                    } else startActivity(IconChangeActivity.class);
                     break;
 
                 case R.id.Button_ROT:

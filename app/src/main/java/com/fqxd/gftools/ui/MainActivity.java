@@ -5,8 +5,6 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import com.fqxd.gftools.BuildConfig;
@@ -35,8 +33,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
@@ -60,13 +56,24 @@ public class MainActivity extends AppCompatActivity {
             DataFolder = DocumentFile.fromTreeUri(this, Uri.parse(prefs.getString("DataUri", "")));
         }
 
+        if(Global.isAmazonBuild) {
+            new AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.Amazon_Info_Title))
+                    .setMessage(getString(R.string.Amazon_Info_Description))
+                    .setNegativeButton("Cancel", (dialog, which) -> {})
+                    .setPositiveButton("GO TO GITHUB", (dialog, which) -> {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/choiman1559/Girls-Frontline-Tools/releases/latest"));
+                        startActivity(browserIntent);
+                    }).show();
+        }
+
         if (Build.VERSION.SDK_INT >= 23 && checkStoragePermission()) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
         } else {
             if(Build.VERSION.SDK_INT > 29 && (DataFolder == null || !DataFolder.exists())) {
                 new AlertDialog.Builder(this)
-                        .setTitle("툭수 접근 권한 안내")
-                        .setMessage("Android 11 이상에서 /Android/data 의 접근 권한을 설정해야 합니다.")
+                        .setTitle(getString(R.string.Permission_Special_Title))
+                        .setMessage(getString(R.string.Permission_Special_Description))
                         .setNegativeButton("Cancel", (dialog, which) -> this.finish())
                         .setPositiveButton("Grant", (dialog, which) -> {
                             Intent intent = new Intent("android.intent.action.OPEN_DOCUMENT_TREE");
@@ -89,13 +96,13 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 0 && Build.VERSION.SDK_INT >= 23 && checkStoragePermission()) {
-            Toast.makeText(getApplicationContext(), "저장용량 접근 권한이 없습니다!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.Permission_Special_Toast, Toast.LENGTH_SHORT).show();
             this.finish();
         } else {
             if(Build.VERSION.SDK_INT > 29 && (DataFolder == null || !DataFolder.exists())){
                 new AlertDialog.Builder(this)
-                        .setTitle("툭수 접근 권한 안내")
-                        .setMessage("Android 11 이상에서 /Android/data 의 접근 권한을 설정해야 합니다.")
+                        .setTitle(getString(R.string.Permission_Special_Title))
+                        .setMessage(getString(R.string.Permission_Special_Description))
                         .setNegativeButton("Cancel", (dialog, which) -> this.finish())
                         .setPositiveButton("Grant", (dialog, which) -> {
                             Intent intent = new Intent("android.intent.action.OPEN_DOCUMENT_TREE");
@@ -165,8 +172,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences p = getSharedPreferences(Global.Prefs, MODE_PRIVATE);
         if (p.getBoolean("isFirstRun", true)) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("안내").setMessage("이 앱은 다음 환경에 가장 최적화되어 있습니다 : \n - Android 10 (AOSP, GSI)\n - EAS Kernel (Linux 4.3+)\n - Ram 3GB 이상\n - 1080x2140 (403dpi)\n - ARMv8a, x86_64\n - Magisk 20.4+\n");
-            builder.setPositiveButton("다시 보지 않기", (d, i) -> p.edit().putBoolean("isFirstRun", false).apply()).setNegativeButton("확인", (dialog, which) -> { }).show();
+            builder.setTitle(getString(R.string.Recommended_Spec_Title)).setMessage(getString(R.string.Recommended_Spec_Description));
+            builder.setPositiveButton(R.string.Recommended_Spec_Not_Remind, (dialog, which) -> p.edit().putBoolean("isFirstRun", false).apply()).setNegativeButton(R.string.Recommended_Spec_OK, (dialog, which) -> { }).show();
         }
     }
 
@@ -174,11 +181,11 @@ public class MainActivity extends AppCompatActivity {
         AppUpdater appUpdater = new AppUpdater(this)
                 .setDisplay(Display.DIALOG)
                 .setButtonDismissClickListener((d,w) -> finish())
-                .setTitleOnUpdateAvailable("업데이트 발견!")
+                .setTitleOnUpdateAvailable(getString(R.string.Update_Info_Title))
                 .setCancelable(false)
-                .setContentOnUpdateAvailable("업데이트 후 앱 사용이 가능합니다!")
-                .setButtonDismiss("앱 종료")
-                .setButtonUpdate("업데이트")
+                .setContentOnUpdateAvailable(getString(R.string.Update_Info_Description))
+                .setButtonDismiss(getString(R.string.Update_Info_Button_NO))
+                .setButtonUpdate(getString(R.string.Update_Info_Button_OK))
                 .setButtonUpdateClickListener((d,w) -> startActivityForResult(new Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=" + getPackageName())),1))
                 .setButtonDoNotShowAgain(null)
                 .setUpdateFrom(UpdateFrom.GOOGLE_PLAY)

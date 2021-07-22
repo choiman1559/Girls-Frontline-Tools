@@ -204,7 +204,7 @@ public class PackageFragment extends Fragment {
                                 }
                             }
                         });
-                        b.setNegativeButton("취소", (dialogInterface, i) -> { });
+                        b.setNegativeButton(R.string.Global_Cancel, (dialogInterface, i) -> { });
                         b.create().show();
                         break;
 

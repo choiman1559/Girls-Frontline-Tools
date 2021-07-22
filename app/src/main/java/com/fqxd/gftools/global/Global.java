@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.accessibility.AccessibilityManager;
 
 import com.fqxd.gftools.BuildConfig;
+import com.fqxd.gftools.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,13 +30,15 @@ import java.util.List;
 public class Global extends Application {
     public static String Storage;
     public static String Prefs;
+    public static boolean isAmazonBuild;
 
     @Override
     public void onCreate() {
         super.onCreate();
         Storage = Environment.getExternalStorageDirectory().getPath();
         Prefs = getPackageName() + "_preferences";
-        registerNotificationChannels("GFRotationService", "GF Screen Rotation service notification");
+        registerNotificationChannels();
+        isAmazonBuild = getSHA1Hash(this).equals("23:B5:4C:B4:01:78:A9:01:AB:A6:F3:EA:8B:29:5E:2E:C1:E1:69:3D");
     }
 
     public static boolean checkAccessibilityPermissions(Context context) {
@@ -52,10 +55,10 @@ public class Global extends Application {
 
     public static void setAccessibilityPermissions(Context context) {
         AlertDialog.Builder gsDialog = new AlertDialog.Builder(context);
-        gsDialog.setTitle("접근성 권한 설정");
-        gsDialog.setMessage("이 기능을 사용하려면 접근성 권한이 필요합니다");
-        gsDialog.setPositiveButton("확인", (dialog, which) -> context.startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))).create();
-        gsDialog.setNegativeButton("취소", ((dialog, which) -> { }));
+        gsDialog.setTitle(context.getString(R.string.setAccessibilityPermissionTitle));
+        gsDialog.setMessage(context.getString(R.string.setAccessibilityPermissionMessage));
+        gsDialog.setPositiveButton(R.string.Global_OK, (dialog, which) -> context.startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))).create();
+        gsDialog.setNegativeButton(R.string.Global_Cancel, ((dialog, which) -> { }));
         gsDialog.show();
     }
 
@@ -70,11 +73,11 @@ public class Global extends Application {
         return false;
     }
 
-    private void registerNotificationChannels(String ID, String DES) {
+    private void registerNotificationChannels() {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (Build.VERSION.SDK_INT > 25) {
-            NotificationChannel mChannel = new NotificationChannel(ID, ID, NotificationManager.IMPORTANCE_NONE);
-            mChannel.setDescription(DES);
+            NotificationChannel mChannel = new NotificationChannel("GFRotationService", "GFRotationService", NotificationManager.IMPORTANCE_NONE);
+            mChannel.setDescription("GF Screen Rotation service notification");
             mChannel.enableVibration(false);
             mChannel.setImportance(NotificationManager.IMPORTANCE_NONE);
             mChannel.enableLights(false);

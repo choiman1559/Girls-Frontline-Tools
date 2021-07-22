@@ -119,7 +119,7 @@ public final class DecActivity extends AppCompatActivity {
             progress.setVisibility(View.VISIBLE);
             isTaskRunning = true;
             PatchTask patchTask = new PatchTask(this, status, log, progress, IfErr.isChecked(), getLevel(level), pkg);
-            patchTask.execute(new Runnable[]{(Runnable) () -> runPatch.post(() -> {
+            patchTask.execute(new Runnable[]{() -> runPatch.post(() -> {
                 runPatch.setEnabled(true);
                 level.setEnabled(true);
                 IfErr.setEnabled(true);

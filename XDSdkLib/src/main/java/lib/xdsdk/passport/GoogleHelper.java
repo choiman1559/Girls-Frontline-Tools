@@ -36,7 +36,7 @@ public class GoogleHelper {
                 pickUserAccount2(activity);
                 return;
             }
-            CometPassport.model().guestbindingwithGoogle(activity, mEmail);
+            CometPassport.model().guestBindingWithGoogle(activity, mEmail);
         } catch (Exception e) {
             e.printStackTrace();
         }

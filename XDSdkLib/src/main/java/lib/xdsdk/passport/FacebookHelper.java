@@ -72,7 +72,7 @@ public class FacebookHelper {
         if (islogin) {
             CometPassport.model().signWithFacebookWithUid(activity, r0);
         } else {
-            CometPassport.model().guestbindingwithFacebook(activity);
+            CometPassport.model().guestBindingWithFacebook(activity);
         }
     }
 

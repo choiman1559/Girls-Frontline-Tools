@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.fqxd.gftools.R;
 import com.fqxd.gftools.features.xapk.FilePathUtil;
 import com.fqxd.gftools.implement.AsyncTask;
 
@@ -94,7 +95,7 @@ public class GFXapkInstallActivity extends AppCompatActivity {
                 }
             } else {
                 btn = "OK";
-                s = "Failed!\n저장용량 접근 권한이 부여되었는지 확인 후 다시 시도하십시오!";
+                s = "Failed!\n" + getString(R.string.Permission_Xapk_Error);
             }
 
             AlertDialog.Builder builder = new AlertDialog.Builder(GFXapkInstallActivity.this);
