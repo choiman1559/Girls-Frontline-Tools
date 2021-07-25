@@ -84,7 +84,7 @@ public class FavoriteViewAdapter extends RecyclerView.Adapter<FavoriteViewAdapte
             holder.Edit.setOnClickListener(v -> {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 View view = LayoutInflater.from(context).inflate(R.layout.dialog_editfavoritesproxy, null, false);
-                builder.setTitle("즐겨찾기 편집");
+                builder.setTitle(R.string.Edit_FavoriteProxy_Title);
                 builder.setView(view);
 
                 EditText address_edit = view.findViewById(R.id.proxy_address);

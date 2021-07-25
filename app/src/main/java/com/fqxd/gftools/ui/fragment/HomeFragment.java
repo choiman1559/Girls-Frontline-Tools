@@ -101,8 +101,8 @@ public class HomeFragment extends Fragment {
                 case R.id.XAPK_Button:
                     if(Global.isAmazonBuild) {
                         new AlertDialog.Builder(context)
-                                .setTitle("아마존 스토어 관련 안내")
-                                .setMessage("아마존 스토어에서 앱 다운시 이 기능이 직동되지 않으며, 만약 해당 기능이 필요한 경우 Github 에서 다운로드 바랍니다.")
+                                .setTitle(R.string.Amazon_Store_Info_Title)
+                                .setMessage(R.string.Amazon_Store_Info_Description)
                                 .setNegativeButton("Cancel", (dialog, which) -> {})
                                 .setPositiveButton("GO TO GITHUB", (dialog, which) -> {
                                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/choiman1559/Girls-Frontline-Tools/releases/latest"));
@@ -125,7 +125,7 @@ public class HomeFragment extends Fragment {
                             startActivity(new Intent(getContext(), GFNekoActivity.class));
                         } else {
                             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + context.getPackageName()));
-                            Toast.makeText(getContext(), "이 기능을 사용하려면 다른 앱 위에 그리기 기능이 필요합니다!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), R.string.Overlay_Permission_Toast, Toast.LENGTH_SHORT).show();
                             context.startActivity(intent);
                         }
                     }
@@ -145,14 +145,14 @@ public class HomeFragment extends Fragment {
                     try {
                         if(!Global.checkRootPermission()) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                            builder.setTitle("특수 권한이 필요합니다").setMessage("이 기능을 사용하려면 ROOT 권한이 필요합니다");
-                            builder.setPositiveButton("슈퍼유저 사용", (dialog, id) -> {
+                            builder.setTitle(R.string.Root_Permission_Title).setMessage(R.string.Root_Permission_Description);
+                            builder.setPositiveButton(R.string.Root_Permission_OK, (dialog, id) -> {
                                 try {
                                     Runtime.getRuntime().exec("su");
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
-                            }).setNegativeButton("취소", (dialog, which) -> { }).show();
+                            }).setNegativeButton(R.string.Global_Cancel, (dialog, which) -> { }).show();
                         } else {
                             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                             intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -161,7 +161,7 @@ public class HomeFragment extends Fragment {
                         }
                     } catch (IOException | InterruptedException e) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                        builder.setTitle("Error!").setMessage("루트 권한을 인식할수 없습니다! 기기가 루팅이 되어있는지 확인 후 다시 시도하십시오!");
+                        builder.setTitle("Error!").setMessage(R.string.Root_Permission_Error);
                         builder.setPositiveButton("OK", (dialog, id) -> { });
                         builder.create().show();
                         e.printStackTrace();

@@ -1,4 +1,9 @@
 <resources>
+    <!-- Global String resources-->
+
+    <string name="app_name" translatable="false">GF Tools</string>
+    <string name="Title" translatable="false">GF Tools</string>
+
     <string name="notify_channel_id" translatable="false">22</string>
     <string name="notify_channel_name" translatable="false">Notification Channel</string>
     <string name="notify_channel_description" translatable="false">default Notification Channel</string>
@@ -16,17 +21,71 @@
     <string name="target_kr" translatable="false">kr.txwy.and.snqx</string>
     <string name="info_patch_started" translatable="false">Patch Started!</string>
 
-    <string name="TXTKR_Download">Install TextKR</string>
-    <string name="TXTKR_Update">Update TextKR</string>
-    <string name="TXTKR_Article">TextKR Changelog</string>
+    <string name="target_cn_uc_des">(China #1)</string>
+    <string name="target_cn_bili_des">(Bilibili)</string>
+    <string name="target_cn_des">(China #2)</string>
+    <string name="target_en_des">(English)</string>
+    <string name="target_jp_des">(Japan)</string>
+    <string name="target_tw_des">(Taiwan)</string>
+    <string name="target_kr_des">(S.Korea)</string>
 
-    <string name="run_patch">Start Patch</string>
-    <string name="level_info">Compression level setting</string>
-    <string name="level_min">speed fast</string>
-    <string name="level_max">small capacity</string>
-    <string name="checkbox_err">Select if installation/execution is not possible\n (Package signing, reinstallation required)</string>
-    <string name="select_image">Select Image</string>
-    <string name="info_no_obb">there were no obb file found.\nobb file won\'t be patched.\nsome releases doesn\'t includes obb files.\nif  you\'re not sure about it, please check if girl\'s fronline does works and reinstall if it doesn\'t</string>
+    <string name="description">This is an essential function to use the function (vpn, etc.) that recognizes the start of the GF.</string>
+    <string name="rotation_switch">Auto screen vertical lock On/Off</string>
+
+    <string name="setAccessibilityPermissionTitle">Set Accessibility Permissions</string>
+    <string name="setAccessibilityPermissionMessage">Accessibility permission is required to use this feature</string>
+    <string name="Global_OK">OK</string>
+    <string name="Global_Cancel">Cancel</string>
+    <string name="Global_Continue">Continue</string>
+    <string name="Global_Close">Close</string>
+
+    <string name="Update_Info_Title">Update found!</string>
+    <string name="Update_Info_Description">After the update, you can use the app!</string>
+    <string name="Update_Info_Button_OK">Update</string>
+    <string name="Update_Info_Button_NO">Close app</string>
+
+    <string name="Recommended_Spec_Title">Information</string>
+    <string name="Recommended_Spec_Description">This app is best optimized for the following environments:\n
+        - Android 10 (AOSP, GSI)\n
+ - EAS Kernel (Linux 4.3+)\n
+ - Over 3GB Ram\n
+ - 1080x2140 (403dpi)\n
+ - ARMv8a, x86_64\n
+ - Magisk 20.4+\n
+    </string>
+    <string name="Recommended_Spec_OK">OK</string>
+    <string name="Recommended_Spec_Not_Remind">never show again</string>
+
+    <string name="Permission_Xapk_Error">Make sure you have been granted storage access and try again!</string>
+    <string name="Permission_Special_Toast">You don\'t have access to storage!</string>
+    <string name="Permission_Special_Title">Request special permission</string>
+    <string name="Permission_Special_Description">On Android 11 or higher, you need to set the access permissions of /Android/data .</string>
+
+    <!-- PackageFragment -->
+
+    <string name="Data_Task_Confirm_Delete">Confirm</string>
+    <string name="Data_Task_Confirm_Delete_Description">Are you sure to delete data? this task will not be undone.</string>
+    <string name="Data_Task_Error">Error: Can\'t find data!</string>
+    <string name="Data_Task_Delete_OK">Delete</string>
+
+    <!-- HomeFragment -->
+    <!-- FeatureFragment -->
+
+    <string name="Amazon_Store_Info_Title">Amazon Store Related Information</string>
+    <string name="Amazon_Store_Info_Description">When downloading the app from the Amazon store, some function does not work directly, and if you need the function, please download it from Github.</string>
+    <string name="Overlay_Permission_Toast">This feature requires drawing on top of other apps!</string>
+    <string name="Root_Permission_Title">Requires special permissions</string>
+    <string name="Root_Permission_Description">ROOT permission is required to use this feature</string>
+    <string name="Root_Permission_OK">use superuser</string>
+    <string name="Root_Permission_Error">Root permission not recognized! Make sure your device is rooted and try again!</string>
+    
+    <!-- GFFragment -->
+    <string name="Update_Check_Description">There is a new update from %s!</string>
+    <string name="Update_Check_OK">Update</string>
+    <string name="SelectServer">Select server</string>
+    <string name="SelectServer_Description">Please select server to process</string>
+
+    <!-- GFNekoActivity -->
 
     <string name="skin_name_neko" translatable="false">IDW the Many</string>
     <string name="notification_enable">neko is running.</string>
@@ -41,14 +100,19 @@
     <string name="pref_motion_skin_title">Skin</string>
     <string name="pref_motion_skin_summary">Skin of neko</string>
     <string name="pref_skin_dialog_title">Skin</string>
+    <string name="pref_skin_path_description">Skin directory: /GF_Tool/skins</string>
     <string name="msg_skin_load_failed">Failed to load skin.</string>
 
-    <string name="app_name" translatable="false">GF Tools</string>
-    <string name="Title" translatable="false">GF Tools</string>
+    <!-- TxtKrPatchActivity -->
+
+    <string name="TXTKR_Download">Install TextKR</string>
+    <string name="TXTKR_Update">Update TextKR</string>
+    <string name="TXTKR_Article">TextKR Changelog</string>
+
+    <!-- GFDActivity -->
 
     <string name="Title_GFD">GF DIC Portable</string>
     <string name="target">target</string>
-
     <string name="b1">doll manufacturing timetable</string>
     <string name="b2">Equipment manufacturing timetable</string>
     <string name="b3">Fairy Manufacturing Timetable &amp; recipe</string>
@@ -62,8 +126,7 @@
     <string name="b11">GF DIC v2 installation/running</string>
     <string name="thx">special thanks to. URK96</string>
 
-    <string name="description">This is an essential function to use the function (vpn, etc.) that recognizes the start of the GF.</string>
-    <string name="rotation_switch">Auto screen vertical lock On/Off</string>
+    <!-- NotiActivity -->
 
     <string name="noit_des">It loads the FireBase DB information saved from GF Tools Noti Plugin and displays the alarm in real time.</string>
     <string name="noti_onoff">Service On/Off</string>
@@ -87,36 +150,73 @@
          \nThen try using Noti Sender.
     </string>
 
-    <string name="setAccessibilityPermissionTitle">Set Accessibility Permissions</string>
-    <string name="setAccessibilityPermissionMessage">Accessibility permission is required to use this feature</string>
-    <string name="Global_OK">OK</string>
-    <string name="Global_Cancel">Cancel</string>
+    <!-- XDUCActivity -->
+    <string name="Google_Login_Query_OK">Successfully fetching Google login query information!</string>
+    <string name="Facebook_Login_Query_OK">Successfully fetching Facebook login query information!</string>
 
-    <string name="Amazon_Info_Title">Amazon Store Information</string>
-    <string name="Amazon_Info_Description">When downloading the app from the Amazon store, some functions do not work directly, and if you need the function, please download it from Github.</string>
+    <!-- DecActivity -->
+    <!-- IconChangeActivity -->
 
-    <string name="Permission_Xapk_Error">Make sure you have been granted storage access and try again!</string>
-    <string name="Permission_Special_Toast">You don\'t have access to storage!</string>
-    <string name="Permission_Special_Title">Request special permission</string>
-    <string name="Permission_Special_Description">On Android 11 or higher, you need to set the access permissions of /Android/data .</string>
+    <string name="image_select_error">Error occurred!</string>
+    <string name="decompress_waitfor_previous_task">Waiting for previous task to complete…</string>
+    <string name="decompress_error_already_patched">This APK has already been decompressed!\nPlease reinstall the client and try again!</string>
+    <string name="Resign_Attention_Title">Attention!</string>
+    <string name="Resign_Attention_Content">If you use this function, functions that require Play Service, such as payment, will not work until you reinstall the official client again. If you use this function by pressing the "Continue" button, the disadvantages caused by using this function are purely this function. It is considered that you have acknowledged and agreed to the existence of the person who used it.</string>
+    <string name="Level_select_under_Android7">Level setting is not possible on Android 7 or lower!</string>
+    <string name="run_patch">Start Patch</string>
+    <string name="level_info">Compression level setting</string>
+    <string name="level_min">speed fast</string>
+    <string name="level_max">small capacity</string>
+    <string name="checkbox_err">Select if installation/execution is not possible\n (Package signing, reinstallation required)</string>
+    <string name="select_image">Select Image</string>
+    <string name="info_no_obb">there were no obb file found.\nobb file won\'t be patched.\nsome releases doesn\'t includes obb files.\nif  you\'re not sure about it, please check if girl\'s fronline does works and reinstall if it doesn\'t</string>
 
-    <string name="Update_Info_Title">Update found!</string>
-    <string name="Update_Info_Description">After the update, you can use the app!</string>
-    <string name="Update_Info_Button_OK">Update</string>
-    <string name="Update_Info_Button_NO">Close app</string>
+    <!-- CenActivity -->
 
-    <string name="Recommended_Spec_Title">Information</string>
-    <string name="Recommended_Spec_Description">This app is best optimized for the following environments:\n
-        - Android 10 (AOSP, GSI)\n
- - EAS Kernel (Linux 4.3+)\n
- - Over 3GB Ram\n
- - 1080x2140 (403dpi)\n
- - ARMv8a, x86_64\n
- - Magisk 20.4+\n
-    </string>
-    <string name="Recommended_Spec_OK">OK</string>
-    <string name="Recommended_Spec_Not_Remind">never show again</string>
+    <string name="Cen_Status_Hint">Current status: </string>
+    <string name="Cen_Status_DefaultText">No data</string>
+    <string name="Cen_Status_Tip">TIP: If the censorship remains after the censorship is disabled,\nTry downloading the data file again.</string>
+    <string name="Cen_Status_NoDataFile">No data file</string>
+    <string name="Cen_Status_Applied">Censorship applied</string>
+    <string name="Cen_Status_Disabled">Censorship disabled</string>
+    <string name="Cen_Status_NoDataItem">No data item</string>
+    <string name="Cen_Button_Refresh">Refresh</string>
+    <string name="Cen_Button_Apply">Reapply censorship</string>
+    <string name="Cen_Button_Disable">Disable censorship</string>
+    <string name="Cen_Button_NeedRoot_Title">Special permission required</string>
+    <string name="Cen_Button_NeedRoot_Content">This feature requires ROOT permission</string>
+    <string name="Cen_Button_NeedRoot_OK">Use superuser</string>
+    <string name="Cen_Error_Post_Copy_Title">Data copy error!</string>
+    <string name="Cen_Error_Post_Copy_Content">Download GF\'s data and try again.</string>
+    <string name="Cen_Error_Post_Root_Title">An error occurred!</string>
+    <string name="Cen_Error_Post_Root_Content">Root permission not recognized! Make sure your device is rooted and try again!</string>
+    <string name="Cen_Error_Post_ReadData_Title">An error occurred while reading data!</string>
+    <string name="Cen_Error_Post_ReadData_Content">Please try again after downloading GF\'s data.</string>
 
-    <string name="SelectServer">Select server</string>
-    <string name="SelectServer_Description">Please select server to process</string>
+    <!-- ProxyActivity -->
+
+    <string name="Proxy_OnOff_Toggle">Auto Proxy On/Off</string>
+    <string name="Proxy_Address">Proxy address</string>
+    <string name="Proxy_Port">Proxy port</string>
+    <string name="Proxy_Persistence">Proxy persistence</string>
+    <string name="Proxy_Favorites">Proxy Favorites</string>
+
+    <string name="Add_FavoriteProxy_Title">Add Favorite</string>
+    <string name="Add_FavoriteProxy_OK">Save</string>
+    <string name="Edit_FavoriteProxy_Title">Edit Favorite</string>
+    <string name="Edit_FavoriteProxy_OK">Edit</string>
+    <string name="Edit_FavoriteProxy_Name">Enter favorite name</string>
+    <string name="Edit_FavoriteProxy_Address">Enter proxy address</string>
+    <string name="Edit_FavoriteProxy_Port">Enter proxy port</string>
+
+    <string name="Apply_FavoriteProxy_OK">Proxy entered from favorite "%s"</string>
+    <string name="Apply_FavoriteProxy_Error">Applicable after disabling the proxy</string>
+    <string name="Apply_Button_NeedSecure_Title">Special permission required</string>
+    <string name="Apply_Button_NeedSecure_Content">This feature requires WRITE_SECURE_SETTINGS permission</string>
+    <string name="Apply_Button_NeedSecure_Root_OK">Use superuser</string>
+    <string name="Apply_Button_NeedSecure_Root_Error">Root permission not recognized! Please make sure your device is rooted and try again!</string>
+    <string name="Apply_Button_NeedSecure_Adb_OK">Use adb</string>
+    <string name="Apply_Button_NeedSecure_Adb_Instrument">1. Connect adb and computer.\n2. In the terminal (or cmd) type:\nadb shell "pm grant com.fqxd.gftools android.permission.WRITE_SECURE_SETTINGS &amp;&amp; am force-stop com.fqxd.gftools"</string>
+    <string name="Apply_Button_NeedSecure_Adb_DoCopy">Copy</string>
+    <string name="Apply_Button_NeedSecure_Adb_DoneCopy">Copied to clipboard</string>
 </resources>

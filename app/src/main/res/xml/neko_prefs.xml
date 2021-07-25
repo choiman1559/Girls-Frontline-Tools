@@ -32,6 +32,6 @@
 
         <Preference
             android:icon="@drawable/ic_error_outline"
-            android:summary="스킨 경로 : /GF_Tool/skins/"/>
+            android:summary="@string/pref_skin_path_description"/>
     </PreferenceCategory>
 </PreferenceScreen>

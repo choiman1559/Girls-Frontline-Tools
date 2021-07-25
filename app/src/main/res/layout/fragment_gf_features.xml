@@ -303,7 +303,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
                         android:layout_toEndOf="@id/Button_ROT_icon"
-                        android:text="Auto Screen Rotation"
+                        android:text="Auto Screen vertical lock"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                     <TextView

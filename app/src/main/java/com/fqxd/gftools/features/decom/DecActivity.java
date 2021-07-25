@@ -84,10 +84,10 @@ public final class DecActivity extends AppCompatActivity {
         IfErr.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked) {
                 new AlertDialog.Builder(this)
-                        .setTitle("경고!")
-                        .setMessage("이 기능을 사용하면 다시 공식 클라이언트로 재설치하기 이전까지 결재 등의 Play Service 를 요하는 기능은 작동하지 않을것이며,\"계속\" 버튼을 눌러 이 기능을 사용할경우 이 기능을 사용하다 발생한 불이익은 순전히 이 기능을 사용한 본인에게 있음을 인지하고 동의한것으로 간주합니다.")
-                        .setPositiveButton("계속", (dialog, which) -> {})
-                        .setNegativeButton("취소",((dialog, which) -> IfErr.setChecked(false)))
+                        .setTitle(R.string.Resign_Attention_Title)
+                        .setMessage(R.string.Resign_Attention_Content)
+                        .setPositiveButton(R.string.Global_Continue, (dialog, which) -> {})
+                        .setNegativeButton(R.string.Global_Cancel,((dialog, which) -> IfErr.setChecked(false)))
                         .setCancelable(false).show();
             }
         });
@@ -95,7 +95,7 @@ public final class DecActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT < 26) {
             level.setProgress(0);
             level.setEnabled(false);
-            level.setOnClickListener(v -> Toast.makeText(this, "안드로이드 7 이하에서는 레벨 설정이 불가능합니다!", Toast.LENGTH_SHORT));
+            level.setOnClickListener(v -> Toast.makeText(this, R.string.Level_select_under_Android7, Toast.LENGTH_SHORT));
         }
 
         layout.setVisibility(View.GONE);
@@ -106,7 +106,7 @@ public final class DecActivity extends AppCompatActivity {
             isOBBExists = false;
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.setMessage(R.string.info_no_obb);
-            alert.setPositiveButton(Resources.getSystem().getText(android.R.string.ok), null);
+            alert.setPositiveButton(R.string.Global_OK, null);
             alert.setCancelable(false);
             alert.show();
         }

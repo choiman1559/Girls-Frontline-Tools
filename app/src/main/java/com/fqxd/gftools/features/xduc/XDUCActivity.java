@@ -41,13 +41,13 @@ public class XDUCActivity extends AppCompatActivity {
         Google.setOnClickListener((v) -> new Thread(() -> passport.signWithGoogle(this)).start());
         passport.setOnGoogleLoginCompleteListener((result -> {
             processJson(result);
-            Toast.makeText(this, "구글 로그인 쿼리 정보 받아오기 성공!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.Google_Login_Query_OK, Toast.LENGTH_SHORT).show();
         }));
 
         Facebook.setOnClickListener((v) -> new Thread(() -> passport.signWithFacebook(this)).start());
         passport.setOnFacebookLoginCompleteListener((result -> {
             processJson(result);
-            Toast.makeText(this, "페이스북 로그인 쿼리 정보 받아오기 성공!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.Facebook_Login_Query_OK, Toast.LENGTH_SHORT).show();
         }));
 
         XDSdk.setOnClickListener((v) -> XD());

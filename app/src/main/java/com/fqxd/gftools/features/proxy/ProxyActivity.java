@@ -73,8 +73,8 @@ public class ProxyActivity extends AppCompatActivity {
             if (!Enabled.isChecked()) {
                 Address.setText(Address1);
                 Port.setText(Port1);
-                Toast.makeText(this, "즐겨찾기 \"" + Name1 + "\" (으)로부터 프록시 입력됨", Toast.LENGTH_SHORT).show();
-            } else Toast.makeText(this, "프록시를 비활성화 후 적용 가능합니다", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, String.format(getString(R.string.Apply_FavoriteProxy_OK), Name1), Toast.LENGTH_SHORT).show();
+            } else Toast.makeText(this, R.string.Apply_FavoriteProxy_Error, Toast.LENGTH_SHORT).show();
         });
 
         Favorites.setAdapter(adapter);
@@ -86,7 +86,7 @@ public class ProxyActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             View view = LayoutInflater.from(this).inflate(R.layout.dialog_editfavoritesproxy, null, false);
             builder.setView(view);
-            builder.setTitle("즐겨찾기 추가");
+            builder.setTitle(R.string.Add_FavoriteProxy_Title);
 
             EditText address_edit = view.findViewById(R.id.proxy_address);
             EditText port_edit = view.findViewById(R.id.proxy_port);
@@ -96,7 +96,7 @@ public class ProxyActivity extends AppCompatActivity {
 
             AlertDialog dialog = builder.create();
             dialog.setCancelable(false);
-            submit.setText("저장");
+            submit.setText(R.string.Add_FavoriteProxy_OK);
             submit.setOnClickListener(v2 -> {
                 String address = address_edit.getText().toString();
                 String port = port_edit.getText().toString();
@@ -259,8 +259,8 @@ public class ProxyActivity extends AppCompatActivity {
 
     void Run_WRITE_SECURE_SEIINGS() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("특수 권한이 필요합니다").setMessage("이 기능을 사용하려면 WRITE_SECURE_SETTINGS 권한이 필요합니다");
-        builder.setPositiveButton("슈퍼유저 사용", (dialog, id) -> {
+        builder.setTitle(R.string.Apply_Button_NeedSecure_Title).setMessage(R.string.Apply_Button_NeedSecure_Content);
+        builder.setPositiveButton(R.string.Apply_Button_NeedSecure_Root_OK, (dialog, id) -> {
             try {
                 if (Global.checkRootPermission()) {
                     Process p = Runtime.getRuntime().exec("su");
@@ -273,30 +273,30 @@ public class ProxyActivity extends AppCompatActivity {
                 }
             } catch (IOException | InterruptedException e) {
                 AlertDialog.Builder b = new AlertDialog.Builder(this);
-                b.setTitle("Error!").setMessage("루트 권한을 인식할수 없습니다! 기기가 루팅이 되어있는지 확인 후 다시 시도하십시오!");
-                b.setPositiveButton("OK", (a, i) -> {
+                b.setTitle("Error!").setMessage(R.string.Apply_Button_NeedSecure_Root_Error);
+                b.setPositiveButton(R.string.Global_OK, (a, i) -> {
                 });
                 b.create().show();
                 e.printStackTrace();
             }
         });
 
-        builder.setNegativeButton("adb 사용", (dialog, id) -> {
+        builder.setNegativeButton(R.string.Apply_Button_NeedSecure_Adb_OK, (dialog, id) -> {
             AlertDialog.Builder adb = new AlertDialog.Builder(this);
-            adb.setTitle("adb 사용").setMessage("1. adb와 컴퓨터를 연결합니다.\n2. 터미널(이나 cmd)에 다음과 같이 입력합니다 : \nadb shell \"pm grant com.fqxd.gftools android.permission.WRITE_SECURE_SETTINGS && am force-stop com.fqxd.gftools\"\n");
-            adb.setPositiveButton("복사", (d, i) -> {
+            adb.setTitle(R.string.Apply_Button_NeedSecure_Adb_OK).setMessage(R.string.Apply_Button_NeedSecure_Adb_Instrument);
+            adb.setPositiveButton(R.string.Apply_Button_NeedSecure_Adb_DoCopy, (d, i) -> {
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("명령어", "adb shell pm grant com.fqxd.gftools android.permission.WRITE_SECURE_SETTINGS && am force-stop com.fqxd.gftools");
+                ClipData clip = ClipData.newPlainText("Command", "adb shell pm grant com.fqxd.gftools android.permission.WRITE_SECURE_SETTINGS && am force-stop com.fqxd.gftools");
                 clipboard.setPrimaryClip(clip);
-                Toast.makeText(this, "클립보드에 복사됨", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.Apply_Button_NeedSecure_Adb_DoneCopy, Toast.LENGTH_SHORT).show();
             });
 
-            adb.setNeutralButton("취소", (d, i) -> {
+            adb.setNeutralButton(R.string.Global_Cancel, (d, i) -> {
             });
             AlertDialog alertDialog = adb.create();
             alertDialog.show();
         });
-        builder.setNeutralButton("취소", (dialog, id) -> {
+        builder.setNeutralButton(R.string.Global_Cancel, (dialog, id) -> {
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();

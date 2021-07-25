@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
         if(Global.isAmazonBuild) {
             new AlertDialog.Builder(this)
-                    .setTitle(getString(R.string.Amazon_Info_Title))
-                    .setMessage(getString(R.string.Amazon_Info_Description))
+                    .setTitle(getString(R.string.Amazon_Store_Info_Title))
+                    .setMessage(getString(R.string.Amazon_Store_Info_Description))
                     .setNegativeButton("Cancel", (dialog, which) -> {})
                     .setPositiveButton("GO TO GITHUB", (dialog, which) -> {
                         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/choiman1559/Girls-Frontline-Tools/releases/latest"));

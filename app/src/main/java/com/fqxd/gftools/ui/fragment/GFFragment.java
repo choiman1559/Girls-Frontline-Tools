@@ -56,13 +56,13 @@ public class GFFragment extends Fragment {
                 .commit();
 
         ArrayList<String> array = new ArrayList<>();
-        array.add("com.digitalsky.girlsfrontline.cn.uc (중섭)");
-        array.add("com.digitalsky.girlsfrontline.cn.bili (비리섭)");
-        array.add("com.sunborn.girlsfrontline.en (글섭)");
-        array.add("com.sunborn.girlsfrontline.jp (일섭)");
-        array.add("com.sunborn.girlsfrontline.cn (영사섭)");
-        array.add("tw.txwy.and.snqx (대만섭)");
-        array.add("kr.txwy.and.snqx (한섭)");
+        array.add("com.digitalsky.girlsfrontline.cn.uc " + getString(R.string.target_cn_uc_des));
+        array.add("com.digitalsky.girlsfrontline.cn.bili " + getString(R.string.target_cn_bili_des));
+        array.add("com.sunborn.girlsfrontline.en " + getString(R.string.target_en_des));
+        array.add("com.sunborn.girlsfrontline.jp " + getString(R.string.target_jp_des));
+        array.add("com.sunborn.girlsfrontline.cn " + getString(R.string.target_cn_des));
+        array.add("tw.txwy.and.snqx " + getString(R.string.target_tw_des));
+        array.add("kr.txwy.and.snqx " + getString(R.string.target_kr_des));
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext, android.R.layout.simple_spinner_dropdown_item, array);
         spinner.setAdapter(adapter);
@@ -139,8 +139,8 @@ public class GFFragment extends Fragment {
                 int newi = Integer.parseInt(j[1]);
 
                 if (!newV.isEmpty() && now < newi) {
-                    Snackbar.make(mContext.findViewById(android.R.id.content), pm.getApplicationLabel(pm.getApplicationInfo(pkg, PackageManager.GET_META_DATA)) + "의 새 업데이트가 있습니다!", Snackbar.LENGTH_LONG)
-                            .setAction("업데이트", v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + pkg)))).show();
+                    Snackbar.make(mContext.findViewById(android.R.id.content), String.format(getString(R.string.Update_Check_Description), pm.getApplicationLabel(pm.getApplicationInfo(pkg, PackageManager.GET_META_DATA))) , Snackbar.LENGTH_LONG)
+                            .setAction(R.string.Update_Check_OK, v -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + pkg)))).show();
                 }
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();

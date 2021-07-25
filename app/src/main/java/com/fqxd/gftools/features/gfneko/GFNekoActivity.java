@@ -63,7 +63,7 @@ public class GFNekoActivity extends AppCompatActivity {
     }
 
     private CharSequence[] getEntries(String PreValue) {
-      String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/GFNeko/skins/";
+      String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/GF_Tool/skins/";
       ArrayList<String> list = new ArrayList<>();
       list.add(PreValue);
 

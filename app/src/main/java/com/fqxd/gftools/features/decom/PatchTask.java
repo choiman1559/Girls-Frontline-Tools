@@ -58,7 +58,7 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        this.updateStatus("이전 작업이 완료될때까지 대기중...");
+        this.updateStatus(context.getString(R.string.decompress_waitfor_previous_task));
     }
 
     @Override
@@ -142,7 +142,7 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
                 if(managedDir.exists()) {
                     FileUtils.deleteDirectory(managedDir);
                 } else {
-                    String message = "이미 압축해제가 적용된 APK 입니다!\n해당 클라이언트를 재설치후 다시 시도해 주십시오!";
+                    String message = context.getString(R.string.decompress_error_already_patched);
                     new AlertDialog.Builder(context)
                             .setPositiveButton("OK", (dialog, which) -> {
                                 throw new RuntimeException(message);

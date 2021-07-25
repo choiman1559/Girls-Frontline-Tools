@@ -50,23 +50,23 @@ public class CenActivity extends AppCompatActivity {
         final TextInputEditText status = findViewById(R.id.status);
         if (!isData) {
             status.setTextColor(Color.parseColor("#78909C"));
-            status.setText("데이터 파일 없음");
+            status.setText(R.string.Cen_Status_NoDataFile);
         } else {
             if (isCened) {
                 status.setTextColor(Color.parseColor("#F44336"));
-                status.setText("검열 적용됨");
+                status.setText(R.string.Cen_Status_Applied);
             } else if (CenValue != -1) {
                 status.setTextColor(Color.parseColor("#448AFF"));
-                status.setText("검열 해제됨");
+                status.setText(R.string.Cen_Status_Disabled);
             } else {
                 status.setTextColor(Color.parseColor("#78909C"));
-                status.setText("데이터 항목 없음");
+                status.setText(R.string.Cen_Status_NoDataItem);
                 isData = false;
             }
         }
 
         final MaterialButton CEN = findViewById(R.id.centask);
-        CEN.setText(isData ? (isCened ? "검열 해제" : "검열 재적용") : "새로 고침");
+        CEN.setText(isData ? (isCened ? getString(R.string.Cen_Button_Disable) : getString(R.string.Cen_Button_Apply)) : getString(R.string.Cen_Button_Refresh));
         CEN.setOnClickListener(v -> {
             if (isData) new PatchTask(this).execute();
             else recreate();
@@ -98,8 +98,8 @@ public class CenActivity extends AppCompatActivity {
             switch (integer) {
                 case -1:
                     AlertDialog.Builder ab = new AlertDialog.Builder(context);
-                    ab.setTitle("데이터 복사 에러!");
-                    ab.setMessage("소전의 데이터를 다운로드 받은 후 다시 시도하세요.");
+                    ab.setTitle(R.string.Cen_Error_Post_Copy_Title);
+                    ab.setMessage(R.string.Cen_Error_Post_Copy_Content);
                     ab.setPositiveButton("OK", ((dialog, which) -> CenActivity.this.finish()));
                     ab.show();
                     break;
@@ -158,29 +158,29 @@ public class CenActivity extends AppCompatActivity {
 
             switch (value) {
                 case -1:
-                    builder.setTitle("특수 권한이 필요합니다");
-                    builder.setMessage("이 기능을 사용하려면 ROOT 권한이 필요합니다");
-                    builder.setPositiveButton("슈퍼유저 사용", (dialog, id) -> {
+                    builder.setTitle(R.string.Cen_Button_NeedRoot_Title);
+                    builder.setMessage(R.string.Cen_Button_NeedRoot_Content);
+                    builder.setPositiveButton(R.string.Cen_Button_NeedRoot_OK, (dialog, id) -> {
                         try {
                             Runtime.getRuntime().exec("su").waitFor();
                             recreate();
                         } catch (IOException | InterruptedException e) {
                             e.printStackTrace();
                         }
-                    }).setNegativeButton("취소", (dialog, which) -> finish()).show();
+                    }).setNegativeButton(R.string.Global_Cancel, (dialog, which) -> finish()).show();
                     break;
 
                 case -2:
-                    builder.setTitle("데이터를 읽어오던중 에러 발생!");
-                    builder.setMessage("소전의 데이터를 다운로드 받은 후 다시 시도하세요.");
-                    builder.setPositiveButton("OK", ((dialog, which) -> finish()));
+                    builder.setTitle(R.string.Cen_Error_Post_ReadData_Title);
+                    builder.setMessage(R.string.Cen_Error_Post_ReadData_Content);
+                    builder.setPositiveButton(R.string.Global_OK, ((dialog, which) -> finish()));
                     builder.show();
                     break;
 
                 case -3:
-                    builder.setTitle("Error!");
-                    builder.setMessage("루트 권한을 인식할수 없습니다! 기기가 루팅이 되어있는지 확인 후 다시 시도하십시오!");
-                    builder.setPositiveButton("OK", (dialog, id) -> finish());
+                    builder.setTitle(R.string.Cen_Error_Post_Root_Title);
+                    builder.setMessage(R.string.Cen_Error_Post_Root_Content);
+                    builder.setPositiveButton(R.string.Global_OK, (dialog, id) -> finish());
                     builder.create().show();
                     break;
 

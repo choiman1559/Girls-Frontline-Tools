@@ -55,10 +55,10 @@ public class IconChangeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ico);
         new AlertDialog.Builder(this)
-                .setTitle("경고!")
-                .setMessage("이 기능을 사용하면 다시 공식 클라이언트로 재설치하기 이전까지 결재 등의 Play Service 를 요하는 기능은 작동하지 않을것이며,\"계속\" 버튼을 눌러 이 기능을 사용할경우 이 기능을 사용하다 발생한 불이익은 순전히 이 기능을 사용한 본인에게 있음을 인지하고 동의한것으로 간주합니다.")
-                .setPositiveButton("계속", (dialog, which) -> {})
-                .setNegativeButton("취소",((dialog, which) -> finish()))
+                .setTitle(R.string.Resign_Attention_Title)
+                .setMessage(R.string.Resign_Attention_Content)
+                .setPositiveButton(R.string.Global_Continue, (dialog, which) -> {})
+                .setNegativeButton(R.string.Global_Cancel,((dialog, which) -> finish()))
                 .setCancelable(false).show();
         Package = getIntent().getStringExtra("pkg");
 
@@ -152,9 +152,9 @@ public class IconChangeActivity extends AppCompatActivity {
             else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 result.getError().printStackTrace();
                 new AlertDialog.Builder(this)
-                        .setTitle("에러 발생!")
+                        .setTitle(R.string.image_select_error)
                         .setMessage(result.getError().toString())
-                        .setNegativeButton("확인",((dialog, which) -> finish()))
+                        .setNegativeButton(R.string.Global_OK,((dialog, which) -> finish()))
                         .setCancelable(false).show();
             } else finish();
         }

@@ -188,16 +188,16 @@ public class PackageFragment extends Fragment {
 
                     case R.id.DeleteData:
                         AlertDialog.Builder b = new AlertDialog.Builder(mContext);
-                        b.setTitle("삭제 확인");
-                        b.setMessage("정말로 데이터를 전부 삭제하시겠습니까?");
-                        b.setPositiveButton("삭제", (dialogInterface, i) -> {
+                        b.setTitle(R.string.Data_Task_Confirm_Delete);
+                        b.setMessage(R.string.Data_Task_Confirm_Delete_Description);
+                        b.setPositiveButton(R.string.Data_Task_Delete_OK, (dialogInterface, i) -> {
                             if(Build.VERSION.SDK_INT > 29) {
                                 deleteDirAndroid11 dd = new deleteDirAndroid11(mContext, Package);
                                 dd.execute();
                             } else {
                                 String path = Global.Storage + "/Android/data/" + Package;
                                 if (!new File(path).exists())
-                                    Toast.makeText(mContext, "데이터를 찾을수 없습니다!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(mContext, R.string.Data_Task_Error, Toast.LENGTH_SHORT).show();
                                 else {
                                     deleteDirLegacy dd = new deleteDirLegacy(mContext, path, Package);
                                     dd.execute();
@@ -272,7 +272,7 @@ public class PackageFragment extends Fragment {
             @Override
             protected void onPostExecute(Integer s) {
                 super.onPostExecute(s);
-                if(s == -1) Toast.makeText(mContext, "데이터를 찾을수 없습니다!", Toast.LENGTH_SHORT).show();
+                if(s == -1) Toast.makeText(mContext, R.string.Data_Task_Error, Toast.LENGTH_SHORT).show();
                 else {
                     progressDialog.dismiss();
                     Toast.makeText(main, "done", Toast.LENGTH_SHORT).show();

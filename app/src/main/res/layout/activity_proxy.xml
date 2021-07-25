@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:text="자동 프록시 On/Off"
+                android:text="@string/Proxy_OnOff_Toggle"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -44,17 +44,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:autofillHints="프록시 주소"
+            android:autofillHints="@string/Proxy_Address"
             android:digits="0123456789."
-            android:hint="프록시 주소"
+            android:hint="@string/Proxy_Address"
             android:inputType="numberDecimal" />
 
         <EditText
             android:id="@+id/proxy_port"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints="프록시 포트"
-            android:hint="프록시 포트"
+            android:autofillHints="@string/Proxy_Port"
+            android:hint="@string/Proxy_Port"
             android:inputType="numberDecimal"
             android:maxLength="5" />
 
@@ -64,14 +64,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="프록시 지속" />
+            android:text="@string/Proxy_Persistence" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:gravity="center"
-            android:text="프록시 즐겨찾기"
+            android:text="@string/Proxy_Favorites"
             android:textSize="16sp"
             android:textStyle="bold" />
 
