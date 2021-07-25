@@ -69,7 +69,7 @@ public class FeatureFragment extends Fragment {
             MaterialCardView TXT = view.findViewById(R.id.Button_TXT);
             MaterialCardView ROT = view.findViewById(R.id.Button_ROT);
 
-            if (Locale.getDefault() != Locale.KOREAN || Package.contains("txwy.and.snqx") || Package.contains("cn.uc")) {
+            if (!getResources().getConfiguration().locale.getLanguage().equals("ko") || Package.contains("txwy.and.snqx") || Package.contains("cn.uc")) {
                 TXT.setVisibility(View.GONE);
             }
 
