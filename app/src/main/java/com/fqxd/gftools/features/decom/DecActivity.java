@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fqxd.gftools.BuildConfig;
+import com.fqxd.gftools.global.AdHelper;
 import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.ui.MainActivity;
 import com.fqxd.gftools.R;
@@ -52,6 +53,8 @@ public final class DecActivity extends AppCompatActivity {
     public void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_dec);
+
+        AdHelper.init(this, findViewById(R.id.parent));
         pkg = getIntent().getStringExtra("pkg");
 
         if (Build.VERSION.SDK_INT >= 23 && this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {

@@ -26,6 +26,7 @@ import com.fqxd.gftools.features.proxy.ProxyActivity;
 import com.fqxd.gftools.features.rotation.RotationActivity;
 import com.fqxd.gftools.features.txtkr.TxtKrPatchActivity;
 import com.fqxd.gftools.features.txtkr.TxtKrPatchActivityLegecy;
+import com.fqxd.gftools.global.AdHelper;
 import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.ui.GFDownloadActivity;
 import com.google.android.material.card.MaterialCardView;
@@ -62,6 +63,7 @@ public class FeatureFragment extends Fragment {
             ((TextView) view.findViewById(R.id.NoneMessage)).setText(String.format("Can't find package \"%s\"", Package));
             view.findViewById(R.id.Button_Download).setOnClickListener(v -> startActivity(new Intent(mContext, GFDownloadActivity.class).putExtra("pkg", Package)));
         } else {
+            AdHelper.init(mContext, view.findViewById(R.id.AD_Banner), view.findViewById(R.id.AD_Banner_Layout));
             MaterialCardView DEC = view.findViewById(R.id.Button_DEC);
             MaterialCardView ICO = view.findViewById(R.id.Button_ICO);
             MaterialCardView CEN = view.findViewById(R.id.Button_CEN);

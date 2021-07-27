@@ -25,6 +25,7 @@ import net.lingala.zip4j.model.enums.CompressionMethod;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
+import java.util.Locale;
 import java.util.Objects;
 
 import com.fqxd.gftools.implement.AsyncTask;
@@ -156,8 +157,11 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
                     return null;
                 }
             }
-            
-            for (File f : Objects.requireNonNull(apk.listFiles())) {
+
+            File[] listFile = Objects.requireNonNull(apk.listFiles());
+            for (int i = 0;i < listFile.length; i++) {
+                File f = listFile[i];
+                this.updateStatusNoRecord(String.format(Locale.getDefault(), "repackaging apk (%d/%d)",i + 1, listFile.length));
                 Log.d("list", f.getAbsolutePath());
                 if (f.getName().equals("res")) continue;
                 if (f.isFile()) {
@@ -216,6 +220,10 @@ final class PatchTask extends AsyncTask<Runnable, Void, Void> {
    public void updateStatus(final String str) {
         this.status.post(() -> status.setText(str));
         this.updateLog(str);
+    }
+
+    public void updateStatusNoRecord(final String str) {
+        this.status.post(() -> status.setText(str));
     }
 
     public void updateLog(final String str) {

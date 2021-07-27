@@ -24,6 +24,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.fqxd.gftools.features.xapk.FilePathUtil;
+import com.fqxd.gftools.global.AdHelper;
 import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.R;
 import com.fqxd.gftools.features.calculator.CalculatorActivity;
@@ -86,6 +87,7 @@ public class HomeFragment extends Fragment {
         view.findViewById(R.id.GFNEKO_Button).setOnClickListener(onClickListener);
         view.findViewById(R.id.GFNOTI_Button).setOnClickListener(onClickListener);
         view.findViewById(R.id.CA_Button).setOnClickListener(onClickListener);
+        AdHelper.init(context,view.findViewById(R.id.AD_Banner), view.findViewById(R.id.AD_Banner_Layout));
         return view;
     }
 

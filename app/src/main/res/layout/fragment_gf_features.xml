@@ -19,6 +19,30 @@
             android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/AD_Banner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="gone"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardCornerRadius="17dp"
+                app:cardPreventCornerOverlap="false">
+
+                <RelativeLayout
+                    android:id="@+id/AD_Banner_Layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingStart="18dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="16dp"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/Button_DEC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -25,6 +25,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fqxd.gftools.global.AdHelper;
 import com.fqxd.gftools.global.Global;
 import com.fqxd.gftools.R;
 import com.google.android.material.button.MaterialButton;
@@ -43,6 +44,7 @@ public class ProxyActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_proxy);
+        AdHelper.init(this, findViewById(R.id.parent));
         String Package = getIntent().getStringExtra("pkg");
         TextView target = findViewById(R.id.target);
         try {
