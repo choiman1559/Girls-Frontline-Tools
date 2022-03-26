@@ -16,7 +16,6 @@ __the main app functions no longer work, so this project has been suspended.__
  - Girls Frontline Dic Portable
  - Girls Frontline TextKR Patcher
  - ZasRun Calculator
-(Thanks to tempkaridc)
  - Girls Frontline Censorship Tool
 (For Root Users)
  - Girls Frontline LSD Alarm
