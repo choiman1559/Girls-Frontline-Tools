@@ -2,7 +2,7 @@
 
 ```@Deprecated```
 
-__Due to the SAI (Scoped Storage) policy applied from Android 11 and later,__ <br>
+__Due to the SAF (Scoped Storage) policy applied from Android 11 and later,__ <br>
 __the main app functions no longer work, so this project has been temporarily suspended.__
 
 --------------------------
